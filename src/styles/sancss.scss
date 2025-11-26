@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+//自定义框架sancms相关css
+.ml10{
+  margin-left: 10px;
+}
+
+.mt16{
+  margin-top: 16px;
+}
+
+.padding-add {
+  padding: 20px 20px 0;
+}
+
+.form_content_width {
+  width: 250px;
+}
+
+.san-dialog-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px;
+  .btns {
+    display: flex;
+    align-items: flex-end;
+    i {
+      cursor: pointer;
+    }
+  }
+}

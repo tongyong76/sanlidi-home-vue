@@ -1,0 +1,7 @@
+dist
+node_modules
+public
+.husky
+.vscode
+
+src/assets

@@ -1,0 +1,41 @@
+.layout-header-bar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 200;
+  background-color: var(--bg-white);
+  transition: all 0.3s ease-in-out;
+
+  .top-menu {
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    height: 60px;
+    line-height: 60px;
+    padding: 0 20px;
+    align-items: center;
+    user-select: none;
+    border-bottom: 1px solid var(--card-border) !important;
+    .left{
+      display: flex;
+      flex: 1;
+      align-items: center;
+      min-width: 0;
+      line-height: 60px;
+    }
+    .right{
+      display: flex;
+    }
+  }
+
+  .btn-box{
+    display: block;
+    margin-right: 20px;
+    font-size: 30px;
+    cursor: pointer;
+    > i{
+      font-size: 20px;
+    }
+  }
+}
