@@ -1,0 +1,50 @@
+<include file="Public:header" />
+
+<script type="text/javascript">
+	function status(id,type){
+	    $.get("{:U('Navigation/status')}", { id: id, type: type }, function(data){
+			$("#"+type+"_"+id+" img").attr('src', '__PUBLIC__/statics/images/status_'+data.data+'.gif')
+		},"json"); 
+	}
+</script>
+
+</head>
+<div class="pad-lr-10" >
+    <form id="myform" name="myform" action="{:U('Navigation/delete')}" method="post" >
+    <div class="table-list" style="margin-top:10px;">
+    <table width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th width="5%"><input type="checkbox" value="" id="check_box" onclick="selectall('id[]');"></th>
+              	<th align="left" width="100">导航名称</th>
+                <th width="200">链接</th>               
+              	<th width="60">排序值</th>
+                <th width="60">操作</th>
+            </tr>
+        </thead>
+    	<tbody>
+        <volist name="list" id='val'>
+        <tr>
+            <td align="center"><input type="checkbox" value="{$val.id}" name="id[]"></td>
+            <td align="left">{$val.name}</td>
+            <td align="center">{$val.url}</td>
+            <td align="center"><input type="text" class="input-text-c input-text" value="{$val.ordid}" size="4" name="orders[{$val.id}]"></td>
+            <td align="center"><a class="blue" href="{:U('Navigation/edit',array('id'=>$val['id']))}">编辑</a></td>
+        </tr>
+        </volist>
+    	</tbody>
+    </table>
+
+    <div class="btn">
+    <label for="check_box">全选/取消</label>
+	<input type="submit" class="button" name="add" onclick="document.myform.action='{:U('Navigation/add')}'" value="新增" />
+    <input type="submit" class="button" name="submit" value="删除" style="margin:0px 10px;" onclick="return check();"/>
+    <input type="submit" class="button" name="order" onclick="document.myform.action='{:U('Navigation/order')}'" value="排序" />
+    </div>
+
+    </div>
+    </form>
+</div>
+
+</body>
+</html>

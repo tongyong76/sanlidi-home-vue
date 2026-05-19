@@ -1,0 +1,162 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>在线招聘申请表</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link type="text/css" rel="stylesheet" href="../Public/css/reset.css">
+<link type="text/css" rel="stylesheet" href="../Public/css/style.css">
+<script type="text/javascript" src="../Public/js/jquery-1.11.1.min.js"></script>
+<script>var ROOT_PATH = '__ROOT__';</script>
+<include file="Public:statistics"/>
+</head>
+<body>
+<include file="Public:header"/>
+<!--头部结束-->
+<div class="wrap">
+	<div class="inside_wrap">
+    	
+		<div class="t_form">
+        	<div class="team_form_banner"><img src="../Public/images/zhaopin_banner.jpg"></div>
+            <div class="t_f">
+        		<div class="t_f_top"><span>在线招聘填写申请</span>请填写相关资料，人事专员将会尽快和您联系</div>
+                <div class="t_f_bottom">
+					<form id="tuanForm" name="tuanForm" method="post" action="">
+					<div class="t_f_title"><span>需求信息</span></div>
+                    <div class="t_f_info">
+                    	<div class="formLine clearfix">
+                        	<span class="formLabel w150"><i>*</i>应聘岗位：</span>
+                            <span>
+								<select name="job" class="w150">
+                                    <option value="1">旅游顾问</option>
+                                    <option value="2">旅游顾问(在线业务)</option>
+                                    <option value="3">产品经理（短线/长线/出境）</option>
+                                    <option value="4">亲子游老师</option>
+                                    <option value="5">呼叫中心客服专员</option>
+                                    <option value="6">导游、领队（全职或兼职）</option>
+                                    <option value="7">总经理助理/副总助理</option>
+									<option value="8">驾驶员</option>
+								</select>
+							</span>
+                        </div>
+                        <div class="formLine clearfix">
+                        	<span class="formLabel w150"><i>*</i>姓名：</span>
+                            <span><input name="name" id="name" type="text" class="long"></span>
+							<span class="err_name normal"></span>
+                        </div>
+                        <div class="formLine clearfix">
+                        	<span class="formLabel w150"><i>*</i>性 别：</span>
+                            <span>
+                                <label><input name="sex" type="radio" value="1" checked="checked">男</label>
+                                <label><input name="sex" type="radio" value="2">女</label>
+							</span>
+                            <span class="err_dst normal"></span>
+                        </div>
+                        <div class="formLine clearfix">
+                        	<span class="formLabel w150"><i>*</i>联系电话：</span>
+                            <span><input name="phone" id="phone1" type="text" class="long"></span>
+							<span class="err_phone normal"></span>
+                        </div>
+                        <div class="formLine clearfix">
+                        	<span class="formLabel w150"><i>*</i>学历/专业：</span>
+                            <span>
+								<select name="level" class="w110">
+                                    <option value="1">高中</option>
+                                    <option value="2">中专</option>
+									<option value="3">大专</option>
+                                    <option value="4">本科</option>
+                                    <option value="5">研究生</option>
+								</select>
+							</span>
+                        </div>
+						<div class="formLine clearfix">
+                        	<span class="formLabel w150"><i></i>相关资质：</span>
+                            <span>
+								<select name="cert" class="w110">
+                                    <option value="1">无</option>
+                                    <option value="2">导游证</option>
+                                    <option value="3">领队证</option>
+								</select>
+							</span>
+                        </div>
+                        <div class="formLine clearfix">
+                        	<span class="formLabel w150"><i></i>其他经历：</span>
+                            <span><textarea name="info" class="maxlong"></textarea></span>
+                        </div>
+                    </div>
+                    <div class="team_order_submit zhaopin_submit">
+                    	<input type="submit" name="submit" id="submit" value="提交">
+                    </div>
+                    </form>
+                </div>
+        	</div>
+        </div>
+        
+        
+    </div>
+</div>
+<include file="Public:footer"/>
+<script type="text/javascript">
+function checkname(){
+	$(".err_name").removeClass("normal");
+	var contact=$.trim($(this).val());
+	if(contact==""){
+		$(".err_name").addClass("error").removeClass("correct").html("请填写联系人！");
+	}else{
+		$(".err_name").addClass("correct").removeClass("error").html("&nbsp;");
+	}
+}
+function checkphone(){
+	$(".err_phone").removeClass("normal");
+	var phone=$.trim($(this).val());
+	if(phone==""){
+		$(".err_phone").addClass("error").removeClass("correct").html("请填写联系电话！");
+	}else{
+		var uanmebool=/^(13[0-9]|15[0|3|6|7|8|9]|18[8|9]|18[0-9]|147|17[6-8])\d{8}$/.test(phone);
+		if(!uanmebool){
+			$(".err_phone").addClass("error").removeClass("correct").html("请填写正确的手机号码！");
+		}else{
+			$(".err_phone").addClass("correct").removeClass("error").html("&nbsp;");
+		}
+	}	
+}
+$(function(){
+	$("#name").blur(function(){
+		$(".err_name").removeClass("normal");
+		var contact=$.trim($(this).val());
+		if(contact==""){
+			$(".err_name").addClass("error").removeClass("correct").html("请填写联系人！");
+		}else{
+			$(".err_name").addClass("correct").removeClass("error").html("&nbsp;");
+		}
+	});
+	//验证手机
+	$("#phone1").blur(function(){
+		$(".err_phone").removeClass("normal");
+		var phone=$.trim($(this).val());
+		if(phone==""){
+			$(".err_phone").addClass("error").removeClass("correct").html("请填写联系电话！");
+		}else{
+			var uanmebool=/^(13[0-9]|15[0|3|6|7|8|9]|18[8|9]|18[0-9]|147|17[6-8])\d{8}$/.test(phone);
+			if(!uanmebool){
+				$(".err_phone").addClass("error").removeClass("correct").html("请填写正确的手机号码！");
+			}else{
+				$(".err_phone").addClass("correct").removeClass("error").html("&nbsp;");
+			}
+		}
+
+	});
+	$("#submit").click(function(){
+		checkname();
+		checkphone();
+		if($(".err_name").html()=='&nbsp;' && $(".err_phone").html()=='&nbsp;'){
+			return true;
+		}else{			
+			return false;
+		}
+	});
+});
+</script>
+</body>
+</html>

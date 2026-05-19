@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>苏州深度{$cateInfo.name}路线_2016最新苏州深度{$cateInfo.name}报价_苏州深度{$cateInfo.name}旅游线路_三三旅游网</title>
+<meta name="keywords" content="">
+<meta name="description" content="【三三旅游网】为您提供2016年苏州深度{$cateInfo.name}线路最新报价，及时、专业、全面、无忧的苏州深度{$cateInfo.name}行程服务，让您体验全新的苏州深度{$cateInfo.name}之旅。旅游预订电话：0512-66667777">
+<link type="text/css" rel="stylesheet" href="../Public/css/reset.css">
+<link type="text/css" rel="stylesheet" href="../Public/css/style.css">
+<script type="text/javascript" src="../Public/js/jquery-1.11.1.min.js"></script>
+<script>var ROOT_PATH = '__ROOT__';</script>
+<script type="text/javascript" src="../Public/js/common.js"></script>
+<script type="text/javascript" src="../Public/js/search_list.js"></script>
+<include file="Public:statistics"/>
+</head>
+<body>
+<include file="Public:header"/>
+<div class="wrap">
+	<div class="inside_wrap clearfix">
+    	<div class="search_nav">
+			<a href="/">首页</a><b>></b>{$posi}
+		</div>
+        <div class="search_list fl">
+        	<div class="filter_nav">
+				<input type="hidden" name="days" value="">
+				<input type="hidden" name="price" value="">
+				<input type="hidden" name="pinyin" value="{$pinyin}">
+				<if condition="$cateList">
+        		<dl class="last">
+                    <dd class="clearfix">
+						<volist name="cateList" id="vo">
+						<a <if condition="$vo['pinyin'] eq $pinyin"> class="cur"</if> href="__ROOT__/suzhou/{$vo.pinyin}/" title="苏州到{$vo.name}旅游">{$vo.name}</a>
+						</volist>
+					</dd>
+                </dl>
+				</if>
+        	</div>
+            <div class="search_route_list" id="content">
+				<include file="ajaxlist" />
+            </div>
+            
+            
+        </div>
+		<include file="Public:shoplist2"/>
+        
+
+    </div>
+</div>
+<include file="Public:footer_notq"/>
+</body>
+</html>

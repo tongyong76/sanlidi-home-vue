@@ -1,0 +1,131 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{$cateInfo.name}签证_{$cateInfo.name}旅游签证_苏州青旅33ly.com</title>
+<meta name="keywords" content="">
+<meta name="description" content="三三旅游网为您提供{$cateInfo.name}签证代办服务，让您出境旅游更加轻松。24小时咨询预定电话：66667777">
+<link type="text/css" rel="stylesheet" href="../Public/css/reset.css">
+<link type="text/css" rel="stylesheet" href="../Public/css/style.css">
+<script type="text/javascript" src="../Public/js/jquery-1.11.1.min.js"></script>
+<script>var ROOT_PATH = '__ROOT__';</script>
+<script type="text/javascript" src="../Public/js/common.js"></script>
+<script type="text/javascript" src="../Public/js/visa.js"></script>
+<include file="Public:statistics"/>
+</head>
+<body>
+<include file="Public:header"/>
+<!--头部结束-->
+<div class="wrap">
+	<div class="inside_wrap">
+    	<div class="search_nav">
+			<a href="__ROOT__">首页</a><b>></b><a href="__ROOT__/qianzheng/">签证</a><b>></b><span>{$cateInfo.name}</span>
+		</div>
+        <div class="visa_option">
+        	<div class="v_o_country">
+            	<dl class="clearfix">
+                	<dt><img src="__ROOT__{$cateInfo.imgurl}"></dt>
+                    <dd>{$cateInfo.name}</dd>
+                </dl>
+            </div>
+			<!--
+            <div class="v_o_location">
+            	<dl class="clearfix">
+                	<dt>请选择您目前所在地</dt>
+                    <dd><a href="#">上海</a><a href="#">北京</a></dd>
+                </dl>
+            </div>
+			-->
+        </div>
+        <div class="cont clearfix">
+        	<div class="cont_left fr">
+            	 <div class="common_telephone clearfix">
+					<span class="tt">旅游通</span>
+					<span class="pp">6666-7777</span>
+				 </div>                              
+                 <div class="visa_faq">
+                 	<div class="v_f_title">
+                    	<span>常见问题</span>
+                    </div>
+                    <div class="v_f_list">
+                    	<ul>
+                        	<volist name="qList" id="vo">
+							<li><a href="{:U('Article/detail',array('id'=>$vo['id']))}">{$vo.title}</a></li>
+							</volist>
+                        </ul>
+                    </div>
+                 </div>
+                
+            </div>
+            <div class="cont_right fl">
+				<div class="vSort">
+					<table class="tab_visa col6">
+                    	<thead>
+                        	<tr>
+                            	<th>签证类别{$login_sign}</th>
+                            	<th>工作日</th>
+                                <th>停留时间</th>
+                            	<th>签证有效期</th>
+								<th>市场价</th>
+                            	<th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+							<volist name="visaList" id="vo">
+                        	<tr>
+                            	<td>{$vo.name}</td>
+                                <td>{$vo.worktime}</td>
+                                <td>{$vo.staytime}</td>
+                                <td>{$vo.expdate}</td>
+                                <td style="position:relative;">
+									<if condition="$login_sign">
+									<span class="visa_price erp_from">￥<em>{$vo.price}</em></span>
+									<else/>
+									<span class="visa_price">￥<em>{$vo.price}</em></span>
+									</if>
+									<span class="erp_price" style="display:none;width:200px;position:absolute;top:38px;left:0;background:#fff;text-align:left;border:1px solid #ccc;padding:0px 8px;z-index:1">
+										<p style="border-bottom:1px dashed #eee;padding:3px 0;">结算价：<b style="color:#2a98da">{$vo.price_final}</b></p>
+										<p style="border-bottom:1px dashed #eee;padding:3px 0;">供应商：<b style="color:#2a98da">{$vo.supplier}</b></p>
+										<p style="border-bottom:1px dashed #eee;padding:3px 0;">联系人：<b style="color:#2a98da">{$vo.supplier_c}</b></p>
+										<p style="padding:3px 0;">联系方式：<b style="color:#2a98da">{$vo.supplier_p}</b></p>
+									</span>
+								</td>
+								<td><div class="ticket"><a class="" onmouseout="this.className=''" onmouseover="this.className='ticket_move'" href="__ROOT__/qianzheng/visa-{$vo.id}.html">查看详情</a></div></td>
+							</tr>
+							</volist>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="vRoute">
+                	<div class="v_r_title">
+                    	<span>推荐线路</span>
+                    </div>
+                    <ul>
+						<volist name="sList" id="vo">
+                    	<li>
+                        	<span class="v_info"><a href="__ROOT__/{$vo.cpinyin}/xianlu-{$vo.id}.html"><{$vo.name}>{$vo.subname}</a></span>
+                            <span class="v_price"><strong><b>￥</b>{$vo.minprice}</strong>起</span>
+                        </li>
+						</volist>
+                    </ul>
+                    <div class="visa_mRoute"><a href="__ROOT__/{$vo.cpinyin}/{$goodsCateInfo.pinyin}/">查看更多线路>></a></div>
+                </div>       
+            </div>
+        </div>
+    </div>
+</div>
+
+<include file="Public:footer_notq"/>
+
+</body>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.visa_price.erp_from').mouseover(function(){
+		$(this).parent().find('.erp_price').css('display','block');
+	});
+	$('.visa_price.erp_from').mouseout(function(){
+		$(this).parent().find('.erp_price').css('display','none');
+	});
+});
+</script>
+</html>

@@ -1,0 +1,27 @@
+<div class="o_like">
+	<div class="o_l_title">
+		<span>猜你喜欢</span>
+	</div>
+	<div class="zbrecommend clearfix">
+		<div class="re_pic">
+			<ul class="recom_pic clearfix">
+				<volist name="likeThis" id="vo">
+				<li>
+					<div class="zbr_pic">
+						<a href="__ROOT__/{$vo.type}/xianlu-{$vo.id}.html"><img src="__ROOT__{$vo.imgurl}"></a>
+					</div>
+					<div class="zbr_title">
+						<a href="__ROOT__/{$vo.type}/xianlu-{$vo.id}.html">{$vo.name}{$vo.subname}</a>
+					</div>
+					<div class="zbr_price">
+						<div>价格：<span>￥<em>{$vo.minprice}</em>起</span></div>
+					</div>
+				</li>
+				</volist>
+			</ul>
+		 </div>
+		 <a class="left_arrow" href="javascript:void(0)"><img src="../Public/images/l_arrow.png"></a>
+		 <a class="right_arrow" href="javascript:void(0)"><img src="../Public/images/r_arrow.png"></a>
+		</div>
+	</div>
+</div>

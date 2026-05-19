@@ -1,0 +1,87 @@
+<include file="Public:header" />
+<script language="javascript">var webpath="__PUBLIC__";</script>
+<script type="text/javascript" src="__PUBLIC__/statics/js/common.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#submit").click(function(){
+			if($("#name").val()==0){
+			   alert('请填写资讯分类');
+			   return false;
+			}
+		});
+	});
+
+</script>
+
+</head>
+<body>
+<div class="pad_10">
+<form action="{:U('Wxsale/add')}" method="post" name="myform" id="myform" enctype="multipart/form-data" style="margin-top:10px;">
+  <div class="pad-10">
+  <div class="col-tab">
+  <ul class="tabBut cu-li">
+    <li id="tab_setting_1" class="on" onclick="SwapTab('setting','on','',1,1);">基本信息</li>
+  </ul>
+  <div id="div_setting_1" class="contentList pad-10">
+    <table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+	<tr>
+	    <th width="100">热卖商品ID :</th>
+	    <td><input type="text" name="gid" id="gid" class="input-text" value="{$info.gid}"></td>
+	</tr>
+	<tr>
+	    <th width="100">出发日期 :</th>
+	    <td><input type="text" name="dep_time" id="dep_time" class="date" size="12" value="{$info.dep_time|date='Y-m-d',###}">
+			<script language="javascript" type="text/javascript">
+				Calendar.setup({
+					inputField     :    "dep_time",
+					ifFormat       :    "%Y-%m-%d",
+					showsTime      :    'true',
+					timeFormat     :    "24"
+				});
+			</script>
+		</td>
+	</tr>
+	<tr>
+	    <th width="100">抢购价格 :</th>
+	    <td><input type="text" name="sale_price" id="sale_price" class="input-text" value="{$info.sale_price}"></td>
+	</tr>
+	<tr>
+	    <th width="100">抢购数量 :</th>
+	    <td><input type="text" name="sale_num" id="sale_num" class="input-text" value="{$info.sale_num}"></td>
+	</tr>
+	<tr>
+		<th width="100">活动时间 :</th>
+		<td><input type="text" name="sale_start" id="sale_start" class="date" size="12" value="{$info.sale_start|date='Y-m-d',###}">
+			<script language="javascript" type="text/javascript">
+				Calendar.setup({
+					inputField     :    "sale_start",
+					ifFormat       :    "%Y-%m-%d",
+					showsTime      :    'true',
+					timeFormat     :    "24"
+				});
+			</script>
+			-
+			<input type="text" name="sale_end" id="sale_end" class="date" size="12" value="{$info.sale_end|date='Y-m-d',###}">
+			<script language="javascript" type="text/javascript">
+				Calendar.setup({
+					inputField     :    "sale_end",
+					ifFormat       :    "%Y-%m-%d",
+					showsTime      :    'true',
+					timeFormat     :    "24"
+				});
+			</script>
+		</td>
+	</tr>
+</table>
+  </div>
+  <div class="bk15"></div>
+  <div class="btn">
+    <input type="submit" value="提交" name="submit" class="button" id="submit">
+  </div>
+
+</div>
+</div>
+</form>
+</div>
+</body>
+</html>

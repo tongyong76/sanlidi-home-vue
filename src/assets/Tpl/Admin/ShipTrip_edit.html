@@ -1,0 +1,112 @@
+<include file="Public:header" />
+<script language="javascript">var webpath="__PUBLIC__";</script>
+<script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.all.min.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/ueditor/themes/default/css/ueditor.css"/>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#submit").click(function(){		
+			if($("#name").val()==0){
+			   alert('请填写名称');
+			   return false;
+			}
+		});
+		//编辑器
+		var editor = new UE.ui.Editor({toolbars:[['source','bold','italic','underline','insertorderedlist','insertunorderedlist','forecolor','backcolor','selectall','cleardoc','justifyleft','justifyright','justifycenter','justifyjustify','inserttable']],initialFrameHeight:300});
+		editor.render("text"); 
+	});
+</script>
+</head>
+<body>
+<form action="{:u('ShipTrip/edit')}" method="POST" name="myform" id="myform" enctype="multipart/form-data" style="margin-top:10px;">
+  <div class="pad-10">
+  <div class="col-tab">
+  <ul class="tabBut cu-li">
+    <li id="tab_setting_1" class="on" onClick="SwapTab('setting','on','',1,1);">基本信息</li>
+  </ul>
+  <div id="div_setting_1" class="contentList pad-10">
+    <table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+      <tr>
+        <th width="100"></th>
+        <td>第&nbsp;<input type="text" name="ordid" class="input-text" size="2" value="{$info.ordid}" >天</td>
+      </tr>
+	  <tr>
+        <th width="100">名称 :</th>
+        <td><input type="text" name="name" class="input-text" size="60" value="{$info.name}" ></td>
+      </tr>
+	  <tr>
+        <th width="100">含餐宿 :</th>
+        <td>
+			<input type="checkbox" value="1" name="dinner[]" <if condition="in_array(1,$info['dinner'])"> checked="checked"</if>>&nbsp;早餐
+			<input type="checkbox" value="2" name="dinner[]" <if condition="in_array(2,$info['dinner'])"> checked="checked"</if>>&nbsp;午餐
+			<input type="checkbox" value="3" name="dinner[]" <if condition="in_array(3,$info['dinner'])"> checked="checked"</if>>&nbsp;晚餐
+			<input type="checkbox" value="4" name="dinner[]" <if condition="in_array(4,$info['dinner'])"> checked="checked"</if>>&nbsp;住宿
+		</td>
+      </tr>
+	  <tr>
+        <th width="100">到港时间 :</th>
+        <td><input type="text" name="arrive" class="input-text" size="60" value="{$info.arrive}" ></td>
+      </tr>
+	  <tr>
+        <th width="100">离港时间 :</th>
+        <td><input type="text" name="leave" class="input-text" size="60" value="{$info.leave}" ></td>
+      </tr>
+	  <tr>
+        <th width="100">景点 :</th>
+        <td>
+			<input type="text" name="scene" class="input-text" size="60" value="{$info.scene}" >
+			<input type="button" name="getScene" value="获取相关景点" >
+		</td>
+      </tr>
+	  <tr>
+		<th>行程详情 :</th>
+		<td>
+			<textarea style="width:70%;" name="info" id="text">{$info.info}</textarea>
+		</td>
+	  </tr> 
+	  <input type="hidden" name="pid" value="{$info.pid}">
+	  <input type="hidden" name="id" value="{$info.id}">
+    </table>
+  </div>
+  
+  <div class="bk15"></div>
+  <div class="btn">
+    <input type="submit" onClick="disable()" value="提交" name="submit" class="button" id="submit">
+  </div>
+
+</div>
+</div>
+</form>
+<script type="text/javascript">
+function delHtmlTag(str){
+	return str.replace(/<[^>]+>/g,"");//去掉所有的html标记
+}
+
+function disable(){
+	if($('input').attr("disabled")==true || $('input').attr("disabled")==true){
+		$('input').removeAttr('disabled');
+		$('select').removeAttr('disabled');
+	}
+}
+
+$('input[name="getScene"]').click(function(){
+	var srcData = $('textarea').val();
+	srcData = delHtmlTag(srcData);
+	$.ajax({
+		url: '__ROOT__/Tour/getscene',
+		type: 'POST',
+		data:{srcData:srcData},
+		dataType: 'json',
+		success: function(result){
+			if(result.status == 1){
+				$('input[name="scene"]').val(result.data);
+			}else{
+				alert('失败');
+			}
+		}
+	});
+});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<include file="Public:header" />
+</head>
+<body>
+<form action="{:u('Obanner/edit')}" method="POST" name="myform" id="myform" enctype="multipart/form-data" style="margin-top:10px;">
+  <div class="pad-10">
+  <div class="col-tab">
+  <ul class="tabBut cu-li">
+    <li id="tab_setting_1" class="on" onclick="SwapTab('setting','on','',1,1);">基本信息</li>
+  </ul>
+  <div id="div_setting_1" class="contentList pad-10">
+    <table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+      <tr>
+        <th width="100">名称 :</th>
+        <td>{$info.name}</td>
+      </tr>
+	  <tr>
+        <th width="100">幻灯标题 :</th>
+        <td><input type="text" name="title" id="title" class="input-text" size="60" value="{$info.title}" style="height:25px;"></td>
+      </tr>
+	  <tr>
+      	<th>图片 :</th>
+      	<td>
+			<img src="__ROOT__{$info.imgurl}" style="width:380px;height:140px;border: 1px solid #999999;padding:1px;" />&nbsp;&nbsp;<br /><br />
+            <input type="file" name="imgurl" id="imgurl" class="input-text" size=21 style="height:25px;"/>
+        </td>
+      </tr>
+	  <tr>
+        <th width="100">链接地址 :</th>
+        <td><input type="text" name="link" id="link" class="input-text" size="60" value="{$info.link}" style="height:25px;"></td>
+      </tr>
+	  <tr>
+	    <th>首页显示 :</th>
+	    <td>
+	      <input type="radio" name="is_show" class="radio_style" value="1" <if condition="$info['is_show'] eq '1'">checked="checked"</if> > &nbsp;是&nbsp;&nbsp;&nbsp;
+	      <input type="radio" name="is_show" class="radio_style" value="0" <if condition="$info['is_show'] neq '1'">checked="checked"</if>> &nbsp;否
+	    </td>
+	  </tr>    
+      <input type="hidden" name="id" value="{$info.id}"/>
+	  <input type="hidden" name="pid" value="{$info.pid}"/>
+    </table>
+  </div>
+  <div class="bk15"></div>
+  <div class="btn">
+    <input type="submit" value="提交" name="submit" class="button" id="submit">
+  </div>
+
+</div>
+</div>
+</form>
+
+</body>
+</html>

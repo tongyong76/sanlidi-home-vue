@@ -1,0 +1,102 @@
+<include file="Public:header" />
+<script language="javascript">var webpath="__PUBLIC__";</script>
+<script type="text/javascript" src="__PUBLIC__/statics/js/common.js"></script>
+<script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.all.min.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/ueditor/themes/default/css/ueditor.css"/>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#submit").click(function(){
+			if($("#name").val()==0){
+			   alert('请填写资讯分类');
+			   return false;
+			}
+		});
+	});
+</script>
+
+</head>
+<div class="pad_10">
+<form action="{:U('LineCate/edit')}" method="post" name="myform" id="myform" enctype="multipart/form-data" style="margin-top:10px;">
+  <div class="pad-10">
+  <div class="col-tab">
+  <ul class="tabBut cu-li">
+    <li id="tab_setting_1" class="on" onclick="SwapTab('setting','on','',2,1);">基本信息</li>
+    <li id="tab_setting_2" onclick="SwapTab('setting','on','',2,2);">SEO设置</li>
+  </ul>
+  <div id="div_setting_1" class="contentList pad-10">
+    <table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+    <tr>
+      <th>上级分类 :</th>
+      <td>
+      <select name="pid" style="width:150px;">
+        <option value="0">--顶级分类--</option>
+            <volist name="cates_list" id="val">
+                <if condition="$val['id'] eq $cate_info['pid']">  
+                <option value="{$val['id']}" selected="selected">
+                <else />
+                <option value="{$val['id']}">
+				</if>
+                    <for start="1" end="$val['floor']">
+                    &nbsp;&nbsp;
+                    </for>
+                    <if condition="$val['floor'] gt 1">
+                    ├&nbsp;
+                    </if>
+                    {$val['name']}
+                </option>								
+            </volist> 
+      </select>
+	  <input type="hidden" name="floor" value="{$sval.floor}" />
+      </td>
+    </tr>
+    <tr>
+      <th width="100">分类名称 :</th>
+      <td><input type="text" name="name" id="name" class="input-text" value="{$cate_info.name}"></td>
+    </tr>
+    <tr>
+      <th width="100">排序值 :</th>
+      <td><input type="text" name="ordid" id="sort_order" class="input-text" value="{$cate_info.ordid}" size="4" onkeyup="value=value.replace(/[^\d]/g,'')"onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"></td>
+    </tr>
+	<tr>
+      <th width="100">拼音 :</th>
+      <td><input type="text" name="pinyin" id="pinyin" class="input-text" value="{$cate_info.pinyin}"></td>
+    </tr>
+	<tr>
+      <th>缩略图 :</th>
+      <td>
+		<img src="<if condition="$cate_info['imgurl']">__ROOT__{$cate_info.imgurl}<else />__ROOT__/Uploads/noimg.jpg</if>" style="width:100px;height:100px;border: 1px solid #999999;padding:1px;" />&nbsp;&nbsp;<br /><br />
+        <input type="file" name="imgurl" id="imgurl" class="input-text" size=21 style="height:25px;"/>
+      </td>
+    </tr>
+	<input type="hidden" name="id" value="{$cate_info.id}" id="article_id"/>
+</table>
+  </div>
+
+  <div id="div_setting_2" class="contentList pad-10 hidden">
+    <table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+     <tr>
+      <th width="100">Title :</th>
+      <td><input type="text" name="seo_title" id="seo_title" class="input-text" value="{$cate_info.seo_title}" size="50"></td>
+    </tr>
+    <tr>
+      <th width="100">Keywords :</th>
+      <td><input type="text" name="seo_keys" id="seo_keys" class="input-text" value="{$cate_info.seo_keys}" size="50"></td>
+    </tr>
+    <tr>
+      <th width="100">Description :</th>
+      <td><textarea name="seo_desc" cols="47" rows="4">{$cate_info.seo_desc}</textarea></td>
+    </tr>
+    </table>
+  </div>
+  <div class="bk15"></div>
+  <div class="btn">
+    <input type="submit" value="提交" name="submit" class="button" id="submit">
+  </div>
+
+</div>
+</div>
+</form>
+</div>
+</body>
+</html>

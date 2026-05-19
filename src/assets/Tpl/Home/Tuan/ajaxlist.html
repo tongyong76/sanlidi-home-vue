@@ -1,0 +1,30 @@
+<ul class="s_r_list">
+	<volist name="list" id="vo">
+	<li>
+		<div class="routeinfo clearfix">
+			<div class="Limgbox fl">
+				<a href="__ROOT__/group/xianlu-{$vo.id}.html" target="_blank"><img src="__ROOT__{$vo.imgurl}"></a>
+			</div>
+			<div class="Cinfo fl">
+				<div class="Cinfo_title"><a target="_blank" href="__ROOT__/group/xianlu-{$vo.id}.html">{$vo.name}</a></div>
+				<!--
+				<div class="Cinfo_tag"><span><img class="zx" src="../Public/images/search_list_zx_ico.png"><img class="zz" src="../Public/images/search_list_zz_ico.png"><img class="tj" src="../Public/images/search_list_tj_ico.png"></span></div>
+				-->
+				<div class="Cinfo_des">{$vo.info}</div>
+				<!--<div class="Cinfo_data mT20">行程天数：<span class="day_num">{$vo.days}</span>天</div>
+				<div class="Cinfo_data">出发日期：<span class="data_time"><if condition="$vo['dep']">{$vo.dep}<else/>最近无行程</if></span></div>
+				-->
+			</div>
+			<div class="Rprice fl">				
+				<!--<div class="now_price">￥<span>{$vo.minprice|isNull=###}</span>起</div>-->
+				<div class="tt">参考报价</div>
+				<div class="tuan_price">一团一议</div>
+				<div class="ticket mT10"><a href="__ROOT__/group/xianlu-{$vo.id}.html" target="_blank" onMouseOver="this.className='ticket_move'" onMouseOut="this.className=''">查看详情</a></div>
+			</div>
+		</div>
+	</li>
+	</volist>
+</ul>
+<div class="pagination">
+	<div class="paging fr" id="page">{$page}</div>
+</div>

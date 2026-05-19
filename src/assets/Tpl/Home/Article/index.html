@@ -1,0 +1,92 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{$id|getNameById=###,"article_cate"}-苏州青旅33ly.com</title>
+<meta name="keywords" content="">
+<meta name="description" content="苏州青旅三三旅游网：为您提供旅游线路、报价，精选优质旅游线路。24小时咨询预订电话：66667777">
+<link type="text/css" rel="stylesheet" href="../Public/css/reset.css">
+<link type="text/css" rel="stylesheet" href="../Public/css/style.css">
+<script type="text/javascript" src="../Public/js/jquery-1.11.1.min.js"></script>
+<script>var ROOT_PATH = '__ROOT__';</script>
+<script type="text/javascript" src="../Public/js/common.js"></script>
+<include file="Public:statistics"/>
+</head>
+<body>
+<include file="Public:header"/>
+<!--头部结束-->
+<div class="wrap">
+	<div class="inside_wrap">
+    	<div class="search_nav">
+			<a href="__ROOT__">首页</a><b>></b><span>{$id|getNameById=###,"article_cate"}</span>
+		</div>
+        <div class="cont clearfix">
+        	<div class="cont_left fl">
+				<div class="t_week">
+					<div class="t_w_title"><span>每周特价</span>抢到就是赚到<!--<a class="fr" href="#" target="_blank">更多>></a>--></div>
+					<div class="t_w_item clearfix">
+						<ul class="fl">
+							<volist name="tj" id="vo">
+							<li class="clearfix">
+								<div class="twi_left fl"><a href="__ROOT__/{$vo.pinyin}/xianlu-{$vo.id}.html"><img src="__ROOT__{$vo.imgurl}"></a><span></span></div>
+								<div class="twi_right fl">
+									<div class="twi_title"><a href="__ROOT__/{$vo.pinyin}/xianlu-{$vo.id}.html">{$vo.name}</a></div>
+									<div class="twi_des">立减{$vo['market_price']-$vo['minprice']}元</div>
+									<div class="twi_price">￥<span>{$vo.minprice}</span>起<a class="twip_go fr" href="__ROOT__/{$vo.pinyin}/xianlu-{$vo.id}.html"></a></div>
+								</div>
+							</li>
+							</volist>
+						</ul>
+					</div>
+				</div>
+				<div class="xinwen">
+					<div class="x_w_title"><span>三三新闻</span><a class="fr" href="{:U('Article/index',array('id'=>1))}" target="_blank">更多>></a></div>
+					<div class="x_w_item">
+						<ul>
+							<volist name="arcList" id="vo">
+							<li class="clearfix">
+								<div class="xwi_left fl"><a href="{:U('Article/detail',array('id'=>$vo['id']))}" target="_blank">{$vo.title|msubstr=###,'18'}</a></div>
+								<div class="xwi_right fr">{$vo.add_time|date="y.m.d",###}</div>
+							</li>
+							</volist>
+						</ul>
+					</div>
+				</div>
+                <div class="cLeft_adList">
+                	<ul>
+                    	<li><a href="{$ad.zbzx1.link}"><img src="{$ad.zbzx1.imgurl}"></a></li>
+                        <li><a href="{$ad.zbzx2.link}"><img src="{$ad.zbzx2.imgurl}"></a></li>
+                        <li><a href="{$ad.zbzx3.link}"><img src="{$ad.zbzx3.imgurl}"></a></li>
+                    </ul>
+                </div>                
+                
+            </div>
+            <div class="cont_right fr">
+				<p class="news_title news_title2">最新文章</p>
+                <div class="article_list clearfix">
+                	<ul>
+						<volist name="arcList" id="vo">
+                    	<li>
+                        	<span class="a_info"><a href="{:U('Article/detail',array('id'=>$vo['id']))}">{$vo.title}</a></span>
+                            <span class="a_date">{$vo.add_time|date="Y-m-d",###}</span>
+                        </li>
+						</volist>
+                    </ul>
+                    <div class="pagination">
+                        <div class="paging fr">
+                            {$page}
+                        </div>
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+<include file="Public:footer_notq"/>
+</body>
+</html>

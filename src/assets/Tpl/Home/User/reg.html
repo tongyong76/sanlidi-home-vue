@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>demo</title>
+</head>
+<script src="__PUBLIC__/statics/js/jquery/jquery-1.8.2.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+	function get_mobile_code(){
+		var send_code = {$send_code};
+        $.post('index.php?m=User&a=sms', {mobile:jQuery.trim($('#mobile').val()),send_code:send_code}, function(msg) {
+            alert(jQuery.trim(unescape(msg)));
+			if(msg=='提交成功'){
+				RemainTime();
+			}
+        });
+	};
+	var iTime = 59;
+	var Account;
+	function RemainTime(){
+		document.getElementById('zphone').disabled = true;
+		var iSecond,sSecond="",sTime="";
+		if (iTime >= 0){
+			iSecond = parseInt(iTime%60);
+			iMinute = parseInt(iTime/60)
+			if (iSecond >= 0){
+				if(iMinute>0){
+					sSecond = iMinute + "分" + iSecond + "秒";
+				}else{
+					sSecond = iSecond + "秒";
+				}
+			}
+			sTime=sSecond;
+			if(iTime==0){
+				clearTimeout(Account);
+				sTime='获取手机验证码';
+				iTime = 59;
+				document.getElementById('zphone').disabled = false;
+			}else{
+				Account = setTimeout("RemainTime()",1000);
+				iTime=iTime-1;
+			}
+		}else{
+			sTime='没有倒计时';
+		}
+		document.getElementById('zphone').value = sTime;
+	}	
+</script>
+<body>
+<form action="{:U('User/reg')}" method="post" name="formUser">
+	<table width="100%"  border="0" align="left" cellpadding="5" cellspacing="3">
+		<tr>
+			<td align="right" id="extend_field5i">手机<td>
+		<input id="mobile" name="mobile" type="text" size="25" class="inputBg" /><span style="color:#FF0000"> *</span> 
+        <input id="zphone" type="button" value=" 获取手机验证码 " onClick="get_mobile_code();"></td>
+        </tr>
+		<tr>
+			<td align="right">验证码</td>
+			<td><input type="text" size="8" name="mobile_code" class="inputBg" /></td>
+		</tr>
+		<tr>
+			<td align="right"></td>
+			<td><input type="submit" value=" 注册 " class="button"></td>
+		</tr>
+	</table>
+</form>
+</body>
+</html>

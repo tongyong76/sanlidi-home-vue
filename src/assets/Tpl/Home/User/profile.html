@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>个人中心_基本资料_苏州青旅33ly.com</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link type="text/css" rel="stylesheet" href="../Public/css/reset.css">
+<link type="text/css" rel="stylesheet" href="../Public/css/style.css">
+<script type="text/javascript" src="../Public/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../Public/js/common.js"></script>
+<script type="text/javascript" src="../Public/js/user.js"></script>
+<include file="Public:statistics"/>
+</head>
+<body>
+<include file="Public:header" />
+<!--头部结束-->
+<div class="wrap">
+	<div class="inside_wrap">
+    	<div class="search_nav"><a href="index.html">首页</a>>><span>会员中心</span></div>
+        <div class="mysan">我的</div>
+        <div class="cont clearfix">
+        	<div class="cont_left fl">
+                <div class="uCenter">
+                    <include file="Public:ucleft" />
+                </div>
+            </div>
+            <div class="cont_right fr">
+            	<div class="user_basic">
+                	<div class="u_b_title">请填写基本信息<if condition="$type"><span>修改成功!</span></if></div>
+                    <div class="u_b_content">
+                    	<form action="" method="post">
+                        <div class="formLine clearfix">
+                        	<span class="formLabel w80">昵称：</span>
+                            <span><input name="nickname" type="text" class="long" value="{$nav_user_info.nickname}"></span>
+                        </div>
+                        <div class="formLine clearfix">
+                        	<span class="formLabel w80">真实姓名：</span>
+                            <span><input name="realname" type="text" class="long" value="{$nav_user_info.realname}"></span>
+                        </div>
+                        <div class="formLine clearfix">
+                        	<span class="formLabel w80">性别：</span>
+                            <span>
+								<label><input name="sex" type="radio" value="1" <if condition="$nav_user_info['sex'] eq 1">checked</if>>男</label>
+								<label><input name="sex" type="radio" value="0" <if condition="$nav_user_info['sex'] eq 0">checked</if>>女</label>
+							</span>
+                        </div>
+                        <div class="formLine clearfix">
+                        	<span class="formLabel w80">出生日期：</span>
+                            <span>
+								<select name="birthday[0]" id="year">
+									<volist name="byear" id="vo">
+									<option value="{$vo}" <if condition="$nav_user_info['byear'] eq $vo"> selected="selected"</if>>{$vo}</option>
+									</volist>
+								</select>-
+								<select name="birthday[1]" id="month">
+									<volist name="bmonth" id="vo">
+									<option value="{$vo}" <if condition="$nav_user_info['bmonth'] eq $vo"> selected="selected"</if>>{$vo}</option>
+									</volist>
+								</select>-
+								<select name="birthday[2]" id="day">
+									<volist name="bday" id="vo">
+									<option value="{$vo}" <if condition="$nav_user_info['bday'] eq $vo"> selected="selected"</if>>{$vo}</option>
+									</volist>
+								</select>
+							</span>
+                        </div>
+                        <div class="formLine clearfix">
+                        	<span class="formLabel w80">QQ：</span>
+                            <span><input name="qq" type="text" value="{$nav_user_info.qq}"></span>
+                        </div>
+                        <div class="formLine clearfix">
+                        	<span class="formLabel w80"><i>*</i>邮箱：</span>
+                            <span><input name="email" type="text" id="u_email" value="{$nav_user_info.email}"></span>
+                            <span class="err_email normal"></span>
+                        </div>
+                        <div class="u_b_promise"><span>三三旅游郑重承诺：</span>我们将尊重您的个人隐私，您的个人信息不会被公开。我们会为您量身定制个性化的服务，让您享受更优质的出行体验。 </div>
+                        <div class="u_b_submit">
+                    		<input type="submit" value="提交" name="submit" id="submit" onmousemove="this.className='input_move'" onmouseout="this.className=''">
+                    	</div>
+                        </form>
+                        
+                    </div>
+                </div>
+                <include file="Public:uclike"/>
+            </div>
+        </div>       
+    </div>
+</div>
+<include file="Public:footer_notq" />
+</body>
+<script type="text/javascript">
+function checkemail(){
+	$(".err_email").removeClass("nomal");
+	var email=$.trim($("#u_email").val());
+	if(email==""){
+		$(".err_email").addClass("error").removeClass("correct").html("请填写邮箱地址！");
+	}else{
+		var uanmebool=/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(email);
+		if(!uanmebool){
+			$(".err_email").addClass("error").removeClass("correct").html("邮箱格式不正确！");
+		}else{
+			$(".err_email").addClass("correct").removeClass("error").html("&nbsp;");
+		}
+	}
+}
+$(document).ready(function(){
+	//验证邮箱
+	$("#u_email").blur(function(){
+		checkemail();
+	});
+	$("#submit").click(function(){
+		checkemail();
+		if($(".err_email").html()=='&nbsp;'){
+			return true;
+		}else{
+			return false;
+		}
+	});
+});
+</script>
+</html>

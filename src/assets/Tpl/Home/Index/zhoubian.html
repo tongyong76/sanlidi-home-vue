@@ -1,0 +1,170 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>苏州周边游_苏州周边游线路_苏州周边游报价_三三旅游网</title>
+<meta name="keywords" content="">
+<meta name="description" content="三三旅游周边游频道：为您提供周边最新旅游线路推荐，周边游报价，精选优质周边游线路，给您带来最佳的预订体验，是您预订周边游线路的首选。24小时咨询预订电话：66667777">
+<link type="text/css" rel="stylesheet" href="../Public/css/reset.css">
+<link type="text/css" rel="stylesheet" href="../Public/css/style.css">
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/bxslider/jquery.bxslider.css">
+<include file="Public:statistics"/>
+</head>
+<body>
+<include file="Public:header"/>
+<!--头部结束-->
+<div class="section-wp">
+<div id="sliderMain">
+	<div class="w1200 h350 clearfix">
+		<div class="w900" style="height:350px;overflow:hidden;">
+			<ul class="bxslider">
+			  <volist name="bannerList" id="vo">
+			  <li><a href="{$vo.link}"><img width="900" height="350" src="__ROOT__{$vo.imgurl}" alt="{$vo.title}" /></a></li>
+			  </volist>
+			</ul>			
+		</div>
+		<div class="w300">
+			<p class="h150"><a href="{$ad.zbhdy1.link}" title="{$ad.zbhdy1.title}" target="_blank"><img width="300" height="150" src="__ROOT__{$ad.zbhdy1.imgurl}"/></a></p>
+			<p class="h100"><a href="{$ad.zbhdy2.link}" title="{$ad.zbhdy2.title}" target="_blank"><img width="300" height="100" src="__ROOT__{$ad.zbhdy2.imgurl}"/></a></p>
+			<p class="h100"><a href="{$ad.zbhdy3.link}" title="{$ad.zbhdy3.title}" target="_blank"><img width="300" height="100" src="__ROOT__{$ad.zbhdy3.imgurl}"/></a></p>
+		</div>
+	</div>
+	<!--幻灯开始-->
+	<!--幻灯结束-->
+</div>
+<div class="wrap">
+  <div class="wp">
+    <div class="section-title"><strong>热门产品推荐</strong><span>/&nbsp;&nbsp;享受不一样的周末</span></div>
+    <div class="section-main">
+      <div class="se_list_top clearfix">
+        <div class="se_lt_left fl">
+		  <volist name="hot" id="vo" offset="0" length="1">
+		  <div class="se_lt_lpic"><a href="__ROOT__/zhoubian/xianlu-{$vo.id}.html" target="_blank"><img src="__ROOT__{$vo.imgurl}" align="absmiddle"><strong><span><{$vo.name}></span><span>{$vo.subname}</span></strong><p>{$vo.info|strcut=###,90}</p><span class="se_lt_ltprice"><i>￥</i><em>{$vo.minprice}</em><i>起</i></span></a></div>
+		  </volist>
+		</div>
+        <div class="se_lt_right fr clearfix">
+          <ul>
+			<volist name="hot" id="vo" offset="1" length="6">
+            <li><a href="__ROOT__/zhoubian/xianlu-{$vo.id}.html" target="_blank"><img src="__ROOT__{$vo.imgurl}" align="absmiddle"><span class="se_lt_ltprice"><i>￥</i><em>{$vo.minprice}</em><i>起</i></span><strong><span><{$vo.name}></span><span>{$vo.subname}</span></strong></a></li>
+			</volist>
+		  </ul>
+        </div>
+      </div>
+    </div>
+    <div class="section-title"><strong>苏州周边游</strong><span>/&nbsp;&nbsp;海量周边实惠套餐</span></div>
+    <div class="section-main clearfix">
+      <div class="section-left fl">
+        <div class="tab-btn clearfix">
+          <ul>
+			<volist name="linesArr" id="vo">
+			<if condition="$vo['name'] eq '浙江'">
+			<li class="active"><a href="javascript:;">{$vo.name}</a></li>
+			<else/>
+			<li><a href="javascript:;">{$vo.name}</a></li>
+			</if>
+			</volist>
+		  </ul>
+		  <volist name="linesArr" id="vo">
+		  <if condition="$vo['name'] eq '浙江'">
+		  <a href="__ROOT__/zhoubian/{$vo.pinyin}/" target="_blank" class="search-city active" id="J-search-city">
+		  <else/>
+		  <a href="__ROOT__/zhoubian/{$vo.pinyin}/" target="_blank" class="search-city" id="J-search-city">
+		  </if>
+			<span>更多{$vo.name}相关线路</span><i class="icon-more">&gt;&gt;</i>
+		  </a>
+		  </volist>		  
+        </div>
+        <div class="tab-main">
+		  <volist name="linesArr" id="vo">
+		  <if condition="$vo['name'] eq '浙江'">
+		  <div class="tab-mod active clearfix">
+		  <else/>
+		  <div class="tab-mod clearfix">
+		  </if>         
+			<volist name="vo.son" id="voo" offset="0" length="6">
+            <a class="package-mod" href="__ROOT__/zhoubian/xianlu-{$voo.id}.html" target="_blank">
+              <img src="__ROOT__{$voo.imgurl}" align="absmiddle">
+			  <if condition="$voo['subname']">
+			  <strong class="title"><{$voo.name}>{$voo.subname}</strong>
+			  <else/>
+			  <strong class="title">{$voo.name}</strong>
+			  </if>
+              <div class="des clearfix">
+                <p>{$voo.info|strcut=###,40}</p>
+                <span class="price"><strong><i>¥</i>{$voo.minprice}<span style="padding-left:2px;color:#ff6600;">起</span></strong></span>
+                <span class="price-btn">立即预定</span>
+              </div>
+            </a>
+			</volist>
+          </div>
+		  </volist>
+        </div>
+      </div>
+      <div class="section-right fr">
+        <div class="section-new">新品推荐<!--<a href="#" target="_blank">查看全部<i class="icon-more">&gt;&gt;</i></a>--></div>
+        <div class="section-list clearfix">
+          <ul>
+			<volist name="new" id="vo">
+            <li><a href="__ROOT__/zhoubian/xianlu-{$vo.id}.html" target="_blank"><img src="__ROOT__{$vo.imgurl}" align="absmiddle"><span class="title"><{$vo.name}>{$vo.subname}</span><span class="price"><i>¥</i>{$vo.minprice}<span style="padding-left:2px;color:#ff6600;font-size:12px;">起</span></span></a></li>
+			</volist>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="section-title"><strong>精选主题</strong><span>/&nbsp;&nbsp;玩转当季热门</span></div>
+    <div class="section-main clearfix">
+      <div class="section-left fl">
+        <div class="section-pic clearfix">
+          <ul>
+            <li><a href="{$ad.zbzt1.link}" title="{$ad.zbzt1.title}" target="_blank"><img src="__ROOT__{$ad.zbzt1.imgurl}" align="absmiddle"><span>{$ad.zbzt1.title}</span></a></li>
+            <li><a href="{$ad.zbzt2.link}" title="{$ad.zbzt2.title}" target="_blank"><img src="__ROOT__{$ad.zbzt2.imgurl}" align="absmiddle"><span>{$ad.zbzt2.title}</span></a></li>
+            <li><a href="{$ad.zbzt3.link}" title="{$ad.zbzt3.title}" target="_blank"><img src="__ROOT__{$ad.zbzt3.imgurl}" align="absmiddle"><span>{$ad.zbzt3.title}</span></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="section-right fr">
+        <div class="section-new">热门目的地<!--<a href="#" target="_blank">查看全部<i class="icon-more">&gt;&gt;</i></a>--></div>
+        <div class="section-word clearfix">
+          <ul>
+            <li><a href="http://www.33ly.com/zhoubian/hangzhou/" target="_blank">杭州</a></li>
+            <li><a href="http://www.33ly.com/zhoubian/qiandaohu/" target="_blank">千岛湖</a></li>
+            <li><a href="http://www.33ly.com/zhoubian/shanghai/" target="_blank">上海</a></li>
+            <li><a href="http://www.33ly.com/zhoubian/hengdian/" target="_blank">横店</a></li>
+            <li><a href="http://www.33ly.com/zhoubian/huangshan/" target="_blank">黄山</a></li>
+            <li><a href="http://www.33ly.com/zhoubian/putuoshan/" target="_blank">普陀山</a></li>
+            <li><a href="http://www.33ly.com/zhoubian/suzhou/" target="_blank">苏州</a></li>
+            <li><a href="http://www.33ly.com/zhoubian/nanjing/" target="_blank">南京</a></li>
+            <li><a href="http://www.33ly.com/zhoubian/yangzhou/" target="_blank">扬州</a></li>
+            <li><a href="http://www.33ly.com/zhoubian/tonglu/" target="_blank">桐庐</a></li>
+            <li><a href="http://www.33ly.com/zhoubian/yandangshan/" target="_blank">雁荡山</a></li>
+            <li><a href="http://www.33ly.com/zhoubian/huizhou/" target="_blank">徽州</a></li>
+            <li><a href="http://www.33ly.com/zhoubian/anji/" target="_blank">安吉</a></li>
+            <li><a href="http://www.33ly.com/zhoubian/xiangshan/" target="_blank">象山</a></li>
+            <li><a href="http://www.33ly.com/zhoubian/qingdao/" target="_blank">青岛</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="retop">
+    <a target="_blank" id="chatId" href="http://kefu.qycn.com/vclient/chat/?websiteid=113071" rel="nofollow" class="back_talk"><span></span></a>
+    <a class="back_key" target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=8bf4d119c01dd9d020e7209234d14f09ad8ad23a4727eefa45727681442afe12"></a>
+	<a class="back_top" href="javascript:void(0)"></a>
+</div>
+<include file="Public:footer_notq"/>
+</div>
+<script type="text/javascript" src="../Public/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/bxslider/jquery.bxslider.min.js"></script>
+<script type="text/javascript" src="../Public/js/jquery.lazyload.min.js"></script>
+<script>var ROOT_PATH = '__ROOT__';</script>
+<script type="text/javascript" src="../Public/js/jquery.scrollTo.min.js"></script>
+<script type="text/javascript" src="../Public/js/common.js"></script>
+<script type="text/javascript" src="../Public/js/zhoubian.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.bxslider').bxSlider();
+});
+</script>
+</body>
+</html>

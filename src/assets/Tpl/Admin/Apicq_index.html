@@ -1,0 +1,161 @@
+<include file="Public:header" />
+<script language="javascript">var webpath="__PUBLIC__";</script>
+</head>
+<body>
+<form name="myform" id="myform" style="margin-top:10px;">
+  <div class="pad-10">
+  <div class="col-tab">
+	  <ul class="tabBut cu-li">
+		<li id="tab_setting_1" class="on" onClick="SwapTab('setting','on','',5,1);">基本信息</li>
+	  </ul>
+	  <div id="div_setting_1" class="contentList pad-10">
+		<table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+	      <tr>
+			<th>参数1 :</th>
+			<td>
+				<select name="param1" style="width:120px;" >
+				<!--
+				<option value="1">门票</option>
+				<option value="4">邮轮</option>
+				<option value="6">签证</option>
+				-->
+				<option value="7">团队</option>
+				<option value="13">自由行</option>	
+				</select>
+			</td>
+		  </tr>
+		  <tr>
+			<th>参数2 :</th>
+			<td>
+				<select name="param2" style="width:120px;" >
+				<option value="0">国内</option>
+				<option value="1">出境</option>	
+				</select>
+			</td>
+		  </tr>
+		  <tr>
+			<th>参数3 :</th>
+			<td>
+				<input type="text" name="param3" class="input-text" size="4" value="1">
+			</td>
+		  </tr>
+		  <tr>
+			<th>参数4 :</th>
+			<td>
+				<select name="param4" style="width:120px;" >
+					<option value="1">1</option>
+					<option value="10">10</option>
+					<option value="20">20</option>
+					<option value="50">50</option>
+					<option value="100">100</option>
+				</select>
+			</td>
+		  </tr>
+		  <tr>
+			<th width="100">产品共计 :</th>
+			<td><span class="ProductNum" style="width:50px;text-align:center;display:inline-block;">0</span>个&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" name="getNumBtn" value="获取产品总数" class="button"/></td>
+			<input type="hidden" name="ProductNum" value=""/>
+		  </tr>
+		  <tr>
+			<th width="100">更新列表共计 :</th>
+			<td><span class="ListNum" style="width:50px;text-align:center;display:inline-block;">0</span>个&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" name="listNumBtn" value="获取更新列表" class="button"/></td>
+			<input type="hidden" name="listNum" value=""/>
+		  </tr>
+		  <tr>
+			<th width="100"></th>
+			<td><input type="button" name="updateBtn" value="逐个更新" class="button"/>&nbsp;&nbsp;<input type="button" name="stopBtn" value="停止更新" class="button"/></td>
+			<input type="hidden" name="nowIndex" value="0"/>
+		  </tr>  
+		</table>
+	  </div>
+	  
+	  <div class="bk15"></div>
+	  <div class="btn" style="height:auto;line-height:22px;">
+
+	  </div>
+	</div>
+	</div>
+	<input type="hidden" name="getNumUrl" value="{:U('Apicq/getNum')}" />
+	<input type="hidden" name="getListUrl" value="{:U('Apicq/getProductList')}" />
+	<input type="hidden" name="updateUrl" value="{:U('Apicq/updateOneByOne')}" />
+</form>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('input[name="getNumBtn"]').click(function(){
+		//参数
+		var param1 = $('select[name="param1"]').val();
+		var param2 = $('select[name="param2"]').val();
+		var postUrl = $('input[name="getNumUrl"]').val();
+		$.ajax({
+			url: postUrl,
+			type: 'POST',
+			data: {param1:param1,param2:param2},
+			dataType: 'json',
+			success: function(result){
+				$('input[name="ProductNum"]').val(result.data);
+				$('.ProductNum').html(result.data);
+				$('select[name="param4"]').append('<option value="'+result.data+'">'+result.data+'</option>');
+			}
+		});
+	});
+	
+	$('input[name="listNumBtn"]').click(function(){
+		//参数
+		var param1 = $('select[name="param1"]').val();
+		var param2 = $('select[name="param2"]').val();
+		var param3 = $('select[name="param3"]').val();
+		var param4 = $('select[name="param4"]').val();
+		var postUrl = $('input[name="getListUrl"]').val();
+		$.ajax({
+			url: postUrl,
+			type: 'POST',
+			data: {param1:param1,param2:param2,param3:param3,param4:param4},
+			dataType: 'json',
+			success: function(result){
+				$('input[name="listNum"]').val(result.data);
+				$('.ListNum').html(result.data);
+			}
+		});
+	});
+	
+	$('input[name="updateBtn"]').click(function(){
+		$('.btn').prepend('更新中，请稍等...');
+		interval = setInterval(autorun, "3000");
+		//autorun();
+	});
+	
+	$('input[name="stopBtn"]').click(function(){
+		clearTimeout(interval);
+	});
+	
+	function autorun(){
+		var param1 = $('select[name="param1"]').val();
+		var param2 = $('select[name="param2"]').val();
+		var nowIndex = $('input[name="nowIndex"]').val();
+		var listNum = $('input[name="listNum"]').val();
+		var postUrl = $('input[name="updateUrl"]').val();
+		$.ajax({
+			url: postUrl,
+			type: 'POST',
+			data: {param1:param1,param2:param2,nowIndex:nowIndex,listNum:listNum},
+			dataType: 'json',
+			success: function(result){
+				if(result.status == 0){
+					alert(result.info);
+				}else if(result.status == 1){
+					$('input[name="nowIndex"]').val(result.data);
+					$('.btn').prepend(result.info);
+				}else if(result.status == 2){
+					$('input[name="nowIndex"]').val(result.data);
+					$('.btn').prepend(result.info);
+					clearTimeout(interval);
+				}else{
+					
+				}
+			}
+		});		
+	}
+});
+</script>
+</body>
+</html>

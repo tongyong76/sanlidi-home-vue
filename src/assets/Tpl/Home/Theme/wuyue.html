@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>5月周边游热卖线路</title>
+<meta name="keywords" content="清明节线路汇总">
+<meta name="description" content="三三旅游清明节线路汇总，三三旅游网为您提供全球旅游、跟团游、邮轮旅游、团体游等业务。">
+<link type="text/css" href="../Public/theme/tachun.css" rel="stylesheet" />
+<script type="text/javascript" src="../Public/js/jquery-1.11.1.min.js"></script>
+<include file="Public:statistics"/>
+</head>
+<body>
+
+<include file="Public:themeheader"/>
+<div class="tuanWrap">
+  <div class="banner" style="height:420px;width:100%;background:Url('../Public/theme/banner/wuyue2.jpg') no-repeat center;position:relative;z-index:98">
+  </div>
+  <div id="content" style="background:#53d166;">
+  <div class="module1" style="background:none;">
+
+	<div class="wp" style="padding-bottom:0;">
+	  <div class="module_title2" style="color:#233c12"><span class="icon1" style="background:#233c12"></span>一日游<span class="icon2" style="background:#233c12"></span></div>
+      <div class="module_product clearfix">
+        <ul>
+			<volist name="list.1" id="vo">
+			<li>
+				<a href="__ROOT__/zhoubian/xianlu-{$vo.id}.html" target="_blank">
+				<img src="__ROOT__{$vo.imgurl}" align="absmiddle">
+				<span style="padding:10px 5px 20px 5px">
+					<h4><{$vo.name}>{$vo.subname}</h4>
+					<p class="info">{$vo.info|strcut=###,40}</p>
+					<i>￥<em>{$vo.minprice}</em>起</i>
+					<div class="ordBtn">立即预订</div>
+					<div class="lastDep">最近出发日期：{$vo.dep}</div>
+				</span>				
+				</a>
+			</li>
+			</volist>
+		</ul>
+      </div>
+    </div>
+  </div>
+  <div class="module1" style="background:none;">
+	<div class="wp">
+	  <div class="module_title2" style="color:#233c12"><span class="icon1" style="background:#233c12"></span>二日游<span class="icon2" style="background:#233c12"></span></div>
+      <div class="module_product clearfix">
+        <ul>
+			<volist name="list.2" id="vo">
+			<li>
+				<a href="__ROOT__/zhoubian/xianlu-{$vo.id}.html" target="_blank">
+				<img src="__ROOT__{$vo.imgurl}" align="absmiddle">
+				<span style="padding:10px 5px 20px 5px">
+					<h4><{$vo.name}>{$vo.subname}</h4>
+					<p class="info">{$vo.info|strcut=###,40}</p>
+					<i>￥<em>{$vo.minprice}</em>起</i>
+					<div class="ordBtn">立即预订</div>
+					<div class="lastDep">最近出发日期：{$vo.dep}</div>
+				</span>				
+				</a>
+			</li>
+		    </volist>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="module1" style="background:none;">
+	<div class="wp">
+	  <div class="module_title2" style="color:#233c12"><span class="icon1" style="background:#233c12"></span>三日游<span class="icon2" style="background:#233c12"></span></div>
+      <div class="module_product clearfix">
+        <ul>
+			<volist name="list.3" id="vo">
+			<li>
+				<a href="__ROOT__/zhoubian/xianlu-{$vo.id}.html" target="_blank">
+				<img src="__ROOT__{$vo.imgurl}" align="absmiddle">
+				<span style="padding:10px 5px 20px 5px">
+					<h4><{$vo.name}>{$vo.subname}</h4>
+					<p class="info">{$vo.info|strcut=###,40}</p>
+					<i>￥<em>{$vo.minprice}</em>起</i>
+					<div class="ordBtn">立即预订</div>
+					<div class="lastDep">最近出发日期：{$vo.dep}</div>
+				</span>				
+				</a>
+			</li>
+		    </volist>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<include file="Public:themefooter"/>
+</body>
+<script type="text/javascript">
+$(function () {
+
+});
+</script>
+</html>

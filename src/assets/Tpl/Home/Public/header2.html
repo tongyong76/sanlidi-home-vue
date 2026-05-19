@@ -1,0 +1,349 @@
+<div id="header">
+<!--出发城市登陆注册开始-->
+    <div id="topBar">
+        <div class="inside_top">
+            <!--出发城市开始-->
+            <div id="starting" class="fl">
+              <span class="top_hello fl">苏州青旅三三旅游欢迎您！您可选择出发城市：</span>
+              <a class="s_city_name" href="http://www.33ly.com">苏州</a>
+              <a class="s_city_name" href="http://kunshan.33ly.com" target="_blank">昆山</a>
+              <a class="s_city_name" href="http://changshu.33ly.com" target="_blank">常熟</a>
+              <a class="s_city_name" href="http://zhangjiagang.33ly.com" target="_blank">张家港</a>
+              <a class="s_city_name" href="http://taicang.33ly.com" target="_blank">太仓</a>
+            </div>
+            <!--出发城市结束-->
+            <!--登陆注册开始-->
+            <div id="login" class="fr">
+            	<if condition="!$uid">
+				<span class="shu_line">|</span><a class="my_ss" href="javascript:void(0)" onclick="headlogin();">登录</a>
+				<span class="shu_line">|</span><a class="my_ss" href="__ROOT__/register.html">注册</a>
+				<else/>
+				<span class="welcome">欢迎您，{$uname}</span>
+				<span class="shu_line">|</span><a class="my_ss" href="{:U('User/logout')}">注销</a>
+				<!--<span class="shu_line">|</span><a class="my_ss" href="javascript:void(0)" onclick="logout();">注销</a>-->
+				<span class="shu_line">|</span><a class="my_ss" href="__ROOT__/member/" target="_blank">我的订单</a>
+				</if>
+				<span class="shu_line">|</span><a class="my_ss" href="http://www.33ly.com/aboutus/brief.html" target="_blank">关于我们</a>
+                <div class="wx fl" id="wx">
+                    <div class="w_text">
+                        <span class="w_title fl">三三微信</span>
+                        <span class="w_ico fr"></span>
+                    </div>
+                    <div class="w_scan">
+                    <!--微信二维码-->
+                    	<img src="../Public/images/qrcode.jpg" />
+                    </div>
+                </div>
+            </div>
+            <!--登陆注册结束-->     
+        </div>
+    </div>
+<!--出发城市登陆注册结束-->
+	<if condition="$ad['sytb']">
+	<div class="bannerBar">
+    	<div class="inside_banner">
+        	<a href="{$ad.sytb.link}" target="_blank"><img src="__ROOT__{$ad.sytb.imgurl}"></a>
+        </div>
+	</div>
+	</if>
+<!--搜索开始-->
+	<div id="searchBar">
+    	<div class="inside_search">
+        	<div class="logo fl" id="logo">
+            	<dl class="d_logo">
+                	<dt class="fl newlogo"><a href="/"><img src="../Public/images/logo.png" /></a></dt>
+                </dl>
+            </div>
+            <div class="search fl" id="search">
+            	<form method="get" id="searchform" action="__ROOT__/search" class="s_search" target="_blank">
+
+                    <div class="s_right fl">
+                    	<span class="glass fl"></span>                      
+                    	<input type="text" id="Searchkey" name="keyword" class="Searchkey fl hint" defaultValue="{$search.name}" value="" maxlength="58">
+                    </div>
+                    <input class="search_btn fr" type="submit" value="搜索">
+                </form>
+
+            </div>
+            <div class="phone fr" id="phone">
+            	<div class="phone_box">
+                    <p class="p_tong"></p> 
+                    <p class="p_number"></p>
+					<img src="../Public/images/tel.png"/>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--搜索结束-->
+<!--导航开始-->
+	<div id="navBar">
+    	<div class="inside_nav">
+        	<div class="n_item fl" id="n_item">
+            	<p class="n_item_title">
+                	<a href="javascript:void(0)" id="all_p"><img src="../Public/images/all_product_2.png" /></a>
+                </p>
+                <if condition="$isIndex">
+			    <ul class="n_item_list" id="n_item_list" style="display:block;">
+			    <else/>
+			    <ul class="n_item_list2" id="n_item_list">
+			    </if>			
+                    <li class="leftItem">
+                    	<div class="list_menu">
+                        	<dl class="l_m_name">
+                            	<dt>子品牌</dt>
+                                <dd style="width:240px;">
+									<a href="__ROOT__/pinpai/zizhutuan/" target="_blank">自组团</a>
+									<a href="__ROOT__/pinpai/tuanyou/" target="_blank">团游</a>
+									<a href="__ROOT__/pinpai/zhoumoditu/" target="_blank">周末地图</a>
+									<br>
+									<a href="__ROOT__/pinpai/xihaqinzi/" target="_blank">嘻哈亲子</a>
+									<a href="__ROOT__/pinpai/zhuanxiang/" target="_blank">专享</a>
+									<a href="__ROOT__/pinpai/zunxiang/" target="_blank">尊享</a>
+									<a href="__ROOT__/pinpai/shuaicang/" target="_blank">沪上邮轮</a>
+								</dd>
+                            </dl>
+                        </div>
+                        <div class="list_submenu">                       	
+                            <div class="cruise_menu clearfix">
+                            	<div class="c_m_t">
+                                	<div class="c_tehui">
+                                    	<div class="ct_hui">
+                                        	<div class="ct_title"><strong>本月特惠：</strong>{$ad.byth3.title}</div>
+                                        	<div class="ct_des">{$ad.byth3.content}</div>
+                                        </div>
+                                    	<a href="{$ad.byth3.link}" class="c_go" target="_blank"><img src="../Public/images/go.png" /></a>
+                                    </div>
+                                </div>
+                                <div class="c_m_b clearfix">
+                                    <dl class="c_cha_rh">
+                                        <dt><a href="__ROOT__/pinpai/tuanyou/" target="_blank">团游>></a></dt>
+                                        <dd><a href="__ROOT__/pinpai/tuanyou/" target="_blank"><img src="../Public/images/c_ty_01.png"></a></dd>
+                                    </dl>
+                                    <dl class="c_cha_rh">
+                                        <dt><a href="__ROOT__/pinpai/zhoumoditu/" target="_blank">周末地图>></a></dt>
+                                        <dd><a href="__ROOT__/pinpai/zhoumoditu/" target="_blank"><img src="../Public/images/c_zmdt_01.png"></a></dd>
+                                    </dl>
+                                    <dl class="c_cha_rh c_cha_nomar">
+                                        <dt><a href="__ROOT__/pinpai/shuaicang/" target="_blank">沪上游轮>></a></dt>
+                                        <dd><a href="__ROOT__/pinpai/shuaicang/" target="_blank"><img src="../Public/images/c_qzy_01.png"></a></dd>
+                                    </dl>
+                                    <dl class="c_cha_rh">
+                                        <dt><a href="__ROOT__/pinpai/zizhutuan/" target="_blank">自组团>></a></dt>
+                                        <dd><a href="__ROOT__/pinpai/zizhutuan/" target="_blank"><img src="../Public/images/c_zzt_01.png"></a></dd>
+                                    </dl>
+                                    <dl class="c_cha_rh">
+                                        <dt><a href="__ROOT__/pinpai/zunxiang/" target="_blank">尊享>></a></dt>
+                                        <dd><a href="__ROOT__/pinpai/zunxiang/" target="_blank"><img src="../Public/images/c_zunx_01.png"></a></dd>
+                                    </dl>
+                                    <dl class="c_cha_rh c_cha_nomar">
+                                        <dt><a href="__ROOT__/pinpai/zhuanxiang/" target="_blank">专享>></a></dt>
+                                        <dd><a href="__ROOT__/pinpai/zhuanxiang/" target="_blank"><img src="../Public/images/c_zhuanx_01.png"></a></dd>
+                                    </dl>
+
+                                </div>
+                            </div>
+                                                      
+                        </div>
+                    </li> 						
+					<li class="leftItem">
+						<volist name="lineCateList" id="vo" length="1" offset="2">
+                    	<div class="list_menu">
+                        	<dl class="l_m_name">
+                            	<dt>{$vo.name}</dt>
+                                <dd>
+									<volist name="vo.son" id="voo">
+									<a href="__ROOT__/chujing/{$voo.pinyin}/" target="_blank">{$voo.name}</a>
+									</volist>
+								</dd>
+                            </dl>
+                        </div>
+						</volist>
+                        <div class="list_submenu">
+                        	<div class="outbound_menu clearfix">
+                            	<ul class="out_menu_detail">
+                                	<li class="out_classify">
+										<volist name="cjCateArr" id="vo" offset="0" length="2">
+                                    	<dl class="o_c_name">
+                                        	<dt><a href="__ROOT__/chujing/{$vo.pinyin}/" target="_blank">{$vo.name}</a></dt>
+                                            <dd>
+												<volist name="vo.son" id="voo" key="k">
+												<if condition="$k neq 1"><span class="shu_line">|</span></if><a href="__ROOT__/chujing/{$voo.pinyin}/" target="_blank">{$voo.name}</a>
+												</volist>
+											</dd>
+                                        </dl>
+										</volist>
+                                    </li>
+                                    <li class="out_classify">
+                                    	<volist name="cjCateArr" id="vo" offset="2" length="2">
+                                    	<dl class="o_c_name">
+                                        	<dt><a href="__ROOT__/chujing/{$vo.pinyin}/" target="_blank">{$vo.name}</a></dt>
+                                            <dd>
+												<volist name="vo.son" id="voo" key="k">
+												<if condition="$k neq 1"><span class="shu_line">|</span></if><a href="__ROOT__/chujing/{$voo.pinyin}/" target="_blank">{$voo.name}</a>
+												</volist>
+											</dd>
+                                        </dl>
+										</volist>
+                                    </li>
+                                    <li class="out_classify out_classify_nomar">
+                                    	<volist name="cjCateArr" id="vo" offset="4" length="2">
+                                    	<dl class="o_c_name">
+                                        	<dt><a href="__ROOT__/chujing/{$vo.pinyin}/" target="_blank">{$vo.name}</a></dt>
+                                            <dd>
+												<volist name="vo.son" id="voo" key="k">
+												<if condition="$k neq 1"><span class="shu_line">|</span></if><a href="__ROOT__/chujing/{$voo.pinyin}/" target="_blank">{$voo.name}</a>
+												</volist>
+											</dd>
+                                        </dl>
+										</volist>
+                                    </li>
+                                </ul>
+                            </div>                        	
+                        </div>
+                    </li>
+					<li class="leftItem">
+						<volist name="lineCateList" id="vo" length="1" offset="1">
+                    	<div class="list_menu">
+                        	<dl class="l_m_name">
+                            	<dt>{$vo.name}</dt>
+                                <dd>
+									<volist name="vo.son" id="voo">
+									<a href="__ROOT__/guonei/{$voo.pinyin}/" target="_blank">{$voo.name}</a>
+									</volist>
+								</dd>
+                            </dl>
+                        </div>
+						</volist>
+                        <div class="list_submenu">
+                        	<div class="domestic_menu clearfix">
+                            	<div class="d_m_t">
+                                	<div class="d_tehui">
+                                    	<div class="dt_hui">
+                                        	<div class="dt_title"><strong>本月特惠：</strong>{$ad.byth1.title}</div>
+                                        	<div class="dt_des">{$ad.byth1.content}</div>
+                                        </div>
+                                    	<a href="{$ad.byth1.link}" class="d_go" target="_blank"><img src="../Public/images/go.png" /></a>
+                                    </div>
+                                </div>
+                                <div class="d_m_b clearfix">
+                                	<div class="d_chaxun fl">
+                                        <dl class="d_cha_des">
+                                            <dt>热门目的地</dt>
+                                            <dd>
+												<volist name="gnCateArr" id="vo" key="k">
+												<if condition="$k neq 1"><span class="shu_line">|</span></if></span><a href="__ROOT__/guonei/{$vo.pinyin}/" target="_blank">{$vo.name}</a>
+												</volist>
+											</dd>
+                                        </dl>
+                                        <dl class="d_cha_data">
+                                            <dt>按天数</dt>
+                                            <dd>
+												<a href="__ROOT__/daylist/guonei-3/" target="_blank">3日游</a>
+												<a href="__ROOT__/daylist/guonei-4/" target="_blank">4日游</a>
+												<a href="__ROOT__/daylist/guonei-5/" target="_blank">5日游</a>
+												<a href="__ROOT__/daylist/guonei-6/" target="_blank">6日游</a>
+												<a href="__ROOT__/daylist/guonei-7/" target="_blank">7日游</a>
+												<a href="__ROOT__/daylist/guonei-8/" target="_blank">8日游</a>
+												<a href="__ROOT__/daylist/guonei-12/" target="_blank">12日游</a>
+											</dd>
+                                        </dl>
+                                        <dl class="d_cha_price">
+                                            <dt>按价格</dt>
+                                            <dd>
+												<a href="{:U('Tour/index',array('minprice'=>'1000','maxprice'=>'2000'))}" target="_blank">1000-2000元</a>
+												<a href="{:U('Tour/index',array('minprice'=>'2000','maxprice'=>'5000'))}" target="_blank">2000-5000元</a>
+												<a href="{:U('Tour/index',array('minprice'=>'5000','maxprice'=>'1000000'))}" target="_blank">5000元以上</a>
+											</dd>
+                                        </dl>
+                                        <dl class="d_cha_ad">
+                                        	<dt>
+												<a href="{$ad.xlgn1.link}" target="_blank"><img src="__ROOT__{$ad.xlgn1.imgurl}"></a>
+												<a href="{$ad.xlgn2.link}" target="_blank"><img src="__ROOT__{$ad.xlgn2.imgurl}"></a>
+											</dt>
+                                        </dl>
+                                        
+                                    </div>
+                                    <div class="d_ad fr">
+                                    	<a href="{$ad.xlgn3.link}" target="_blank"><img src="__ROOT__{$ad.xlgn3.imgurl}"></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="leftItem leftItemLast">
+                    	<volist name="lineCateList" id="vo" length="1" offset="0">
+                    	<div class="list_menu list_last_menu">
+                        	<dl class="l_m_name">
+                            	<dt>{$vo.name}</dt>
+                                <dd>
+									<volist name="vo.son" id="voo">
+									<a href="__ROOT__/zhoubian/{$voo.pinyin}/" target="_blank">{$voo.name}</a>
+									</volist>
+								</dd>
+                            </dl>
+                        </div>
+						</volist>
+                        <div class="list_submenu">
+                        	<div class="around_menu clearfix">
+                            	<div class="a_m_t">
+                                	<div class="a_tehui">
+                                    	<div class="at_hui">
+                                        	<div class="at_title"><strong>本月特惠：</strong>{$ad.byth2.title}</div>
+                                        	<div class="at_des">{$ad.byth2.content}</div>
+                                        </div>
+                                    	<a href="{$ad.byth2.link}" class="a_go" target="_blank"><img src="../Public/images/go.png" /></a>
+                                    </div>
+                                </div>
+								<if condition="$isIndex">
+                                <div class="a_m_b clearfix" style="height:263px;overflow:hidden;">
+								<else/>
+								<div class="a_m_b clearfix" style="height:273px;overflow:hidden;">
+								</if>
+                                	<div class="a_chaxun fl">
+                                    	<p class="a_cha_item">热门目的地</p>
+										<volist name="zbCateArr" id="vo" offset="0" length="5">
+                                        <dl class="a_cha_sh clearfix">
+                                            <dt><a href="__ROOT__/zhoubian/{$vo.pinyin}/" target="_blank">{$vo.name}</a></dt>
+                                            <dd>
+												<volist name="vo.son" id="voo" key="k">
+												<if condition="$k neq 1"><span class="shu_line">|</span></if><a href="__ROOT__/zhoubian/{$voo.pinyin}/" target="_blank">{$voo.name}</a>
+												</volist>
+											</dd>
+                                        </dl>
+										</volist>
+										<if condition="$ad['xlzb1']">
+                                        <dl class="a_cha_ad">
+                                        	<dt>
+												<a href="{$ad.xlzb1.link}" target="_blank"><img src="__ROOT__{$ad.xlzb1.imgurl}"></a>
+												<a href="{$ad.xlzb2.link}" target="_blank"><img src="__ROOT__{$ad.xlzb2.imgurl}"></a>
+											</dt>
+                                        </dl>
+                                        </if>
+                                    </div>
+                                    <div class="a_ad fr">
+                                    	<a href="{$ad.xlzb3.link}" target="_blank"><img src="__ROOT__{$ad.xlzb3.imgurl}"></a>
+                                    </div>
+                                </div>
+                            </div>
+                                                    
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="n_main fl" id="n_main">
+            	<ul class="n_main_name clearfix">
+                	<li><a href="/" <if condition="$isIndex eq 1">class="on"</if>>首页</a></li>
+					<volist name="navList" id="vo">
+                    <li><a target="_blank" href="__ROOT__{$vo.url}" <if condition="$nav eq $vo['name']">class="on"</if>>{$vo.name}</a></li>
+					</volist>
+                </ul>
+            </div>
+            <div class="n_recommend fr" id="n_recommend">
+            	<p class="team"><a href="__ROOT__/tuandui/" target="_blank" <if condition="$nav eq tdcy">class="on"</if>>定制包团</a></p>
+                <span class="recommend_logo"></span>
+            </div>
+        </div>
+    </div>
+<!--导航结束-->
+</div>

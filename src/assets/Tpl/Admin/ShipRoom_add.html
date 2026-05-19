@@ -1,0 +1,110 @@
+<include file="Public:header" />
+</head>
+<body>
+<form action="{:u('ShipRoom/add')}" method="POST" name="myform" id="myform" enctype="multipart/form-data" style="margin-top:10px;">
+  <div class="pad-10">
+  <div class="col-tab">
+  <ul class="tabBut cu-li">
+    <li id="tab_setting_1" class="on" onclick="SwapTab('setting','on','',1,1);">基本信息</li>
+  </ul>
+  <div id="div_setting_1" class="contentList pad-10">
+	<div class="table-list" style="margin-top:10px;">
+    <table width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th width="5%"><input type="checkbox" value="" id="check_box" onclick="selectall('id[]');"></th>
+              	<th align="left" width="60">舱房类型</th>
+				<th width="60">床位</th>
+                <th width="60">第1，2人价格</th>               
+              	<th width="60">第3，4成人价格</th>
+                <th width="60">第3，4儿童价格</th>
+            </tr>
+        </thead>
+    	<tbody>
+		<volist name="roomList" id="vo">
+        <tr>
+            <td align="center"><input type="checkbox" value="{$vo.id}" name="id[]"></td>
+            <td align="left"><span class="tdedit" data-id="{$vo.id}" data-field="name" data-tdtype="edit">{$vo.name}</span></td>
+			<td align="center"><span class="tdedit" data-id="{$vo.id}" data-field="num" data-tdtype="edit">{$vo.num}</span></td>
+            <td align="center"><span class="tdedit" data-id="{$vo.id}" data-field="price1" data-tdtype="edit">{$vo.price1}</span></td>
+            <td align="center"><span class="tdedit" data-id="{$vo.id}" data-field="price2" data-tdtype="edit">{$vo.price2}</span></td>
+            <td align="center"><span class="tdedit" data-id="{$vo.id}" data-field="price3" data-tdtype="edit">{$vo.price3}</span></td>
+        </tr>
+		</volist>
+    	</tbody>
+		<input type="hidden" name="ship_id" value="{$ship_id}" />
+    </table>
+	</div>
+  </div>
+  
+  <div class="bk15"></div>
+  <div class="btn">
+    <input type="button" onclick="self.location=document.referrer;" value="完成" name="submit" class="button" id="submit">
+	<input type="button" class="button" name="order" onclick="getOneMore();" value="加一个" style="margin:0 10px 0 0px;"/>
+  </div>
+
+</div>
+</div>
+</form>
+<script type="text/javascript">
+function getOneMore(){
+	var ship_id = $('input[name="ship_id"]').val(); 
+	$.ajax({
+		url: 'index.php?m=ShipRoom&a=getOneMore',
+		type: 'POST',
+		data:{ship_id:ship_id},
+		dataType: 'json',
+		success: function(result){
+			if(result.status == 1){
+				html = '<tr>' + 
+					   '<td align="center"><input type="checkbox" value="' + result.data + '" name="id[]"></td>' +
+                       '<td align="left"><span class="tdedit" data-id="' + result.data + '" data-field="name" data-tdtype="edit"></span></td>' +
+					   '<td align="center"><span class="tdedit" data-id="' + result.data + '" data-field="num" data-tdtype="edit"></span></td>' +
+					   '<td align="center"><span class="tdedit" data-id="' + result.data + '" data-field="price1" data-tdtype="edit"></span></td>' +            
+                       '<td align="center"><span class="tdedit" data-id="' + result.data + '" data-field="price2" data-tdtype="edit"></span></td>' +
+                       '<td align="center"><span class="tdedit" data-id="' + result.data + '" data-field="price3" data-tdtype="edit"></span></td>' +
+                       '</tr>';
+				$("tbody").append(html);
+			}
+		}
+	});
+}
+
+$(document).ready(function(){
+	//修改
+	$('span[data-tdtype="edit"]').live('click',function(){
+		var s_val   =	$.trim($(this).text()),            
+			s_name  = 	$(this).attr('data-field'),
+			s_id    = 	$(this).attr('data-id'),                
+			width   = 	$(this).width(),
+			$this=$(this);
+			
+		$('<input type="text" class="lt_input_text" value="'+s_val+'" />').width(width).focusout(function(){
+			$(this).prev('span').show().text($(this).val());
+			if($(this).val() != s_val) {
+				$.ajax({
+					url: 'index.php?m=ShipRoom&a=changeData',
+					type: 'POST',
+					data:{field:s_name,val:$(this).val(),id:s_id},
+					dataType: 'json',
+					success: function(result){
+					
+					}
+				});
+				//$.getJSON(settings.url, {id:s_id, field:s_name, val:$(this).val()}, function(result){
+				//	if(result.status == 0) {
+				//		$.zhiphp.tip({content:result.msg, icon:'error'});
+				//		$('span[data-field="'+s_name+'"][data-id="'+s_id+'"]').text(s_val);
+				//		return;
+				//	}
+				//});
+			}
+			$(this).remove();
+		}).insertAfter($(this)).focus().select();
+		$(this).hide();
+		return false;
+	});
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+@charset "utf-8";
+/* CSS Document */
+/*banner图图标*/
+.sliderDiv .mSlider_nav li a{width:16px; height:16px; border-radius:16px; background:url('../images/icon.gif') no-repeat;text-indent:-2000em; overflow:hidden;}
+.sliderDiv .mSlider_nav_orange li.current a {background:url('../images/icon.gif') no-repeat 0 -16px;}
+.sliderDiv .mSlider_nav .current a,.sliderDiv .mSlider_nav li a:hover {background-position:0 -16px;background-color:none!important;}
+.sliderDiv .mSlider_nav_orange{position:absolute; bottom:10px; right:560px; overflow:hidden;}
+/*左侧菜单高度*/
+#n_item .n_item_list .leftItem .list_last_menu .l_m_name{width:290px; height:88px; padding-left:10px; background:#fff;filter:alpha(opacity=80); opacity:0.8; overflow:hiddden;}
+.around_menu .a_m_b{padding-bottom:4px;}
+#n_item .n_item_list .leftItem .list_submenu .outbound_menu{width:689px; height:328px; padding:12px 10px;background:url(../images/menu_01_bg.jpg) left bottom no-repeat;}
+.cruise_menu .c_m_b .c_cha_rh{width:202px; height:118px; float:left; margin-right:20px; margin-bottom:10px;}
+/*主推产品高度*/
+.h_route .h_list .h_list_item li dl dt .h_n_name{height:28px; line-height:28px; position:relative;font-size:16px; font-weight:bold;}
+/*.inside_t .in_t_r ul li .slo_des{position:absolute; right:3px; top:0px; height:40px;color:#fff;padding:5px 2px;display:none;font-size:12px; line-height:20px;}底部图标展开*/
+.gn_piclist ul li img{padding-left:4px; padding-right:5px;}

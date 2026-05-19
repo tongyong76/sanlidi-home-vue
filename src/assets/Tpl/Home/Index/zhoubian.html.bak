@@ -1,0 +1,151 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>苏州周边游_苏州周边游线路_苏州周边游报价_三三旅游网</title>
+<meta name="keywords" content="">
+<meta name="description" content="三三旅游周边游频道：为您提供周边最新旅游线路推荐，周边游报价，精选优质周边游线路，给您带来最佳的预订体验，是您预订周边游线路的首选。24小时咨询预订电话：66667777">
+<link type="text/css" rel="stylesheet" href="../Public/css/reset.css">
+<link type="text/css" rel="stylesheet" href="../Public/css/style.css">
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/bxslider/jquery.bxslider.css">
+<script type="text/javascript" src="../Public/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/bxslider/jquery.bxslider.min.js"></script>
+<script>var ROOT_PATH = '__ROOT__';</script>
+<script type="text/javascript" src="../Public/js/common.js"></script>
+<script type="text/javascript" src="../Public/js/around.js"></script>
+<include file="Public:statistics"/>
+</head>
+<body>
+<include file="Public:header"/>
+<!--头部结束-->
+<div class="wrap">
+	<div class="inside_wrap">
+    	<div class="search_nav">
+			<a href="/">首页</a><b>></b><span>周边游</span>
+		</div>
+        <div class="cont clearfix">
+        	<div class="cont_left fl">
+            	<div class="header">周边游目的地</div>
+                <div class="cLeft_list">
+					<volist name="zbCateArr" id="vo">
+                	<dl>
+                    	<dt><a href="__ROOT__/zhoubian/{$vo.pinyin}/" title="苏州到{$vo.name}旅游">{$vo.name}</a></dt>
+                        <dd class="clearfix">
+							<volist name="vo.son" id="voo" offset="0" length="12">
+							<a href="__ROOT__/zhoubian/{$voo.pinyin}/" title="苏州到{$vo.name}旅游">{$voo.name}</a>
+							</volist>
+						</dd>
+                    </dl>
+					</volist>
+                </div>
+                <div class="cLeft_adList">
+                	<ul>
+                    	<li><a href="{$ad.zbzx1.link}" title=""><img src="__ROOT__{$ad.zbzx1.imgurl}" alt="苏州到{$vo.title}旅游"></a></li>
+                        <li><a href="{$ad.zbzx2.link}" title=""><img src="__ROOT__{$ad.zbzx2.imgurl}" alt="苏州到{$vo.title}旅游"></a></li>
+                        <li><a href="{$ad.zbzx3.link}" title=""><img src="__ROOT__{$ad.zbzx3.imgurl}" alt="苏州到{$vo.title}旅游"></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="cont_right fr">
+            	<div class="header">精选热门周边游</div>
+                <div class="cont_slider">
+                	<ul class="zb_slider">
+                        <volist name="bannerList" id="vo">
+                    	<li><a href="{$vo.link}"><img src="__ROOT__{$vo.imgurl}" alt="{$vo.title}"></a></li>
+						</volist>
+                    </ul>	
+                </div>                
+                <div class="header">热门周边游</div>
+				<div class="zbrecommend clearfix">
+                	<div class="re_pic">
+                    	<ul class="recom_pic clearfix">
+							<volist name="hotLines" id="vo">
+                        	<li>
+                            	<div class="zbr_pic">
+                                	<a href="__ROOT__/zhoubian/xianlu-{$vo.id}.html"><img src="__ROOT__{$vo.imgurl}" alt="苏州到{$vo.name}旅游"></a>
+                                    <span><img src="../Public/images/zbr_hot.png"></span>
+                                </div>
+                                <div class="zbr_title">
+                                	<a href="__ROOT__/zhoubian/xianlu-{$vo.id}.html"><{$vo.name}>{$vo.subname}</a>
+                                </div>
+                                <div class="zbr_price">
+                                    <div>价格：<span>￥<em>{$vo.minprice}</em>起</span></div>
+                                </div>
+                            </li>
+							</volist>
+                        </ul>
+                        <!--<ul class="recom_pic clearfix">
+                        	<volist name="hotLines" id="vo">
+                        	<li>
+                            	<div class="zbr_pic">
+                                	<a href="__ROOT__/zhoubian/xianlu-{$vo.id}.html"><img src="__ROOT__{$vo.imgurl}"></a>
+                                    <span><img src="../Public/images/zbr_hot.png"></span>
+                                </div>
+                                <div class="zbr_title">
+                                	<a href="#"><{$vo.name}>{$vo.subname}</a>
+                                </div>
+                                <div class="zbr_price">
+                                    <div>价格：<span>￥<em>{$vo.minprice}</em>起</span></div>
+                                </div>
+                            </li>
+							</volist>
+                        </ul>-->
+                        
+                    </div>
+                    <a class="left_arrow" href="javascript:void(0)"><img src="../Public/images/l_arrow.png"></a>
+                    <a class="right_arrow" href="javascript:void(0)"><img src="../Public/images/r_arrow.png"></a>
+                </div>
+                <div class="header">周边游推荐
+                    <ul class="day_sort">
+                        <li><a class="active" href="javascript:void(0)">一日游</a></li>
+                        <li><a href="javascript:void(0)">二日游</a></li>
+                        <li><a href="javascript:void(0)">三日游</a></li>
+						<!--
+                        <li><a href="javascript:void(0)">四日游</a></li>
+                        <li><a href="javascript:void(0)">五日游</a></li>
+						-->
+                    </ul>
+                    <div class="domore_list">
+							<a href="__ROOT__/zhoubian/putuoshan/" title="苏州到普陀山旅游">普陀山</a>
+							<a href="__ROOT__/zhoubian/huangshan/" title="苏州到黄山旅游">黄山</a>
+							<a href="__ROOT__/zhoubian/hengdian/" title="苏州到横店旅游">横店</a>
+							<a href="__ROOT__/zhoubian/hangzhou/" title="苏州到杭州旅游">杭州</a>
+						</div>
+                </div>
+				
+                <div class="day_sort_item">
+					<volist name="lineList" id="vo">
+                    <div class="day_sort_list" <if condition="$key eq 0">style="display:block;"<else/>style="display:none;"</if>>
+                        <div class="zbh_list">
+                            <ul class="zbh_list_item">
+								<volist name="vo.lines" id="voo" offset="0" length="6">								
+                                <li>
+                                    <dl>
+                                    <a href="__ROOT__/zhoubian/xianlu-{$voo.id}.html">
+                                        <dt>
+                                            <p class="zbh_n_name"><span class="zbh_n_link"><{$voo.name}></span><span class="zbh_n_shortdes">{$voo.subname}</span></p>
+                                            <p class="zbh_n_description">{$voo.info}</p>
+                                        </dt>
+                                    </a>
+                                        <dd>
+                                            <p class="zbh_price">
+                                                <span class="zbprice">￥<i>{$voo.minprice}</i>起</span>
+                                            </p>
+                                        </dd>
+                                    </dl> 
+                                </li>								
+								</volist>
+                            </ul>
+                        </div>
+                        <div class="zbmore"><a href="__ROOT__/daylist/zhoubian-{$vo.sday}/">苏州{$vo.sday}日游更多线路>></a></div>
+                    </div>
+					</volist>
+                </div>                
+            </div>
+        </div>        
+    </div>
+</div>
+
+<include file="Public:footer"/>
+</body>
+</html>

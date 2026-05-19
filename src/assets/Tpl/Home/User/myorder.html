@@ -1,0 +1,248 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>个人中心_订单查询_33ly.com</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link type="text/css" rel="stylesheet" href="../Public/css/reset.css">
+<link type="text/css" rel="stylesheet" href="../Public/css/style.css">
+<script>var ROOT_PATH = '__ROOT__';</script>
+<script type="text/javascript" src="../Public/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../Public/js/common.js"></script>
+<script type="text/javascript" src="../Public/js/user.js"></script>
+<include file="Public:statistics"/>
+</head>
+<body>
+<include file="Public:header"/>
+<!--头部结束-->
+<div class="wrap">
+	<div class="inside_wrap">
+    	<div class="search_nav"><a href="index.html">首页</a>>><span>会员中心</span></div>
+        <div class="mysan">我的</div>
+        <div class="cont clearfix">
+        	<div class="cont_left fl">
+                <div class="uCenter">
+                    <include file="Public:ucleft"/>
+                </div>
+            </div>
+            <div class="cont_right fr">
+ 				<div class="order_unclosed">
+                	<div class="o_u_title">未结束订单</div>
+                    <div class="o_u_content">
+                    	<table class="tab_order">
+                            <thead>
+                                <tr>
+                                    <th style="width:150px;">订单编号</th>
+                                    <th>下单时间</th>
+                                    <th>产品内容</th>
+                                    <th>出发日期</th>
+                                    <th style="width:70px;">订单金额</th>
+                                    <th style="width:70px;">订单状态</th>
+                                    <th style="width:100px;">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="unCloseOrder">
+								<volist name="ordList" id="vo">
+                                <tr <if condition="$key eq 0">class="nobar"</if>>
+                                    <td>{$vo.ordsn}</td>
+                                    <td>{$vo.add_time|date="Y-m-d",###}</td>
+                                    <td style="padding:0 10px;">{$vo.ordname}</td>
+                                    <td>{$vo.ordstart|date="Y-m-d",###}</td>
+                                    <td>￥{$vo.ordprice}</td>
+                                    <td><if condition="in_array($vo['ordstatus'],array(4,5))">等待确认<else/>{$vo.ordstatus|getNameById=###,'order_status'}</if></td>
+                                    <td>
+										<if condition="$vo['ordstatus'] eq 1 and $vo['ordpay'] eq 1">
+										<a href="javascript:void(0);" class="oBtn pay">付款</a>
+										<input type="hidden" name="orderid" value="{$vo.id}">
+										<!--<a href="javascript:void(0);" onclick="fancybox3();" class="oBtn pay">付款</a>-->
+										<a href="javascript:void(0);" onclick="cancelOrder({$vo.id});" class="oBtn cancel">取消</a>
+										<else/>
+										<a href="javascript:void(0);" onclick="cancelOrder({$vo.id});" class="oBtn cancel middle">取消</a>
+										</if>
+									</td>
+                                </tr>
+								</volist>
+                            </tbody>
+                        </table>
+                    </div>
+					
+                </div>
+                <div class="order_unclosed clearfix">
+                	<div class="o_u_title">已结束订单</div>
+                    <div class="o_u_content">
+                    	<table class="tab_order">
+                            <thead>
+                                <tr>
+                                    <th style="width:150px;">订单编号</th>
+                                    <th>下单时间</th>
+                                    <th>产品内容</th>
+                                    <th>出发日期</th>
+                                    <th style="width:70px;">订单金额</th>
+                                    <th style="width:70px;">订单状态</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+								<volist name="uordList" id="vo">
+                                <tr <if condition="$key eq 0">class="nobar"</if>>
+                                    <td>{$vo.ordsn}</td>
+                                    <td>{$vo.add_time|date="Y-m-d",###}</td>
+                                    <td style="padding:0 10px;">{$vo.ordname}</td>
+                                    <td>{$vo.ordstart|date="Y-m-d",###}</td>
+                                    <td>￥{$vo.ordprice}</td>
+                                    <td>{$vo.ordstatus|getNameById=###,'order_status'}</td>
+                                </tr>
+								</volist>
+                            </tbody>
+                        </table>
+                    </div>
+					<div class="pagination" style="margin-bottom:0;text-align:center;">
+						<div class="paging fr">{$page}</div>
+					</div>
+                </div>
+                <include file="Public:uclike"/>
+                
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+<include file="Public:footer_notq"/>
+<div class='messageBox'>
+	
+	<form id="cancelForm" method="post" action="">
+		<input type="hidden" name="order_id" value="">
+		<div class="tt">取消原因</div>
+		<textarea name="reason"></textarea>
+		<div class="tt mT20">您确定要取消订单吗？</div>
+		<div class="button">
+			<input type="button" class="button" name="cSubmit" value="是"/>
+			<input type="button" class="button" onclick="cancelco();" value="否">
+		</div>
+		
+		
+	</form>
+</div>
+
+<div class="fancybox3">
+	<div class="fTitle3">
+    	<span class="fht">三三旅游合同范本</span>
+    	<span class="fClose3">×</span>
+    </div>
+    <div class="fCon3">
+		<!--<include file="Public:hetongguonei" />-->
+    </div>
+    <div class="fAgree">
+    	<input type="checkbox" id="agree_check">
+        <label for="agree_check">我已阅读并接受以上合同条款、补充条款、保险条款、安全提示和其他所有内容</label>
+        <span class="err_checkbox normal"></span>
+    </div>
+    <div class="fAgree qianming">
+    	<label for="agree_name">签名</label>
+    	<input type="text" id="agree_name" name="agree_name" placeholder="请输入真实姓名">
+        <span class="err_contact normal"></span>
+    </div>
+    <div class="fBtn3">确定</div>
+</div>
+<script type="text/javascript">
+function fancybox3(message,orderid){
+	fancy();
+	$('.fancybox3 .fCon3').children().remove();
+	$('.fancybox3 .fCon3').append('<div class="loading" style="line-height:100px;text-align:center;font-size:16px;">合同加载中......</div>');
+	$.ajax({
+		url: '__ROOT__/Order/hetong',
+		type: 'POST',
+		data:{orderid:orderid},
+		dataType: 'json',
+		success: function(result){
+			if(result.status == 1){
+				$('.fancybox3 .fCon3').children().remove();
+				$('.fancybox3 .fCon3').append(result.data);
+			}
+		}
+	});	
+
+	$('#agree_check').prop('checked',false);
+	$('#agree_name').val('');
+	
+	var fancybox3=$(".fancybox3"),fTitle3=$(".fht"),fClose3=$(".fClose3"),fBtn3=$(".fBtn3");
+	$(fTitle3).html(message);
+	
+	var fLeft=($(window).width()-$(fancybox3).width())/2;
+	var fTop=($(window).height()-$(fancybox3).height())/2;
+	$(fancybox3).css({top:fTop,left:fLeft});
+	$('.fancybox3').show();	
+	
+	$(fBtn3).hover(function(){$(this).css('background','#40a1db');},function(){$(this).css('background','#2a98da');});
+	$(fBtn3).click(function(){
+		
+		if($('#agree_check').prop("checked")){
+			var agree_name=$.trim($('#agree_name').val());
+			if(agree_name == ""){
+				$(".err_contact").addClass("error").removeClass("correct").html("请填写您的真实姓名！");
+				return false;
+			}else{
+				payByAlipay(orderid);
+			}
+		}else{
+			$(".err_checkbox").addClass("error").removeClass("norm,a").html("请阅读并勾选！");
+			return false;
+		}
+		
+		
+		$('.fancybox3').hide();	
+		$('.fMask').remove();
+		
+
+		
+	});
+	$(fClose3).click(function(){
+		$('.fancybox3').hide();
+		$('.fMask').remove();	
+	});
+};
+
+$(function(){
+	
+	
+	$('.pay').click(function(){
+		var orderid = $(this).parent().find('input[name="orderid"]').val();
+		fancybox3('三三旅游合同范本',orderid);	
+	});
+/*	$("#agree_name").blur(function(){
+		$(".err_contact").removeClass("nomal");
+		var agree_name=$.trim($(this).val());
+		if(agree_name == ""){
+			$(".err_contact").addClass("error").removeClass("correct").html("请填写您的真实姓名！");
+		}else{
+			$(".err_contact").addClass("correct").removeClass("error").html("&nbsp;");
+		}
+	});*/
+	
+	$('input[name="cSubmit"]').click(function(){
+		var order_id = $('input[name="order_id"]').val();
+		var reason = $('textarea[name="reason"]').val();
+		$.ajax({
+			url: '__ROOT__/Order/cancel',
+			type: 'POST',
+			data:{order_id:order_id,reason:reason},
+			dataType: 'json',
+			success: function(result){
+				if(result.status == 1){
+					//重新加载列表
+					$('#unCloseOrder').find('tr').remove();
+					$('.messageBox').hide();
+					$('.layerCover').remove();
+					$('#unCloseOrder').append(result.data);
+					fancybox(result.info);
+				}
+			}
+		});
+	});
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+/*样式重置*/
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,select,p,blockquote,th,td{
+	margin:0;
+	padding:0;
+	font-size:12px;
+	font-family:'微软雅黑';
+}
+table,form,fieldset,input,textarea,select,button{font-size:12px}
+fieldset,img{border:0}
+ol,ul{list-style:none}
+a:link,a:visited{color:#000; text-decoration:none;}
+a:hover{color:red; text-decoration:underline;}
+
+.clearfix:after {visibility: hidden;display: block;font-size: 0;content: " ";clear: both;height: 0;}
+.clearfix{*zoom:1;}
+.fl{float:left;}
+.fr{float:right;}
+
+/*顶部通栏*/
+#indexTop{width:100%; height:541px; background:url(passport/top_bg.jpg) center center no-repeat;}
+
+#content{background:#fcf8e0;}
+#content .con{width:980px; margin:0px auto 0px; padding-bottom:20px;}
+.con .detail{border-radius:5px; border:2px dashed #C68946; margin-bottom:20px;}
+.con .detail .d_title{height:60px; border-bottom:2px dashed #c68946;}
+.con .detail .d_title .tleft{width:290px; padding-top:8px;}
+.con .detail .d_title .tright{width:620px; padding-top:5px; font-size:14px; color:#ac1621; line-height:1.8em;}
+.con .detail .d_title2{height:60px; border-bottom:2px dashed #c68946;}
+.con .detail .d_title2 .tleft{width:380px; padding-top:8px;}
+.con .detail .d_title2 .tright{width:300px; font-size:14px; color:#ac1621; line-height:60px;}
+.con .detail .d_text{padding:15px; font-size:14px; line-height:1.8em;}
+.con .detail .d_text i{color:#ac1621; font-style:normal; font-weight:bold;}
+.con .detail .d_text span{font-weight:bold; font-size:18px;}
+.con .detail .d_pic{margin-bottom:20px; position:relative; _width:976px; _height:133px;}
+.con .detail .d_pic ul{width:964px; margin:0 auto;}
+.con .detail .d_pic ul li{width:221px; height:113px; float:left; margin:0px 10px; _margin:0px 8px; position:relative; cursor:pointer;}
+.con .detail .d_pic ul li a{display:block; position:absolute;}
+.con .detail .d_pic ul li .hover{top:-5px;}
+.con .detail .d_pic ul li a img{width:215px; height:103px; border:3px solid #ffffff;}
+.con .detail .d_pic .pleft{padding-left:50px;}
+.con .detail .d_pic .pright{position:absolute; right:140px; bottom:-10px; _bottom:0px;}
+
+#footer{width:100%; background:url(passport/footer_bg.jpg) center center repeat-x;}
+#footer .foot{width:980px; height:60px; margin:0 auto; position:relative; padding-top:40px;}
+.foot .copyright{text-align:center; color:#ffffff; font-size:14px;}
+
+

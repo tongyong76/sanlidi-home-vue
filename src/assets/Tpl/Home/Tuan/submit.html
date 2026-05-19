@@ -1,0 +1,273 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>团队提交</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link type="text/css" rel="stylesheet" href="../Public/css/reset.css">
+<link type="text/css" rel="stylesheet" href="../Public/css/style.css">
+<link type="text/css" rel="stylesheet" href="../Public/css/jquery-ui.css">
+<script type="text/javascript" src="../Public/js/jquery-1.11.1.min.js"></script>
+<script>var ROOT_PATH = '__ROOT__';</script>
+<script type="text/javascript" src="../Public/js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="../Public/js/common.js"></script>
+<script type="text/javascript" src="../Public/js/team.js"></script>
+<include file="Public:statistics"/>
+</head>
+<body>
+<include file="Public:header"/>
+<!--头部结束-->
+<div class="wrap">
+	<div class="inside_wrap">
+    	
+		<div class="t_form">
+        	<div class="team_form_banner"><img src="../Public/images/team_form_banner.jpg"></div>
+            <div class="t_f">
+        		<div class="t_f_top"><span>团队出游需求单</span> 填写、提交出游需求单，我们的顾问会尽快和您联系</div>
+                <div class="t_f_bottom">
+					<form id="tuanForm" name="tuanForm" method="post" action="">
+					<div class="t_f_title"><span>需求信息</span></div>
+                    <div class="t_f_info">
+                    	<div class="formLine clearfix">
+                        	<span class="formLabel w80"><i>*</i>出游类型：</span>
+                            <span>
+								<select name="type" class="w110">
+									<volist name=":C('tuan_type')" id="vo">
+									<option value="{$key}">{$vo}</option>
+									</volist>
+								</select>
+							</span>
+                        </div>
+                        <div class="formLine clearfix">
+                        	<span class="formLabel w80"><i>*</i>出游天数：</span>
+                            <span>
+								<select name="days" class="w110">
+									<volist name=":C('tuan_days')" id="vo">
+									<option value="{$key}">{$vo}</option>
+									</volist>
+								</select>
+							</span>
+                        </div>
+                        <div class="formLine clearfix">
+                        	<span class="formLabel short"><i>*</i>目的地：</span>
+                            <span>
+								<volist name=":C('dst_type')" id="vo">
+								<label><input name="dst_type" type="radio" value="{$key}" checked="checked">{$vo}</label>
+								</volist>
+								<input type="text" name="dst_name" id="dst_name" class="w100">
+							</span>
+                            <span class="err_dst normal"></span>
+                        </div>
+                        <div class="formLine clearfix">
+                        	<span class="formLabel short"><i></i>出游日期：</span>
+                            <span><input id="cy_data" name="time" type="text" value="请选择" class="w100"></span>
+                        </div>
+                        <div class="formLine clearfix">
+                        	<span class="formLabel short"><i></i>出游人数：</span>
+                            <span><input type="text" name="num" class="w100">人<label><input type="checkbox" name="h_child" value="1">有儿童</label> 
+<label><input type="checkbox" name="h_old" value="1">有老人</label></span>
+                        </div>
+                        <div class="formLine clearfix">
+                        	<span class="formLabel short"><i>*</i>出游预算：</span>
+                            <span><input name="price" id="price" type="text" defaultValue="请填写您的出游预算" value="" class="w100 hint"> 元/人 </span>
+							<span class="err_price normal"></span>
+                        </div>
+                        <div class="formLine clearfix">
+                        	<span class="formLabel short"><i></i>其它需求：</span>
+                            <span><textarea name="info" class="maxlong"></textarea></span>
+                        </div>
+						<!--
+                        <div class="formLine clearfix">
+                        	<span class="formLabel short"></span>
+                            <span><label><input type="checkbox" name="more_need">更多详细需求</label></span>
+                        </div>
+						-->
+                    </div>
+                    <div class="t_f_title"><span>联系信息</span></div>
+                    <div class="t_f_info">
+                    	<div class="formLine clearfix">
+                        	<span class="formLabel short"><i>*</i>联系人：</span>
+                            <span><input name="contact" id="contact" type="text" class="long"></span>
+							<span class="err_contact normal"></span>
+                        </div>
+                        <div class="formLine clearfix">
+                        	<span class="formLabel short"><i>*</i>手机号：</span>
+                            <span><input name="phone" id="phone1" type="text" class="long"></span>
+							<span class="err_phone normal"></span>
+                        </div>
+                        <div class="formLine clearfix">
+                        	<span class="formLabel short"><i></i>公司名称：</span>
+                            <span><input name="company" id="company" type="text" class="long"></span>
+                        </div>
+                        <div class="formLine clearfix">
+                        	<span class="formLabel short"><i>*</i>验证码：</span>
+                            <span>
+								<input class="short" type="text" value="" name="captcha" id="verification" value="" verify_post_action="{:U('User/verify_test')}"></input>
+								<img style="margin-left:5px;" height="25" src="{:U('Base/verify')}" id="J_captcha_img" class="captcha_img" alt="{$verify}" verify_post_action="{:U('User','verify_test')}""/>
+								<a href="javascript:void(0)" id="J_captcha_change">换一张</a>
+							</span>
+                            <span class="err_check normal"></span>
+                        </div>
+                    </div>
+                    <div class="team_order_submit">
+                    	<input type="submit" name="submit" id="submit" value="提交">
+                    </div>
+                    </form>
+                </div>
+        	</div>
+        </div>
+        
+        
+    </div>
+</div>
+<include file="Public:footer_notq"/>
+<script type="text/javascript">
+function checkform(){
+	if($(".err_dst").attr('class') == 'err_dst normal'){
+		$(".err_dst").removeClass("nomal");
+		var dst_name=$.trim($("#dst_name").val());
+		if(dst_name==""){
+			$(".err_dst").addClass("error").removeClass("correct").html("请填写目的地！");
+		}else{
+			$(".err_dst").addClass("correct").removeClass("error").html("&nbsp;");
+		}
+	}
+	if($(".err_price").attr('class') == 'err_price normal'){
+		$(".err_price").removeClass("nomal");
+		var price=$.trim($("#price").val());
+		if(price==""){
+			$(".err_price").addClass("error").removeClass("correct").html("请填写预算！");
+		}else{
+			$(".err_price").addClass("correct").removeClass("error").html("&nbsp;");
+		}
+	}
+	if($(".err_contact").attr('class') == 'err_contact normal'){
+		$(".err_contact").removeClass("nomal");
+		var contact=$.trim($("#contact").val());
+		if(contact==""){
+			$(".err_contact").addClass("error").removeClass("correct").html("请填写联系人！");
+		}else{
+			$(".err_contact").addClass("correct").removeClass("error").html("&nbsp;");
+		}
+	}
+	if($(".err_phone").attr('class') == 'err_phone normal'){
+		$(".err_phone").removeClass("nomal");
+		var phone=$.trim($("#phone1").val());
+		if(phone==""){
+			$(".err_phone").addClass("error").removeClass("correct").html("请填写手机号码！");
+		}else{
+			var uanmebool=/^(13[0-9]|15[0|3|6|7|8|9]|18[8|9]|18[0-9]|147|17[6-8])\d{8}$/.test(phone);
+			if(!uanmebool){
+				$(".err_phone").addClass("error").removeClass("correct").html("请填写正确的手机号码！");
+			}else{
+				$(".err_phone").addClass("correct").removeClass("error").html("&nbsp;");
+			}
+		}
+	}
+	if($(".err_check").attr('class') == 'err_check normal'){
+		$(".err_check").removeClass("nomal");
+		var verify_post_action=$("#verification").attr("verify_post_action");
+		var verification=$.trim($("#verification").val());
+		if(verification==''){
+			$(".err_check").addClass("error").removeClass("correct").html("请输入验证码！");
+			return false;
+		}
+		$.ajax({
+			url:verify_post_action,
+			data:{verification:verification},
+			async : false,
+			type: "post",
+			success:function(data){
+				if(data=="true"){
+					$(".err_check").addClass("correct").removeClass("error").html("&nbsp;");
+				}else if(data=="false"){
+					$(".err_check").addClass("error").removeClass("correct").html("验证码输入不正确的！");
+				}
+			}
+		});
+	}
+}
+$(document).ready(function(){
+	$('#J_captcha_change').click(function(){
+		var time = new Date().getTime();
+		$('#J_captcha_img').attr('src','__ROOT__/User/verify/' + time);		
+    });
+	$("#dst_name").blur(function(){
+		$(".err_dst").removeClass("nomal");
+		var dst_name=$.trim($(this).val());
+		if(dst_name==""){
+			$(".err_dst").addClass("error").removeClass("correct").html("请填写目的地！");
+		}else{
+			$(".err_dst").addClass("correct").removeClass("error").html("&nbsp;");
+		}
+	});
+	$("#price").blur(function(){
+		$(".err_price").removeClass("nomal");
+		var price=$.trim($(this).val());
+		if(price==""){
+			$(".err_price").addClass("error").removeClass("correct").html("请填写预算！");
+		}else{
+			$(".err_price").addClass("correct").removeClass("error").html("&nbsp;");
+		}
+	});
+	$("#contact").blur(function(){
+		$(".err_contact").removeClass("nomal");
+		var contact=$.trim($(this).val());
+		if(contact==""){
+			$(".err_contact").addClass("error").removeClass("correct").html("请填写联系人！");
+		}else{
+			$(".err_contact").addClass("correct").removeClass("error").html("&nbsp;");
+		}
+	});
+	//验证手机
+	$("#phone1").blur(function(){
+		$(".err_phone").removeClass("nomal");
+		var phone=$.trim($(this).val());
+		if(phone==""){
+			$(".err_phone").addClass("error").removeClass("correct").html("请填写手机号码！");
+		}else{
+			var uanmebool=/^(13[0-9]|15[0|3|6|7|8|9]|18[8|9]|18[0-9]|147|17[6-8])\d{8}$/.test(phone);
+			if(!uanmebool){
+				$(".err_phone").addClass("error").removeClass("correct").html("请填写正确的手机号码！");
+			}else{
+				$(".err_phone").addClass("correct").removeClass("error").html("&nbsp;");
+			}
+		}
+
+	});
+	//验证验证码
+	$("#verification").blur(function(){
+		$(".err_check").removeClass("nomal");
+		var verify_post_action=$(this).attr("verify_post_action");
+		var verification=$.trim($(this).val());
+		if(verification==''){
+			$(".err_check").addClass("error").removeClass("correct").html("请输入验证码！");
+			return false;
+		}
+		$.ajax({
+			url:verify_post_action,
+			data:{verification:verification},
+			async : false,
+			type: "post",
+			success:function(data){
+				if(data=="true"){
+					$(".err_check").addClass("correct").removeClass("error").html("&nbsp;");
+				}else if(data=="false"){
+					$(".err_check").addClass("error").removeClass("correct").html("验证码输入不正确的！");
+				}
+			}
+		});
+	});
+	$("#submit").click(function(){
+		checkform();
+		if($(".err_phone").html()=='&nbsp;' && $(".err_dst").html()=='&nbsp;' && $(".err_price").html()=='&nbsp;' && $(".err_contact").html()=='&nbsp;' && $(".err_check").html()=='&nbsp;'){
+			return true;
+		}else{			
+			return false;
+		}
+	});
+});
+</script>
+</body>
+</html>

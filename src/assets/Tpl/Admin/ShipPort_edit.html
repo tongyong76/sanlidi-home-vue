@@ -1,0 +1,50 @@
+<include file="Public:header" />
+<script language="javascript">var webpath="__PUBLIC__";</script>
+<script type="text/javascript" src="__PUBLIC__/statics/js/common.js"></script>
+<script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.all.min.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/ueditor/themes/default/css/ueditor.css"/>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#submit").click(function(){
+			if($("#name").val()==0){
+			   alert('请填写资讯分类');
+			   return false;
+			}
+		});
+	});
+</script>
+
+</head>
+<div class="pad_10">
+<form action="{:U('ShipPort/edit')}" method="post" name="myform" id="myform" enctype="multipart/form-data" style="margin-top:10px;">
+  <div class="pad-10">
+  <div class="col-tab">
+  <ul class="tabBut cu-li">
+    <li id="tab_setting_1" class="on" onclick="SwapTab('setting','on','',1,1);">基本信息</li>
+  </ul>
+  <div id="div_setting_1" class="contentList pad-10">
+    <table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+    <tr>
+      <th width="100">出发港口 :</th>
+      <td><input type="text" name="name" id="name" class="input-text" value="{$cateInfo.name}"></td>
+    </tr>
+    <tr>
+      <th width="100">排序值 :</th>
+      <td><input type="text" name="ordid" id="sort_order" class="input-text" value="{$cateInfo.ordid}" size="4" onkeyup="value=value.replace(/[^\d]/g,'')"onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"></td>
+    </tr>
+	<tr><td><input type="hidden" name="id" value="{$cateInfo.id}" id="article_id"/></td></tr>
+</table>
+  </div>
+
+  <div class="bk15"></div>
+  <div class="btn">
+    <input type="submit" value="提交" name="submit" class="button" id="submit">
+  </div>
+
+</div>
+</div>
+</form>
+</div>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<include file="Public:header" />
+<script language="javascript">var webpath="__PUBLIC__";</script>
+<script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.all.min.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/ueditor/themes/default/css/ueditor.css"/>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#submit").click(function(){		
+			if($("#title").val()==0){
+			   alert('请填写资讯标题');
+			   return false;
+			}
+			if($("#cate_id").val()==0){
+			   alert('请选择资讯分类');
+			   return false;
+			}
+		});
+		//编辑器
+		var editor = UE.getEditor('text', {initialFrameHeight:300});
+	});
+</script>
+</head>
+<body>
+<form action="{:u('ShipBoat/add')}" method="POST" name="myform" id="myform" enctype="multipart/form-data" style="margin-top:10px;">
+  <div class="pad-10">
+  <div class="col-tab">
+  <ul class="tabBut cu-li">
+    <li id="tab_setting_1" class="on" onClick="SwapTab('setting','on','',2,1);">基本信息</li>
+    <li id="tab_setting_2" onClick="SwapTab('setting','on','',2,2);">SEO设置</li>
+  </ul>
+  <div id="div_setting_1" class="contentList pad-10">
+    <table width="100%" cellpadding="2" cellspacing="1" class="table_form">	  
+      <tr>
+        <th width="100">邮轮名称 :</th>
+        <td><input type="text" name="name" class="input-text" size="60" value="{$boatInfo.name}" >(例：XX号)</td>
+      </tr>
+	  <tr>
+        <th width="100">英文名称 :</th>
+        <td><input type="text" name="ename" class="input-text" size="60" value="{$boatInfo.ename}" >(全部大写)</td>
+      </tr>
+	  <tr>
+        <th>邮轮公司 :</th>
+        <td>
+			<select name="company_id" id="company_id" style="width:120px;" >
+        	<option value="0">--请选择公司--</option>
+			<volist name="companyList" id="val">
+			<option value="{$val.id}" <if condition="$boatInfo['company_id'] eq $val['id']"> selected="selected" </if>>{$val.name}</option>
+			</volist>          
+            </select>
+		</td>
+      </tr>
+	  <tr>
+      	<th>缩略图 :</th>
+      	<td>
+            <input type="file" name="imgurl" class="input-text" size=21 style="height:25px;"/>
+        </td>
+      </tr>
+	  <tr>
+        <th width="100">总吨位 :</th>
+        <td><input type="text" name="zdw" class="input-text" size="60" value="{$boatInfo.zdw}" ></td>
+      </tr>
+	  <tr>
+        <th width="100">首航日期 :</th>
+        <td><input type="text" name="shrq" class="input-text" size="60" value="{$boatInfo.shrq}" ></td>
+      </tr>
+	  <tr>
+        <th width="100">宽度 :</th>
+        <td><input type="text" name="kd" class="input-text" size="60" value="{$boatInfo.kd}" ></td>
+      </tr>
+	  <tr>
+        <th width="100">长度 :</th>
+        <td><input type="text" name="cd" class="input-text" size="60" value="{$boatInfo.cd}" ></td>
+      </tr>
+	  <tr>
+        <th width="100">船速 :</th>
+        <td><input type="text" name="cs" class="input-text" size="60" value="{$boatInfo.cs}" ></td>
+      </tr>
+	  <tr>
+        <th width="100">载客量 :</th>
+        <td><input type="text" name="zkl" class="input-text" size="60" value="{$boatInfo.zkl}" ></td>
+      </tr>
+	  <tr>
+        <th width="100">甲板楼层 :</th>
+        <td><input type="text" name="jblc" class="input-text" size="60" value="{$boatInfo.jblc}" ></td>
+      </tr>
+	  <tr>
+		<th width="100">航线特色 :</th>
+		<td><textarea style="width:70%;" name="info" id="text">{$boatInfo.info}</textarea></td>
+	  </tr>
+    </table>
+  </div>
+	<div id="div_setting_2" class="contentList pad-10 hidden">
+		<table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+			<tr>
+				<th width="100">Title :</th>
+				<td><input type="text" name="seo_title" id="seo_title" class="input-text" size="60" value=""></td>
+			</tr>
+			<tr>
+				<th>Keywords :</th>
+				<td><input type="text" name="seo_keys" id="seo_keys" class="input-text" size="60" value=""></td>
+			</tr>
+			<tr>
+				<th>Description :</th>
+				<td><textarea name="seo_desc" id="seo_desc" cols="80" rows="8"></textarea></td>
+			</tr>
+		</table>
+	</div>
+  
+  <div class="bk15"></div>
+  <div class="btn">
+    <input type="submit" onClick="disable()" value="提交" name="submit" class="button" id="submit">
+  </div>
+
+</div>
+</div>
+</form>
+<script type="text/javascript">
+function disable(){
+	if($('input').attr("disabled")==true || $('input').attr("disabled")==true){
+		$('input').removeAttr('disabled');
+		$('select').removeAttr('disabled');
+	}
+}
+</script>
+</body>
+</html>

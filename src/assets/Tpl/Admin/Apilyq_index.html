@@ -1,0 +1,84 @@
+<include file="Public:header" />
+<script language="javascript">var webpath="__PUBLIC__";</script>
+</head>
+<body>
+<form name="myform" id="myform" style="margin-top:10px;">
+  <div class="pad-10">
+  <div class="col-tab">
+	  <ul class="tabBut cu-li">
+		<li id="tab_setting_1" class="on" onClick="SwapTab('setting','on','',5,1);">基本信息</li>
+	  </ul>
+	  <div id="div_setting_1" class="contentList pad-10">
+		<table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+		  <tr>
+			<th width="100">共计 :</th>
+			<td><span class="PageNum" style="width:50px;text-align:center;display:inline-block;">0</span>页&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" name="getNum" value="获取页数" class="button"/></td>
+			<input type="hidden" name="PageNum" value=""/>
+			<input type="hidden" name="ProductNum" value=""/>
+		  </tr> 
+		  <tr>
+			<th width="100">开始页数 :</th>
+			<td><input type="text" name="sPage" class="input-text" size="4" value="">页</td>
+		  </tr>
+		  <tr>
+			<th width="100">结束页数 :</th>
+			<td><input type="text" name="ePage" class="input-text" size="4" value="">页</td>
+		  </tr>
+		  <tr>
+			<th width="100"></th>
+			<td><input type="button" name="importBtn" value="导入产品数据" class="button"/></td>
+		  </tr>  
+		</table>
+	  </div>
+	  
+	  <div class="bk15"></div>
+	  <div class="btn" style="height:auto;line-height:22px;">
+
+	  </div>
+	</div>
+	</div>
+</form>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('input[name="getNum"]').click(function(){
+		$.ajax({
+			url: 'http://localhost/33ly/Admin/Apilyq/getTotalFileNum',
+			type: 'POST',
+			dataType: 'json',
+			success: function(result){
+				if(result.status == 1){
+					var pageNum = result.data.XmlFileCount;
+					var productNum = result.data.ProductCount;
+					$('input[name="PageNum"]').val(pageNum);
+					$('input[name="ProductNum"]').val(productNum);
+					$('.PageNum').html(pageNum);
+					var newMsg = '<p>获取文件总数' + pageNum + '，产品总数' + productNum + '</p>';
+					$('.btn').append(newMsg);
+				}
+			}
+		});
+	});
+	
+	$('input[name="importBtn"]').click(function(){
+		var pageNum = $('input[name="PageNum"]').val();
+		var productNum = $('input[name="ProductNum"]').val();
+		var sPage = $('input[name="sPage"]').val()?$('input[name="sPage"]').val():0;
+		var ePage = $('input[name="ePage"]').val()?$('input[name="ePage"]').val():0;
+		$('.btn').append('<p class="loading">线路更新中...</p>');
+		$.ajax({
+			url: 'http://localhost/33ly/Admin/Apilyq/importProduct',
+			type: 'POST',
+			data: {sPage:sPage,ePage:ePage,pageNum:pageNum,productNum:productNum},
+			dataType: 'json',
+			success: function(result){
+				if(result.status == 1){
+					$('.loading').remove();
+					$('.btn').append(result.data);
+				}
+			}
+		});
+	});
+});
+</script>
+</body>
+</html>

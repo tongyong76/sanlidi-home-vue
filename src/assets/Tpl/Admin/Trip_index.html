@@ -1,0 +1,56 @@
+<include file="Public:header" />
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".preview").preview();
+	});
+	
+	function status(id,type){
+		$.get("{:u('Line/status')}", { id: id, type: type }, function(data){
+			$("#"+type+"_"+id+" img").attr('src','__PUBLIC__/statics/images/status_'+data+'.gif')
+		},"json"); 
+	}
+</script>
+
+</head>
+<body>
+<div class="pad-10" >
+	<div style="padding:0 0 10px 10px;font-size:14px;color:#404040;font-weight:bold;">
+		{$pInfo.name}
+	</div>
+    <form id="myform" name="myform" action="{:u('Trip/delete')}" method="post">
+    <div class="table-list">
+    <table width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th width="1%"><input type="checkbox" value="" id="check_box" onclick="selectall('id[]');"></th>
+				<th width=60>日期</th>
+                <th width=60>名称</th>	        
+                <th width=120>操作</th>
+            </tr>
+        </thead>
+    	<tbody>
+        <volist name="list" id="val" >
+        <tr>
+            <td align="center"><input type="checkbox" value="{$val.id}" name="id[]"></td>          
+            <td align="center">第{$val.ordid}天</td>
+			<td align="center">{$val.name}</td>
+            <td align="center"><a class="blue" href="{:u('Trip/edit',array('id'=>$val['id']))}">编辑</a></td>
+        </tr>
+        </volist>
+    	</tbody>
+    </table>
+
+    <div class="btn">
+    	<label for="check_box" style="float:left;">全选/取消</label>
+    	<input type="submit" class="button" name="submit" value="删除" style="margin:0 10px 0 10px;" onclick="return check();"/>
+    	<input type="submit" class="button" name="order" onclick="document.myform.action='{:U('Line/order')}'" value="排序" style="margin:0 10px 0 0px;"/>
+    	<input type="submit" class="button" name="add" onclick="document.myform.action='{:U('Trip/add',array('id'=>$pInfo['id'],'type'=>'single'))}'" value="添加行程" style="margin:0 10px 0 0px;"/>
+		<div id="pages">{$page}</div>
+    </div>
+
+    </div>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>个人中心_修改头像_苏州青旅33ly.com</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link type="text/css" rel="stylesheet" href="../Public/css/reset.css">
+<link type="text/css" rel="stylesheet" href="../Public/css/style.css">
+<script type="text/javascript" src="../Public/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../Public/js/common.js"></script>
+<script type="text/javascript" src="../Public/js/user.js"></script>
+<include file="Public:statistics"/>
+</head>
+<body>
+<include file="Public:header" />
+<!--头部结束-->
+<div class="wrap">
+	<div class="inside_wrap">
+    	<div class="search_nav"><a href="index.html">首页</a>>><span>会员中心</span></div>
+        <div class="mysan">我的</div>
+        <div class="cont clearfix">
+        	<div class="cont_left fl">
+                <div class="uCenter">
+                    <include file="Public:ucleft"/>
+                </div>
+            </div>
+            <div class="cont_right fr">
+            	<div class="user_basic">
+                	<div class="u_b_title">设置当前头像</div>
+                    <div class="u_b_content">
+                    	<div class="user_pic clearfix">
+                        	<div class="pic_now fl">
+                            	<div class="p_n_title">当前头像：</div>
+                                <div class="p_n_pic" id="avatar_priview"><img src="__ROOT__/Uploads/avatar/{$userInfo.imgurl}"></div>
+								<div class="p_n_mask"><img width="162" height="162" src="../Public/images/headmask.png"/></div>
+                            </div>
+							<div class="imgChange fr">
+								<OBJECT classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
+								codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0"
+								WIDTH="550" HEIGHT="450" id="myMovieName">
+								<PARAM NAME=movie VALUE="__ROOT__/Public/statics/avatar/avatar.swf">
+								<PARAM NAME=quality VALUE=high>
+								<PARAM NAME=bgcolor VALUE=#FFFFFF>
+								<param name="flashvars" value="imgUrl=__ROOT__/Uploads/noimage160x160.jpg&uploadUrl=__URL__/upfile&uploadSrc=false" />
+								<EMBED src="__ROOT__/Public/statics/avatar/avatar.swf" quality=high bgcolor=#FFFFFF WIDTH="550" HEIGHT="450" wmode="transparent" flashVars="imgUrl=__ROOT__/Uploads/noimage160x160.jpg&uploadUrl=__URL__/upfile&uploadSrc=false"
+								NAME="myMovieName" ALIGN="" TYPE="application/x-shockwave-flash" allowScriptAccess="always"
+								PLUGINSPAGE="http://www.macromedia.com/go/getflashplayer">
+								</EMBED>
+								</OBJECT>
+							</div>
+                        </div>
+
+                        
+                    </div>
+                </div>
+				<include file="Public:uclike"/>
+                
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+<include file="Public:footer" />
+</body>
+<script type="text/javascript">
+   function uploadevent(data){
+	//alert(status);
+        data += '';
+     switch(data){
+     case '1':
+		var time = new Date().getTime();
+		document.getElementById('avatar_priview').innerHTML = "<img width='160' height='160' src='__ROOT__/Uploads/avatar/last.png?" + time + "'/>" ;
+		
+	break;
+     break;
+     case '-1':
+	  window.location.reload();
+     break;
+     default:
+     window.location.reload();
+    } 
+   }
+</script>
+</html>

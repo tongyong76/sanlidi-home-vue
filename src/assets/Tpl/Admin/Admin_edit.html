@@ -1,0 +1,30 @@
+<include file="Public:header" />
+</head>
+<div class="pad_10">
+<form action="{:u('Admin/edit')}" method="post" name="myform" id="myform">
+<table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+	<tr> 
+		<th width="100">帐号 :</th>
+		<td><input type="text" name="username" id="username" class="input-text" value="{$admin_info.username}" readonly="readonly"></td>
+    </tr>
+    <tr>
+		<th>密码 :</th>
+		<td><input type="password" name="password" id="password" class="input-text"></td>
+    </tr>
+    <tr> 
+		<th>身份 :</th>
+		<td>
+			<select name="role_id" id="role_id" style="width:200px;" >
+        	<option value="0">--请选择分类--</option>
+			<volist name="role_list" id="val">
+			<option value="{$val.id}" <if condition="$admin_info['role_id'] eq $val['id']"> selected="selected" </if>>{$val.name}</option>
+			</volist>          
+            </select>
+		</td>
+    </tr>
+</table>
+<input type="hidden" name="id" value="{$admin_info.id}" />
+<input type="submit" name="submit" id="submit" class="button" value="提交" style="margin:10px 50px;">
+</form>
+</div>
+</body>

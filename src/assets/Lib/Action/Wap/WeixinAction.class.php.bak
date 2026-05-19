@@ -1,0 +1,298 @@
+<?php
+class WeixinAction extends Action {
+	public $user;
+	public function _initialize(){
+		header('Content-type: text/html; charset=utf-8');
+		
+		//百度统计
+		import("@.ORG.BaiduHmWap");
+		$_hmt = new _HMT("45988a729df28f554d96a5b9932b17e1");
+		$_hmtPixel = $_hmt->trackPageView();
+		$this->assign('BdWap',$_hmtPixel);
+		
+		$this->user['appid'] = 'wx9f98139e202c7003';
+		$this->user['appsecret'] = 'fc569bb8896f29b5269fe49169d0c77a';
+		
+		//微信SDK
+		vendor('Weixin.jssdk');
+		$jssdk = new JSSDK($this->user['appid'],$this->user['appsecret']);
+		$signPackage = $jssdk->GetSignPackage();
+		$this->assign('signPackage',$signPackage);
+	}
+	
+	//简单验证
+	public function slogin(){
+		$code = $_REQUEST['code'];
+		$state = $_REQUEST['state']?$_REQUEST['state']:0;
+		$post_url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='.$this->user['appid'].'&secret='.$this->user['appsecret'].'&code='.$code.'&grant_type=authorization_code';
+		$json=json_decode($this->curlGet($post_url));
+		
+		//是否第一次
+		$exist = M('wx_user')->where('wx_openid="'.$json->openid.'"')->find();
+		if($exist){
+			SESSION('wx_openid',$exist['wx_openid']);
+			$url = "http://m.33ly.com/Weixin/tejia";
+			header("Location: $url");
+		}else{
+			$url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=".$this->user['appid']."&redirect_uri=http%3A%2F%2Fm.33ly.com%2FWeixin%2Fulogin&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect";
+			header("Location: $url");
+		}
+	}
+	
+	//获取用户信息并绑定
+	public function ulogin(){
+		$code = $_REQUEST['code'];
+		$state = $_REQUEST['state']?$_REQUEST['state']:0;
+		$userInfo = $this->checkUser($code);
+		//存入数据库
+		$data['wx_openid'] = $userInfo->openid;
+		$data['wx_nickname'] = $userInfo->nickname;
+		$data['wx_sex'] = $userInfo->sex;
+		$data['wx_headimgurl'] = $userInfo->headimgurl;
+		M('wx_user')->add($data);
+		SESSION('wx_openid',$exist['wx_openid']);
+		$url = "http://m.33ly.com/Weixin/tejia";
+		header("Location: $url");
+	}
+	
+	public function clear(){
+		SESSION('UID',null);
+		
+	}
+	
+	public function wapi(){
+		var_dump($this->signPackage);
+		//$this->display();
+	}
+	
+	//微信用甩卖
+	public function tejia(){
+		//获取用户openid
+		$wx_openid = SESSION('wx_openid');
+		if(!$wx_openid){
+			$redirect_uri = "http%3A%2F%2Fm.33ly.com%2FWeixin%2Fslogin";
+			$url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=".$this->user['appid']."&redirect_uri=".$redirect_uri."&response_type=code&scope=snsapi_base&state=STATE#wechat_redirect";
+			header("Location: $url");
+		}
+		
+		//商品信息
+		$mod = M('sale_goods as sg');
+		$info = $mod->field('*,sg.id as id')->join('33_goods as g on g.id=sg.gid')->where('sg.is_del=0')->order('sg.sale_start desc')->find();
+		//var_dump($info);
+		$this->assign('info',$info);
+		SESSION('sgid',$info['id']);
+		
+		//所有参与人信息
+		if($info){
+			$mod = M('sale_order as so');
+			$ulist = $mod->join('33_wx_user as wu on so.uid=wu.uid')->where('sgid='.$info['id'])->select();
+			$this->assign('ulist',$ulist);
+		}
+		
+		$this->display();
+	}
+	
+	//特价抢购处理
+	public function tejiaAct(){
+		$mod = M('sale_order');
+		
+		//数据
+		$data['gid'] = 517;
+		$data['uid'] = rand(1,1000);
+		$data['btime'] = time();
+		$data['status'] = 1;
+	
+		$mod->add($data);
+	}
+	
+	public function tips(){
+		$wx_openid = SESSION('wx_openid');
+		//$sgid = $_REQUEST['sgid']?trim($_REQUEST['sgid']):0;
+		$sgid = SESSION('sgid');
+		$is_uid = M('wx_user')->where('wx_openid="'.$wx_openid.'"')->getfield('uid');
+		if($is_uid){
+			if($sgid){
+				//插入订单
+				$data['sgid'] = $_REQUEST['sgid'];
+				$data['uid'] = $is_uid;
+				$data['btime'] = time();
+				$data['status'] = 1;
+				
+				$smod = M('sale_goods as sg');
+				$goodsInfo = $smod->join('33_goods as g on g.id=sg.gid')->field('g.name,g.subname,sg.sale_price')->where('sg.id='.$sgid)->find();
+				
+				//微信支付
+				vendor('Weixin.WxPay.pub.config');
+				vendor('Weixin.WxPayPubHelper');
+				$jsApi = new JsApi_pub();	
+				$openid = $wx_openid;
+				//$openid = 'oOrekjmmExAQ40gRUAzM8I_LrnO8';
+				// if (!isset($_GET['code']))
+				// {
+					// //触发微信返回code码
+					// $url = $jsApi->createOauthUrlForCode(WxPayConf_pub::JS_API_CALL_URL);
+					// Header("Location: $url"); 
+				// }else
+				// {
+					// //获取code码，以获取openid
+					// $code = $_GET['code'];
+					// $jsApi->setCode($code);
+					// $openid = $jsApi->getOpenId();
+				// }
+				//统一支付接口
+				$unifiedOrder = new UnifiedOrder_pub();
+				$unifiedOrder->setParameter("openid","$openid");
+				$unifiedOrder->setParameter("body",$goodsInfo['name']);//商品描述
+				$timeStamp = time();
+				$out_trade_no = WxPayConf_pub::APPID."$timeStamp";
+				$unifiedOrder->setParameter("out_trade_no","$out_trade_no");//商户订单号 
+				$unifiedOrder->setParameter("total_fee",$goodsInfo['sale_price']*100);//总金额
+				$unifiedOrder->setParameter("notify_url",WxPayConf_pub::NOTIFY_URL);//通知地址 
+				$unifiedOrder->setParameter("trade_type","JSAPI");//交易类型
+				
+				$prepay_id = $unifiedOrder->getPrepayId();
+				$jsApi->setPrepayId($prepay_id);
+				$jsApiParameters = $jsApi->getParameters();
+				$this->assign('jsApiParameters',$jsApiParameters);
+				
+				
+				//防止反复参与
+				$map_order['sgid'] = $data['sgid'];
+				$map_order['uid'] = $data['uid'];
+				$is_exist = M('sale_order')->where($map_order)->find();
+				if(!$is_exist) M('sale_order')->add($data);	
+			}
+					
+			//绑定，go tips1;
+			$tips['title'] = '下单成功';
+			$tips['data'] = '<p>1、抢购名额有限，仅限手机端支付，支付资格已下单时间为准</p>';
+			$tips['data'] .= '<p>2、订单须在半小时内支付完成，付款成功则代表抢购成功，逾期未付款则表示您放弃抢购。</p>';
+			$tips['data'] .= '<p>3、抢购产品价格仅限于“费用包含”中所列的费用，如有其他未含费用敬请自理。</p>';
+			$tips['data'] .= '<p>4、抢购产品因资源特殊，支付成功后不得取消和退订。</p>';
+//			echo $tips['data'];
+			$tips['button_type'] = 1;
+//			echo "go支付宝";
+			
+			//判断资格
+		}else{
+			$tips['title'] = '请先绑定帐号';
+			$tips['data'] = '<p>1、抢购只针对三三旅游微信会员，如需参与请先绑定帐号</p>';
+			$tips['data'] .= '<p>2、订单须在半小时内支付完成，付款成功则代表抢购成功，逾期未付款则表示您放弃抢购。</p>';
+			$tips['data'] .= '<p>3、抢购产品价格仅限于“费用包含”中所列的费用，如有其他未含费用敬请自理。</p>';
+			$tips['data'] .= '<p>4、抢购产品因资源特殊，支付成功后不得取消和退订。</p>';
+			$tips['button_type'] = 2;
+//			echo $tips['data'];
+//			echo "<a href='http://m.33ly.com/User/login'>go绑定帐号</a>";
+		}
+		$this->assign('tips',$tips);
+		$this->display();
+	}
+	
+	
+	//微信客服
+	public function kefu(){
+		$this->display();
+	}
+	
+	//获奖名单
+	public function prize(){
+		$id = $_REQUEST['id'];
+		$list = M('wx_win')->where('win_date='.$id.' and is_del=0')->select();
+		foreach($list as $key=>$value){
+			$list[$key]['son'] = M('wx_win_name')->where('wid='.$value['id'])->select();
+		}
+		$this->assign('list',$list);
+		$this->display();
+	}
+	
+	//微信支付接口测试
+	public function paytest(){
+		vendor('Weixin.WxPay.pub.config');
+		vendor('Weixin.WxPayPubHelper');
+		//echo WxPayConf_pub::APPID;
+		
+		$jsApi = new JsApi_pub();
+		// if (!isset($_GET['code']))
+		// {
+			// //触发微信返回code码
+			// $url = $jsApi->createOauthUrlForCode(WxPayConf_pub::JS_API_CALL_URL);
+			// Header("Location: $url"); 
+		// }else
+		// {
+			// //获取code码，以获取openid
+			// $code = $_GET['code'];
+			// $jsApi->setCode($code);
+			// $openid = $jsApi->getOpenId();
+		// }
+		$openid = 'oOrekjmmExAQ40gRUAzM8I_LrnO8';
+		
+		//使用统一支付接口
+		$unifiedOrder = new UnifiedOrder_pub();
+		$unifiedOrder->setParameter("openid","$openid");//商品描述
+		$unifiedOrder->setParameter("body","贡献一分钱");//商品描述
+		$timeStamp = time();
+		$out_trade_no = WxPayConf_pub::APPID."$timeStamp";
+		$unifiedOrder->setParameter("out_trade_no","$out_trade_no");//商户订单号 
+		$unifiedOrder->setParameter("total_fee","1");//总金额
+		$unifiedOrder->setParameter("notify_url",WxPayConf_pub::NOTIFY_URL);//通知地址 
+		$unifiedOrder->setParameter("trade_type","JSAPI");//交易类型		
+		
+		$prepay_id = $unifiedOrder->getPrepayId();
+		$jsApi->setPrepayId($prepay_id);
+		$jsApiParameters = $jsApi->getParameters();
+		$this->assign('jsApiParameters',$jsApiParameters);
+
+		$this->display();
+	}
+	
+//////////公共函数部分开始
+	public function curlGet($url){
+		$ch = curl_init();
+		$header = "Accept-Charset: utf-8";
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "GET");
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+		curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
+		curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (compatible; MSIE 5.01; Windows NT 5.0)');
+		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+		curl_setopt($ch, CURLOPT_AUTOREFERER, 1);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		$temp = curl_exec($ch);
+		return $temp;
+	}
+	
+	public function checkUser($code){
+		$post_url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='.$this->user['appid'].'&secret='.$this->user['appsecret'].'&code='.$code.'&grant_type=authorization_code';
+		$json=json_decode($this->curlGet($post_url));
+		
+		//$reflesh_url = 'https://api.weixin.qq.com/sns/oauth2/refresh_token?appid='.$this->user['appid'].'&grant_type=refresh_token&refresh_token='.$json->refresh_token;
+		//$json3 = json_decode($this->curlGet($reflesh_url));
+		
+		$post_url2 = 'https://api.weixin.qq.com/sns/userinfo?access_token='.$json->access_token.'&openid='.$json->openid.'&lang=zh_CN';
+		$json2 = json_decode($this->curlGet($post_url2));
+		return $json2;
+	}	
+//////////公共函数部分结束
+	
+	//中奖名单
+	public function wlist(){
+		$this->display();
+	}
+	
+	//出团通知书
+	public function notice(){
+		//$id = $_REQUEST['id'];
+		$id = 703;
+		$notice = M('order')->where('id='.$id)->getfield('notice');
+		$this->assign('notice',$notice);
+		$this->display();
+	}
+	
+	//常用报表
+	public function biaodan(){
+		$this->display();
+	}
+
+}

@@ -1,0 +1,212 @@
+<include file="Public:header" />
+<script language="javascript">var webpath="__PUBLIC__";</script>
+<script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.all.min.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/ueditor/themes/default/css/ueditor.css"/>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#submit").click(function(){		
+			if($("#title").val()==0){
+			   alert('请填写资讯标题');
+			   return false;
+			}
+			if($("#cate_id").val()==0){
+			   alert('请选择资讯分类');
+			   return false;
+			}
+		});
+		//编辑器
+		var editor = UE.getEditor('text', {initialFrameHeight:300});
+		var editor2 = UE.getEditor('fees_in', {initialFrameHeight:300});
+		var editor3 = UE.getEditor('fees_out', {initialFrameHeight:300});
+		var editor4 = UE.getEditor('notice', {initialFrameHeight:300});
+		var editor5 = UE.getEditor('visa', {initialFrameHeight:300});
+		var editor6 = UE.getEditor('tips', {initialFrameHeight:300});
+	});
+</script>
+</head>
+<body>
+<form action="{:u('Ship/add')}" method="POST" name="myform" id="myform" enctype="multipart/form-data" style="margin-top:10px;">
+  <div class="pad-10">
+  <div class="col-tab">
+  <ul class="tabBut cu-li">
+    <li id="tab_setting_1" class="on" onClick="SwapTab('setting','on','',3,1);">基本信息</li>
+	<li id="tab_setting_2" onClick="SwapTab('setting','on','',3,2);">附加信息</li>
+    <li id="tab_setting_3" onClick="SwapTab('setting','on','',3,3);">SEO设置</li>
+  </ul>
+  <div id="div_setting_1" class="contentList pad-10">
+    <table width="100%" cellpadding="2" cellspacing="1" class="table_form">	  
+      <tr>
+        <th width="100">名称 :</th>
+        <td><input type="text" name="name" class="input-text" size="60" value="{$shipInfo.name}" ></td>
+      </tr>
+	  <tr>
+        <th width="100">二级名称 :</th>
+        <td><input type="text" name="subname" class="input-text" size="60" value="{$shipInfo.subname}" ></td>
+      </tr>
+	  <tr>
+        <th width="100">出发日期 :</th>
+        <td><input type="text" name="start_time" id="start_time" class="input-text" size="60" value="{$shipInfo.start_time|date='Y-m-d',###}" readonly></td>
+		<script language="javascript" type="text/javascript">
+                    Calendar.setup({
+                        inputField     :    "start_time",
+                        ifFormat       :    "%Y-%m-%d",
+                        showsTime      :    'true',
+                        timeFormat     :    "24"
+                    });
+        </script>
+      </tr>
+	  <tr>
+        <th width="100">参考价格 :</th>
+        <td><input type="text" name="minprice" class="input-text" size="60" value="{$shipInfo.minprice}" ></td>
+      </tr>
+	  <tr>
+        <th width="100">序列号 :</th>
+        <td><input type="text" name="sn" class="input-text" size="60" value="{$sn}" readonly></td>
+      </tr>
+	  <tr>
+        <th width="100">付费服务 :</th>
+        <td>
+			<input name="Apple[]" type="checkbox" value="1" <if condition="in_array(1,$shipInfo['service'])">checked="checked"</if>/>&nbsp;上门接送&nbsp;			
+		</td>
+      </tr>
+	  <tr>
+        <th width="100">标签 :</th>
+        <td>
+			<input name="is_owner" type="checkbox" value="1" />&nbsp;三三大切舱&nbsp;			
+		</td>
+      </tr>
+	  <tr>
+        <th width="100">供应商标识 :</th>
+        <td><input type="text" name="tag" class="input-text" size="60" value="{$shipInfo.tag}" >(有则填写缩写，无则留空)</td>
+      </tr>	
+	  <tr>
+        <th>邮轮航线 :</th>
+        <td>
+			<select name="cate_id" id="cate_id" style="width:120px;" >
+        	<option value="0">--请选择航线--</option>
+			<volist name="cateList" id="val">
+			<option value="{$val.id}" <if condition="$shipInfo['cate_id'] eq $val['id']"> selected="selected" </if>>{$val.name}</option>
+			</volist>          
+            </select>
+		</td>
+      </tr>
+	  <tr>
+        <th>邮轮型号 :</th>
+        <td>
+			<select name="boat_id" id="boat_id" style="width:120px;" >
+        	<option value="0">--请选择邮轮--</option>
+			<volist name="boatList" id="val">
+			<option value="{$val.id}" <if condition="$shipInfo['boat_id'] eq $val['id']"> selected="selected" </if>>{$val.name}</option>
+			</volist>          
+            </select>
+		</td>
+      </tr>
+	  <tr>
+        <th>出发港口 :</th>
+        <td>
+			<select name="port_id" id="port_id" style="width:120px;" >
+        	<option value="0">--请选择港口--</option>
+			<volist name="portList" id="val">
+			<option value="{$val.id}" <if condition="$shipInfo['port_id'] eq $val['id']"> selected="selected" </if>>{$val.name}</option>
+			</volist>          
+            </select>
+		</td>
+      </tr>
+	  <tr>
+        <th width="100">航行天数 :</th>
+        <td><input type="text" name="days" class="input-text" size="4" value="{$shipInfo.days}" >天</td>
+      </tr>
+	  <tr>
+        <th width="100">提前天数 :</th>
+        <td><input type="text" name="sign_up" class="input-text" size="4" value="{$shipInfo.sign_up}" >天</td>
+      </tr>
+	  
+      <tr>
+      	<th>航行图 :</th>
+      	<td>
+            <input type="file" name="imgurl" class="input-text" size=21 style="height:25px;"/>
+        </td>
+      </tr>
+	  <!--
+	  <tr>
+		<th>航线特色 :</th>
+		<td>
+			<if condition="$shipInfo['imgurl']"><img src="__ROOT__{$shipInfo.imgurl}" />&nbsp;&nbsp;<br /><br /></if>
+			<input type="hidden" name="imgurl" value="{$shipInfo.imgurl}"/>
+			<textarea style="width:70%;" name="info" id="text">{$shipInfo.info}</textarea>
+		</td>
+	  </tr> 
+	  -->
+    </table>
+  </div>
+
+	<div id="div_setting_2" class="contentList pad-10 hidden">
+		<table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+		  <tr>
+			<th width="100">费用包含 :</th>
+			<td>
+				<textarea style="width:70%;" id="fees_in" name="fees_in">{$shipInfo.fees_in}</textarea>
+			</td>
+		  </tr>
+		  <tr>
+			<th>费用不含 :</th>
+			<td>
+				<textarea style="width:70%;" id="fees_out" name="fees_out">{$shipInfo.fees_out}</textarea>
+			</td>
+		  </tr>
+		  <tr>
+			<th>注意事项 :</th>
+			<td>
+				<textarea style="width:70%;" id="notice" name="notice">{$shipInfo.notice}</textarea>
+			</td>
+		  </tr>
+		  <tr>
+			<th>签证材料 :</th>
+			<td>
+				<textarea style="width:70%;" id="visa" name="visa">{$shipInfo.visa}</textarea>
+			</td>
+		  </tr> 
+		  <tr>
+			<th>重要提醒 :</th>
+			<td>
+				<textarea style="width:70%;" id="tips" name="tips">{$shipInfo.tips}</textarea>
+			</td>
+		  </tr> 
+		</table>
+	</div>
+	<div id="div_setting_3" class="contentList pad-10 hidden">
+		<table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+			<tr>
+				<th width="100">Title :</th>
+				<td><input type="text" name="seo_title" id="seo_title" class="input-text" size="60" value="{$shipInfo.seo_title}"></td>
+			</tr>
+			<tr>
+				<th>Keywords :</th>
+				<td><input type="text" name="seo_keys" id="seo_keys" class="input-text" size="60" value="{$shipInfo.seo_keys}"></td>
+			</tr>
+			<tr>
+				<th>Description :</th>
+				<td><textarea name="seo_desc" id="seo_desc" cols="80" rows="8">{$shipInfo.seo_desc}</textarea></td>
+			</tr>
+		</table>
+	</div>
+  
+  <div class="bk15"></div>
+  <div class="btn">
+    <input type="submit" onClick="disable()" value="提交" name="submit" class="button" id="submit">
+  </div>
+
+</div>
+</div>
+</form>
+<script type="text/javascript">
+function disable(){
+	if($('input').attr("disabled")==true || $('input').attr("disabled")==true){
+		$('input').removeAttr('disabled');
+		$('select').removeAttr('disabled');
+	}
+}
+</script>
+</body>
+</html>

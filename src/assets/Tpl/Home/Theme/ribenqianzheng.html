@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>日本自由行1元签证——三三旅游专题页面</title>
+<meta name="keywords" content="日本自由行1元签证">
+<meta name="description" content="日本自由行1元签证">
+<link type="text/css" rel="stylesheet" href="../Public/theme/common.css">
+<link type="text/css" href="../Public/theme/ribenqianzheng.css" rel="stylesheet" />
+<script type="text/javascript" src="../Public/js/jquery-1.11.1.min.js"></script>
+<include file="Public:statistics"/>
+</head>
+<body>
+
+<include file="Public:themeheader"/>
+<div class="tuanWrap">
+  <div class="banner">
+    <div class="banner_1"></div>
+    <div class="banner_2"></div>
+  </div>
+  <div id="content">
+    <div class="wp">
+      <div class="rules">
+        <div class="rules_title"><img src="../Public/theme/ribenqianzheng/rules_title.gif"></div>
+        <div class="rules_word"><p class="rules_head">1元签证活动，为您立省400元！</p><p>只要满足两个条件您就可以享受这份优惠，为你的旅途轻松省下400元</p><p>优惠的必要2个条件：</p><p>1、订购我社自由行机票</p><p>2、在光大银行苏州指定网点做5万存款证明用于签证申请或者做5万元的资金托管业务</p><p class="rules_head">单办日本个人旅游签证仅 399元！</p><p>有效期3个月，最多停留15天，详情请  <a href="http://www.33ly.com/qianzheng/visa-4.html" target="_blank">>点击<</a></p><p class="rules_head">拿起护照来一场说走就走的旅行吧！</p><p>我社携手各大航空公司为您的出行保驾护航</p></div>
+        <div class="rules_list clearfix">
+          <ul>
+            <li>东方航空(MU)<img src="../Public/theme/ribenqianzheng/logo1.gif" align="absmiddle"></li>
+            <li>达美航空(DL)<img src="../Public/theme/ribenqianzheng/logo2.gif" align="absmiddle"></li>
+            <li>吉祥航空(HO)<img src="../Public/theme/ribenqianzheng/logo3.gif" align="absmiddle"></li>
+            <li>日本航空(JAL)<img src="../Public/theme/ribenqianzheng/logo4.gif" align="absmiddle"></li>
+            <li>全日空(ANA)<img src="../Public/theme/ribenqianzheng/logo5.gif" align="absmiddle"></li>
+            <li>深圳航空(ZH)<img src="../Public/theme/ribenqianzheng/logo6.gif" align="absmiddle"></li>
+          </ul>
+        </div>
+      </div>
+      <div class="product_title"><img src="../Public/theme/ribenqianzheng/title1.png"></div>
+      <div class="product_list1">
+        <ul>
+		  <volist name="zyxlist" id="vo">
+          <li class="clearfix">
+            <div class="product_pic fl"><a href="__ROOT__/chujing/xianlu-{$vo.id}.html" target="_blank"><img src="__ROOT__{$vo.imgurl}" align="absmiddle"></a><i><!--<img src="../Public/theme/ribenqianzheng/icon.png" width="80" height="80">--></i></div>
+            <div class="product_word fr">
+              <div class="product_word_title"><a href="__ROOT__/chujing/xianlu-{$vo.id}.html" target="_blank"><{$vo.name}>{$vo.subname}</a></div>
+              <div class="product_word_tag" style="height:25px;display:block;"><!--<span class="switch1">自组团</span>--></div>
+              <div class="product_word_des">{$vo.info}</div>
+              <div class="product_word_date mT20">行程天数：<span>{$vo.days}</span>天</div>
+              <div class="product_word_date">出发日期：<span>{$vo.dep}</span></div>
+              <div class="product_word_price">￥<span>{$vo.minprice}</span>起<a href="__ROOT__/chujing/xianlu-{$vo.id}.html" target="_blank">查看详情</a></div>
+            </div>
+          </li>
+		  </volist>
+        </ul>
+      </div>
+      <div class="product_title"><img src="../Public/theme/ribenqianzheng/title2.png"></div>
+      <div class="product_list2">
+        <ul>
+		  <volist name="gtlist" id="vo">
+          <li>
+            <div class="product_pic2"><a href="__ROOT__/chujing/xianlu-{$vo.id}.html" target="_blank"><img src="__ROOT__{$vo.imgurl}" align="absmiddle"><span><em></em><i>￥<b>{$vo.minprice}</b>起</i></span></a></div>
+            <div class="product_word2">{$vo.info}</div>
+            <div class="product_price2"><a href="__ROOT__/chujing/xianlu-{$vo.id}.html" target="_blank">立即预订</a></div>
+          </li>
+		  </volist>
+        </ul>
+      </div>
+      <div class="copy">本活动最终解释权归苏州青旅三三旅游所有</div>
+    </div>
+  </div>
+</div>
+</body>
+<script type="text/javascript">
+</script>
+</html>

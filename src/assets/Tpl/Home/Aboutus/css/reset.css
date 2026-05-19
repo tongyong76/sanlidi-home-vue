@@ -1,0 +1,24 @@
+/*样式重置*/
+body{background:#fff; color:#666;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,select,p,blockquote,th,td{
+	margin:0;
+	padding:0;
+	font-size:14px;
+	font-family:'微软雅黑';
+}
+table,form,fieldset,input,textarea,select,button{font-size:12px; border:0px;}
+table{cellpadding:0;cellspacing:0;}
+fieldset,img{border:0;vertical-align:middle}
+ol,ul{list-style:none;}
+a:link,a:visited{color:#333; text-decoration:none;}
+a:hover{color:#f60; text-decoration:none;}
+a:active, a:focus { outline:none;}
+input:focus { outline: none; }
+em,b,i{font-style:normal;}
+
+.clearfix:after {visibility: hidden;display: block;font-size: 0;content: " ";clear: both;height: 0;}
+.clearfix{*zoom:1;}
+.none{display:none;}
+.fl{float:left;}
+.fr{float:right;}
+.wp{width:1200px; margin:0 auto;}

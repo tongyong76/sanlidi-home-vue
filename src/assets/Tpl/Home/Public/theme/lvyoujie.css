@@ -1,0 +1,108 @@
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,select,p,blockquote,th,td{
+margin:0;padding:0;font-size:14px;font-family:'微软雅黑';}
+table,form,fieldset,input,textarea,select,button,img{border:0px;display:block;}
+table{cellpadding:0;cellspacing:0;}
+ol,ul{list-style:none}
+i,em,b{font-style:normal;}
+a:link,a:visited{color:#333; text-decoration:none;}
+a:hover{color:#f60; text-decoration:none;}
+input:focus { outline: none; }
+
+.clearfix:after {visibility:hidden;display:block;font-size:0;content:" ";clear:both;height:0;}
+.clearfix{*zoom:1;}
+.none{display:none;}
+.fl{float:left;}
+.fr{float:right;}
+
+.tuanWrap{background:#fff; color:#666;}
+.tuanWrap .banner{width:100%; background:#400674;}
+.tuanWrap .banner .banner_1{background:url(lvyoujie/banner1.jpg) no-repeat center top; height:327px; width:100%;}
+.tuanWrap .banner .banner_2{background:url(lvyoujie/banner2.jpg) no-repeat center top; height:314px; width:100%;}
+
+.tuanWrap .module_1{width:100%; background:#760093; padding:8px 0;}
+.tuanWrap .module_2{width:100%; background:#8601a8; padding:40px 0 20px;}
+.tuanWrap .module_3{width:100%; background:#de75dd; padding:26px 0 20px;}
+.tuanWrap .module_4{width:100%; background:#6f24a9; padding:26px 0 20px;}
+.tuanWrap .module_5{width:100%; background:#58108f; padding:26px 0 20px;}
+.tuanWrap .module_6{width:100%; background:#760093; padding:8px 0;}
+/*.tuanWrap .module_fixed{top:0; position:fixed; z-index:99;}*/
+
+.tuanWrap .module_nav{width:100%; background:#760093;}
+.tuanWrap .module_nav ul{width:1000px; overflow:hidden; height:91px; margin:0 auto; background:#fff200; border-radius:10px;}
+.tuanWrap .module_nav ul li{float:left; border-right:3px solid #760092; width:247px; height:91px;}
+.tuanWrap .module_nav ul li a{position:relative;}
+.tuanWrap .module_nav ul li a span{font-size:18px; font-weight:bold; position:relative; left:10px; top:16px; display:inline-block;}
+.tuanWrap .module_nav ul li a span strong{font-size:24px; padding-left:4px;}
+.tuanWrap .module_nav ul li a em{display:inline-block; position:relative; top:16px; left:10px; font-size:12px;}
+.tuanWrap .module_nav ul li a i{opacity:1; display:inline-block; position:absolute; top:14px; left:186px; width:60px; height:60px;}
+.tuanWrap .module_nav ul li.nav1 a{color:#400674;}
+.tuanWrap .module_nav ul li.nav1 a i{background:url(lvyoujie/coin1.gif) no-repeat;}
+.tuanWrap .module_nav ul li.nav2 a{color:#ff6600;}
+.tuanWrap .module_nav ul li.nav2 a i{background:url(lvyoujie/coin2.gif) no-repeat;}
+.tuanWrap .module_nav ul li.nav3 a{color:#673319;}
+.tuanWrap .module_nav ul li.nav3 a i{background:url(lvyoujie/coin3.gif) no-repeat;}
+.tuanWrap .module_nav ul li.nav4{border:none;}
+.tuanWrap .module_nav ul li.nav4 a{color:#ff428e;}
+.tuanWrap .module_nav ul li.nav4 a i{background:url(lvyoujie/coin4.gif) no-repeat;}
+
+.tuanWrap .wp{width:1000px; margin:0 auto;}
+.tuanWrap .wp .module_title_1{height:61px; background:url(lvyoujie/title1.png) no-repeat center top;}
+.tuanWrap .wp .module_title_2{height:111px; position:relative;}
+.tuanWrap .wp .module_title_2 span{position:absolute; bottom:4px; left:250px;}
+.tuanWrap .wp .module_title_2 a{position:absolute; top:81px; right:0; width:172px; border-top:1px solid #fff; color:#fff; font-style:italic; text-align:right; height:26px; line-height:26px; padding-top:3px;}
+.tuanWrap .wp .module_head{height:344px; margin:18px 0 40px; background:url(lvyoujie/module_head.jpg) repeat-x; position:relative;}
+.tuanWrap .wp .module_head .module_head_l{float:left; margin-left:-28px; width:330px;}
+.tuanWrap .wp .module_head .module_head_r{height:270px; background:url(lvyoujie/module_head_r.jpg) no-repeat right top; float:right; width:654px; padding:34px 16px 40px 0;}
+.tuanWrap .wp .module_head .module_head_r .module_head_pic{float:left; width:324px; height:270px; position:relative;}
+.tuanWrap .wp .module_head .module_head_r .module_head_pic a span{position:absolute; top:6px; left:16px; height:94px; width:94px; display:block; background:url(lvyoujie/coin9.png) no-repeat; -webkit-transition: -webkit-transform 1s ease-out; -moz-transition: -moz-transform 1s ease-out; -o-transition: -o-transform 1s ease-out; -ms-transition: -ms-transform 1s ease-out;}
+.tuanWrap .wp .module_head .module_head_r .module_head_pic a:hover span{-webkit-transform:scale(0.5); -moz-transform:scale(0.5); -o-transform:scale(0.5); -ms-transform:scale(0.5); transform:scale(0.5);}
+.tuanWrap .wp .module_head .module_head_r .module_head_word{float:left; width:310px; height:240px; background:#fff; padding:30px 10px 0;}
+.tuanWrap .wp .module_head .module_head_r .module_head_word a{font-size:18px; line-height:34px; color:#000; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; display:block;}
+.tuanWrap .wp .module_head .module_head_r .module_head_word p.module_head_infor{color:#777; padding-top:10px;}
+.tuanWrap .wp .module_head .module_head_r .module_head_word p.module_head_date{color:#000; padding-top:30px;}
+.tuanWrap .wp .module_head .module_head_r .module_head_word p.module_head_date span{display:block;}
+.tuanWrap .wp .module_head .module_head_r .module_head_word p.module_head_price{font-size:18px; color:#999; padding-top:16px; position:relative;}
+.tuanWrap .wp .module_head .module_head_r .module_head_word p.module_head_price i{font-size:30px; color:#ff6600; padding-right:6px;}
+.tuanWrap .wp .module_head .module_head_r .module_head_word p.module_head_price del{font-size:16px; padding-left:10px;}
+.tuanWrap .wp .module_head .module_head_r .module_head_word p.module_head_price a{position:absolute; top:30px; right:10px; transition: top 0.2s linear 0s;}
+.tuanWrap .wp .module_head .module_head_r .module_head_word p.module_head_price a.icon{top:25px;}
+
+.tuanWrap .wp .module_product ul{width:1011px; overflow:hidden; margin-left:-10px;}
+.tuanWrap .wp .module_product ul li{float:left; padding-top:26px; padding-left:10px; width:327px;}
+.tuanWrap .wp .module_product ul li .module_first{margin-left:-28px; position:absolute;}
+.tuanWrap .wp .module_product ul li .module_product_pic{height:216px; position:relative;}
+.tuanWrap .wp .module_product ul li .module_product_pic a em{position:absolute; width:66px; height:66px; background:url(lvyoujie/coin9.png) no-repeat; display:block; background-size:66px; left:8px; top:6px; -webkit-transition: -webkit-transform 1s ease-out; -moz-transition: -moz-transform 1s ease-out; -o-transition: -o-transform 1s ease-out; -ms-transition: -ms-transform 1s ease-out;}
+.tuanWrap .wp .module_product ul li .module_product_pic a:hover em{-webkit-transform: rotateZ(360deg); -moz-transform: rotateZ(360deg); -o-transform: rotateZ(360deg); -ms-transform: rotateZ(360deg); transform: rotateZ(360deg);}
+.tuanWrap .wp .module_product ul li .module_product_pic a span{position:absolute; bottom:0; left:0; width:327px; height:36px; line-height:36px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; display:block; background:rgba(0,0,0,0.5) none repeat scroll !important; _background:#000; _filter:Alpha(opacity=50); font-size:20px; color:#fff;}
+.tuanWrap .wp .module_product ul li .module_product_pic a i{position:absolute; top:-5px; right:10px; width:65px; height:66px; color:#fff; text-align:center; padding-top:5px; background:url(lvyoujie/coin6.png) no-repeat;}
+.tuanWrap .wp .module_product ul li .module_product_pic a strong{display:block; font-weight:100;}
+.tuanWrap .wp .module_product ul li .module_product_word{background:#fff; height:97px; padding:8px; position:relative;}
+.tuanWrap .wp .module_product ul li .module_product_word span{display:block;}
+.tuanWrap .wp .module_product ul li .module_product_word span i{padding-right:6px; color:#fd4444;}
+.tuanWrap .wp .module_product ul li .module_product_word span i strong{font-size:22px;}
+.tuanWrap .wp .module_product ul li .module_product_word span del{padding-left:10px;}
+.tuanWrap .wp .module_product ul li .module_product_word a{position:absolute; left:8px; bottom:8px; display:block; width:311px; background:#8d00b0; height:39px; line-height:39px; color:#fff; text-align:center; font-size:22px; transition: bottom 0.2s linear 0s;}
+.tuanWrap .wp .module_product ul li .module_product_word a.icon{bottom:12px; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);}
+.tuanWrap .wp .module_mend1 ul li .module_product_pic a i{background:url(lvyoujie/coin7.png) no-repeat;}
+.tuanWrap .wp .module_mend1 ul li .module_product_word a{background:#ffa401;}
+.tuanWrap .wp .module_mend2 ul li .module_product_pic a i{background:url(lvyoujie/coin8.png) no-repeat;}
+.tuanWrap .wp .module_mend2 ul li .module_product_word a{background:#f141a0;}
+
+.tuanWrap .wp .module_prompt{padding:20px 28px 20px 8px; color:#fff; font-weight:bold; font-size:18px; line-height:30px;}
+
+#menu{position:fixed; top:20%; z-index:9999; width:120px; background:url(lvyoujie/menu.png) no-repeat; padding:134px 8px 0 15px; left:50%; margin-left:520px;}
+#menu ul li{background:#9f03d9; text-align:center;}
+#menu ul li a{display:block; color:#fff; background:url(lvyoujie/menu_li.gif) no-repeat center bottom; font-size:18px; height:32px; line-height:32px;}
+#menu ul li a:hover,
+#menu ul li a.current{background:#6609a8;}
+#menu ul li em{display:block; margin-top:-2px;}
+#menu ul li a i{font-size:12px;}
+#menu ul span{position:absolute; width:120px; height:36px; line-height:15px; text-align:center; display:block; background:#9f03d9; color:#fff; cursor:pointer; margin-top:-2px;}
+/*IE6positionFixed*/
+  * html #menu{ position:absolute;
+  top:expression(((e=document.documentElement.scrollTop)?e:document.body.scrollTop)+120+'px')}
+  * html,*html body{
+	   background-image:url(about:blank);
+	   background-attachment:fixed;
+  }
+/*IE6*/

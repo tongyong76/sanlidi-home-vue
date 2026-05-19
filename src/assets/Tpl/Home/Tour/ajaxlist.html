@@ -1,0 +1,32 @@
+<ul class="s_r_list">
+	<volist name="list" id="vo">
+	<li>
+		<div class="routeinfo clearfix">
+			<div class="Limgbox fl">
+				<a href="__ROOT__/{$cateType}/xianlu-{$vo.id}.html"><img src="__ROOT__{$vo.imgurl}"></a>
+			</div>
+			<if condition="$vo['is_zzt']"><div class="zzt"><img width="80" height="80" src="../Public/images/zzt.png" /></div></if>
+			<div class="Cinfo fl">
+				<div class="Cinfo_title"><a target="_blank" href="__ROOT__/{$cateType}/xianlu-{$vo.id}.html"><if condition="$vo['subname']"><{$vo.name}>{$vo.subname}<else/>{$vo.name}</if></a></div>
+				<div class="Cinfo_tag">
+					<if condition="$vo['series_id']"><span class="series{$vo.series_id}">{:C('series.'.$vo['series_id'])}</span></if>
+					<if condition="$vo['brand_id']"><span class="brand{$vo.brand_id}">{:C('brand.'.$vo['brand_id'])}</span></if>
+					<volist name="vo.switch" id="voo">
+					<if condition="$voo neq 1"><span class="switch{$voo}">{:C('switch.'.$voo)}</span></if>
+					</volist>
+				</div>
+				<div class="Cinfo_des">{$vo.info}</div>
+				<div class="Cinfo_data mT20">行程天数：<span class="day_num">{$vo.days}</span>天</div>
+				<div class="Cinfo_data">出发日期：<span class="data_time"><if condition="$vo['dep']">{$vo.dep}<else/>最近无行程</if></span></div>
+			</div>
+			<div class="Rprice fl">
+				<div class="now_price">￥<span>{$vo.minprice|isNull=###}</span>起</div>
+				<div class="ticket mT10"><a target="_blank" href="__ROOT__/{$cateType}/xianlu-{$vo.id}.html" onMouseOver="this.className='ticket_move'" onMouseOut="this.className=''">查看详情</a></div>
+			</div>
+		</div>
+	</li>
+	</volist>
+</ul>
+<div class="pagination">
+	<div class="paging fr" id="page">{$page}</div>
+</div>

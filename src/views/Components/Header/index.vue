@@ -14,13 +14,13 @@
         <span class="s3">注册</span>
         -->
         <span class="s4">关注三三</span>
-        <span class="s5" style="display: none"><img src="../Public/images/erweima.jpg" /></span>
+        <span class="s5" style="display: none"><img src="@images/erweima.jpg" /></span>
       </div>
     </div>
     <div class="seach-bar" style="background: #fff">
       <div class="w1200">
         <div class="logo"
-          ><a href="{:U('Index/index')}"><img src="../Public/images/logo.jpg" /></a
+          ><a href="{:U('Index/index')}"><img src="@images/logo.png" /></a
         ></div>
         <div class="search">
           <form method="get" action="{:U('Tour/search')}" class="search-form" target="_blank">
@@ -32,7 +32,7 @@
             </div>
           </form>
         </div>
-        <div class="phone"><img src="../Public/images/search-tel.png" /></div>
+        <div class="phone"><img src="@images/search-tel.png" /></div>
       </div>
     </div>
     <div class="nav-bar">
@@ -115,4 +115,53 @@
       }
     }
   }
+  .seach-bar{
+  	height: 90px;
+    .logo{
+      position: absolute;
+      top: 20px;
+      left: 0;
+    }
+    .search{
+      position: absolute;
+      left: 333px;
+      top: 30px;
+    }
+    .phone{
+      position: absolute;
+      right: 0;
+      top: 30px;
+    }
+  }
+  .search-form{
+	width: 550px;
+	height: 30px;
+	border: 1px solid #0081cc;
+	position: relative;
+}
+.search-form .new-text{
+	width: 460px;
+	height: 30px;
+	line-height: 30px;
+	padding: 0 15px;
+	font-size: 13px;
+	color: #999999;
+}
+.search-form .input-submit{
+	width: 60px;
+    height: 30px;
+    margin: 0 auto;
+    display: block;
+    background: url('@images/search-btn.png') no-repeat;
+	position: absolute;
+	right: 0;
+	top: 0;
+	cursor: pointer;
+}
+.search-form .new-button{
+	cursor: pointer;
+    width: 60px;
+    height: 30px;
+    background: none;
+}
 </style>

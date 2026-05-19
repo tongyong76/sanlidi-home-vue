@@ -1,0 +1,139 @@
+<include file="Public:header" />
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".preview").preview();
+	});
+	
+	function status(id,type){
+		$.get("{:u('Line/status')}", { id: id, type: type }, function(data){
+			$("#"+type+"_"+id+" img").attr('src','__PUBLIC__/statics/images/status_'+data+'.gif')
+		},"json"); 
+	}
+</script>
+
+</head>
+<body>
+<div class="pad-10" >
+    <form name="searchform" action="{:U('Line/index',array('id'=>$id))}" method="post" >
+    <input name="a" type="hidden" value="index">
+    <input name="m" type="hidden" value="Line">
+    <input name="g" type="hidden" value="Admin">
+    <table width="100%" cellspacing="0" class="search-form">
+        <tbody>
+            <tr>
+            <td>
+            <div class="explain-col">
+            	发布时间：
+            	<input type="text" name="time_start" id="time_start" class="date" size="12" value="{$time_start}">
+				<script language="javascript" type="text/javascript">
+                    Calendar.setup({
+                        inputField     :    "time_start",
+                        ifFormat       :    "%Y-%m-%d",
+                        showsTime      :    'true',
+                        timeFormat     :    "24"
+                    });
+                </script>
+                -
+                <input type="text" name="time_end" id="time_end" class="date" size="12" value="{$time_end}">
+				<script language="javascript" type="text/javascript">
+                    Calendar.setup({
+                        inputField     :    "time_end",
+                        ifFormat       :    "%Y-%m-%d",
+                        showsTime      :    'true',
+                        timeFormat     :    "24"
+                    });
+                </script>
+            	&nbsp;商品分类：
+				<span id="select">
+                <select name="cate_id">
+            	<option value="0">--全部分类--</option>
+                <volist name="cate_list" id="val">
+				<option value="{$val.id}"<if condition="$cate_id eq $val['id']"> selected="selected" </if>>
+					<for start="2" end="$val['floor']">
+                    &nbsp;&nbsp;
+                    </for>
+                    <if condition="$val['floor'] gt 2">
+                    ├&nbsp;
+                    </if>{$val.name}</option>
+				</volist>
+              	</select>
+				</span>
+				<!--
+				<input type="hidden" name="cate_id" value="0">
+				-->
+                &nbsp;关键字 :
+                <input name="keyword" type="text" class="input-text" size="20" value="{$keyword}" />
+				&nbsp;产品编号 :
+                <input name="sn" type="text" class="input-text" size="10" value="{$sn}" />
+                <input type="submit" name="search" class="button" value="搜索" />
+        	</div>
+            </td>
+            </tr>
+        </tbody>
+    </table>
+    </form>
+
+    <form id="myform" name="myform" action="{:u('Line/delete')}" method="post">
+    <div class="table-list">
+    <table width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th width="5%">序号</th>
+                <th width="1%"><input type="checkbox" value="" id="check_box" onclick="selectall('id[]');"></th>
+				<th width=30>排序值</th>
+                <th width=60>缩略图</th>
+                <th width=200 align="left">线路名称</th>
+				<th width=60>游玩天数</th>
+				<th width=60>出发城市</th>
+                <th width=90>产品编号</th>			               	
+				<th width=30>推荐</th>
+				<th width=30>有效</th>
+                <th width=120>操作</th>
+            </tr>
+        </thead>
+    	<tbody>
+        <volist name="goods" id="val" >
+        <tr>
+        	<td align="center">{$val.key}</td>
+            <td align="center"><input type="checkbox" value="{$val.id}" name="id[]"></td>
+			<td align="center"><input type="text" class="input-text-c input-text" value="{$val.ordid}" size="4" name="orders[{$val.id}]" /></td>
+            <td align="center"><img src="<if condition="$val['LocalImage']">__ROOT__{$val.imgurl}<else/>{$val.imgurl}</if>" width="40px" height="40px" class="preview" bimg="<if condition="$val['LocalImage']">__ROOT__{$val.imgurl}<else/>{$val.imgurl}</if>" title="<php>if(strpos($val['imgurl'],'http') === false){echo '本地图片';}else{echo '远程图片';}</php>" /></td>
+            <td align="left"><a href="{:u('Line/edit', array('id'=>$val['id']))}"><{$val.name}>{$val.subname}</a></td>
+            <td align="center">{$val.days}</td>
+			<td align="center"><if condition="$val['StartCity']">{$val.StartCity}<else/>苏州</if></td>
+            <td align="center">{$val.sn}</td>     
+			<td align="center" onclick="status({$val.id},'is_hot')" id="is_hot_{$val.id}"><img src="__PUBLIC__/statics/images/status_{$val.is_hot}.gif" /></td>			
+            <td align="center" onclick="status({$val.id},'is_show')" id="is_show_{$val.id}"><img src="__PUBLIC__/statics/images/status_{$val.is_show}.gif" /></td>
+            <td align="center"><a href="{:U('Departure/index',array('pid'=>$val['id']))}" target="_blank">出发日期</a>|<a href="{:U('Trip/edit',array('pid'=>$val['id'],'skeyword'=>$keyword,'scate_id'=>$cate_id))}" target="_blank">编辑行程</a>|<a class="blue" href="{:u('Line/edit',array('id'=>$val['id'],'cate_id'=>$cate_id))}">编辑</a>|<if condition="$id eq 97"><a class="blue" href="http://www.33ly.com/group/xianlu-{$val.id}.html" target="_blank">查看</a><else/><a class="blue" href="http://www.33ly.com/tour/xianlu-{$val.id}.html" target="_blank">查看</a></if></td>
+        </tr>
+        </volist>
+    	</tbody>
+    </table>
+
+    <div class="btn">
+    	<label for="check_box" style="float:left;">全选/取消</label>
+		<input type="submit" class="button" name="add" onclick="document.myform.action='{:U('Line/add',array('id'=>$id,'is_zyx'=>1))}'" value="新增自由行" style="margin:0 0px 0 10px;"/>
+		<input type="submit" class="button" name="add" onclick="document.myform.action='{:U('Line/add',array('id'=>$id))}'" value="新增跟团游" style="margin:0 0px 0 10px;"/>
+    	<input type="submit" class="button" name="submit" value="删除" style="margin:0 10px 0 10px;" onclick="return check();"/>
+    	<input type="submit" class="button" name="order" onclick="document.myform.action='{:U('Line/order')}'" value="排序" style="margin:0 10px 0 0px;"/>
+		<input type="submit" class="button" name="copy" onclick="document.myform.action='{:U('Line/copy')}'" value="线路复制" style="margin:0 10px 0 0px;"/>
+    	<div id="pages">{$page}</div>
+    </div>
+
+    </div>
+    </form>
+	<form action="{:U('ExcelHandle/lineToExcel')}" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="table" value="goods"/>
+		<input type="hidden" name="f1" value="{$id}"/>
+		<input type="hidden" name="keyword" value="{$keyword}"/>
+		<input type="hidden" name="sn" value="{$sn}"/>
+		<input type="submit" value="导出Excel" class="button"/>
+	</form>	
+</div>
+</body>
+<script type="text/javascript">
+$(function(){
+});
+</script>
+</html>

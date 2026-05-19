@@ -1,0 +1,110 @@
+<include file="Public:header" />
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".preview").preview();
+	});
+	
+	function status(id,type){
+		$.get("{:u('Online/status')}", { id: id, type: type }, function(data){
+			$("#"+type+"_"+id+" img").attr('src','__PUBLIC__/statics/images/status_'+data+'.gif')
+		},"json"); 
+	}
+</script>
+
+</head>
+<body>
+<div class="pad-10" >
+    <form name="searchform" action="{:U('Online/product',array('group'=>$group))}" method="post" >
+    <input name="a" type="hidden" value="product">
+    <input name="m" type="hidden" value="Online">
+    <input name="g" type="hidden" value="Admin">
+    <table width="100%" cellspacing="0" class="search-form">
+        <tbody>
+            <tr>
+            <td>
+            <div class="explain-col">
+                &nbsp;关键字 :
+                <input name="keyword" type="text" class="input-text" size="15" value="{$keyword}" />
+				&nbsp;产品编号 :
+                <input name="sn" type="text" class="input-text" size="15" value="{$sn}" />
+				&nbsp;春秋编号 :
+                <input name="ProductID" type="text" class="input-text" size="15" value="{$ProductID}" />
+				&nbsp;类别 :
+                <select name="productAttribute">
+            	<option value="0">全部</option>
+				<option value="13" <if condition="$productAttribute eq 13"> selected="selected"</if>>自由行</option>
+				<option value="7" <if condition="$productAttribute eq 7"> selected="selected"</if>>跟团</option>
+              	</select>
+				&nbsp;&nbsp;
+                <input type="submit" name="search" class="button" value="搜索" />
+        	</div>
+            </td>
+            </tr>
+        </tbody>
+    </table>
+    </form>	
+    <form id="myform" name="myform" action="{:u('Online/delete')}" method="post">
+    <div class="table-list">
+    <table width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th width="5%">序号</th>
+                <th width="1%"><input type="checkbox" value="" id="check_box" onclick="selectall('id[]');"></th>
+				<th width=30>排序值</th>
+                <th width=60>缩略图</th>
+                <th width=150 align="left">线路名称</th>
+				<th width=60>游玩天数</th>
+				<th width=60>出发城市</th>
+                <th width=90>产品编号</th>
+				<th width=90>更新时间</th>
+				<!--<th width=30>新品</th>-->
+				<!--<th width=30>节日</th>-->			
+				<th width=30>推荐</th>
+				<th width=30>有效</th>
+				<!--<th width=60>直接付款</th>-->
+                <th width=120>操作</th>
+            </tr>
+        </thead>
+    	<tbody>
+        <volist name="goods" id="val" >
+        <tr>
+        	<td align="center">{$val.key}</td>
+            <td align="center"><input type="checkbox" value="{$val.id}" name="id[]"></td>
+			<td align="center"><input type="text" class="input-text-c input-text" value="{$val.ordid}" size="4" name="orders[{$val.id}]" /></td>
+            <td align="center"><img src="<if condition="$val['LocalImage']">__ROOT__{$val.imgurl}<else/>{$val.imgurl}</if>" width="40px" height="40px" class="preview" bimg="<if condition="$val['LocalImage']">__ROOT__{$val.imgurl}<else/>{$val.imgurl}</if>" title="<php>if(strpos($val['imgurl'],'http') === false){echo '本地图片';}else{echo '远程图片';}</php>" /></td>
+            <td align="left"><a href="{:u('Online/edit', array('id'=>$val['id']))}" target="_blank"><if condition="$val['subname']"><{$val.name}>{$val.subname}<else/>{$val.name}</if></a></td>
+            <td align="center">{$val.days}</td>
+			<td align="center"><if condition="$val['StartCity']">{$val.StartCity}<else/>苏州</if></td>
+            <td align="center">{$val.sn}</td>
+			<td align="center">{$val.last_time|date="Y-m-d H:i:s",###}</td>
+			<!--<td align="center" onclick="status({$val.id},'is_new')" id="is_new_{$val.id}"><img src="__PUBLIC__/statics/images/status_{$val.is_new}.gif" /></td>-->
+			<!--<td align="center" onclick="status({$val.id},'is_holiday')" id="is_holiday_{$val.id}"><img src="__PUBLIC__/statics/images/status_{$val.is_holiday}.gif" /></td>-->
+			<td align="center" onclick="status({$val.id},'is_hot')" id="is_hot_{$val.id}"><img src="__PUBLIC__/statics/images/status_{$val.is_hot}.gif" /></td>			
+            <td align="center" onclick="status({$val.id},'is_show')" id="is_show_{$val.id}"><img src="__PUBLIC__/statics/images/status_{$val.is_show}.gif" /></td>
+			<!--<td align="center" onclick="status({$val.id},'is_direct')" id="is_direct_{$val.id}"><img src="__PUBLIC__/statics/images/status_{$val.is_direct}.gif" /></td>-->
+			<td align="center">
+				<a href="{:U('Departure/index',array('pid'=>$val['id']))}" target="_blank">出发日期</a>|<a href="{:U('Trip/edit',array('pid'=>$val['id'],'skeyword'=>$keyword,'scate_id'=>$cate_id))}" target="_blank">编辑行程</a>|<a class="blue" href="{:u('Online/edit',array('id'=>$val['id'],'cate_id'=>$cate_id))}" target="_blank">编辑</a>|<if condition="$id eq 97"><a class="blue" href="http://www.33ly.com/group/xianlu-{$val.id}.html" target="_blank">查看</a><else/><a class="blue" href="http://www.33ly.com/tour/xianlu-{$val.id}.html" target="_blank">查看</a></if>
+			</td>
+        </tr>
+        </volist>
+    	</tbody>
+    </table>
+
+    <div class="btn">
+    	<label for="check_box" style="float:left;">全选/取消</label>
+    	<input type="submit" class="button" name="order" onclick="document.myform.action='{:U('Online/order',array('skeyword'=>$keyword,'sn'=>$sn,'f1'=>$cateArr['f1'],'f2'=>$cateArr['f2'],'f3'=>$cateArr['f3'],'p'=>$p))}'" value="排序" style="margin:0 10px 0 10px;"/>
+		
+		<div id="pages">当前有效({$count})条&nbsp;&nbsp;{$page}</div>
+    </div>
+
+    </div>
+    </form>
+</div>
+</body>
+<script type="text/javascript">
+$(function(){
+
+});
+</script>
+</html>

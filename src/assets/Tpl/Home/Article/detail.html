@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{$info.title}-苏州青旅33ly.com</title>
+<meta name="keywords" content="">
+<meta name="description" content="{$info.seo_desc}">
+<link type="text/css" rel="stylesheet" href="../Public/css/reset.css">
+<link type="text/css" rel="stylesheet" href="../Public/css/style.css">
+<script type="text/javascript" src="../Public/js/jquery-1.11.1.min.js"></script>
+<script>var ROOT_PATH = '__ROOT__';</script>
+<script type="text/javascript" src="../Public/js/common.js"></script>
+<include file="Public:statistics"/>
+</head>
+<body>
+<include file="Public:header"/>
+<!--头部结束-->
+<div class="wrap">
+	<div class="inside_wrap clearfix">
+    	<div class="search_nav">
+			<a href="__ROOT__">首页</a><b>></b><a href="{:U('Article/index',array('id'=>$info['cate_id']))}">{$info.cate_id|getNameById=###,'article_cate'}</a><b>></b><span>{$info.title}</span>
+		</div>
+        <div  class="artMain">
+        	<div class="art_body">
+            	<h1 class="ar_title">{$info.title}</h1>
+                <div class="ar_release">
+					<span class="ar_re_time">发布时间：{$info.add_time|date='Y-m-d',###}</span> 
+					<span class="ar_re_source">来源：三三旅游</span></div>
+                <div class="ar_bo">{$info.info}</div>
+				<div class="ar_copyright">本文由三三旅游www.33ly.com原创，转载请注明出处！</div>
+            </div>
+            
+            <div class="art_new">
+            	<div class="ar_new_title">最新公司新闻</div>
+                <div class="ar_new_list">
+                	<ul class="ar_list_item">
+						<volist name="rList" id="vo">
+                   		<li>
+                        	<a href="{:U('Article/detail',array('id'=>$vo['id']))}">{$vo.title}</a><span>{$vo.add_time|date='Y-m-d',###}</span>
+                        </li>
+						</volist>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+
+    </div>
+</div>
+<include file="Public:footer_notq"/>
+</body>
+</html>

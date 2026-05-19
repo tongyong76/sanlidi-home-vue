@@ -1,0 +1,430 @@
+<?php
+//微信活动20160219
+class GameAction extends WapiAction {
+	
+	//活动首页
+	//input wx_openid
+    public function index(){
+		//echo "<p>活动结束</p>";
+		//js-sdk
+		import("@.ORG.Jssdk");
+		$jssdk = new JSSDK($this->wx_appid,$this->wx_appsecret);
+		$signPackage = $jssdk->GetSignPackage();
+		$this->assign('signPackage',$signPackage);
+		
+		//获取微信信息
+		$wx_openid = 'oOrekjmmExAQ40gRUAzM8I_LrnO8';
+		// $wx_openid = SESSION('wx_openid');
+		// $wx_nickname = M('wx_user')->where('wx_openid="'.$wx_openid.'"')->getfield('wx_nickname');		
+		// if(!$wx_openid or !$wx_nickname){
+			// $redirect_uri = urlencode('http://m.33ly.com/Game/slogin');
+			// //$state = base64_encode('http://m.33ly.com/Game/index');
+			// $state = 0;
+			// $url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=".$this->wx_appid."&redirect_uri=".$redirect_uri."&response_type=code&scope=snsapi_base&state=".$state."#wechat_redirect";
+			// header("Location: $url");
+		// }
+		
+		//初始化活动记录
+		$recordInfo = M('wx_gamerecord')->where('from_user="'.$wx_openid.'" and to_user="'.$wx_openid.'"')->find(); 
+		if(!$recordInfo['record_id']){						
+			//插入记录
+			$data['from_user'] = $wx_openid;
+			$data['to_user'] = $wx_openid;
+			$data['status'] = 1;
+			$data['add_time'] = time();
+			$newId = M('wx_gamerecord')->add($data);
+			
+			//初始化游戏信息
+			$gidata['wx_openid'] = $wx_openid;
+			$gidata['status'] = 1;
+			$gidata['last_record'] = $newId;
+			$newId = M('wx_gameinfo')->add($gidata);
+			
+			$this->assign('first',1);   //第一次提示
+		}
+		
+		//根据wx_openid获得活动记录
+		//当前状态status
+		$myInfo = M('wx_user as u')->join('33_wx_gameinfo as gi on gi.wx_openid=u.wx_openid')->where('u.wx_openid="'.$wx_openid.'"')->find();
+		switch($myInfo['status']){
+			case 1:
+				$myInfo['price'] = '哈哈一只';
+				break;
+			case 2:
+				$myInfo['price'] = '第一个三';
+				break;
+			case 3:
+				$myInfo['price'] = '第二个三';
+				break;
+			case 4:
+				$myInfo['price'] = '嘻字';
+				break;
+			case 5:
+				$myInfo['price'] = '游字';
+				break;
+			case 6:
+				$myInfo['price'] = '季字';
+				break;
+		}
+		$this->assign('myInfo',$myInfo);
+		
+		//奖品
+		$priceList = M('wx_gameprice')->where('price_status <> 1')->order('price_status desc')->select();
+		$this->assign('priceList',$priceList);
+		
+		//全部记录
+		$allRecord = M('wx_gamerecord as gr')
+		->field('record_id,status,is_update,add_time,u1.wx_nickname as from_user_nickname,u1.wx_headimgurl as from_user_headimgurl,u1.local_headimgurl as from_user_local_headimgurl,u2.wx_nickname as to_user_nickname,u2.wx_headimgurl as to_user_headimgurl,u2.local_headimgurl as to_user_local_headimgurl')
+		->join('33_wx_user as u1 on u1.wx_openid=gr.from_user')
+		->join('33_wx_user as u2 on u2.wx_openid=gr.to_user')
+		->where('to_user <> from_user')
+		->order('record_id desc')
+		->limit(30)
+		->select();
+		foreach($allRecord as $key=>$value){
+			switch($value['status']){
+				case 1:
+					$allRecord[$key]['des'] = '"哈哈一只"';
+					break;
+				case 2:
+					$allRecord[$key]['des'] = '"第一个三"';
+					break;
+				case 3:
+					$allRecord[$key]['des'] = '"第二个三"';
+					break;
+				case 4:
+					$allRecord[$key]['des'] = '"嘻"字';
+					break;
+				case 5:
+					$allRecord[$key]['des'] = '"游"字';
+					break;
+				case 6:
+					$allRecord[$key]['des'] = '"季"字';
+					break;
+			}			
+		}
+		$this->assign('allRecord',$allRecord);
+		
+		//我的寻字记录
+		$fromRecord = M('wx_gamerecord as gr')->join('33_wx_user as u on u.wx_openid=gr.from_user')->where('to_user="'.$wx_openid.'" and to_user <> from_user')->order('record_id desc')->select();
+		foreach($fromRecord as $key=>$value){
+			switch($value['status']){
+				case 1:
+					$fromRecord[$key]['des'] = '"哈哈一只"';
+					break;
+				case 2:
+					$fromRecord[$key]['des'] = '"第一个三"';
+					break;
+				case 3:
+					$fromRecord[$key]['des'] = '"第二个三"';
+					break;
+				case 4:
+					$fromRecord[$key]['des'] = '"嘻"字';
+					break;
+				case 5:
+					$fromRecord[$key]['des'] = '"游"字';
+					break;
+				case 6:
+					$fromRecord[$key]['des'] = '"季"字';
+					break;
+			}			
+		}
+		$this->assign('fromRecord',$fromRecord);
+	
+		//活动总信息
+		$tips['addnum'] = 830;
+		$tips['add4'] = 28;
+		$tips['add5'] = 15;
+		$tips['total'] = M('wx_user')->count();   //参与人数
+		$tips['status_1'] = M('wx_gameinfo')->where('status=1')->count();
+		$tips['status_2'] = M('wx_gameinfo')->where('status=2')->count();
+		$tips['status_3'] = M('wx_gameinfo')->where('status=3')->count();
+		$tips['status_4'] = M('wx_gameinfo')->where('status=4')->count();
+		$tips['status_5'] = M('wx_gameinfo')->where('status=5')->count();
+		$tips['status_6'] = M('wx_gameinfo')->where('status=6')->count();
+		$this->assign('tips',$tips);
+		
+		//奖品名称
+		$pricename=array(
+			'1' => '无',
+			'2' => $priceList[4]['price_name'],
+			'3' => $priceList[3]['price_name'],
+			'4' => $priceList[2]['price_name'],
+			'5' => $priceList[1]['price_name'],
+			'6' => $priceList[0]['price_name']
+		);
+		$this->assign('pricename',$pricename);
+		
+		//ajax每2分钟获取一次(前端)
+		$this->display();
+    }
+	
+	//奖品页
+	public function price(){
+		$this->display();
+    }
+	
+	//规则页
+	public function rule(){
+		$this->display();
+    }
+	
+	//完善信息
+	public function profile(){	
+		$this->display();
+    }
+	
+	//助威页
+	public function help(){
+		echo "<p>活动结束</p>";
+		// //js-sdk
+		// import("@.ORG.Jssdk");
+		// $jssdk = new JSSDK($this->wx_appid,$this->wx_appsecret);
+		// $signPackage = $jssdk->GetSignPackage();
+		// $this->assign('signPackage',$signPackage);
+		
+		// $game_id = $_REQUEST['gid']?$_REQUEST['gid']:129;
+		// $gameInfo = M('wx_gameinfo as gi')->join('33_wx_user as u on u.wx_openid=gi.wx_openid')->where('game_id='.$game_id)->find();
+		// if(!$gameInfo['game_id']) $this->error('非法操作',U('Game/index'));
+		// //获取微信信息
+		// $wx_openid = SESSION('wx_openid');
+		// if($gameInfo['wx_openid'] == $wx_openid) header("Location: http://m.33ly.com/Game/index");
+		// $wx_nickname = M('wx_user')->where('wx_openid="'.$wx_openid.'"')->getfield('wx_nickname');
+		// $this->assign('to_user_name',$gameInfo['wx_nickname']);
+		// if(!$wx_openid or !$wx_nickname){
+			// $redirect_uri = urlencode('http://m.33ly.com/Game/slogin');
+			// //$state = base64_encode('http://m.33ly.com/Game/help/gid/'.$game_id);
+			// $state = $game_id;
+			// $url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=".$this->wx_appid."&redirect_uri=".$redirect_uri."&response_type=code&scope=snsapi_base&state=".$state."#wechat_redirect";
+			// header("Location: $url");
+		// }
+		
+		// //是否已帮助
+		// $recordInfo = M('wx_gamerecord')->where('from_user="'.$wx_openid.'" and to_user="'.$gameInfo['wx_openid'].'"')->find();
+		// $this->assign('recordInfo',$recordInfo);
+		
+		// //奖品
+		// $priceList = M('wx_gameprice')->where('price_status <> 1')->order('price_status desc')->select();
+		// $this->assign('priceList',$priceList);
+		
+		// //全部记录
+		// $allRecord = M('wx_gamerecord as gr')
+		// ->field('record_id,status,is_update,add_time,u1.wx_nickname as from_user_nickname,u1.wx_headimgurl as from_user_headimgurl,u1.local_headimgurl as from_user_local_headimgurl,u2.wx_nickname as to_user_nickname,u2.wx_headimgurl as to_user_headimgurl,u2.local_headimgurl as to_user_local_headimgurl')
+		// ->join('33_wx_user as u1 on u1.wx_openid=gr.from_user')
+		// ->join('33_wx_user as u2 on u2.wx_openid=gr.to_user')
+		// ->where('to_user <> from_user')
+		// ->order('record_id desc')
+		// ->limit(30)
+		// ->select();
+		// foreach($allRecord as $key=>$value){
+			// switch($value['status']){
+				// case 1:
+					// $allRecord[$key]['des'] = '"哈哈一只"';
+					// break;
+				// case 2:
+					// $allRecord[$key]['des'] = '"第一个三"';
+					// break;
+				// case 3:
+					// $allRecord[$key]['des'] = '"第二个三"';
+					// break;
+				// case 4:
+					// $allRecord[$key]['des'] = '"嘻"字';
+					// break;
+				// case 5:
+					// $allRecord[$key]['des'] = '"游"字';
+					// break;
+				// case 6:
+					// $allRecord[$key]['des'] = '"季"字';
+					// break;
+			// }			
+		// }
+		// $this->assign('allRecord',$allRecord);
+		
+		// //TA的寻字记录
+		// $toRecord = M('wx_gamerecord as gr')->join('33_wx_user as u on u.wx_openid=gr.from_user')->where('to_user="'.$gameInfo['wx_openid'].'" and to_user <> from_user')->order('record_id desc')->select();
+		// foreach($toRecord as $key=>$value){
+			// switch($value['status']){
+				// case 1:
+					// $toRecord[$key]['des'] = '"哈哈一只"';
+					// break;
+				// case 2:
+					// $toRecord[$key]['des'] = '"第一个三"';
+					// break;
+				// case 3:
+					// $toRecord[$key]['des'] = '"第二个三"';
+					// break;
+				// case 4:
+					// $toRecord[$key]['des'] = '"嘻"字';
+					// break;
+				// case 5:
+					// $toRecord[$key]['des'] = '"游"字';
+					// break;
+				// case 6:
+					// $toRecord[$key]['des'] = '"季"字';
+					// break;
+			// }			
+		// }
+		// $this->assign('toRecord',$toRecord);
+		
+		// switch($gameInfo['status']){
+			// case 1:
+				// $gameInfo['des'] = '你已为ta寻到第一个三';
+				// $gameInfo['price'] = '哈哈一只';
+				// break;
+			// case 2:
+				// $gameInfo['des'] = '你已为ta寻到第一个三';
+				// $gameInfo['price'] = '第一个三';
+				// break;
+			// case 3:
+				// $gameInfo['des'] = '你已为ta寻到第二个三';
+				// $gameInfo['price'] = '第二个三';
+				// break;
+			// case 4:
+				// $gameInfo['des'] = '你已为ta寻到"嘻"字';
+				// $gameInfo['price'] = '嘻字';
+				// break;
+			// case 5:
+				// $gameInfo['des'] = '你已为ta寻到"游"字';
+				// $gameInfo['price'] = '游字';
+				// break;
+			// case 6:
+				// $gameInfo['des'] = '你已为ta寻到"季"字';
+				// $gameInfo['price'] = '"季"字';
+				// break;
+		// }
+		// $to_user = $gameInfo['wx_openid'];
+		// $from_user = SESSION('wx_openid');
+		// $this->assign('gameInfo',$gameInfo);
+		// $this->assign('to_user',$to_user);
+		// $this->assign('from_user',$from_user);
+		
+		// //活动总信息
+		// $tips['addnum'] = 830;
+		// $tips['add4'] = 28;
+		// $tips['add5'] = 15;
+		// $tips['total'] = M('wx_user')->count();   //参与人数
+		// $tips['status_1'] = M('wx_gameinfo')->where('status=1')->count();
+		// $tips['status_2'] = M('wx_gameinfo')->where('status=2')->count();
+		// $tips['status_3'] = M('wx_gameinfo')->where('status=3')->count();
+		// $tips['status_4'] = M('wx_gameinfo')->where('status=4')->count();
+		// $tips['status_5'] = M('wx_gameinfo')->where('status=5')->count();
+		// $tips['status_6'] = M('wx_gameinfo')->where('status=6')->count();
+		// $this->assign('tips',$tips);
+		
+		// $this->display();
+    }
+	
+	//活动判断
+	public function doGame(){
+		//ajax from help
+		//判断游戏
+		/******
+		input:
+		  to_user varchar
+		  from_user varchar
+		return:
+		  status int 状态 1晋级 2不变
+		  price int 现阶段奖品
+		******/
+		$to_user = $_REQUEST['to_user'];
+		$from_user = $_REQUEST['from_user'];
+		
+		//消息
+		$notice=array(
+			'1' => '寻到"哈哈一只"',
+			'2' => '寻到"第一个三"',
+			'3' => '寻到"第二个三"',
+			'4' => '寻到"嘻"字',
+			'5' => '寻到"游"字',
+			'6' => '寻到"季"字'
+		);
+		
+		//判断是否存在
+		$existData['to_user'] = $to_user;
+		$existData['from_user'] = $from_user;
+		$is_exist = M('wx_gamerecord')->where('from_user="'.$wx_openid.'" and to_user="'.$wx_openid.'"')->find();
+		//现在状态 1-6
+		$status = M('wx_gameinfo')->where('wx_openid="'.$to_user.'"')->getField('status');
+		$isOver = M('wx_gameinfo')->where('wx_openid="'.$to_user.'"')->getField('exchange_status');
+		if($is_exist['record_id']){
+			$this->ajaxReturn($status,'exist',1);//已助力，返回历史结果
+		}elseif($isOver){
+			$this->ajaxReturn($status,'over','Ta已兑换奖品');
+		}elseif($status == 6){
+			$this->ajaxReturn($status,'all','Ta已寻到全部图案');
+		}else{						
+			//插入记录
+			$addData['from_user'] = $from_user;
+			$addData['to_user'] = $to_user;
+			$addData['status'] = $status;   //现有状态
+			$addData['add_time'] = time();
+			$newRecordId = M('wx_gamerecord')->add($addData);
+			
+			//载入预设奖品  摇奖
+			$priceInfo = M('wx_gameprice')->where('price_status="'.$status.'"')->find();
+			//if($priceInfo['price_num'] > $priceInfo['price_now']){
+			//随机数
+			$res = rand(1,$priceInfo['price_percent']);
+			if($res == 1 and ($status <> 5)){
+				//晋级 dosth.
+				$newStatus = $status+1;
+				M('wx_gamerecord')->where('record_id='.$newRecordId)->setfield('status',$newStatus);
+				M('wx_gamerecord')->where('record_id='.$newRecordId)->setfield('is_update',1);
+				$newData['status'] = $newStatus;
+				$newData['last_record'] = $newRecordId;
+				M('wx_gameinfo')->where('wx_openid="'.$to_user.'"')->save($newData);
+				
+				$this->ajaxReturn($newStatus,'update',$notice[$newStatus]);
+			}else{
+				//晋级失败
+				$this->ajaxReturn((int)$status,'keep',$notice[$status]);
+			}
+			// }else{
+				// //非法操作。直接返回失败
+				// $this->ajaxReturn($status,'fail',1);
+			// }
+			
+		}
+	}
+	
+	//完善兑奖信息
+	public function completeExchangeInfo(){
+		$game_id = $_REQUEST['game_id'];
+		$gameInfo = M('wx_gameinfo')->where('game_id='.$game_id)->find();
+		$priceInfo = M('wx_gameprice')->where('price_status='.$gameInfo['status'])->find();
+		$exdata['real_name'] = $_REQUEST['real_name'];
+		$exdata['phone_number'] = $_REQUEST['phone_number'];
+		$exdata['shop_id'] = $_REQUEST['shop_id'];
+		$exdata['exchange_time'] = time();
+		$exdata['exchange_ip'] = getClientIp();
+		$exdata['exchange_status'] = 1;
+		if(!$gameInfo['wx_openid']){
+			$this->ajaxReturn($exist,'fail',0);
+		}else{
+			if($priceInfo['price_num'] > $priceInfo['price_now']){
+				M('wx_gameinfo')->where('game_id='.$game_id)->save($exdata);
+				//更新库存
+				M('wx_gameprice')->where('price_status='.$gameInfo['status'])->setInc('price_now');
+				$this->ajaxReturn('','success',1);	
+			}else{
+				$this->ajaxReturn('该奖品库存为0，明天再来看看！','none',0);
+			}
+			
+		}		
+	}
+	
+	//我也要参与
+	public function join(){
+		$this->display();
+    }
+	
+	//获取记录 1分钟1次
+	private function getNewRecord(){
+		
+	}
+	
+	//简单登录
+	
+	//复杂登录
+	
+}

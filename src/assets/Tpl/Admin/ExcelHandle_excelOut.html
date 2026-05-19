@@ -1,0 +1,18 @@
+<include file="Public:header" />
+</head>
+<body>
+<div class="pad-10" >
+	<form action="{:U('ExcelHandle/expData')}" method="post" enctype="multipart/form-data">
+	<table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+	  <tr>
+      	<th></th>
+      	<td>		
+			<input type="hidden" name="table" value="order"/>
+			<input type="submit" value="导出生成Excel" class="button"/>
+		</td>
+      </tr>
+	</table>
+    </form>
+</div>
+</body>
+</html>

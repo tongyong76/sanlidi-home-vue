@@ -1,0 +1,50 @@
+<include file="Public:header" />
+</head>
+<body>
+<div class="pad-10" >
+    <form id="myform" name="myform" action="{:u('Line/delete')}" method="post">
+    <div class="table-list">
+    <table width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th width=60>出游类型</th>
+				<th width=60>出游天数</th>
+                <th width=60>目的地</th>
+				<th width=60>联系人</th>
+				<th width=60>联系方式</th>
+                <th width=90>提交时间</th>              	
+                <th width=60>操作</th>
+            </tr>
+        </thead>
+    	<tbody>
+        <volist name="list" id="val" >
+        <tr>
+            <td align="center">{:C("tuan_type.".$val['type'])}</td>
+            <td align="center">{:C("tuan_days.".$val['days'])}</td>
+			<td align="center">{$val.dst_name}</td>
+			<td align="center">{$val.contact}</td>
+			<td align="center">{$val.phone}</td>
+            <td align="center">{$val.add_time|date="Y-m-d H:i:s",###}</td>     		
+            <td align="center"><a class="blue" href="{:u('Order/tuanView',array('id'=>$val['id']))}">查看详情</a></td>
+        </tr>
+        </volist>
+    	</tbody>
+    </table>
+
+    <div class="btn">
+    	<label for="check_box" style="float:left;">全选/取消</label>
+		<input type="submit" class="button" name="add" onclick="document.myform.action='{:U('Line/add',array('id'=>$id))}'" value="新增" style="margin:0 0px 0 10px;"/>
+    	<input type="submit" class="button" name="submit" value="删除" style="margin:0 10px 0 10px;" onclick="return check();"/>
+    	<input type="submit" class="button" name="order" onclick="document.myform.action='{:U('Line/order')}'" value="排序" style="margin:0 10px 0 0px;"/>
+    	<div id="pages">{$page}</div>
+    </div>
+
+    </div>
+    </form>
+</div>
+</body>
+<script type="text/javascript">
+$(function(){
+});
+</script>
+</html>

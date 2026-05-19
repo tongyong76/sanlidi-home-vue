@@ -1,0 +1,160 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>等待支付页面</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link type="text/css" rel="stylesheet" href="../Public/css/reset.css">
+<link type="text/css" rel="stylesheet" href="../Public/css/style.css">
+<script>var ROOT_PATH = '__ROOT__';</script>
+<script type="text/javascript" src="../Public/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../Public/js/common.js"></script>
+<script type="text/javascript" src="../Public/js/pay.js"></script>
+<include file="Public:statistics"/>
+</head>
+<body>
+<include file="Public:header"/>
+<!--头部结束-->
+<div class="wrap">
+	<div class="inside_wrap">
+		<div class="order_flow order_flow_step4"></div>
+        <div class="cont clearfix">
+        	<div class="cont_left fr">                              
+                 <div class="visa_faq">
+                 	<div class="v_f_title">
+                    	<span>结算信息</span>
+                    </div>
+                    <div class="acc_info">
+                    	<div class="acc_price">成人价：<span>{$account.adult_price}</span>元/人</div>
+                        <div class="acc_member">游玩人数：<span>{$account.adult_num}</span>人</div>
+						<div class="acc_price">儿童价：<span>{$account.child_price}</span>元/人</div>
+                        <div class="acc_member">游玩人数：<span>{$account.child_num}</span>人</div>
+                        <div class="acc_total">总额：<span>{$account.totel_price}</span>元</div>
+                    </div>   
+                 </div>
+                 <div class="tele_common_confirm">
+                	<div class="common_telephone clearfix"><span class="tt">旅游通</span><span class="pp">6666-7777</span></div>
+                 </div>
+                 
+                
+            </div>
+            <div class="cont_right fl">
+				<div class="pInfo">
+                	 <form action="#" method="post">
+                	<div class="pInfo_title">
+                    	<span>等待支付</span>
+                    </div>
+					<if condition="$payType eq 'zfb'">
+                    <div class="order_success">
+                    	<div class="o_suc" style="color:#333;">支付方式：<a href="javascript:void(0)" onclick="payByAlipay({$orderid})"><img style="border:1px solid #ccc;border-radius:8px;padding:3px 5px;" width="140" src="../Public/images/alipay_165x58.png"/></a></div>
+                        <div class="o_pro">如有疑问，请联系客服<a>{:C('hotLine')}</a></div>
+                        <div class="o_pro"><a class="combtn combtn_blue" href="__ROOT__/member/">查看订单状态</a><a class="combtn combtn_yellow" href="http://chat32.live800.com/live800/chatClient/chatbox.jsp?companyID=468909&configID=59649&jid=4857736086">在线客服</a></div></div>
+                    </if>
+					<if condition="$payType eq 'mdzf'">
+                    <div class="order_success">
+						<div class="o_suc">您的订单已提交<span>成功</span>，您可以前往以下门店进行付款！</div>
+						<div class="o_md">
+                        	<ul class="clearfix">
+                            	<li>
+                                	<div class="o_md_name">市区形象店：65163333</div>
+                                    <div class="o_md_address">苏州市东大街488号(与书院巷交界处)</div>
+                                </li>
+                                <li>
+                                	<div class="o_md_name">园区台湾馆：69155333</div>
+                                    <div class="o_md_address">苏州园区旺敦路圆融购物中心四楼4070号</div>
+                                </li>
+                                <!--<li>
+                                	<div class="o_md_name">园区星海店：62961333</div>
+                                    <div class="o_md_address">苏州工业园区星海街168号白领公寓裙楼一楼</div>
+                                </li>-->
+                                <li>
+                                	<div class="o_md_name">新区泉屋店：68666633</div>
+                                    <div class="o_md_address">苏州高新区长江路211号泉屋百货4L-01</div>
+                                </li>
+                                <li>
+                                	<div class="o_md_name">相城韩国馆：65232333</div>
+                                    <div class="o_md_address">相城区人民路4555号繁花商业中心3楼3006</div>
+                                </li>
+                                <li>
+                                	<div class="o_md_name">吴中海岛馆：65199333</div>
+                                    <div class="o_md_address">吴中区苏震桃路188号永旺梦乐城2层265号</div>
+                                </li>
+                                <li>
+                                	<div class="o_md_name">吴中丽丰店：65165533</div>
+                                    <div class="o_md_address">吴中区宝带东路399号丽丰购物中心5楼508</div>
+                                </li>
+                                <li>
+                                	<div class="o_md_name">吴江正翔广场店：63431333</div>
+                                    <div class="o_md_address">吴江松陵镇江兴西路469号正翔商业广场2楼</div>
+                                </li>
+                                <li>
+                                	<div class="o_md_name">昆山形象店：55151333</div>
+                                    <div class="o_md_address">昆山市中茵世贸广场百盛外围1楼</div>
+                                </li>
+                                <li>
+                                	<div class="o_md_name">昆山现代店：55115533</div>
+                                    <div class="o_md_address">昆山中华园路现代广场大厦A座1907室</div>
+                                </li>
+                                <li>
+                                	<div class="o_md_name">常熟印象城店：52225533</div>
+                                    <div class="o_md_address">常熟海虞南路88号印象城三楼(超市入口处)</div>
+                                </li>
+                                <li>
+                                	<div class="o_md_name">常熟欧尚店：52935333</div>
+                                    <div class="o_md_address">常熟市黄河路255号欧尚一楼超市入口处</div>
+                                </li>
+                                <li>
+                                	<div class="o_md_name">太仓华旭广场店：53535333</div>
+                                    <div class="o_md_address">太仓市人民南路95号华旭广场A218</div>
+                                </li>
+                                <li>
+                                	<div class="o_md_name">张家港购物公园店：55395533</div>
+                                    <div class="o_md_address">张家港市购物公园恒光国际二楼</div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="o_pro">如有疑问，请拨打<a href="#">6666-7777</a></div>
+                        <div class="o_ser"><i>立即联系客服进行修改</i>  <span>点击QQ交谈：<a href="http://wpa.qq.com/msgrd?v=3&amp;uin=2355702698&amp;site=qq&amp;menu=yes" target="_blank"><img border="0" title="点击这里咨询散客旅游信息" alt="昆山散客游" src="http://wpa.qq.com/pa?p=2:2355702698:41"></a> <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=2355702698&amp;site=qq&amp;menu=yes" target="_blank"><img border="0" title="点击这里咨询散客旅游信息" alt="昆山散客游" src="http://wpa.qq.com/pa?p=2:2355702698:41"></a></span></div>
+                    </div>
+                    </if>
+					<if condition="$payType eq 'yhzz'">
+                    <div class="order_success">
+                    	<div class="o_suc">您的订单已提交<span>成功</span>，您可以通过以下银行进行汇款！</div>
+                        <div class="o_bank">
+                        	<ul>
+                            	<li class="clearfix">
+                                	<div class="bank_left fl"><img src="../Public/images/bank_icbc.jpg"></div>
+                                    <div class="bank_right fr">
+                                    	<div class="cardholder">持卡人姓名：<span class="c_h_name">蔡军华</span>账号：<span class="c_number">6222 0811 0200 3385 283</span></div>
+                                        <div class="openbank">开户行：<span class="open_bank">中国工商银行苏州三多分理处</span></div>
+                                    </div>
+                                </li>
+                                <li class="clearfix">
+                                	<div class="bank_left fl"><img src="../Public/images/bank_abc.jpg"></div>
+                                    <div class="bank_right fr">
+                                    	<div class="cardholder">持卡人姓名：<span class="c_h_name">蔡军华</span>账号：<span class="c_number">6228 4804 0958 2887 975</span></div>
+                                        <div class="openbank">开户行：<span class="open_bank">中国农业银行苏州分行三多巷分理处</span></div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="o_pro">如有疑问，请拨打<a href="#">6666-7777</a></div>
+                        <div class="o_ser"><i>立即联系客服进行修改</i>  <span>点击QQ交谈：<a href="http://wpa.qq.com/msgrd?v=3&amp;uin=2355702698&amp;site=qq&amp;menu=yes" target="_blank"><img border="0" title="点击这里咨询散客旅游信息" alt="昆山散客游" src="http://wpa.qq.com/pa?p=2:2355702698:41"></a> <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=2355702698&amp;site=qq&amp;menu=yes" target="_blank"><img border="0" title="点击这里咨询散客旅游信息" alt="昆山散客游" src="http://wpa.qq.com/pa?p=2:2355702698:41"></a></span></div>
+                    </div>
+                    </if>
+                </div>
+                </form>
+                
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+<include file="Public:footer_notq"/>
+
+</body>
+</html>

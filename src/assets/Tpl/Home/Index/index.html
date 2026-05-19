@@ -1,0 +1,453 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>三三旅游网_1站式旅行服务_苏州旅行社直营第一品牌</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="三三旅游——1站式旅行服务，专业提供签证、酒店、机票、门票、车辆、旅行险、WIFI、导游、自由行、出境游、跟团游、旅游咨询。旅游通0512-66667777。">
+  <link type="text/css" rel="stylesheet" href="../Public/css/reset.css">
+  <link type="text/css" rel="stylesheet" href="../Public/css/style.css">
+  <script type="text/javascript" src="../Public/js/jquery-1.11.1.min.js"></script>
+  <script type="text/javascript" src="../Public/js/jquery.lazyload.min.js"></script>
+  <script>var ROOT_PATH = '__ROOT__';</script>
+  <script type="text/javascript" src="../Public/js/common.js"></script>
+  <script type="text/javascript" src="../Public/js/index.js"></script>
+  <!--[if IE 6]>
+<link rel="stylesheet" type="text/css" href="../Public/css/ie6.css">
+<![endif]-->
+  <include file="Public:statistics" />
+</head>
+
+<body>
+  <include file="Public:header" />
+  <div id="sliderMain">
+    <!--幻灯开始-->
+    <div class="sliderDiv" id="sliderDiv">
+      <ul class="sliderCon" id="sliderCon">
+        <volist name="bannerList" id="vo">
+          <li <if condition="$key">class="none"</if>>
+            <a class="linka" href="{$vo.link}" target="_blank"><img src="{:C('site_domain')}{$vo.imgurl}"
+                alt="{$vo.title}"></a>
+            <div class="sliderRightDiv">
+              <volist name="vo.son" id="voo">
+                <a class="sliderConA" href="{$voo.link}" target="_blank">
+                  <img src="{:C('site_domain')}{$voo.imgurl}" alt="{$voo.title}">
+                </a>
+              </volist>
+            </div>
+          </li>
+        </volist>
+      </ul>
+      <ul class="mSlider_nav_orange mSlider_nav">
+        <volist name="bannerList" id="vo">
+          <li <if condition="$key eq 0"> class="current"</if>><a href="javascript:void(0)">{++$key}</a></li>
+        </volist>
+      </ul>
+    </div>
+    <!--幻灯结束-->
+  </div>
+  <div id="hot">
+    <div class="hotBar">
+      <!--2.10改版前左侧新闻区-->
+      <!--<div class="news fl">
+        	<div class="news_list">
+            	<p class="news_title">三三动态</p>
+                <ul class="news_list_item" id="news_list_item">
+					<volist name="arcList" id="vo">
+                	<li><a href="{:U('Article/detail',array('id'=>$vo['id']))}" target="_blank" <if condition="$key eq 3"> class="new_hot"</if>>{$vo.title}</a></li>
+					</volist>
+                </ul>
+            </div>
+            <div class="activity_list">
+            	<p class="act_title">主题活动</p>
+                <ul>
+                    <li><a href="{$ad.zthd1.link}" target="_blank"><img src="{$ad.zthd1.imgurl}"></a></li>
+                    <li class="nobottom"><a href="{$ad.zthd2.link}" target="_blank"><img src="{$ad.zthd2.imgurl}"></a></li>
+                </ul>
+            </div>
+        </div>-->
+      <div class="news fl">
+        <div class="t_week">
+          <div class="t_w_title"><span>每周特价</span>抢到就是赚到
+            <!--<a class="fr" href="#" target="_blank">更多>></a>-->
+          </div>
+          <div class="t_w_item clearfix">
+            <ul class="fl">
+              <volist name="tj" id="vo">
+                <li class="clearfix">
+                  <div class="twi_left fl"><a href="{:C('site_domain')}/{$vo.pinyin}/xianlu-{$vo.id}.html"><img
+                        src="{:C('site_domain')}{$vo.imgurl}"></a><span></span></div>
+                  <div class="twi_right fl">
+                    <div class="twi_title"><a
+                        href="{:C('site_domain')}/{$vo.pinyin}/xianlu-{$vo.id}.html">{$vo.name}</a></div>
+                    <div class="twi_des">立减{$vo['market_price']-$vo['minprice']}元</div>
+                    <div class="twi_price">￥<span>{$vo.minprice}</span>起<a class="twip_go fr"
+                        href="{:C('site_domain')}/{$vo.pinyin}/xianlu-{$vo.id}.html"></a></div>
+                  </div>
+                </li>
+              </volist>
+            </ul>
+          </div>
+        </div>
+        <div class="xinwen">
+          <div class="x_w_title"><span>三三新闻</span><a class="fr" href="{:C('site_domain')}/Article/index/id/1.html"
+              target="_blank">更多>></a></div>
+          <div class="x_w_item">
+            <ul>
+              <volist name="arcList" id="vo">
+                <li class="clearfix">
+                  <div class="xwi_left fl"><a href="{:C('site_domain')}/Article/detail/id/{$vo.id}.html"
+                      target="_blank">{$vo.title|msubstr=###,'18'}</a></div>
+                  <div class="xwi_right fr">{$vo.add_time|date="y.m.d",###}</div>
+                </li>
+              </volist>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="h_route fr">
+        <div class="h_title">
+          <p class="h_title_n">
+            <span class="h_t">主推产品</span>
+            <span class="h_youlun"><strong>沪上邮轮特价：</strong><a href="{$ad.ylsc.link}"
+                target="_blank">【{$ad.ylsc.title}】</a></span>
+            <span class="change">
+              <a href="javascript:void(0);">更多线路</a>
+              <input type="hidden" name="start" value="0" />
+            </span>
+          </p>
+        </div>
+        <div class="h_list">
+          <ul class="h_list_item">
+            <volist name="hotList" id="vo">
+              <li>
+                <a href="{:C('site_domain')}/{$vo.pinyin}/xianlu-{$vo.id}.html" target="_blank">
+                  <dl class="clearfix">
+                    <dt>
+                      <p class="h_n_name"><span class="h_n_link">
+                          <{$vo.name}>
+                        </span><span class="h_n_shortdes">{$vo.subname}</span>
+                        <if condition="in_array(6,$vo['switch'])"><span class="mark">{:C('switch.6')}</span></if>
+                      </p>
+                      <p class="h_n_description">{$vo.info}</p>
+                    </dt>
+                    <dd>
+                      <p class="h_price">
+                        ￥<span class="price">{$vo.minprice|isNull=###}</span>起
+                      </p>
+                    </dd>
+                  </dl>
+                </a>
+              </li>
+            </volist>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="indexWrap">
+    <if condition="$ad['sytl1']">
+      <div class="bannerBar mT10">
+        <div class="inside_banner">
+          <a href="{$ad.sytl1.link}" target="_blank"><img src="{:C('site_domain')}{$ad.sytl1.imgurl}"></a>
+        </div>
+      </div>
+    </if>
+    <div id="outBound" class="outBar mT30">
+      <div class="leftAd fl">
+        <div class="titleBox">
+          <p class="t_title"><span class="t_title_name">出境游</span>轻松玩转全球</p>
+        </div>
+        <div class="imgBox">
+          <a href="{$ad.sycj1.link}" class="img1" target="_blank"><img src="{:C('site_domain')}{$ad.sycj1.imgurl}"
+              alt="苏州旅游|苏州出境游|苏州到泰国旅游" /></a>
+          <a href="{$ad.sycj2.link}" class="img2" target="_blank"><img src="{:C('site_domain')}{$ad.sycj2.imgurl}"
+              alt="苏州旅游|苏州出境游|苏州邮轮游" /></a>
+          <a href="{$ad.sycj3.link}" class="img2" target="_blank"><img src="{:C('site_domain')}{$ad.sycj3.imgurl}"
+              alt="苏州旅游|苏州出境游|苏州到台湾旅游" /></a>
+        </div>
+      </div>
+      <div class="rightRoute fr">
+        <div class="topSelection">
+          <ul class="sel_name" id="out_sel_name">
+            <li><a href="javascript:void(0)" class="sel_route">精选</a></li>
+            <li><a target="_blank" href="#">分类</a></li>
+            <li><a target="_blank" href="#">分类</a></li>
+            <li><a target="_blank" href="#">分类</a></li>
+            <li><a target="_blank" href="#" class="noborder">分类</a></li>
+          </ul>
+          <label class="outboundBg"></label>
+          <a href="{:C('site_domain')}/chujing/" class="more_route" target="_blank">更多线路>></a>
+        </div>
+        <div class="route_list fr" id="out_route_list">
+          <div class="main_part_item m_p_on">
+            <ul class="main_part_it">
+              <li <if condition="$key eq 2"> class="nomar"</if>>
+                <div class="m_p_pic">
+                  <a href="__ROOT__/chujing/xianlu-{$vo.id}.html" target="_blank" title="{$vo.name}{$vo.subname}"><img
+                      class="lazy" src="https://www.33ly.com/Uploads/goods/s_5d9d9c5b415ef.jpg" /></a>
+                </div>
+                <div class="m_p_bg"></div>
+                <div class="m_p_des">
+                  <div class="m_p_name">
+                    <a href="{:C('site_domain')}/chujing/xianlu-{$vo.id}.html" target="_blank"><em>
+                        <南山竹海御水温泉2天>
+                      </em>御水温泉、南山竹海</a>
+                  </div>
+                  <div class="m_p_price">
+                    ￥<span>298</span><i>起</i>
+                  </div>
+                </div>
+              </li>
+              <li <if condition="$key eq 2"> class="nomar"</if>>
+                <div class="m_p_pic">
+                  <a href="__ROOT__/chujing/xianlu-{$vo.id}.html" target="_blank" title="{$vo.name}{$vo.subname}"><img
+                      class="lazy" src="https://www.33ly.com/Uploads/goods/s_5d9d9c5b415ef.jpg" /></a>
+                </div>
+                <div class="m_p_bg"></div>
+                <div class="m_p_des">
+                  <div class="m_p_name">
+                    <a href="{:C('site_domain')}/chujing/xianlu-{$vo.id}.html" target="_blank"><em>
+                        <南山竹海御水温泉2天>
+                      </em>御水温泉、南山竹海</a>
+                  </div>
+                  <div class="m_p_price">
+                    ￥<span>298</span><i>起</i>
+                  </div>
+                </div>
+              </li>
+            </ul>
+            <div class="main_part_line clearfix">
+              <ul class="m_line_left">
+                <li>
+                  <a class="line_des" href="https://www.33ly.com/Uploads/goods/s_5d9d9c5b415ef.jpg" target="_blank">
+                    <南山竹海御水温泉2天>{御水温泉、南山竹海}
+                  </a>
+                  <span class="line_price">￥<span class="l_p">298</span><i>起</i></span>
+                </li>
+                <li>
+                  <a class="line_des" href="https://www.33ly.com/Uploads/goods/s_5d9d9c5b415ef.jpg" target="_blank">
+                    <南山竹海御水温泉2天>{御水温泉、南山竹海}
+                  </a>
+                  <span class="line_price">￥<span class="l_p">298</span><i>起</i></span>
+                </li>
+                <li>
+                  <a class="line_des" href="https://www.33ly.com/Uploads/goods/s_5d9d9c5b415ef.jpg" target="_blank">
+                    <南山竹海御水温泉2天>{御水温泉、南山竹海}
+                  </a>
+                  <span class="line_price">￥<span class="l_p">298</span><i>起</i></span>
+                </li>
+                <li>
+                  <a class="line_des" href="https://www.33ly.com/Uploads/goods/s_5d9d9c5b415ef.jpg" target="_blank">
+                    <南山竹海御水温泉2天>{御水温泉、南山竹海}
+                  </a>
+                  <span class="line_price">￥<span class="l_p">298</span><i>起</i></span>
+                </li>
+              </ul>
+              <ul class="m_line_left noborright">
+                <li>
+                  <a class="line_des" href="https://www.33ly.com/Uploads/goods/s_5d9d9c5b415ef.jpg" target="_blank">
+                    <南山竹海御水温泉2天>{御水温泉、南山竹海}
+                  </a>
+                  <span class="line_price">￥<span class="l_p">298</span><i>起</i></span>
+                </li>
+                <li>
+                  <a class="line_des" href="https://www.33ly.com/Uploads/goods/s_5d9d9c5b415ef.jpg" target="_blank">
+                    <南山竹海御水温泉2天>{御水温泉、南山竹海}
+                  </a>
+                  <span class="line_price">￥<span class="l_p">298</span><i>起</i></span>
+                </li>
+                <li>
+                  <a class="line_des" href="https://www.33ly.com/Uploads/goods/s_5d9d9c5b415ef.jpg" target="_blank">
+                    <南山竹海御水温泉2天>{御水温泉、南山竹海}
+                  </a>
+                  <span class="line_price">￥<span class="l_p">298</span><i>起</i></span>
+                </li>
+                <li>
+                  <a class="line_des" href="https://www.33ly.com/Uploads/goods/s_5d9d9c5b415ef.jpg" target="_blank">
+                    <南山竹海御水温泉2天>{御水温泉、南山竹海}
+                  </a>
+                  <span class="line_price">￥<span class="l_p">298</span><i>起</i></span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <if condition="$ad['sytl2']">
+      <div class="bannerBar mT10">
+        <div class="inside_banner">
+          <a href="{$ad.sytl2.link}" target="_blank"><img class="lazy"
+              data-original="{:C('site_domain')}{$ad.sytl2.imgurl}"></a>
+        </div>
+      </div>
+    </if>
+    <div id="domestic" class="outBar mT30">
+      <div class="leftAd fl">
+        <div class="titleBox">
+          <p class="t_title"><span class="t_title_name">国内游</span>行遍神州大地</p>
+        </div>
+        <div class="imgBox">
+          <a href="{$ad.sygn1.link}" class="img1" target="_blank"><img src="{:C('site_domain')}{$ad.sygn1.imgurl}"
+              alt="苏州旅游|苏州国内游|苏州到海南旅游" /></a>
+          <a href="{$ad.sygn2.link}" class="img2" target="_blank"><img src="{:C('site_domain')}{$ad.sygn2.imgurl}"
+              alt="苏州旅游|苏州国内游|苏州到海南旅游" /></a>
+          <a href="{$ad.sygn3.link}" class="img2" target="_blank"><img src="{:C('site_domain')}{$ad.sygn3.imgurl}"
+              alt="苏州旅游|苏州国内游|苏州到桂林旅游" /></a>
+        </div>
+      </div>
+      <div class="rightRoute fr">
+        <div class="topSelection">
+          <ul class="sel_name" id="domestic_sel_name">
+            <li><a href="javascript:void(0)" class="sel_route">精选</a></li>
+            <volist name="gnCateArr" id="vo" offset="0" length="4">
+              <li><a target="_blank" href="{:C('site_domain')}/guonei/{$vo.pinyin}/" <if condition="$key eq 3">
+                  class="noborder"</if>>{$vo.name}</a></li>
+            </volist>
+          </ul>
+          <label class="outboundBg"></label>
+          <a href="{:C('site_domain')}/guonei/" class="more_route" target="_blank">更多线路>></a>
+        </div>
+        <div class="route_list fr" id="domestic_route_list">
+          <div class="main_part_item m_p_on">
+            <ul class="main_part_it">
+              <volist name="gnList" id="vo" offset="0" length="3">
+                <li <if condition="$key eq 2"> class="nomar"</if>>
+                  <div class="m_p_pic">
+                    <a href="{:C('site_domain')}/guonei/xianlu-{$vo.id}.html" target="_blank"
+                      title="{$vo.name}{$vo.subname}"><img class="lazy" src="../Public/images/img_loading.gif"
+                        data-original="{:C('site_domain')}{$vo.imgurl}" /></a>
+                  </div>
+                  <div class="m_p_bg"></div>
+                  <div class="m_p_des">
+                    <div class="m_p_name">
+                      <a href="{:C('site_domain')}/guonei/xianlu-{$vo.id}.html" target="_blank"><em>
+                          <{$vo.name}>
+                        </em>{$vo.subname}</a>
+                    </div>
+                    <div class="m_p_price">
+                      ￥<span>{$vo.minprice|isNull=###}</span>起
+                    </div>
+                  </div>
+                </li>
+              </volist>
+            </ul>
+            <div class="main_part_line clearfix">
+              <ul class="m_line_left">
+                <volist name="gnList" id="vo" offset="3" length="4">
+                  <li>
+                    <a class="line_des" href="{:C('site_domain')}/guonei/xianlu-{$vo.id}.html" target="_blank">
+                      <{$vo.name}>{$vo.subname}
+                    </a>
+                    <span class="line_price">￥<span class="l_p">{$vo.minprice|isNull=###}</span><i>起</i></span>
+                  </li>
+                </volist>
+              </ul>
+              <ul class="m_line_left noborright">
+                <volist name="gnList" id="vo" offset="7" length="4">
+                  <li>
+                    <a class="line_des" href="{:C('site_domain')}/guonei/xianlu-{$vo.id}.html" target="_blank">
+                      <{$vo.name}>{$vo.subname}
+                    </a>
+                    <span class="line_price">￥<span class="l_p">{$vo.minprice|isNull=###}</span><i>起</i></span>
+                  </li>
+                </volist>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <if condition="$ad['sytl3']">
+      <div class="bannerBar mT10">
+        <div class="inside_banner">
+          <a href="{$ad.sytl3.link}" target="_blank"><img class="lazy"
+              data-original="{:C('site_domain')}{$ad.sytl3.imgurl}"></a>
+        </div>
+      </div>
+    </if>
+    <div id="around" class="outBar mT30">
+      <div class="leftAd fl">
+        <div class="titleBox">
+          <p class="t_title"><span class="t_title_name">周边游</span>江浙沪皖随意游</p>
+        </div>
+        <div class="imgBox">
+          <a href="{$ad.syzb1.link}" class="img1" target="_blank"><img src="{:C('site_domain')}{$ad.syzb1.imgurl}"
+              alt="苏州旅游|苏州周边游" /></a>
+          <a href="{$ad.syzb2.link}" class="img2" target="_blank"><img src="{:C('site_domain')}{$ad.syzb2.imgurl}"
+              alt="苏州旅游|苏州周边游|苏州到建德旅游" /></a>
+          <a href="{$ad.syzb3.link}" class="img2" target="_blank"><img src="{:C('site_domain')}{$ad.syzb3.imgurl}"
+              alt="苏州旅游|苏州周边游|苏州到无锡旅游" /></a>
+        </div>
+      </div>
+      <div class="rightRoute fr">
+        <div class="topSelection">
+          <ul class="sel_name" id="around_sel_name">
+            <li><a href="javascript:void(0)" class="sel_route">精选</a></li>
+            <volist name="zbCateArr" id="vo" offset="0" length="4">
+              <li><a target="_blank" href="{:C('site_domain')}/zhoubian/{$vo.pinyin}/" <if condition="$key eq 3"></if>
+                  >{$vo.name}</a></li>
+            </volist>
+            <li><a target="_blank" href="http://www.33ly.com/suzhou/" class="noborder">苏州一日游</a></li>
+          </ul>
+          <label class="outboundBg"></label>
+          <a href="{:C('site_domain')}/zhoubian/" class="more_route" target="_blank">更多线路>></a>
+        </div>
+        <div class="route_list fr" id="around_route_list">
+          <div class="main_part_item m_p_on">
+            <ul class="main_part_it">
+              <volist name="zbList" id="vo" offset="0" length="3">
+                <li <if condition="$key eq 2"> class="nomar"</if>>
+                  <div class="m_p_pic">
+                    <a href="{:C('site_domain')}/zhoubian/xianlu-{$vo.id}.html" target="_blank"
+                      title="{$vo.name}{$vo.subname}"><img class="lazy" src="../Public/images/img_loading.gif"
+                        data-original="{:C('site_domain')}{$vo.imgurl}" /></a>
+                  </div>
+                  <div class="m_p_bg"></div>
+                  <div class="m_p_des">
+                    <div class="m_p_name">
+                      <a href="{:C('site_domain')}/zhoubian/xianlu-{$vo.id}.html" target="_blank"><em>
+                          <{$vo.name}>
+                        </em>{$vo.subname}</a>
+                    </div>
+                    <div class="m_p_price">
+                      ￥<span>{$vo.minprice|isNull=###}</span><i>起</i>
+                    </div>
+                  </div>
+                </li>
+              </volist>
+            </ul>
+            <div class="main_part_line clearfix">
+              <ul class="m_line_left">
+                <volist name="zbList" id="vo" offset="3" length="4">
+                  <li>
+                    <a class="line_des" href="{:C('site_domain')}/zhoubian/xianlu-{$vo.id}.html" target="_blank">
+                      <{$vo.name}>{$vo.subname}
+                    </a>
+                    <span class="line_price">￥<span class="l_p">{$vo.minprice|isNull=###}</span><i>起</i></span>
+                  </li>
+                </volist>
+              </ul>
+              <ul class="m_line_left noborright">
+                <volist name="zbList" id="vo" offset="7" length="4">
+                  <li>
+                    <a class="line_des" href="{:C('site_domain')}/zhoubian/xianlu-{$vo.id}.html" target="_blank">
+                      <{$vo.name}>{$vo.subname}
+                    </a>
+                    <span class="line_price">￥<span class="l_p">{$vo.minprice|isNull=###}</span><i>起</i></span>
+                  </li>
+                </volist>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <include file="Public:footer_notq" />
+</body>
+
+</html>

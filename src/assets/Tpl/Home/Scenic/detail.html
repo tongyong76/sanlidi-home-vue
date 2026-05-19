@@ -1,0 +1,264 @@
+﻿<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>{$info.name}旅游景点介绍_{$info.name}门票/地址 -三三旅游网</title>
+  <meta name="keywords" content="">
+  <meta name="description"
+    content="三三旅游网{$info.name}旅游景点大全，详细介绍{$info.name}有哪些旅游景点，提供{$info.name}旅游景点的图片、详细介绍、门票价格以及热门景点推荐。看{$info.name}旅游信息，就来三三旅游网。">
+  <link type="text/css" rel="stylesheet" href="../Public/css/reset.css">
+  <link type="text/css" rel="stylesheet" href="../Public/css/style.css">
+  <script type="text/javascript" src="../Public/js/jquery-1.11.1.min.js"></script>
+  <script>var ROOT_PATH = '__ROOT__';</script>
+  <script>var APP_PATH = '../Public';</script>
+  <script type="text/javascript" src="../Public/js/jquery.scrollTo.min.js"></script>
+  <script type="text/javascript" src="../Public/js/common.js"></script>
+  <script type="text/javascript" src="../Public/js/search_list.js"></script>
+  <!--[if IE 6]>
+<link rel="stylesheet" type="text/css" href="../Public/css/ie6.css">
+<![endif]-->
+  <include file="Public:statistics" />
+</head>
+
+<body>
+  <include file="Public:header" />
+  <!--头部结束-->
+  <div class="wrap">
+    <div class="inside_wrap clearfix">
+      <div class="search_nav"> <a href="/">首页</a><b>></b><a>热门景点</a><b>></b><span>{$info.name}</span> </div>
+      <div class="Main">
+        <div class="clearfix">
+          <div style="padding-bottom:20px;"> <img src="__ROOT__{$info.imgurl}" width="540" height="314"
+              class="view_pic">
+            <h1 class="view_title">{$info.name}</h1>
+            <if condition="$tagList">
+              <div class="view_tag">
+                <volist name="tagList" id="vo"><span class="switch1">{$vo.name}</span></volist>
+              </div>
+            </if>
+            <div id="hutia" class="view_intro">
+              {$info.info}
+              <p><b>温馨提示：</b></p>
+              <p>
+                如果您对{$info.name}感兴趣，想去{$info.name}旅游的话，可以点击右侧在线咨询旅游的话，可以点击右侧在线咨询旅游的话，可以点击右侧在线咨询旅游的话，可以点击右侧在线咨询旅游的话，可以点击右侧在线咨询旅游的话，可以点击右侧在线咨询旅游的话，可以点击右侧在线咨询旅游的话，可以点击右侧在线咨询旅游的话，可以点击右侧在线咨询旅游的话，可以点击右侧在线咨询旅游的话，可以点击右侧在线咨询旅游的话，可以点击右侧在线咨询旅游的话，可以点击右侧在线咨询旅游的话，可以点击右侧在线咨询旅游的话，可以点击右侧在线咨询旅游的话旅游的话，可以点击右侧在线咨询旅游的话，可以点击右侧在线咨询旅游的话，可以点击右侧在线咨询旅游的话，可以点击右侧在线咨询旅游的话，可以点击右侧在线咨询旅游的话，可以点击右侧在线咨询旅游的话，可以点击右侧在线咨询旅游的话，可以点击右侧在线咨询旅游的话，可以点击右侧在线咨询旅游的话，可以点击右侧在线咨询旅游的话，可以点击右侧在线咨询旅游的话，可以点击右侧在线咨询旅游的话，可以点击右侧在线咨询旅游的话，可以点击右侧在线咨询旅游的话，可以点击右侧在线咨询旅游的话旅游的话，可以点击右侧在线咨询旅游的话，可以点击右侧在线咨询旅游的话，可以点击右侧在线咨询旅游的话，可以点击右侧在线咨询旅游的话，可以点击右侧在线咨询旅游的话，可以点击右侧在线咨询旅游的话，可以点击右侧在线咨询旅游的话，可以点击右侧在线咨询旅游的话，可以点击右侧在线咨询旅游的话，可以点击右侧在线咨询旅游的话，可以点击右侧在线咨询旅游的话，可以点击右侧在线咨询旅游的话，可以点击右侧在线咨询旅游的话，可以点击右侧在线咨询旅游的话，可以点击右侧在线咨询旅游的话，可以点击右侧在线咨询旅游的话，可以点击右侧在线咨询旅游的话，可以点击右侧在线咨询<a
+                  href="http://www.33ly.com/"
+                  target="_blank">苏州旅行社</a>三三旅游的在线客服哦，苏州旅行社三三旅游在线客服嘻嘻和哈哈将会详细为您介绍去{$info.name}旅游的线路哦！</< /p>
+            </div>
+            <div class="showMore" data-v="1">
+              <显示更多>
+            </div>
+          </div>
+          <div class="search_list fl">
+            <div class="search_head">推荐线路</div>
+            <div class="search_route_list search_route_mend" id="content">
+              <ul class="s_r_list">
+                <volist name="hotList" id="vo">
+                  <li class="view_mend">
+                    <div class="routeinfo clearfix">
+                      <div class="Limgbox fl"> <a href="__ROOT__/{$vo.pinyin}/xianlu-{$vo.id}.html"> <img
+                            src="__ROOT__{$vo.imgurl}" width="316" height="216"> </a> </div>
+                      <if condition="$vo['is_zzt']">
+                        <div class="zzt"> <img width="80" height="80" src="../Public/images/zzt.png" /> </div>
+                      </if>
+                      <div class="Cinfo fl">
+                        <div class="Cinfo_title"> <a target="_blank" href="__ROOT__/{$vo.pinyin}/xianlu-{$vo.id}.html">
+                            <{$vo.name}>{$vo.subname}
+                          </a> </div>
+                        <div class="Cinfo_tag"></div>
+                        <div class="Cinfo_des">{$vo.info}</div>
+                        <div class="Cinfo_data mT20">行程天数：<span class="day_num">{$vo.days}</span>天</div>
+                        <div class="Cinfo_data">出发日期：<span class="data_time">
+                            <if condition="$vo['dep']">{$vo.dep}
+                              <else />
+                              最近无行程
+                            </if>
+                          </span></div>
+                      </div>
+                      <div class="Rprice fl">
+                        <div class="now_price">￥<span>399</span>起</div>
+                        <div class="ticket mT10"><a target="_blank" href="__ROOT__/{$vo.pinyin}/xianlu-{$vo.id}.html"
+                            onmouseover="this.className='ticket_move'" onmouseout="this.className=''">查看详情</a></div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="view_mend">
+                    <div class="routeinfo clearfix">
+                      <div class="Limgbox fl"> <a href="__ROOT__/{$vo.pinyin}/xianlu-{$vo.id}.html"> <img
+                            src="__ROOT__{$vo.imgurl}" width="316" height="216"> </a> </div>
+                      <if condition="$vo['is_zzt']">
+                        <div class="zzt"> <img width="80" height="80" src="../Public/images/zzt.png" /> </div>
+                      </if>
+                      <div class="Cinfo fl">
+                        <div class="Cinfo_title"> <a target="_blank" href="__ROOT__/{$vo.pinyin}/xianlu-{$vo.id}.html">
+                            <{$vo.name}>{$vo.subname}
+                          </a> </div>
+                        <div class="Cinfo_tag"></div>
+                        <div class="Cinfo_des">{$vo.info}</div>
+                        <div class="Cinfo_data mT20">行程天数：<span class="day_num">{$vo.days}</span>天</div>
+                        <div class="Cinfo_data">出发日期：<span class="data_time">
+                            <if condition="$vo['dep']">{$vo.dep}
+                              <else />
+                              最近无行程
+                            </if>
+                          </span></div>
+                      </div>
+                      <div class="Rprice fl">
+                        <div class="now_price">￥<span>399</span>起</div>
+                        <div class="ticket mT10"><a target="_blank" href="__ROOT__/{$vo.pinyin}/xianlu-{$vo.id}.html"
+                            onmouseover="this.className='ticket_move'" onmouseout="this.className=''">查看详情</a></div>
+                      </div>
+                    </div>
+                  </li>
+                </volist>
+                <!-- test
+                                <li class="view_mend">
+                                    <div class="routeinfo clearfix">
+                                        <div class="Limgbox fl">
+                                            <a href="#">
+                                                <img src="../Public/images/c_wall_04.jpg" width="316" height="216"></a>
+                                        </div>
+                                        <div class="zzt">
+                                            <img width="80" height="80" src="../Public/images/zzt.png" />
+                                        </div>
+                                        <div class="Cinfo fl">
+                                            <div class="Cinfo_title">
+                                                <a target="_blank" href="#">
+                                                    <厦门喜来登尊享3天>
+                                                    东航往返 早去晚回 玩足3天</a>
+                                            </div>
+                                            <div class="Cinfo_tag"></div>
+                                            <div class="Cinfo_des">三三自组团，优化接送，专人送机★2晚国际五星喜来登，全程含2晚特色餐：沙滩BBQ，海鲜大餐★畅游南普陀、厦大、环岛路、鼓浪屿，感受浪漫刺激的帆船冲浪★一天自由活...</div>
+                                            <div class="Cinfo_data mT20">行程天数：<span class="day_num">3</span>天</div>
+                                            <div class="Cinfo_data">出发日期：<span class="data_time">7/28，7/29，7/30，7/31</span></div>
+                                        </div>
+                                        <div class="Rprice fl">
+                                            <div class="now_price">￥<span>1690</span>起</div>
+                                            <div class="ticket mT10"><a target="_blank" href="#" onmouseover="this.className='ticket_move'" onmouseout="this.className=''">查看详情</a></div>
+                                        </div>
+                                    </div>
+                                </li>
+								-->
+              </ul>
+            </div>
+          </div>
+          <div class="ask_right fr">
+            <div class="search_head">其他热门景点</div>
+            <div class="view_product">
+              <ul>
+                <volist name="scenicList" id="vo">
+                  <li> <span><a href="__ROOT__/scenic/jing-{$vo.id}.html"><img src="__ROOT__{$vo.imgurl}" width="100"
+                          height="64" align="absmiddle"></a></span> <a
+                      href="__ROOT__/scenic/jing-{$vo.id}.html">{$vo.name}</a> <b>{$vo.info|strcut=###,10}</b>
+                    <volist name="vo.son" id="voo"> <em class="series1">{$voo.name}</em> </volist>
+                  </li>
+                  <li> <span><a href="__ROOT__/scenic/jing-{$vo.id}.html"><img src="__ROOT__{$vo.imgurl}" width="100"
+                          height="64" align="absmiddle"></a></span> <a
+                      href="__ROOT__/scenic/jing-{$vo.id}.html">{$vo.name}</a> <b>{$vo.info|strcut=###,10}</b>
+                    <volist name="vo.son" id="voo"> <em class="series1">{$voo.name}</em> </volist>
+                  </li>
+                </volist>
+                <!-- test
+			  <li><span><a href="#"><img src="../Public/images/bj_01.jpg" width="100" height="64" align="absmiddle"></a></span><a href="#"><普吉畅享4晚6天>一天自由活动 全程五星</a><b>三三自组团，领队服务，优化接送★ 品质之</b><em class="series2">自组团</em></li>
+			  -->
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="Mbottom"></div>
+  <!--    <script type="text/javascript">
+         $(window).scroll(function(){
+	         var oNavRoute=$('.info_ttitle');
+	         var nowH=$('.Mbottom').offset().top;
+	         var sH=$(window).scrollTop();
+			 sH>=400 ? $('.back_top').show() : $('.back_top').hide();
+	     })
+        $(function () {
+            $(".back_top").hide();
+            var len = $(".view_intro").html().length;
+            var str = $(".view_intro").html();
+            var sb = [];
+            if (len > 450) {
+                sb.push(str.substring(0, 450));
+                sb.push("<a href='javascript:;' onclick=\"showMore(this)\"> <显示更多> </a>");
+
+                $(".view_intro").html(sb.join("") + "<p id='hideMore' style='display:none'>" + str.substring(450, len) + "</p>")
+            }
+
+        })
+        function showMore(obj) {
+            $(obj).remove();
+            $("#hideMore").show();
+            for (var i = 0; i < $(".view_intro").children("p").size() ; i++) {
+                if ($(".view_intro").children("p").eq(i).text().length == 0)
+                    $(".view_intro").children("p").eq(i).remove();
+            }
+            $(".view_intro").children("p").eq(-1).append("<a href='javascript:;' onclick=\"hideMore(this)\"> <隐藏> </a>");
+            $(".view_intro").css({ "height": "auto", "overflow": "inherit", "padding-bottom": "30px" })
+        }
+        function hideMore(obj) {
+            $(obj).remove();
+            $("#hideMore").hide();
+            $("#hideMore").prev().append("<a href='javascript:;' onclick=\"showMore(this)\"> <显示更多> </a>");
+            $(".view_intro").css({ "height": "230px", "overflow": "hidden", "padding-bottom": "0" })
+        }
+    </script>-->
+  </div>
+  <div id="retop"><a target="_blank" id="chatId" href="http://kefu.qycn.com/vclient/chat/?websiteid=113071"
+      rel="nofollow" class="back_talk"><span></span></a></div>
+  <include file="Public:footer_notq" />
+</body>
+<script type="text/javascript">
+  $(window).scroll(function () {
+    var oNavRoute = $('.info_ttitle');
+    var nowH = $('.Mbottom').offset().top;
+    var sH = $(window).scrollTop();
+    sH >= 400 ? $('.back_top').show() : $('.back_top').hide();
+  })
+  /*
+  $(function(){
+    $(".back_top").hide();
+    var o = document.getElementById("hutia");
+    var s = o.innerHTML;
+    var p = document.createElement("span");
+    var n = document.createElement("a");
+    p.innerHTML = s.substring(0,360);
+    n.innerHTML = s.length > 360 ? "点击展开" : "";
+    n.href = "javascript:;";
+    n.onclick = function(){
+      if (n.innerHTML == "点击展开"){
+        n.innerHTML = "点击收起";
+        p.innerHTML = s;
+      }else{
+        n.innerHTML = "点击展开";
+        p.innerHTML = s.substring(0,360);
+      }
+    }
+    o.innerHTML = "";
+    o.appendChild(p);
+    o.appendChild(n);
+  })();
+  */
+  $(function () {
+    $('.showMore').click(function () {
+      if ($(this).data('v')) {
+        //1 缩起状态
+        $('.view_intro').css('height', 'auto');
+        $('.view_intro').css('overflow', 'visible');
+        $(this).data('v', 0);
+        $(this).html('<收起>');
+      } else {
+        //0 展开状态
+        $('.view_intro').css('height', '220px');
+        $('.view_intro').css('overflow', 'hidden');
+        $(this).data('v', 1);
+        $(this).html('<显示更多>');
+      }
+    });
+  });
+</script>
+
+</html>

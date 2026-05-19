@@ -1,0 +1,133 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>2016{$cateList[$cateId]['CateName']}线路_{$cateList[$cateId]['CateName']}报价_{$cateList[$cateId]['CateName']}多少钱_三三旅游网</title>
+<meta name="description" content="三三旅游是苏州领先的旅游预订网站，为您提供优质的出境游、国内游、周边游、邮轮线路预订，并提供极具性价比的团队旅与签证产品。24小时咨询预订电话：66667777" />
+<link type="text/css" rel="stylesheet" href="../Public/css/jingxuan.css">
+<script type="text/javascript" src="../Public/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../Public/js/jquery.scrollTo.min.js"></script>
+<script type="text/javascript" src="../Public/js/common.js"></script>
+<script type="text/javascript" src="../Public/js/jingxuan.js"></script>
+<include file="Public:statistics"/>
+</head>
+<body>
+<div id="header"> 
+  <!--出发城市登陆注册开始-->
+  <div id="topBar">
+    <div class="inside_top"> 
+      <!--出发城市开始-->
+      <div id="starting" class="fl"> <span class="top_hello fl">苏州青旅三三旅游欢迎您！您可选择出发城市：</span> <a class="s_city_name" href="http://www.33ly.com">苏州</a> <a class="s_city_name" href="http://kunshan.33ly.com" target="_blank">昆山</a> <a class="s_city_name" href="http://changshu.33ly.com" target="_blank">常熟</a> <a class="s_city_name" href="http://zhangjiagang.33ly.com" target="_blank">张家港</a> <a class="s_city_name" href="http://taicang.33ly.com" target="_blank">太仓</a> </div>
+      <!--出发城市结束--> 
+      <!--登陆注册开始-->
+      <div id="login" class="fr">
+        <if condition="!$uid"> <span class="shu_line">|</span><a class="my_ss" href="javascript:void(0)" onclick="headlogin();">登录</a> <span class="shu_line">|</span><a class="my_ss" href="__ROOT__/register.html">注册</a>
+          <else/>
+          <span class="welcome">欢迎您，{$uname}</span> <span class="shu_line">|</span><a class="my_ss" href="{:U('User/logout')}">注销</a> 
+          <!--<span class="shu_line">|</span><a class="my_ss" href="javascript:void(0)" onclick="logout();">注销</a>--> 
+          <span class="shu_line">|</span><a class="my_ss" href="__ROOT__/member/" target="_blank">我的订单</a> </if>
+        <span class="shu_line">|</span><a class="my_ss" href="http://www.33ly.com/aboutus/brief.html" target="_blank">关于我们</a>
+        <div class="wx fl" id="wx">
+          <div class="w_text"> <span class="w_title fl">三三微信</span> <span class="w_ico fr"></span> </div>
+          <div class="w_scan"> 
+            <!--微信二维码--> 
+            <img src="../Public/images/qrcode.jpg" alt="苏州青旅三三旅游微信公众号二维码" /> </div>
+        </div>
+      </div>
+      <!--登陆注册结束--> 
+    </div>
+  </div>
+  <!--出发城市登陆注册结束-->
+  <if condition="$ad['sytb']">
+    <div class="bannerBar">
+      <div class="inside_banner"> <a href="{$ad.sytb.link}" target="_blank"><img src="__ROOT__{$ad.sytb.imgurl}"></a> </div>
+    </div>
+  </if>
+  <!--搜索开始-->
+  <div id="searchBar">
+    <div class="inside_search">
+      <div class="logo fl" id="logo">
+        <dl class="d_logo">
+          <dt class="fl newlogo">
+            <h1><a href="/" target="_blank"><img src="../Public/images/logo.png" alt="苏州青旅三三旅游是苏州旅游直营连锁第一品牌，每年为超过10万名用户提供旅游预订服务，并致力于为大众带来及时、专业、全面、无忧的旅游服务。24小时咨询预订电话：66667777" /></a></h1>
+          </dt>
+        </dl>
+      </div>
+      <div class="search fl" id="search">
+        <form method="get" id="searchform" action="__ROOT__/search" class="s_search" target="_blank">
+          <div class="s_right fl"> <span class="glass fl"></span>
+            <input type="text" id="Searchkey" name="keyword" class="Searchkey fl hint" defaultValue="{$search.name}" value="" maxlength="58">
+          </div>
+          <input class="search_btn fr" type="submit" value="搜索">
+        </form>
+      </div>
+      <div class="phone fr" id="phone">
+        <div class="phone_box">
+          <p class="p_tong"></p>
+          <p class="p_number"></p>
+          <img src="../Public/images/tel.png" alt="苏州青旅三三旅游24小时咨询预订电话：66667777"/> </div>
+      </div>
+    </div>
+  </div>
+  <!--搜索结束--> 
+</div>
+<div id="sliderMain"> 
+  <!--幻灯开始--> 
+  <div class="sliderDiv" id="sliderDiv">
+    <ul class="sliderCon" id="sliderCon">
+      <li> <a class="linka" href="http://www.33ly.com/guonei/jiuzhaigou/" target="_blank"><img src="/Uploads/banner/s_5770f58b5d086.jpg"></a> </li>
+      <!--<li class="none"> <a class="linka" href="#" target="_blank"><img src="../Public/images/jingxuan/2.jpg"></a> </li>
+      <li class="none"> <a class="linka" href="#" target="_blank"><img src="../Public/images/jingxuan/3.jpg"></a> </li>-->
+    </ul>
+    <ul class="mSlider_nav_orange mSlider_nav">
+      <li class="current"><a href="javascript:void(0)">1</a></li>
+      <!--<li><a href="javascript:void(0)">2</a></li>
+      <li><a href="javascript:void(0)">3</a></li>-->
+    </ul>
+  </div>
+  <!--幻灯结束--> 
+</div>
+<!--<div id="title"> 
+  标题开始
+  <div class="wp">
+    <div class="title">别忘了答应自己要做的事，别忘了答应自己要去的远方，无论有多难，无论有多远~</div>
+  </div>
+  标题结束
+</div>--> 
+<div id="product"> 
+  <!--产品开始-->
+  <div class="wp product">
+    <div class="type clearfix">
+      <ul id="type">
+		<volist name="cateList" id="vo">
+        <li <if condition="$key eq $cateId">class="current"</if>><a href="__ROOT__{$vo.CateUrl}">{$vo.CateName}</a></li>
+		</volist>
+      </ul>
+    </div>
+    <div class="case clearfix">
+      <ul id="waterfall">
+        <volist name="goodsList" id="vo">
+		<li>
+          <div class="case_pic">
+			<a href="__ROOT__/{$vo.cateType}/xianlu-{$vo.id}.html" target="_blank">
+			  <img src='<if condition="$vo['LocalImage']">__ROOT__{$vo.imgurl}<else/>{$vo.imgurl}</if>' width="283" height="188" align="absmiddle">
+		      <span><if condition="$vo['subname']"><{$vo.name}>{$vo.subname}<else/>{$vo.name}</if></span>
+			  <if condition="$vo['is_onsale']"><i class="sale"></i><else/><if condition="$vo['is_new']"><i class="new"></i><else/><if condition="$vo['is_hot']"><i class="hot"></i></if></if></if>
+			</a>
+		  </div>
+          <div class="case_word">
+			{$vo.info|strcut=###,15}
+			<span><i>¥<strong>{$vo.minprice}</strong></i>起<del>¥{$vo.market_price}</del></span>
+			<a href="__ROOT__/{$vo.cateType}/xianlu-{$vo.id}.html" target="_blank">查看详情>></a>
+		  </div>
+        </li>
+		</volist>
+      </ul>
+    </div>
+  </div>
+  <!--产品结束--> 
+</div>
+<include file="Public:footer_notq"/>
+<a target="_blank" id="chatId" href="http://kefu.qycn.com/vclient/chat/?websiteid=113071" rel="nofollow" class="back_talk"><span></span></a>
+</body>
+</html>

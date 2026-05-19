@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>团队游列表页</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link type="text/css" rel="stylesheet" href="../Public/css/reset.css">
+<link type="text/css" rel="stylesheet" href="../Public/css/style.css">
+<script type="text/javascript" src="../Public/js/jquery-1.11.1.min.js"></script>
+<script>var ROOT_PATH = '__ROOT__';</script>
+<script type="text/javascript" src="../Public/js/common.js"></script>
+<include file="Public:statistics"/>
+</head>
+<body>
+<include file="Public:header"/>
+<div class="wrap">
+	<div class="inside_wrap clearfix">
+    	<div class="search_nav">
+			<a href="../Tuan/__ROOT__">首页</a><b>></b>{$posi}
+		</div>
+        <div class="clearfix"></div>
+        <div class="ask_line">
+          <div class="ask_head">我要提问</div>
+          <div class="ask_form">
+            <div class="search_list fl">
+              <div class="form_block form_mend1"><label class="form_title">问题标题</label><input class="ask_input" id="ask_input" type="text" placeholder="清晰具体的问题 ，会有助于你获得满意的解答。" maxlength="50"><span class="ask_numcount"><b class="num">0</b>/50</span></div>
+              <div class="form_block form_mend2"><label class="form_title">详细描述</label><textarea maxlength="50" class="ask_area" id="ask_area" placeholder="如问题标题无法详细阐述你的问题，你可以在此补充。"></textarea><span class="ask_numcount"><b class="num">0</b>/100</span></div>
+              <div class="form_block form_mend1"><label class="form_title">标签</label><input class="ask_input" id="ask_mark" type="text" placeholder="添加标签" maxlength="50"><span class="ask_numcount"><b class="num">0</b>/50</span></div>
+              <div class="ask_button"><a href="#">发布问题</a></div>
+            </div>
+            <div class="ask_right2 fr">
+              <h3>如何写问题标题？</h3>
+              <p>描述清晰并带有具体目的地的问题标题，可以帮助你更快获得回答。</p>
+              <p>结伴/二手/投诉/无关旅游类的问题会被删除。标题长度至少10字以上。</p>
+              <p><span class="colorright">√</span>从深圳机场如何前往香港尖沙咀？</p>
+              <p><span class="colorerror">×</span>交通问题</p>
+              <h3>如何填写详细描述?</h3>
+              <p>详细填写你的出行时间、具体行程等相关信息能够更好地辅助别人理解你的问题，从而获得更高质量的回答。</p>
+              <h3>如何添加标签？</h3>
+              <p>准确的标签将使你的问题更好地归类，也更容易获得解答。系统会根据你的标题推荐适用，你可以自行添加，每个问题最多可以添加5个标签，每个标签以逗号隔开。建议标签中只含有你的旅行目的地（删除出发地），感兴趣的景点。</p>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+        </div>     
+    </div>
+</div>
+<include file="Public:footer"/>
+<script type="text/javascript">
+        //返回val的字节长度 
+        function getByteLen(val) {
+            var len = 0;
+            for (var i = 0; i < val.length; i++) {
+                if (val[i].match(/[^\x00-\xff]/ig) != null) 
+                    len += 2;
+                else
+                    len += 1;
+            }
+            return len;
+        }
+        //返回val在规定字节长度max内的值 
+        function getByteVal(val, max) {
+            var returnValue = '';
+            var byteValLen = 0;
+            for (var i = 0; i < val.length; i++) {
+                if (val[i].match(/[^\x00-\xff]/ig) != null)
+                    byteValLen += 2;
+                else
+                    byteValLen += 1;
+                if (byteValLen > max)
+                    break;
+                returnValue += val[i];
+            }
+            return returnValue;
+        }
+        $(function () {
+            areaChange("ask_input");
+            areaChange("ask_area");
+            areaChange("ask_mark");
+        });
+
+        function areaChange(id) {
+            var _area = $('#' + id);
+            var _info = _area.next("span").children(".num");
+            var _max = _area.attr('maxlength');
+            var _val;
+            _area.bind('keyup change', function () { 
+                if (_info.size() < 1) {
+                    _info.append(0);
+                }
+                _val = $(this).val();
+                _cur = getByteLen(_val);
+                if (_cur == 0) {
+                    _info.text(0);
+                } else if (_cur < _max) { 
+                    _info.text(_cur);
+                } else {
+                    _info.text(_max);
+                    $(this).val(getByteVal(_val, _max));  
+                }
+            });
+
+        }
+    </script>
+</body>
+</html>

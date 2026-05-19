@@ -1,0 +1,206 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>注册会员_三三旅游_苏州青旅33ly.com</title>
+<meta name="keywords" content="">
+<meta name="description" content="三三旅游网：苏州旅游直营连锁第一品牌，致力于为大众带来及时、专业、全面、无忧的旅游服务，为您提供出境游、国内游、周边游、团队旅游等优质线路预订。">
+<link type="text/css" rel="stylesheet" href="../Public/css/reset.css">
+<link type="text/css" rel="stylesheet" href="../Public/css/ral.css">
+<script type="text/javascript" src="../Public/js/jquery-1.11.1.min.js"></script>
+<include file="Public:statistics"/>
+</head>
+<body>
+    <include file="Public:ralheader" />
+    <div class="ral_box clearfix">
+        <div class="ral_box_header clearfix">
+            <h1>注册会员</h1>
+            <div class="weixin">扫描三三旅游微信，<b>轻松赢取免费游</b></div>
+        </div>
+        <div class="ral_box_main clearfix">
+            <div class="step step1"></div>
+            <div class="left">
+                <form id="loginForm" method="post" action="">
+                    <input type="hidden" id="check_phone_exist" value="{:U('User/check_phone_exist')}">
+                    <div class="formLine clearfix">
+                        <span class="formLabel w110">手机号码：</span>
+                        <span>
+                            <input class="long" type="text" value="" id="phone" name="phone"></input></span>
+                        <span class="err_phone normal"></span>
+                    </div>
+                    <div class="formLine clearfix">
+                        <span class="formLabel w110">登录密码：</span>
+                        <span>
+                            <input class="long" type="password" value="" id="password" name="password"></input></span>
+                        <span class="err_password  normal"></span>
+                    </div>
+                    <div class="formLine clearfix">
+                        <span class="formLabel w110">确认密码：</span>
+                        <span>
+                            <input class="long" type="password" value="" id="repassword" name="repassword"></input></span>
+                        <span class="err_rstpassword normal"></span>
+                    </div>
+                    <div class="formLine clearfix">
+                        <span class="formLabel w110">验证码：</span>
+                        <span>
+                            <input class="short" type="text" value="" name="captcha" id="verification" value="" verify_post_action="{:U('User/verify_test')}"></input>
+                            <img style="margin-left: 5px; margin-top: 4px;" height="30" src="{:U('Base/verify')}" id="J_captcha_img" class="captcha_img" alt="{$verify}" verify_post_action="{:U('User','verify_test')}" />
+                            <a href="javascript:void(0)" id="J_captcha_change">换一张</a>
+                        </span>
+                        <span class="err_check normal"></span>
+                    </div>
+                    <div class="formLine clearfix">
+                        <span class="formLabel"></span>
+                        <span>
+                            <input type="submit" name="submit" id="registerbtn" value="同意协议并注册" class="submit" /></span>
+                    </div>
+                </form>
+                <div class="protocol">
+                    <p style="text-align: center;">《三三旅游会员协议》</p>
+                    <p>1．三三旅游服务条款的确认</p>
+                    <p>三三旅游的所有权与运作权归三三网络科技股份有限公司（以下简称"三三"）所有。本服务条款具有法律约束力。一旦您点选 "注册"并通过注册程序，即表示您自愿接受本协议之所有条款，并已成为三三旅游的注册会员。</p>
+                    <p>用户在享用三三旅游会员服务的同时，同意接受三三旅游会员服务提供的各类信息服务。</p>
+                    <p>2．服务内容</p>
+                    <p>2.1 三三旅游服务的具体内容由三三根据实际情况提供。</p>
+                    <p>2.2 三三在三三旅游上向其会员提供相关网络服务，与相关网络服务有关的设备（如个人电脑、手机、及其他与接入互联网或移动网有关的装置）及所需的费用（如为接入互联网而支付的电话费及上网费、为使用移动网而支付的手机费）均由会员自行负担。</p>
+                    <p>3．会员帐号及密码</p>
+                    <p>您注册会员成功后，将得到一个帐号和密码。您应妥善保管该帐号及密码，并对以该帐号进行的所有活动及事件负法律责任。因黑客行为或会员保管疏忽致使帐号、密码被他人非法使用的，三三不承担任何责任。如您发现任何非法使用会员帐号或安全漏洞的情况，请立即与三三联系。</p>
+                </div>
+            </div>
+            <div class="right">
+                <img width="250" height="500" src="../Public/images/register_side_step1.png" />
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //$('#J_captcha_img').click(function(){
+            //    var timenow = new Date().getTime(),
+            //        url = $(this).attr('data-url').replace(/js_rand/g,timenow);				
+            //    $(this).attr("src", url);
+            //});
+            $('#J_captcha_change').click(function () {
+                //$('#J_captcha_img').trigger('click');
+                var time = new Date().getTime();
+                $('#J_captcha_img').attr('src', '__ROOT__/User/verify/' + time);
+            });
+            //验证手机
+            $("#phone").blur(function () {
+                return fnphone();
+            });
+
+            function fnphone() {
+                var isok = true;
+                var check_phone_exist = $("#check_phone_exist").val();
+                $(".err_phone").removeClass("nomal");
+                var phone = $.trim($("#phone").val());
+                if (phone == "") {
+                    isok = false;
+                    $(".err_phone").addClass("error").removeClass("correct").html("请填写手机！");
+                } else {
+                    var uanmebool = /^(13[0-9]|15[0-9]|18[0-9]|147|17[6-8])\d{8}$/.test(phone);
+                    if (!uanmebool) {
+                        isok = false;
+                        $(".err_phone").addClass("error").removeClass("correct").html("请填写正确的手机号码！");
+                    } else {
+                        $.post(check_phone_exist, { phone: phone }, function (data) {
+                            if (data == "phoneExist") {
+                                isok = false;
+                                $(".err_phone").addClass("error").removeClass("correct").html("该手机号码已存在！");
+                            } else {
+                                $(".err_phone").addClass("correct").removeClass("error").html("&nbsp;");
+                            }
+                        });
+                    }
+                }
+                return isok;
+            }
+
+
+            $("#password").blur(function () {
+                return fnpassword();
+            });
+
+            function fnpassword() {
+                var isok = true;
+                $(".err_password").removeClass("nomal");
+                var pwd = $.trim($("#password").val());
+                if (pwd == "") {
+                    isok = false;
+                    $(".err_password").addClass("error").removeClass("correct").html("请输入密码！");
+                } else {
+                    var pwdbool = /^[0-9a-zA-Z]{6,24}$/.test(pwd);
+                    if (!pwdbool) {
+                        isok = false;
+                        $(".err_password").addClass("error").removeClass("correct").html("请输入6-24位英文和数字组合!");
+                    } else {
+                        $(".err_password").addClass("correct").removeClass("error").html("&nbsp;");
+                    }
+
+                }
+                return isok;
+            }
+
+
+            $("#repassword").blur(function () {
+                return fnrepassword();
+            });
+
+            function fnrepassword() {
+                var isok = true;
+                $(".err_rstpassword").removeClass("nomal");
+                var pwd = $.trim($("#password").val());
+                var pwdSure = $("#repassword").val();
+                if (pwdSure == '') {
+                    isok = false;
+                    $(".err_rstpassword").addClass("error").removeClass("correct").html("请重复输入一次密码");
+                } else if (pwdSure != pwd) {
+                    isok = false;
+                    $(".err_rstpassword").addClass("error").removeClass("correct").html("两次输入密码不同!");
+                } else {
+                    $(".err_rstpassword").addClass("correct").removeClass("error").html("&nbsp;");
+                }
+                return isok;
+            }
+            //验证验证码
+            $("#verification").blur(function () {
+                fnverification();
+            });
+
+
+            function fnverification() {
+                var isok = true;
+                $(".err_check").removeClass("nomal");
+                var verify_post_action = $("#verification").attr("verify_post_action");
+                var verification = $.trim($("#verification").val());
+                if (verification == '') {
+                    $(".err_check").addClass("error").removeClass("correct").html("请输入验证码！");
+                    isok = false;
+                }
+                else {
+                    $.post(verify_post_action, { verification: verification }, function (data) {
+                        if (data == "true") {
+                            $(".err_check").addClass("correct").removeClass("error").html("&nbsp;");
+                        } else if (data == "false") {
+                            $(".err_check").addClass("error").removeClass("correct").html("验证码输入不正确的！");
+                            return false;
+                        }
+                    });
+                }
+                return isok;
+            }
+
+            function yanzheng() {
+                return fnphone() & fnpassword() & fnrepassword() & fnverification();
+            }
+            $("#registerbtn").click(function () {
+
+                if (yanzheng()) {
+                    return true;
+                }
+                else { return false; }
+            });
+        });
+    </script>
+</body>
+</html>

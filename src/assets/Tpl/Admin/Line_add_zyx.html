@@ -1,0 +1,512 @@
+<include file="Public:header" />
+<script language="javascript">var webpath="__PUBLIC__";</script>
+<script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.all.min.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/ueditor/themes/default/css/ueditor.css"/>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#submit").click(function(){
+			if($("#title").val()==0){
+			   alert('请填写资讯标题');
+			   return false;
+			}
+			if($("#cate_id").val()==0){
+			   alert('请选择资讯分类');
+			   return false;
+			}
+		});
+		//编辑器
+		var editor = UE.getEditor('text', {initialFrameHeight:300});
+		var editor2 = UE.getEditor('fees_in', {initialFrameHeight:300});
+		var editor3 = UE.getEditor('fees_out', {initialFrameHeight:300});
+		var editor4 = UE.getEditor('notice', {initialFrameHeight:300});
+		var editor5 = UE.getEditor('visa', {initialFrameHeight:300});
+	});
+</script>
+</head>
+<body>
+<form action="{:u('Line/add')}" method="POST" name="myform" id="myform" enctype="multipart/form-data" style="margin-top:10px;">
+  <div class="pad-10">
+  <div class="col-tab">
+  <ul class="tabBut cu-li">
+    <li id="tab_setting_1" class="on" onClick="SwapTab('setting','on','',5,1);">基本信息</li>
+	<li id="tab_setting_2" onClick="SwapTab('setting','on','',5,2);">附加设置</li>
+	<li id="tab_setting_3" onClick="SwapTab('setting','on','',5,3);">交通信息</li>
+	<li id="tab_setting_4" onClick="SwapTab('setting','on','',5,4);">住宿信息</li>
+	<li id="tab_setting_5" onClick="SwapTab('setting','on','',5,5);">SEO设置</li>
+  </ul>
+  <div id="div_setting_1" class="contentList pad-10">
+    <table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+	  <input type="hidden" name="is_zyx" value="1">
+	  <tr>
+        <th>线路类型 :</th>
+        <td>
+			<select style="width:120px;"  disabled="disabled">
+        	<option value="0">--请选择分类--</option>
+			<option value="1" <if condition="$id eq 1"> selected="selected" </if>>周边自由行</option>
+			<option value="2" <if condition="$id eq 2"> selected="selected" </if>>国内自由行</option>
+			<option value="3" <if condition="$id eq 3"> selected="selected" </if>>出境自由行</option>	
+            </select>
+			<if condition="$id eq 1">&nbsp;<input name="tpl_id" type="checkbox" value="1" checked="checked"/>&nbsp;新模版</if>
+			<input type="hidden" name="type_id" value="{$id}">
+		</td>
+      </tr>
+      <tr>
+        <th>目的地 :</th>
+        <td>
+			<select name="cate_id" id="cate_id" style="width:200px;" >
+        	<option value="0">--请选择分类--</option>
+			<volist name="cate_list" id="val">
+			<option value="{$val.id}" <if condition="$goodsInfo['cate_id'] eq $val['id']"> selected="selected" </if>>
+				<for start="2" end="$val['floor']">
+                &nbsp;&nbsp;
+                </for>
+                <if condition="$val['floor'] gt 2">
+                ├&nbsp;
+                </if>{$val.name}</option>
+			</volist>          
+            </select>
+		</td>
+      </tr>
+	  <tr>
+        <th width="100">系列 :</th>
+        <td>
+			<!--
+			<select name="series_id" id="series_id" style="width:120px;" >
+        	<option value="0">--无--</option>
+			<option value="1" <if condition="$goodsInfo['series_id'] eq 1"> selected="selected" </if>>畅享</option>
+			<option value="2" <if condition="$goodsInfo['series_id'] eq 2"> selected="selected" </if>>专享</option>
+			<option value="3" <if condition="$goodsInfo['series_id'] eq 3"> selected="selected" </if>>尊享</option>		
+			<option value="4" <if condition="$goodsInfo['series_id'] eq 4"> selected="selected" </if>>奢享</option>					
+            </select>
+			-->
+			<input type="radio" name="series_id" value="0" checked="checked" />&nbsp;无&nbsp;
+			<input type="radio" name="series_id" value="1" <if condition="$goodsInfo['series_id'] eq 1">checked="checked" </if> />&nbsp;畅享&nbsp;
+			<input type="radio" name="series_id" value="2" <if condition="$goodsInfo['series_id'] eq 2">checked="checked" </if> />&nbsp;专享&nbsp;
+			<input type="radio" name="series_id" value="3" <if condition="$goodsInfo['series_id'] eq 3">checked="checked" </if> />&nbsp;尊享&nbsp;
+			<input type="radio" name="series_id" value="4" <if condition="$goodsInfo['series_id'] eq 4">checked="checked" </if> />&nbsp;奢享&nbsp;
+		</td>
+      </tr>
+	  <tr>
+        <th width="100">品牌 :</th>
+        <td>
+			<!--
+			<select name="brand_id" id="brand_id" style="width:120px;" >
+        	<option value="0">--无--</option>
+			<option value="1" <if condition="$goodsInfo['brand_id'] eq 1"> selected="selected" </if>>周末地图</option>
+			<option value="2" <if condition="$goodsInfo['brand_id'] eq 2"> selected="selected" </if>>团游</option>
+			<option value="3" <if condition="$goodsInfo['brand_id'] eq 3"> selected="selected" </if>>俏夕阳</option>					
+            </select>
+			-->
+			<input type="radio" name="brand_id" value="0" checked="checked" />&nbsp;无&nbsp;
+			<input type="radio" name="brand_id" value="1" <if condition="$goodsInfo['brand_id'] eq 1">checked="checked" </if> />&nbsp;团游&nbsp;
+			<input type="radio" name="brand_id" value="2" <if condition="$goodsInfo['brand_id'] eq 2">checked="checked" </if> />&nbsp;俏夕阳&nbsp;
+			<input type="radio" name="brand_id" value="3" <if condition="$goodsInfo['brand_id'] eq 3">checked="checked" </if> />&nbsp;周末地图&nbsp;
+			<input type="radio" name="brand_id" value="4" <if condition="$goodsInfo['brand_id'] eq 4">checked="checked" </if> />&nbsp;嘻哈亲子&nbsp;
+		</td>
+      </tr>
+	  <tr>
+        <th width="100">标签 :</th>
+        <td>
+			<input name="Fruit[]" type="checkbox" value="1" <if condition="in_array(1,$goodsInfo['switch'])">checked="checked"</if>/>&nbsp;自组团&nbsp;
+			<input name="Fruit[]" type="checkbox" value="2" <if condition="in_array(2,$goodsInfo['switch'])">checked="checked"</if>/>&nbsp;特价游&nbsp;
+			<input name="Fruit[]" type="checkbox" value="3" <if condition="in_array(3,$goodsInfo['switch'])">checked="checked"</if>/>&nbsp;热门&nbsp;
+			<input name="Fruit[]" type="checkbox" value="4" <if condition="in_array(4,$goodsInfo['switch'])">checked="checked"</if>/>&nbsp;团队&nbsp;
+			<input name="Fruit[]" type="checkbox" value="5" <if condition="in_array(5,$goodsInfo['switch'])">checked="checked"</if>/>&nbsp;新产品&nbsp;
+			<input name="Fruit[]" type="checkbox" value="6" <if condition="in_array(6,$goodsInfo['switch'])">checked="checked"</if>/>&nbsp;{:C('switch.6')}&nbsp;
+			<span style="color:red;font-weight:bold;">(最多勾选两个)(12月31日后停用)</span>
+		</td>
+      </tr>
+	  <tr>
+        <th width="100">新标签 :</th>
+        <td><input type="text" name="tags" id="tags" class="input-text" size="60" value="{$goodsInfo.tags}"><b style="color:red;font-weight:bold;">(自组团,温泉,滑雪)</b></td>
+      </tr>	
+	  <tr>
+        <th width="100">付费服务 :</th>
+        <td>
+			<input name="Apple[]" type="checkbox" value="1" <if condition="in_array(1,$goodsInfo['service'])">checked="checked"</if>/>&nbsp;上门接送&nbsp;&nbsp;&nbsp;<b style="color:red;font-weight:bold;">(自组团含接送不要勾选，同行线路不含接送需勾选)		
+		</td>
+      </tr>
+	  <!--
+	  <tr>
+        <th width="100">特别赠送 :</th>
+        <td><input type="text" name="gift" class="input-text" size="60" value="{$goodsInfo.gift}" ></td>
+      </tr>
+	  <tr>
+        <th width="100">团队景点 :</th>
+        <td><input type="text" name="scenic" class="input-text" size="60" value="{$goodsInfo.scenic}" >(手填，仅供团队页面显示)</td>
+      </tr>
+	  -->
+	  <tr>
+        <th width="100">供应商标识 :</th>
+        <td><input type="text" name="tag" class="input-text" size="60" value="{$goodsInfo.tag}" >(有则填写缩写，无则留空，仅限同行散客)</td>
+      </tr>	  
+      <tr>
+        <th width="100">主标题 :</th>
+        <td><input type="text" name="name" class="input-text" size="60" value="{$goodsInfo.name}" ><b style="color:red;font-weight:bold;">(目的地+出游方式+核心卖点+*享+天数)</b></td>
+      </tr>
+      <tr>
+        <th width="100">副标题 :</th>
+        <td><input type="text" name="subname" class="input-text" size="60" value="{$goodsInfo.subname}" ><b style="color:red;font-weight:bold;">(+主标题总字数不超过23字)</b></td>
+      </tr>
+	  <tr>
+        <th width="100">序列号 :</th>
+        <td><input type="text" name="sn" class="input-text" size="60" value="{$sn}" readonly><b style="color:red;font-weight:bold;">(自动生成)</b></td>
+      </tr>
+	  <!--
+	  <tr>
+        <th width="100">市场价 :</th>
+        <td><input type="text" name="market_price" class="input-text" size="60" value="{$goodsInfo.market_price}"></td>
+      </tr>
+	  -->
+	  <tr>
+        <th width="100">游玩天数 :</th>
+        <td><input type="text" name="days" class="input-text" size="4" value="{$goodsInfo.days}">天</td>
+      </tr>
+	  <tr>
+        <th width="100">提前天数 :</th>
+        <td><input type="text" name="sign_up" class="input-text" size="4" value="{$goodsInfo.sign_up}">天&nbsp;&nbsp;<b style="color:red;font-weight:bold;">(此日期也为网站上线路的提前下线天数)</b></td>
+      </tr>
+      <tr>
+      	<th>缩略图 :</th>
+      	<td>
+            <input type="file" name="imgurl" class="input-text" size=21 style="height:25px;"/><b style="color:red;font-weight:bold;">(选择横版无水印清晰美图)</b>
+        </td>
+      </tr>
+	  <tr>
+		<th>线路特色 :</th>
+		<td>
+			<p style="color:red;font-weight:bold;">1. 3-6条特色</p>
+			<p style="color:red;font-weight:bold;">2. 特色前加上"★"区分</p>
+			<p style="color:red;font-weight:bold;">3. 特色结尾没标点</p>
+			<textarea style="width:70%;" name="info" id="text">{$goodsInfo.info}</textarea>
+		</td>
+	  </tr>     
+      <!--<input type="hidden" name="id" value="{$goodsInfo.id}" id="items_id"/>-->
+    </table>
+  </div>
+  <div id="div_setting_2" class="contentList pad-10 hidden">
+    <table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+	  <tr>
+		<th width="100">费用包含 :</th>
+		<td>
+			<p style="color:red;font-weight:bold;">出境、长线标准：1.航班&nbsp;2.酒店&nbsp;3.其他&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;短线标准：1.酒店&nbsp;2.景点&nbsp;3.其他</p>
+			<textarea style="width:70%;" id="fees_in" name="fees_in">{$goodsInfo.fees_in}</textarea>
+		</td>
+	  </tr>
+	  <tr>
+		<th>费用不含 :</th>
+		<td>
+			<p style="color:red;font-weight:bold;">出境标准：1.签证&nbsp;2.保险&nbsp;3.其他&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;长线、短线标准：1.保险&nbsp;2.其他&nbsp;</p>
+			<textarea style="width:70%;" id="fees_out" name="fees_out">{$goodsInfo.fees_out}</textarea>
+		</td>
+	  </tr>
+	  <tr>
+		<th>预定须知 :</th>
+		<td>
+			<b style="color:red;font-weight:bold;">1.自费 2.购物 3.特别提醒 4.备注说明</b>
+			<textarea style="width:70%;" id="notice" name="notice">{$goodsInfo.notice}</textarea>
+		</td>
+	  </tr>
+      <tr>
+		<th>签证材料 :</th>
+		<td>
+			<textarea style="width:70%;" id="visa" name="visa">{$goodsInfo.visa}</textarea>
+		</td>
+	  </tr> 
+    </table>
+    
+    </div>
+  <div id="div_setting_3" class="contentList pad-10 hidden">
+	  <div id="traffic_box">
+	    <if condition="$flight_data">
+		<volist name="flight_data" id="vo">
+		<table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+		  <tr>
+			<th width="100"></th>
+			<td>第&nbsp;<input type="text" name="daytime[]" class="input-text" size="2" value="{$vo.daytime}">天</td>
+		  </tr>
+		  <tr>
+			<th width="100">交通方式 :</th>
+			<td><input type="text" name="traffic_type[]" class="input-text" size="60" value="飞机" ></td>
+		  </tr>
+		  <tr>
+			<th width="100">参考车次/船次/航班号 :</th>
+			<td><input type="text" name="traffic_no[]" class="input-text" size="60" value="{$vo.traffic_no}" ></td>
+		  </tr>
+		  <tr>
+			<th width="100">参考等级 :</th>
+			<td><input type="text" name="traffic_level[]" class="input-text" size="60" value="经济舱" ></td>
+		  </tr>
+		  <tr>
+			<th width="100">出发地 :</th>
+			<td><input type="text" name="start_place[]" class="input-text" size="60" value="{$vo.start_place}" ></td>
+		  </tr>
+		  <tr>
+			<th width="100">参考出发时间 :</th>
+			<td><input type="text" name="start_time[]" class="input-text" size="60" value="{$vo.start_time}" ></td>
+		  </tr>
+		  <tr>
+			<th width="100">参考出发车站/港口/机场 :</th>
+			<td><input type="text" name="start_port[]" class="input-text" size="60" value="{$vo.start_port}" ></td>
+		  </tr>
+		  <tr>
+			<th width="100">到达地 :</th>
+			<td><input type="text" name="arrival_place[]" class="input-text" size="60" value="{$vo.arrival_place}" ></td>
+		  </tr>
+		  <tr>
+			<th width="100">参考到达时间 :</th>
+			<td><input type="text" name="arrival_time[]" class="input-text" size="60" value="{$vo.arrival_time}" ></td>
+		  </tr>
+		  <tr>
+			<th width="100">参考到达车站/港口/机场 :</th>
+			<td><input type="text" name="arrival_port[]" class="input-text" size="60" value="{$vo.arrival_port}" ></td>
+		  </tr>		  
+		</table>
+		</volist>
+		<else/>
+		<table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+		  <tr>
+			<th width="100"><a href="javascript:;" onclick="addTraffic()">[+]</a></th>
+			<td>第&nbsp;<input type="text" name="daytime[]" class="input-text" size="2" value="">天</td>
+		  </tr>
+		  <tr>
+			<th width="100">交通方式 :</th>
+			<td><input type="text" name="traffic_type[]" class="input-text" size="60" value="飞机" ></td>
+		  </tr>
+		  <tr>
+			<th width="100">参考车次/船次/航班号 :</th>
+			<td><input type="text" name="traffic_no[]" class="input-text" size="60" value="" ></td>
+		  </tr>
+		  <tr>
+			<th width="100">参考等级 :</th>
+			<td><input type="text" name="traffic_level[]" class="input-text" size="60" value="经济舱" ></td>
+		  </tr>
+		  <tr>
+			<th width="100">出发地 :</th>
+			<td><input type="text" name="start_place[]" class="input-text" size="60" value="" ></td>
+		  </tr>
+		  <tr>
+			<th width="100">参考出发时间 :</th>
+			<td><input type="text" name="start_time[]" class="input-text" size="60" value="" ></td>
+		  </tr>
+		  <tr>
+			<th width="100">参考出发车站/港口/机场 :</th>
+			<td><input type="text" name="start_port[]" class="input-text" size="60" value="" ></td>
+		  </tr>
+		  <tr>
+			<th width="100">到达地 :</th>
+			<td><input type="text" name="arrival_place[]" class="input-text" size="60" value="" ></td>
+		  </tr>
+		  <tr>
+			<th width="100">参考到达时间 :</th>
+			<td><input type="text" name="arrival_time[]" class="input-text" size="60" value="" ></td>
+		  </tr>
+		  <tr>
+			<th width="100">参考到达车站/港口/机场 :</th>
+			<td><input type="text" name="arrival_port[]" class="input-text" size="60" value="" ></td>
+		  </tr>		  
+		</table>
+		</if>
+		<input type="hidden" name="pid" value="{$goodsInfo.id}">
+	  </div>
+  </div>
+  <div id="div_setting_4" class="contentList pad-10 hidden">
+	  <div id="hotel_box">
+	    <if condition="$hotel_data">
+	    <volist name="hotel_data" id="vo">
+		<table width="100%" cellpadding="2" cellspacing="1" class="table_form" id="hotel_box">
+		  <tr>
+			<th width="100"></th>
+			<td>第&nbsp;<input type="text" name="hotel_day[]" class="input-text" size="2" value="{$vo.hotel_day}">天</td>
+		  </tr>
+		  <tr>
+			<th width="100">房型 :</th>
+			<td><input type="text" name="hotel_type[]" class="input-text" size="60" value="{$vo.hotel_type}" ></td>
+		  </tr>
+		  <tr>
+			<th width="100">酒店名称 :</th>
+			<td>
+				<input type="text" name="hotel_name[]" class="input-text" size="60" value="" >
+				<input type="button" name="getHotel" value="搜索酒店" >
+				<!--<input type="hidden" name="hotel_id[]" value="{$vo.hotel_id}" >-->
+			</td>
+		  </tr>
+		  <tr>
+			<th width="100">酒店ID :</th>
+			<td><input type="text" name="hotel_id[]" class="input-text" size="60" value="{$vo.hotel_id}" ></td>
+		  </tr>
+		</table>
+		</volist>
+		<else/>
+		<table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+		  <tr>
+			<th width="100"><a href="javascript:;" onclick="addHotel()">[+]</a></th>
+			<td>第&nbsp;<input type="text" name="hotel_day[]" class="input-text" size="2" value="{$vo.hotel_day}">天</td>
+		  </tr>
+		  <tr>
+			<th width="100">房型 :</th>
+			<td><input type="text" name="hotel_type[]" class="input-text" size="60" value="{$vo.hotel_type}" ></td>
+		  </tr>
+		  <tr>
+			<th width="100">酒店名称 :</th>
+			<td>
+				<input type="text" name="hotel_name[]" class="input-text" size="60" value="" >
+				<input type="button" name="getHotel" value="获取酒店ID" >
+				<!--<input type="hidden" name="hotel_id[]" value="{$vo.hotel_id}" >-->
+			</td>
+		  </tr>
+		  <tr>
+			<th width="100">酒店ID :</th>
+			<td><input type="text" name="hotel_id[]" class="input-text" size="60" value="{$vo.hotel_id}" ></td>
+		  </tr>
+		</table>
+		</if>
+	  </div>
+  </div>
+  <div id="div_setting_5" class="contentList pad-10 hidden">
+    <table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+      <tr>
+        <th width="100">Title :</th>
+        <td><input type="text" name="seo_title" class="input-text" size="60" value="{$goodsInfo.seo_title}"></td>
+      </tr>
+      <tr>
+        <th>Keywords :</th>
+        <td><input type="text" name="seo_keys" class="input-text" size="60" value="{$goodsInfo.seo_keys}"></td>
+      </tr>
+      <tr>
+        <th>Description :</th>
+        <td><textarea name="seo_desc" cols="80" rows="8">{$goodsInfo.seo_desc}</textarea></td>
+      </tr>
+    </table>   
+  </div>  
+  <input type="hidden" name="jumpUrl" value="{$jumpUrl}">
+  <div class="bk15"></div>
+  <div class="btn">
+    <input type="submit" value="提交" name="submit" class="button" id="submit">
+  </div>
+
+</div>
+</div>
+</form>
+<script type="text/javascript">
+function addHotel()
+{
+	var newdiv = '<table width="100%" cellpadding="2" cellspacing="1" class="table_form"><tr>' +
+		'<th width="100"><a href="javascript:;" class="removeHotel">[-]</a></th>' +
+		'<td>第&nbsp;<input type="text" name="hotel_day[]" class="input-text" size="2" value="{$vo.hotel_day}">天</td>' +
+		'</tr>' +
+		'<tr>' +
+		'<th width="100">房型 :</th>' +
+		'<td><input type="text" name="hotel_type[]" class="input-text" size="60" value="{$vo.hotel_type}" ></td>' +
+		'</tr>' +
+		'<tr>' +
+		'<th width="100">酒店名称 :</th>' +
+		'<td>' +
+		'<input type="text" name="hotel_name[]" class="input-text" size="60" value="" >' +
+		'<input type="button" name="getHotel" value="获取酒店ID" >' +
+		//'<!--<input type="hidden" name="hotel_id[]" value="{$vo.hotel_id}" >-->'.
+		'</td>' +
+		'</tr>' +
+		'<tr>' +
+		'<th width="100">酒店ID :</th>' +
+		'<td><input type="text" name="hotel_id[]" class="input-text" size="60" value="{$vo.hotel_id}" ></td>' +
+		'</tr></table>'; 
+	$('#hotel_box').append(newdiv);
+}
+
+function addTraffic(){
+	var newdiv = '<table width="100%" cellpadding="2" cellspacing="1" class="table_form">' +
+		'<tr>' +
+		'<th width="100"><a href="javascript:;" class="removeTraffic">[-]</a></th>' +
+		'<td>第&nbsp;<input type="text" name="daytime[]" class="input-text" size="2" value="">天</td>' +
+		'</tr>' +
+		'<tr>' +
+		'<th width="100">交通方式 :</th>' +
+		'<td><input type="text" name="traffic_type[]" class="input-text" size="60" value="飞机" ></td>' +
+		'</tr>' +
+		'<tr>' +
+		'<th width="100">参考车次/船次/航班号 :</th>' +
+		'<td><input type="text" name="traffic_no[]" class="input-text" size="60" value="" ></td>' +
+		'</tr>' +
+		'<tr>' +
+		'<th width="100">参考等级 :</th>' +
+		'<td><input type="text" name="traffic_level[]" class="input-text" size="60" value="经济舱" ></td>' +
+		'</tr>' +
+		'<tr>' +
+		'<th width="100">出发地 :</th>' +
+		'<td><input type="text" name="start_place[]" class="input-text" size="60" value="" ></td>' +
+		'</tr>' +
+		'<tr>' +
+		'<th width="100">参考出发时间 :</th>' +
+		'<td><input type="text" name="start_time[]" class="input-text" size="60" value="" ></td>' +
+		'</tr>' +
+		'<tr>' +
+		'<th width="100">参考出发车站/港口/机场 :</th>' +
+		'<td><input type="text" name="start_port[]" class="input-text" size="60" value="" ></td>' +
+		'</tr>' +
+		'<tr>' +
+		'<th width="100">到达地 :</th>' +
+		'<td><input type="text" name="arrival_place[]" class="input-text" size="60" value="" ></td>' +
+		'</tr>' +
+		'<tr>' +
+		'<th width="100">参考到达时间 :</th>' +
+		'<td><input type="text" name="arrival_time[]" class="input-text" size="60" value="" ></td>' +
+		'</tr>' +
+		'<tr>' +
+		'<th width="100">参考到达车站/港口/机场 :</th>' +
+		'<td><input type="text" name="arrival_port[]" class="input-text" size="60" value="" ></td>' +
+		'</tr>' +
+		'</table>';
+	$('#traffic_box').append(newdiv);
+}
+
+$('input[name="getHotel"]').live('click',function(){
+	var srcData = $(this).parent().find('.input-text').val();
+	var obj = $(this).parent().parent().parent().find('input[name="hotel_id[]"]');
+	//var srcData = $(this).parent().parent().parent().find('textarea').val();
+	//srcData = delHtmlTag(srcData);
+	$.ajax({
+		url: '__ROOT__/Ajax/getHotel',
+		type: 'POST',
+		data:{srcData:srcData},
+		dataType: 'json',
+		success: function(result){
+			if(result.data){
+				//alert(result.data);
+				$(obj).val(result.data);
+			}else{
+				alert('未匹配到，请先添加酒店');
+			}
+		}
+	});
+});
+
+$(document).ready(function(){
+	$('input[name="is_zyx"]').click(function(){
+		$(this).css('display','none');
+		var is_zyx = $('input[name="is_zyx"]:checked').val();
+		if(is_zyx){
+			alert('zyx');
+			$.each($('.zyx_show'),function(){
+				$(this).parent().parent().find('.zyx_show').css('display','');
+			});
+		}else{
+			alert('gty');
+			$.each($('.zyx_show'),function(){
+				$(this).parent().parent().find('.zyx_show').css('display','none');
+			});
+		}
+	});
+	
+	$('.removeHotel').live('click',function(){
+		$(this).parent().parent().parent().remove();
+	})
+	
+	$('.removeTraffic').live('click',function(){
+		$(this).parent().parent().parent().remove();
+	})
+});
+</script>
+</body>
+</html>

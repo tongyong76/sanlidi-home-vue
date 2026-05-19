@@ -1,0 +1,191 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>自由行_自由行报价_定制自由行_三三旅游网</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link type="text/css" rel="stylesheet" href="../Public/css/reset.css">
+<link type="text/css" rel="stylesheet" href="../Public/css/style.css">
+<script type="text/javascript" src="../Public/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../Public/js/jquery.lazyload.min.js"></script>
+<script>var ROOT_PATH = '__ROOT__';</script>
+<script type="text/javascript" src="../Public/js/common.js"></script>
+<script type="text/javascript" src="../Public/js/travel.js"></script>
+<!--[if IE 6]>
+<link rel="stylesheet" type="text/css" href="../Public/css/ie6.css">
+<![endif]-->
+<include file="Public:statistics"/>
+</head>
+<body>
+    <include file="Public:header" />
+    <!--头部结束-->
+    <div id="sliderMain">
+        <!--幻灯开始-->
+        <div class="sliderDiv" id="sliderDiv">
+            <ul class="sliderCon" id="sliderCon">
+				<volist name="bannerList" id="vo">
+                <li <if condition="$key eq 0"><else/>class="none"</if>>
+					<if condition="$vo['link']">
+					<a class="linka" href="{$vo.link}" target="_blank">
+					<else/>
+					<a class="linka" href="javascript:;">
+					</if>	
+					<img src="__ROOT__{$vo.imgurl}"></a>
+				</li>
+				</volist>
+            </ul>
+            <div class="sliderProduct">
+				<volist name="hotList" id="vo" offset="0" length="1">
+                <dl>
+                  <dt class="sliderPic"><a href="__ROOT__/{$vo.pinyin}/xianlu-{$vo.id}.html" target="_blank"><img src="__ROOT__{$vo.imgurl}" width="240" height="146" align="absmiddle"><i><img src="../Public/images/ziyouxing/icon.png"></i></a></dt>
+                  <dt class="sliderWord"><{$vo.name}>{$vo.subname}</dt>
+                  <dt class="sliderInfor">{$vo.info|strcut=###,30}</dt>
+                  <dt class="sliderPrice">直降<del>¥{$vo['market_price']-$vo['minprice']}</del><span>现价 ¥<strong>{$vo.minprice}</strong></span></dt>
+                  <dt class="sliderLink"><a href="__ROOT__/{$vo.pinyin}/xianlu-{$vo.id}.html" target="_blank">马上抢购</a></dt>
+                </dl>
+				</volist>
+              </a>
+            </div>
+            <ul class="mSlider_nav_orange mSlider_nav">
+				<volist name="bannerList" id="vo">
+                <li <if condition="$key eq 0">class="current"</if>><a href="javascript:void(0)">{$key+1}</a></li>
+				</volist>
+            </ul>
+        </div>
+        <!--幻灯结束-->
+    </div>
+    <div class="wrap">
+        <div class="travelWrap clearfix">
+          <div class="mT40">
+          <div class="leftAd fl travelBg1">
+            <div class="travelTitle">出境自由行</div>
+            <div class="travelList">
+              <ul>
+				<volist name="cjFreeCate" id="vo" offset="0" length="10">
+                <li><a href="__ROOT__/ziyouxing/{$vo.pinyin}/">{$vo.name}</a></li>
+				</volist>
+              </ul>
+            </div>
+          </div>
+          <div class="route_list fr">
+            <div class="travelHead"><em>出境自由行</em>
+				<span>
+				<volist name="cjFreeCate" id="vo" offset="0" length="10">
+				<a href="__ROOT__/ziyouxing/{$vo.pinyin}/" target="_blank">{$vo.name}</a>
+				</volist>
+				<!--<i><img src="../Public/images/ziyouxing/icon1.gif"></i>签证+机票+酒店<i><img src="../Public/images/ziyouxing/icon2.gif"></i>-->
+				</span><!--<a href="#" target="_blank" class="travelMore">更多线路>></a>-->
+			</div>
+            <div class="main_part_item m_p_on clearfix">
+                	<ul class="main_part_it">
+                        <volist name="cjFreeLine" id="vo" offset="0" length="3">
+                        <li <if condition="$key eq 2">class="nomar"</if>><div class="m_p_pic"><a href="__ROOT__/chujing/xianlu-{$vo.id}.html" target="_blank"><img class="lazy" src="../Public/images/img_loading.gif" data-original="__ROOT__{$vo.imgurl}" /></a></div><div class="m_p_bg"></div><div class="m_p_des"><div class="m_p_name"><a href="__ROOT__/zhoubian/xianlu-{$vo.id}.html" target="_blank"><em><{$vo.name}></em>{$vo.subname}</a></div><div class="m_p_price">￥<span>{$vo.minprice}</span><i>起</i></div></div></li>
+                        </volist>
+                    </ul>
+                    <div class="main_part_line clearfix">
+                    	<ul class="m_line_left">
+                            <volist name="cjFreeLine" id="vo" offset="3" length="3">
+                            <li><a class="line_des" href="__ROOT__/chujing/xianlu-{$vo.id}.html" target="_blank"><{$vo.name}>{$vo.subname}</a><span class="line_price">￥<span class="l_p">{$vo.minprice}</span><i>起</i></span></li>
+							</volist>
+                        </ul>
+                        <ul class="m_line_left noborright">
+                            <volist name="cjFreeLine" id="vo" offset="6" length="3">
+                            <li><a class="line_des" href="__ROOT__/chujing/xianlu-{$vo.id}.html" target="_blank"><{$vo.name}>{$vo.subname}</a><span class="line_price">￥<span class="l_p">{$vo.minprice}</span><i>起</i></span></li>
+							</volist>
+                        </ul>                        
+                    </div>
+                </div>
+          </div>
+          </div>
+        </div>
+        <div class="travelWrap clearfix">
+          <div class="mT40">
+          <div class="leftAd fl travelBg2">
+            <div class="travelTitle">国内自由行</div>
+            <div class="travelList">
+              <ul>
+                <volist name="gnFreeCate" id="vo" offset="0" length="10">
+                <li><a href="__ROOT__/ziyouxing/{$vo.pinyin}/">{$vo.name}</a></li>
+				</volist>
+              </ul>
+            </div>
+          </div>
+          <div class="route_list fr">
+            <div class="travelHead"><em>国内自由行</em>
+				<span>
+				<volist name="gnFreeCate" id="vo" offset="0" length="10">
+				<a href="__ROOT__/ziyouxing/{$vo.pinyin}/" target="_blank">{$vo.name}</a>
+				</volist>
+				<!--<i><img src="../Public/images/ziyouxing/icon1.gif"></i>机票+酒店<i><img src="../Public/images/ziyouxing/icon2.gif"></i>-->
+				</span><!--<a href="#" target="_blank" class="travelMore">更多线路>></a>-->
+			</div>
+            <div class="main_part_item m_p_on clearfix">
+                	<ul class="main_part_it">
+                        <volist name="gnFreeLine" id="vo" offset="0" length="3">
+                        <li <if condition="$key eq 2">class="nomar"</if>><div class="m_p_pic"><a href="__ROOT__/guonei/xianlu-{$vo.id}.html" target="_blank"><img class="lazy" src="../Public/images/img_loading.gif" data-original="__ROOT__{$vo.imgurl}" /></a></div><div class="m_p_bg"></div><div class="m_p_des"><div class="m_p_name"><a href="__ROOT__/zhoubian/xianlu-{$vo.id}.html" target="_blank"><em><{$vo.name}></em>{$vo.subname}</a></div><div class="m_p_price">￥<span>{$vo.minprice}</span><i>起</i></div></div></li>
+                        </volist>
+                    </ul>
+                    <div class="main_part_line clearfix">
+                    	<ul class="m_line_left">
+                            <volist name="gnFreeLine" id="vo" offset="3" length="3">
+                            <li><a class="line_des" href="__ROOT__/guonei/xianlu-{$vo.id}.html" target="_blank"><{$vo.name}>{$vo.subname}</a><span class="line_price">￥<span class="l_p">{$vo.minprice}</span><i>起</i></span></li>
+							</volist>
+                        </ul>
+                        <ul class="m_line_left noborright">
+                            <volist name="gnFreeLine" id="vo" offset="6" length="3">
+                            <li><a class="line_des" href="__ROOT__/guonei/xianlu-{$vo.id}.html" target="_blank"><{$vo.name}>{$vo.subname}</a><span class="line_price">￥<span class="l_p">{$vo.minprice}</span><i>起</i></span></li>
+							</volist>
+                        </ul>                        
+                    </div>
+                </div>
+          </div>
+          </div>
+        </div>
+        <div class="travelWrap clearfix">
+          <div class="mT40">
+          <div class="leftAd fl travelBg3">
+            <div class="travelTitle">周边自由行</div>
+            <div class="travelList">
+              <ul>
+                <volist name="zbFreeCate" id="vo" offset="0" length="10">
+                <li><a href="__ROOT__/ziyouxing/{$vo.pinyin}/">{$vo.name}</a></li>
+				</volist>
+              </ul>
+            </div>
+          </div>
+          <div class="route_list fr">
+            <div class="travelHead">
+				<em>周边自由行</em>
+				<span><!--<i><img src="../Public/images/ziyouxing/icon1.gif"></i>酒店+门票<i><img src="../Public/images/ziyouxing/icon2.gif"></i>-->
+				<volist name="zbFreeCate" id="vo" offset="0" length="10">
+				<a href="__ROOT__/ziyouxing/{$vo.pinyin}/" target="_blank">{$vo.name}</a>
+				</volist>
+				</span><!--<a href="#" target="_blank" class="travelMore">更多线路>></a>-->
+			</div>
+            <div class="main_part_item m_p_on clearfix">
+                	<ul class="main_part_it">
+						<volist name="zbFreeLine" id="vo" offset="0" length="3">
+                        <li <if condition="$key eq 2">class="nomar"</if>><div class="m_p_pic"><a href="__ROOT__/zhoubian/xianlu-{$vo.id}.html" target="_blank"><img class="lazy" src="../Public/images/img_loading.gif" data-original="__ROOT__{$vo.imgurl}" /></a></div><div class="m_p_bg"></div><div class="m_p_des"><div class="m_p_name"><a href="__ROOT__/zhoubian/xianlu-{$vo.id}.html" target="_blank"><em><{$vo.name}></em>{$vo.subname}</a></div><div class="m_p_price">￥<span>{$vo.minprice}</span><i>起</i></div></div></li>
+                        </volist>
+					</ul>
+                    <div class="main_part_line clearfix">
+                    	<ul class="m_line_left">
+							<volist name="zbFreeLine" id="vo" offset="3" length="3">
+                            <li><a class="line_des" href="__ROOT__/zhoubian/xianlu-{$vo.id}.html" target="_blank"><{$vo.name}>{$vo.subname}</a><span class="line_price">￥<span class="l_p">{$vo.minprice}</span><i>起</i></span></li>
+							</volist>
+						</ul>
+                        <ul class="m_line_left noborright">
+							<volist name="zbFreeLine" id="vo" offset="6" length="3">
+                            <li><a class="line_des" href="__ROOT__/zhoubian/xianlu-{$vo.id}.html" target="_blank"><{$vo.name}>{$vo.subname}</a><span class="line_price">￥<span class="l_p">{$vo.minprice}</span><i>起</i></span></li>
+							</volist>
+						</ul>                        
+                    </div>
+                </div>
+          </div>
+          </div>
+        </div>
+    </div>
+    <include file="Public:footer_notq" />
+</body>
+</html>

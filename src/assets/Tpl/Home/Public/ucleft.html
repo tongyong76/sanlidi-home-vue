@@ -1,0 +1,28 @@
+                    <div class="u_header">会员中心</div>
+                    <div class="u_portrait clearfix">
+                    	<div class="u_p_left fl"><if condition="$nav_user_info['imgurl']"><img src="__ROOT__/Uploads/avatar/{$nav_user_info.imgurl}"><else/><img src="../Public/images/portrait.png"></if></div>
+                        <div class="u_p_right fr">
+                        	<div class="u_id"><if condition="$nav_user_info['nickname']">{$nav_user_info.nickname}<else/>{$nav_user_info.phone}</if></div>
+                            <div class="u_welcome">欢迎您！<br/>来到三三旅游，<br/>开启您的旅程！</div>
+                        </div>
+						<div class="u_mask"><img width="130" height="130" src="../Public/images/headmask.png"/></div>
+                    </div>
+					<div class="center_list">
+                    	<dl>
+                        	<dt>订单中心</dt>
+							<dd><a <if condition="$rNav eq 'wddd'">class="active"</if> href="__ROOT__/member/">我的订单</a></dd>
+							<dd><a <if condition="$rNav eq 'lljl'">class="active"</if> href="__ROOT__/member/record.html">浏览记录</a></dd>
+                            <!--
+							<dd>未结束的订单</dd>
+                            <dd>已结束的订单</dd>
+							-->
+                        </dl>
+                        <dl>
+                        	<dt>资料中心</dt>
+                            <dd><a <if condition="$rNav eq 'jbxx'">class="active"</if> href="__ROOT__/member/info.html">基本信息</a></dd>
+							<!--
+                            <dd><a <if condition="$rNav eq 'wdtx'">class="active"</if> href="__ROOT__/member/head.html">我的头像</a></dd>
+							-->
+							<dd><a <if condition="$rNav eq 'xgmm'">class="active"</if> href="__ROOT__/member/password.html">修改密码</a></dd>
+                        </dl>
+                    </div>

@@ -1,0 +1,348 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>团队旅游_团队游线路_团队游报价_三三旅游网</title>
+<meta name="keywords" content="">
+<meta name="description" content="三三旅游团队游频道：为您提供团队旅游线路、报价，100%私人定制，专属旅游顾问为您提供特色行程定制，让您团队享受无忧旅程。24小时咨询预订电话：66667777">
+<link type="text/css" rel="stylesheet" href="../Public/css/reset.css">
+<link type="text/css" rel="stylesheet" href="../Public/css/style.css">
+<link type="text/css" href="../Public/theme/tuandui.css" rel="stylesheet" />
+<script type="text/javascript" src="../Public/js/jquery-1.11.1.min.js"></script>
+<script>var ROOT_PATH = '__ROOT__';</script>
+<script type="text/javascript" src="../Public/js/common.js"></script>
+<script type="text/javascript" src="../Public/js/team.js"></script>
+<include file="Public:statistics"/>
+</head>
+<body>
+<include file="Public:header"/>
+<!--头部结束-->
+<div class="search_nav tsearch_nav">
+    <a href="/">首页</a><b>></b><span>团队出游</span>
+</div>
+<div class="tSlide" id="tSlideMain" style="margin:10px 0 0 0;">
+    <div class="sliderDiv" id="sliderDiv">
+        <!--
+		<ul class="sliderCon" id="sliderCon">
+			<volist name="bannerList" id="vo">
+            <li class="">
+                <a class="linka" href="{$vo.link}" target="_blank"><img src="__ROOT__{$vo.imgurl}" alt="{$vo.title}"></a>
+            </li>
+			</volist>
+        </ul>
+		<ul class="mSlider_nav_orange mSlider_nav">
+			<volist name="bannerList" id="vo">
+            <li <if condition="!$key">class="current"</if>><a href="javascript:void(0)">{++$key}</a></li>
+			</volist>
+        </ul>
+		-->
+		<ul class="sliderCon" id="sliderCon">
+            <li class="">
+                <img src="__ROOT__/Uploads/banner/s_54f01bd6aae0f.jpg">
+            </li>
+        </ul> 
+        <ul class="t_nav">
+			<li>
+                <div class="list_menu list_last_menu">
+                    <dl>
+                        <dt>子品牌</dt>
+                        <dd style="width:240px;">
+                            <a href="__ROOT__/pinpai/zizhutuan/" target="_blank" title="三三设计、三三收客、三三导游、三三接送、全程管控、一管到底">自组团</a>
+							<a href="__ROOT__/pinpai/zhuanxiang/" target="_blank" title="特价、适合大众的旅游产品">专享</a>
+							<a href="__ROOT__/pinpai/changxiang/" target="_blank" title="中档、性价比高的旅游产品">畅享</a>
+							<a href="__ROOT__/pinpai/zunxiang/" target="_blank" title="高标准的定制旅游产品">尊享</a>
+							<a href="__ROOT__/pinpai/shexiang/" target="_blank" title="">奢享</a>
+							<br>
+							<a href="__ROOT__/pinpai/shuaicang/" target="_blank" title="最全的上海出港游轮产品">沪上游轮</a>															
+							<a href="__ROOT__/pinpai/tuanyou/" target="_blank" title="一天一百元的特价活动">团游</a>
+							<a href="__ROOT__/pinpai/zhoumoditu/" target="_blank" title="周末出发的周边游产品">周末地图</a>	
+							
+                        </dd>
+                    </dl>
+                </div>
+            </li>
+			<volist name="lineCateList" id="vo" length="1" offset="2">
+            <li>
+                <div class="list_menu">
+                    <dl>
+                        <dt>{$vo.name}</dt>
+                        <dd>
+							<volist name="vo.son" id="voo">
+                            <a target="_blank" href="__ROOT__/group/{$voo.pinyin}/">{$voo.name}</a>
+							</volist>
+                        </dd>
+                    </dl>
+                </div>                        
+            </li>
+			</volist>
+			<volist name="lineCateList" id="vo" length="1" offset="1">
+            <li>
+                <div class="list_menu">
+                    <dl>
+                        <dt>{$vo.name}</dt>
+                        <dd>
+							<volist name="vo.son" id="voo">
+                            <a target="_blank" href="__ROOT__/group/{$voo.pinyin}/">{$voo.name}</a>
+							</volist>
+                        </dd>
+                    </dl>
+                </div>                        
+            </li>
+			</volist>
+			<volist name="lineCateList" id="vo" length="1" offset="0">
+            <li>
+                <div class="list_menu">
+                    <dl>
+                        <dt>{$vo.name}</dt>
+                        <dd>
+							<volist name="vo.son" id="voo">
+                            <a target="_blank" href="__ROOT__/group/{$voo.pinyin}/">{$voo.name}</a>
+							</volist>
+                        </dd>
+                    </dl>
+                </div>                        
+            </li>
+			</volist>
+        </ul>
+    </div>        	
+</div>
+<div class="wrap" style="background:#fffdda;color:#666;margin-top:0;padding-top:10px;">
+	<div class="inside_wrap" style="margin:0 auto;padding-bottom:20px;">
+		<div class="contain">
+			<div class="reason">
+				<div class="r_top" style="margin-top:-30px;">
+					<img src="../Public/theme/tuandui/reason_top.png">
+				</div>  
+				<div class="r_bottom">
+					<ul class="clearfix">
+						<li>
+							<div class="rb_img"><img src="../Public/theme/tuandui/reason_01.jpg"></div>
+							<div class="rb_des">专职导游、车辆专员、餐房专员、产品经理，专为企业服务</div>
+							<div class="rb_title">分工不能再细啦</div>
+						</li>
+						<li>
+							<div class="rb_img"><img src="../Public/theme/tuandui/reason_02.jpg"></div>
+							<div class="rb_des">每周推出一天百元的"团游"、两天三百的“周末地图”，定期推出“团队特惠月”</div>
+							<div class="rb_title">优惠根本停不下来</div>
+						</li>
+						<li>
+							<div class="rb_img"><img src="../Public/theme/tuandui/reason_03.jpg"></div>
+							<div class="rb_des">独家代理王牌景区、买断景点、多家旅游局战略合作</div>
+							<div class="rb_title">掌握资源才是硬道理</div>
+						</li>
+						<li class="nomar">
+							<div class="rb_img"><img src="../Public/theme/tuandui/reason_04.jpg"></div>
+							<div class="rb_des">14年3月16-18日16000人全民游欢乐谷;14年11-12月2000人全民游济州…</div>
+							<div class="rb_title">好不好客户说了算</div>
+						</li>
+					</ul>
+				</div>
+				<div class="r_btm"><img src="../Public/theme/tuandui/rs_bottom.png"></div>
+			</div>
+			<if condition="$slist">
+			<div class="huasuan" style="margin-top:-35px;">
+				<div class="h_top"><img src="../Public/theme/tuandui/hs_top.png"></div>
+				<div class="h_bottom">
+					<div class="hb_item">
+						<div class="hb_title"></div>
+						<table class="hb_list" cellpadding="5" cellspacing="0" border="0" width="100%">
+							
+							<tr>
+								<th width="20"><img src="../Public/theme/tuandui/none.gif" width="1" height="1"></th>
+								<th width="40">序号</th>
+								<th width="120" style="padding-left:50px;">线路名</th>
+								<th width="70">价格</th>
+								<th width="120">特别赠送</th>
+								<th width="380" style="padding-left:50px;">行程景点</th>
+								<th width="270">特价日期</th>
+							</tr>						
+							<volist name="slist" id="vo">
+							<tr>
+								<td><img src="../Public/theme/tuandui/none.gif" width="1" height="1"></td>
+								<td>{++$key}</td>
+								<td style="padding-right:20px;"><a href="__ROOT__/{$vo.pinyin}/xianlu-{$vo.id}.html" target="_blank">{$vo.name}</a></td>
+								<td>{$vo.minprice|isNull=###}</td>
+								<td><if condition="$vo['gift']">{$vo.gift}<else/>-</if></td>
+								<td style="padding-right:20px;overflow:hidden;">{$vo.scenicall|trim=###,','}</td>
+								<td>{$vo.dep}<img src="../Public/theme/tuandui/none.gif" width="1" height="1"></td>
+							</tr>
+							</volist>
+						</table>
+						<div class="hb_notice">*以上线路为三三旅游近期推出的<span>限时特价</span>活动，绝对超值！</div>
+					</div>
+				</div>
+				<div class="r_btm"><img src="../Public/theme/tuandui/rs_bottom.png"></div>
+			</div>
+			</if>
+			<div class="quanmian">
+				<div class="q_top"><img src="../Public/theme/tuandui/qm_top.png"></div>
+				<div class="q_bottom">
+					<div class="qb_item">
+						<ul class="qb_btn clearfix">
+							<li><a href="javascript:void(0)" class="hover">1天汇总</a></li>
+							<li><a href="javascript:void(0)">2天汇总</a></li>
+							<li><a href="javascript:void(0)">3天汇总</a></li>
+							<li><a href="javascript:void(0)">高铁汇总</a></li>
+							<span>*计价标准：本列表报价以单车45人、苏州市区出发，周边县市价格请来电咨询</span>
+						</ul>
+						<div class="qb_set">
+							<div class="qbs_list" style="display:block;">
+								<table class="qb_list" cellpadding="5" cellspacing="0" border="0" width="100%">								
+									<tr>
+										<th class="w20" width="20"></th>
+										<th width="60">序号</th>
+										<th width="150" style="padding-left:50px;">线路名</th>
+										<th width="190"></th>
+										<th width="200">价格</th>
+										<th class="w400" width="400" style="padding-left:50px;">行程景点</th>
+									</tr>
+									<volist name="daylist1" id="vo">
+									<tr>
+										<td class="w20"><img src="../Public/theme/tuandui/none.gif" width="1" height="1"></td>
+										<td>{++$key}</td>
+										<td>
+											<div style="float:left;display:inline-block;padding:0 5px;"><a href="__ROOT__/group/xianlu-{$vo.id}.html" target="_blank">{$vo.name}</a></div>										
+										</td>
+										<td>
+											<div style="height:20px; padding:5px 0;margin-left:5px;">
+												<if condition="$vo['series_id']"><span class="series{$vo.series_id}">{:C('series.'.$vo['series_id'])}</span></if>
+												<if condition="$vo['brand_id']"><span class="brand{$vo.brand_id}">{:C('brand.'.$vo['brand_id'])}</span></if>
+												<volist name="vo.switch" id="voo">
+												<span class="switch{$voo}">{:C('switch.'.$voo)}</span>
+												</volist>
+											</div>
+										</td>
+										<td>{$vo.market_price|isNull=###}</td>
+										<td class="w450">{$vo.scenicall|trim=###,','}<img src="../Public/theme/tuandui/none.gif" width="1" height="1"></td>
+									</tr>
+									</volist>
+								</table>
+							</div>
+							<div class="qbs_list">
+								<table class="qb_list" cellpadding="5" cellspacing="0" border="0" width="100%">
+									<tr>
+										<th class="w20" width="20"></th>
+										<th width="60">序号</th>
+										<th width="150" style="padding-left:50px;">线路名</th>
+										<th width="190"></th>
+										<th width="200">价格</th>
+										<th class="w400" width="400" style="padding-left:50px;">行程景点</th>
+									</tr>
+									<volist name="daylist2" id="vo">
+									<tr>
+										<td class="w20"></td>
+										<td>{++$key}</td>
+										<td>
+											<div style="float:left;display:inline-block;padding:0 5px;"><a href="__ROOT__/group/xianlu-{$vo.id}.html" target="_blank">{$vo.name}</a></div>										
+										</td>
+										<td>
+											<div style="height:20px; padding:5px 0;margin-left:5px;">
+												<if condition="$vo['series_id']"><span class="series{$vo.series_id}">{:C('series.'.$vo['series_id'])}</span></if>
+												<if condition="$vo['brand_id']"><span class="brand{$vo.brand_id}">{:C('brand.'.$vo['brand_id'])}</span></if>
+												<volist name="vo.switch" id="voo">
+												<span class="switch{$voo}">{:C('switch.'.$voo)}</span>
+												</volist>
+											</div>
+										</td>
+										<td>{$vo.market_price|isNull=###}</td>
+										<td class="w450">{$vo.scenicall|trim=###,','}</td>
+									</tr>
+									</volist>
+								</table>
+							</div>
+							<div class="qbs_list">
+								<table class="qb_list" cellpadding="5" cellspacing="0" border="0" width="100%">
+									<tr>
+										<th class="w20" width="20"></th>
+										<th width="60">序号</th>
+										<th width="150" style="padding-left:50px;">线路名</th>
+										<th width="190"></th>
+										<th width="200">价格</th>
+										<th class="w400" width="400" style="padding-left:50px;">行程景点</th>
+									</tr>
+									<volist name="daylist3" id="vo">
+									<tr>
+										<td class="w20"></td>
+										<td>{++$key}</td>
+										<td>
+											<div style="float:left;display:inline-block;padding:0 5px;"><a href="__ROOT__/group/xianlu-{$vo.id}.html" target="_blank">{$vo.name}</a></div>										
+										</td>
+										<td>
+											<div style="height:20px; padding:5px 0;margin-left:5px;">
+												<if condition="$vo['series_id']"><span class="series{$vo.series_id}">{:C('series.'.$vo['series_id'])}</span></if>
+												<if condition="$vo['brand_id']"><span class="brand{$vo.brand_id}">{:C('brand.'.$vo['brand_id'])}</span></if>
+												<volist name="vo.switch" id="voo">
+												<span class="switch{$voo}">{:C('switch.'.$voo)}</span>
+												</volist>
+											</div>
+										</td>
+										<td>{$vo.market_price|isNull=###}</td>
+										<td class="w450">{$vo.scenicall|trim=###,','}</td>
+									</tr>
+									</volist>
+								</table>
+							</div>
+							<div class="qbs_list">
+								<table class="qb_list" cellpadding="5" cellspacing="0" border="0" width="100%">
+									<tr>
+										<th class="w20" width="20"></th>
+										<th width="60">序号</th>
+										<th width="150" style="padding-left:50px;">线路名</th>
+										<th class="w190" width="190"></th>
+										<th width="200">价格</th>
+										<th class="w400" width="400" style="padding-left:50px;">行程景点</th>
+									</tr>
+									<volist name="daylist4" id="vo">
+									<tr>
+										<td class="w20"></td>
+										<td>{++$key}</td>
+										<td>
+											<div style="float:left;display:inline-block;padding:0 5px;"><a href="__ROOT__/group/xianlu-{$vo.id}.html" target="_blank">{$vo.name}</a></div>										
+										</td>
+										<td>
+											<div style="height:20px; padding:5px 0;margin-left:5px;">
+												<if condition="$vo['series_id']"><span class="series{$vo.series_id}">{:C('series.'.$vo['series_id'])}</span></if>
+												<if condition="$vo['brand_id']"><span class="brand{$vo.brand_id}">{:C('brand.'.$vo['brand_id'])}</span></if>
+												<volist name="vo.switch" id="voo">
+												<span class="switch{$voo}">{:C('switch.'.$voo)}</span>
+												</volist>
+											</div>
+										</td>
+										<td>{$vo.market_price|isNull=###}</td>
+										<td class="w450">{$vo.scenicall|trim=###,','}</td>
+									</tr>
+									</volist>
+								</table>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
+			<div class="notice">*计价标准：本列表报价以单车45人、苏州市区出发，周边县市价格请来电咨询<span>6666-7777</span></div>
+		</div>
+    </div>
+</div>
+<include file="Public:footer_notq"/>
+<script type="text/javascript">
+$(function(){
+	$('#n_item_list').hide();	
+	
+	$('.hb_list tr:even').css('background','#e7f1fb');
+	$('.qb_list').each(function(){
+		$(this).find('tr:even').css('background','#e7f1fb');	
+	});
+	
+	$('.qb_btn li a').each(function(){
+		$(this).click(function(){
+			var _index=$(this).parent().index();
+			$('.qb_btn li a').removeClass('hover');
+			$(this).addClass('hover');			
+			$('.qbs_list').hide();
+			$('.qbs_list').eq(_index).show();			
+		});
+	});	
+});
+</script>
+</body>
+</html>

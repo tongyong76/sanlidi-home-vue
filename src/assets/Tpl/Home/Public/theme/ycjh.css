@@ -1,0 +1,77 @@
+.banner{width:100%; height:545px; background:url(ycjh/banner.jpg) center center no-repeat;}
+
+.wrap{}
+.wrap .zb{background:#fc3838; padding-bottom:50px;}
+.zb .z_top{width:100%; height:225px; background:url(ycjh/zb_top.png) center center no-repeat;}
+.zb .z_tj{width:980px; padding:10px; margin:0 auto; background:#e23232;}
+.zb .z_tj .zt_left{width:560px; height:405px;}
+.zb .z_tj .zt_left img{display:block; width:100%; height:100%;}
+.zb .z_tj .zt_right{width:390px; height:385px;background:#fff; padding:10px 15px;}
+.zb .z_tj .zt_right .zr_name{font-size:24px; line-height:30px; font-weight:bold;}
+.zb .z_tj .zt_right .zr_jl{background:#ebe9ea;height:60px; margin:13px 0px; padding:3px 8px;}
+.zb .z_tj .zt_right .zr_jl .jl_img{width:55px;padding-top:3px;}
+.zb .z_tj .zt_right .zr_jl .jl_words{width:305px; padding:0px 5px;line-height:20px;font-size:11px;}
+.zb .z_tj .zt_right .zr_des{line-height:20px; margin:10px 0px; font-size:12px;}
+.zb .z_tj .zt_right .zr_price{height:60px; margin:15px auto;}
+.zr_price .price_ori{font-size:16px; color:#989898; margin-right:10px;}
+.zr_price .price_ori i{ font-style:normal;}
+.zr_price .price_now{font-size:18px;}
+.zr_price .price_now i{ font-style:normal; font-size:50px; color:#e3170c;} 
+.zr_price .price_s{display:block; width:78px; height:31px; line-height:31px; color:#fff;background:url(ycjh/sq_bg.jpg) center center no-repeat; text-align:center;padding-left:5px; margin-right:20px; margin-top:25px; font-size:16px;}
+.zb .z_tj .zt_right .zr_buy{}
+.zb .z_tj .zt_right .zr_buy a{display:block; height:55px; line-height:55px; background:#ff6100; color:#fff; text-align:center; font-size:26px;}
+.zb .z_item{width:980px; padding:10px 10px 20px; margin:0 auto; background:#e23232;}
+.zb .z_item ul{}
+.zb .z_item ul li{background:#fff; height:200px; padding:10px 15px; margin-bottom:20px;}
+.zb .z_item ul li.nobottom{margin-bottom:0px;}
+.zb .z_item ul li .routeinfo{}
+.zb .z_item ul li .routeinfo .Limgbox{margin-right:20px;}
+.zb .z_item ul li .routeinfo .Limgbox img{width:316px; height:200px; display:block;}
+.zb .z_item ul li .routeinfo .Cinfo{width:480px; margin-right:20px;}
+.zb .z_item ul li .routeinfo .Cinfo .Cinfo_title{height:40px; line-height:40px; font-size:20px; font-weight:bold;overflow:hidden;}
+.zb .z_item ul li .routeinfo .Cinfo .Cinfo_title a{color:#006699;}
+.zb .z_item ul li .routeinfo .Cinfo .Cinfo_tag{height:25px; padding-top:5px;}
+.zb .z_item ul li .routeinfo .Cinfo .Cinfo_tag span{border-radius: 5px;color: #fff;display: block;float: left;height: 20px;line-height: 20px; margin-right: 5px;padding: 0 8px;text-align: center; background:#f86e01;}
+.zb .z_item ul li .routeinfo .Cinfo .Cinfo_tag span.series1{background:#67bc85;}
+.zb .z_item ul li .routeinfo .Cinfo .Cinfo_tag span.series2{background:#337bcc;}
+.zb .z_item ul li .routeinfo .Cinfo .Cinfo_tag span.series3{background:#bb8f07;}
+.zb .z_item ul li .routeinfo .Cinfo .Cinfo_tag span.series4{background:#956f30;}
+.zb .z_item ul li .routeinfo .Cinfo .Cinfo_tag span.brand1{background:#f1178b;}
+.zb .z_item ul li .routeinfo .Cinfo .Cinfo_tag span.brand2{background:#ffa800;}
+.zb .z_item ul li .routeinfo .Cinfo .Cinfo_tag span.brand3{background:#99cc00;}
+.zb .z_item ul li .routeinfo .Cinfo .Cinfo_tag span.switch1{background:#f60;}
+.zb .z_item ul li .routeinfo .Cinfo .Cinfo_tag span.switch2{background:#ff3333;}
+.zb .z_item ul li .routeinfo .Cinfo .Cinfo_tag span.switch3{background:#f86e01;}
+.zb .z_item ul li .routeinfo .Cinfo .Cinfo_tag span.switch4{background:#00afec;}
+.zb .z_item ul li .routeinfo .Cinfo .Cinfo_tag span.switch5{background:#56ac00;}
+.zb .z_item ul li .routeinfo .Cinfo .Cinfo_des{height:60px; line-height:20px; overflow:hidden;font-size:14px;margin:12px 0;}
+.zb .z_item ul li .routeinfo .Cinfo .Cinfo_data{font-size:14px;height:22px;line-height:22px;overflow:hidden;}
+.zb .z_item ul li .routeinfo .Cinfo .Cinfo_data .day_num{}
+.zb .z_item ul li .routeinfo .Cinfo .Cinfo_data .data_time{}
+.zb .z_item ul li .routeinfo .Rprice{width:110px; text-align:center;padding-top:60px;}
+.zb .z_item ul li .routeinfo .Rprice .now_price{color:#f60; font-weight:bold;}
+.zb .z_item ul li .routeinfo .Rprice .now_price span{font-family:georgia; font-size:25px;font-weight:normal;}
+.zb .z_item ul li .routeinfo .Rprice .ticket{margin-top:10px;}
+.zb .z_item ul li .routeinfo .Rprice .ticket a{background:#2a98da;border-radius: 5px;color: #fff;cursor: pointer;display: block; font-size: 16px;font-weight: bold;height: 30px;line-height: 30px;margin: 0 auto;text-align: center;width: 100px;}
+.zb .z_item ul li .routeinfo .Rprice .ticket a:hover{background:#40a1db;}
+
+.wrap .gn{background:#69d3a2;}
+.gn .z_top{height:191px; background:url(ycjh/gn_top.png) center center no-repeat;}
+.gn .z_item{background:#5ebd91;}
+
+.wrap .cj{background:#00afec;}
+.cj .z_top{height:191px; background:url(ycjh/cj_top.png) center center no-repeat;}
+.cj .z_item{background:#009dd4;}
+
+.xuanfu{position:fixed; _position:absolute; right:10px; top:100px;width:150px; background:#fffdda; padding:50px 5px 45px;}
+.xf_top{position:absolute; left:0px; top:-30px;}
+.xf_item{}
+.xf_item li{margin:3px 0px;}
+.xf_item li a{display:block;} 
+.xf_item li a img{display:block;}
+.xf_qcode{margin:5px 0px;}
+.xf_qcode .qcode{text-align:center;}
+.xf_qcode .q_words{height:25px; line-height:25px; text-align:center; color:#84540d;}
+.xf_back{position:absolute; bottom:5px; left:-4px;}
+.xf_back a{display:block;}
+.xf_back a img{display:block;}

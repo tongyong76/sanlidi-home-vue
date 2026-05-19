@@ -1,0 +1,69 @@
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,select,p,blockquote,th,td{
+margin:0;padding:0;font-size:14px;font-family:'微软雅黑';}
+table,form,fieldset,input,textarea,select,button,img{border:0px;display:block;}
+table{cellpadding:0;cellspacing:0;}
+ol,ul{list-style:none}
+i,em,b{font-style:normal;}
+a:link,a:visited{color:#333; text-decoration:none;}
+a:hover{color:#f60; text-decoration:none;}
+input:focus { outline: none; }
+
+.clearfix:after {visibility:hidden;display:block;font-size:0;content:" ";clear:both;height:0;}
+.clearfix{*zoom:1;}
+.none{display:none;}
+.fl{float:left;}
+.fr{float:right;}
+.mT20{margin-top:20px;}
+
+.tuanWrap{background:url(ribenqianzheng/bg.gif) repeat; color:#000;}
+.tuanWrap .banner{width:100%; background:url(ribenqianzheng/banner_bg.gif) repeat;}
+.tuanWrap .banner .banner_1{background:url(ribenqianzheng/banner1.jpg) no-repeat center top; height:298px; width:100%;}
+.tuanWrap .banner .banner_2{background:url(ribenqianzheng/banner2.jpg) no-repeat center top; height:190px; width:100%;}
+
+.tuanWrap .wp{width:1000px; margin:0 auto;}
+.tuanWrap .wp .rules{border-left:10px solid #f1c71d; border-bottom:10px solid #f1c71d; border-right:10px solid #f1c71d; border-top-left-radius:15px; border-top-right-radius:15px; color:#fff; background:#7f37a7;}
+.tuanWrap .wp .rules .rules_title{height:53px; background:#f1c71d; padding-left:6px;}
+.tuanWrap .wp .rules .rules_word{padding:0 24px; line-height:30px;}
+.tuanWrap .wp .rules .rules_word p{font-size:18px;}
+.tuanWrap .wp .rules .rules_word p.rules_head{color:#f7f01c; font-size:24px; padding-top:24px;}
+.tuanWrap .wp .rules .rules_word p a{border-bottom:1px solid #fff; color:#fff;}
+.tuanWrap .wp .rules .rules_word p a:hover{color:#f7f01c; border-bottom:1px solid #f7f01c;}
+.tuanWrap .wp .rules .rules_list{padding:0 0 24px 24px;}
+.tuanWrap .wp .rules .rules_list ul li{float:left; padding-left:18px; text-align:center; font-size:18px; line-height:34px;}
+.tuanWrap .wp .rules .rules_list ul li img{display:block; padding-top:6px;}
+.tuanWrap .wp .product_title{height:94px; background:url(ribenqianzheng/product_title.png) no-repeat; margin-top:20px; position:relative;}
+.tuanWrap .wp .product_title img{position:absolute; left:380px; bottom:16px;}
+.tuanWrap .wp .product_list1{padding:6px 26px 20px 26px; background:#7f37a7;}
+.tuanWrap .wp .product_list1 ul li{margin-top:14px; background:#fff; padding:8px 14px; height:202px;  border-radius:3px;}
+.tuanWrap .wp .product_list1 ul li .product_pic{padding-right:20px; position:relative;}
+.tuanWrap .wp .product_list1 ul li .product_pic i{position:absolute; left:0; top:0;}
+.tuanWrap .wp .product_list1 ul li .product_pic a img{width:316px; height:202px;}
+.tuanWrap .wp .product_list1 ul li .product_word{padding-right:154px; width:430px; height:202px; position:relative;}
+.tuanWrap .wp .product_list1 ul li .product_word .product_word_title{height:40px; line-height:40px; font-size:20px; font-weight:bold; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; color:#006699;}
+.tuanWrap .wp .product_list1 ul li .product_word .product_word_title a{color:#006699;}
+.tuanWrap .wp .product_list1 ul li .product_word .product_word_tag{padding:5px 0; height:25px;}
+.tuanWrap .wp .product_list1 ul li .product_word .product_word_tag span{display:block; float:left; color:#fff; height:20px; line-height:20px; padding:0 8px; text-align:center; margin-right:5px; border-radius: 5px;}
+.tuanWrap .wp .product_list1 ul li .product_word .product_word_tag span.switch1{background:#f60;}
+.tuanWrap .wp .product_list1 ul li .product_word .product_word_tag span.switch2{background:#ff3333;}
+.tuanWrap .wp .product_list1 ul li .product_word .product_word_tag span.switch3{background:#f86e01;}
+.tuanWrap .wp .product_list1 ul li .product_word .product_word_tag span.switch4{background:#00afec;}
+.tuanWrap .wp .product_list1 ul li .product_word .product_word_tag span.switch5{background:#56ac00;}
+.tuanWrap .wp .product_list1 ul li .product_word .product_word_des{height:60px; line-height:20px;}
+.tuanWrap .wp .product_list1 ul li .product_word .product_word_date{line-height:22px; height:22px;}
+.tuanWrap .wp .product_list1 ul li .product_word .product_word_price{width:134px; position:absolute; right:14px; text-align:center; top:68px; color:#f60; line-height:40px; font-weight:600;}
+.tuanWrap .wp .product_list1 ul li .product_word .product_word_price span{font-size:25px; font-family: georgia; font-weight:100;}
+.tuanWrap .wp .product_list1 ul li .product_word .product_word_price a{display:block; width: 100px; box-shadow: 5px 3px 5px #CCC; height: 30px; line-height: 30px; background: #2a98da; font-size: 16px; font-weight: bold; color: #fff; border-radius: 5px; text-align: center; margin:0 auto;}
+.tuanWrap .wp .product_list1 ul li .product_word .product_word_price a:hover{background:#f60;}
+.tuanWrap .wp .product_list2{padding:6px 26px 30px 26px; background:#7f37a7;}
+.tuanWrap .wp .product_list2 ul{width:981px; overflow:hidden;}
+.tuanWrap .wp .product_list2 ul li{margin:18px 33px 0 0; width:294px; float:left; height:294px; background:#fff;}
+.tuanWrap .wp .product_list2 ul li .product_pic2{position:relative; width:294px; height:182px;}
+.tuanWrap .wp .product_list2 ul li .product_pic2 img{width:294px; height:182px;}
+.tuanWrap .wp .product_list2 ul li .product_pic2 span{position:absolute; bottom:0; left:0; height:38px; line-height:38px; background: rgba(0,0,0,0.5) none repeat scroll !important; _background: #000; _filter: Alpha(opacity=50); color:#fff; width:254px; padding:0 20px; font-size:16px;}
+.tuanWrap .wp .product_list2 ul li .product_pic2 span i{position:absolute; top:0; right:20px; color:#ff4d79; font-size:18px;}
+.tuanWrap .wp .product_list2 ul li .product_pic2 span i b{font-size:30px;}
+.tuanWrap .wp .product_list2 ul li .product_word2{padding:6px 20px; height:48px; line-height:24px; color:#000;}
+.tuanWrap .wp .product_list2 ul li .product_price2{height:52px; line-height:52px; text-align:center; font-size:24px; font-weight:600;}
+.tuanWrap .wp .product_list2 ul li .product_price2 a{color:#fff; display:block; background:#f6d13b;}
+.tuanWrap .wp .product_list2 ul li .product_price2 a:hover{background:#c8a314;}
+.tuanWrap .wp .copy{text-align:center; font-size:22px; color:#fff; height:70px; line-height:70px;}

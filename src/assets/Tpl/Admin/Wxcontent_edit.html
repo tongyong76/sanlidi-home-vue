@@ -1,0 +1,93 @@
+<include file="Public:header" />
+<script language="javascript">var webpath="__PUBLIC__";</script>
+<script type="text/javascript" src="__PUBLIC__/statics/js/common.js"></script>
+<script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.all.min.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/ueditor/themes/default/css/ueditor.css"/>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#submit").click(function(){
+			if($("#name").val()==0){
+			   alert('请填写资讯分类');
+			   return false;
+			}
+		});
+	});
+</script>
+
+</head>
+<div class="pad_10">
+<form action="{:U('Wxcontent/edit')}" method="post" name="myform" id="myform" enctype="multipart/form-data" style="margin-top:10px;">
+  <div class="pad-10">
+  <div class="col-tab">
+  <ul class="tabBut cu-li">
+    <li id="tab_setting_1" class="on" onclick="SwapTab('setting','on','',1,1);">基本信息</li>
+  </ul>
+  <div id="div_setting_1" class="contentList pad-10">
+    <table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+    <tr>
+	  <th>所属菜单 :</th>
+	  <td>
+	  <select name="mid" style="width:150px;">
+	  <option value="0">--请选择所属菜单--</option>
+		<volist name="menu_list" id="val">
+			<if condition="$val['id'] eq $info['mid']">  
+			<option value="{$val['id']}" selected="selected">
+			<else />
+			<option value="{$val['id']}">
+			</if>
+			{$val['name']}
+			</option>								
+		</volist> 
+		<option value="99" <if condition="99 eq $info['mid']"> selected="selected"</if>>新关注菜单</option>
+	  </select>
+	  <input type="hidden" name="floor" value="{$sval.floor}" />
+	  </td>
+    </tr>
+	<tr>
+	  <th width="100">标题 :</th>
+	  <td><input type="text" name="cname" id="cname" class="input-text" value="{$info.cname}"></td>
+	</tr>
+	<tr class="click" <if condition="$info['type'] eq 'view'">style="display:none;"</if>>
+		<th>封面 :</th>
+		<td>
+			<img height="100" src="__ROOT__{$info.cimg}" />&nbsp;&nbsp;<br /><br />
+			<input type="file" name="cimg" class="input-text" size=21 style="height:25px;"/>
+		</td>
+	</tr>
+	<tr>
+	  <th width="100">描述 :</th>
+	  <td><textarea name="cdes" id="cdes" style="width:450px;height:80px;resize:none">{$info.cdes}</textarea></td>
+	</tr>	
+	<tr class="click" <if condition="$info['type'] eq 'view'">style="display:none;"</if>>
+	  <th width="100">图文链接 :</th>
+	  <td><input type="text" name="curl" id="curl" class="input-text long_text" style="width:450px;" value="{$info.curl}"></td>
+	</tr>
+	<input type="hidden" name="id" value="{$info.id}">
+</table>
+  </div>
+
+  <div class="bk15"></div>
+  <div class="btn">
+    <input type="submit" value="提交" name="submit" class="button" id="submit">
+  </div>
+
+</div>
+</div>
+</form>
+</div>
+</body>
+<script type="text/javascript">
+$(function(){
+	$("#type").change(function(){
+		$('input[name="url"]').val('');
+		if($("#type").val() == 'click'){
+			$('.table_form .view').css('display','none');
+		}
+		if($("#type").val() == 'view'){
+			$('.table_form .view').css('display','');
+		}
+	});
+});
+</script>
+</html>

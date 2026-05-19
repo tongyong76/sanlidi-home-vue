@@ -1,0 +1,85 @@
+<include file="Public:header" />
+
+<script type="text/javascript">
+	function status(id,type,value){
+	    $.get("{:U('Wxsale/status')}", { id: id, type: type }, function(data){
+			$("#"+type+"_"+id+" img").attr('src', '__PUBLIC__/statics/images/status_'+data.data+'.gif')
+		},"json"); 
+	}
+</script>
+
+</head>
+<div class="pad-lr-10" >
+    <form id="myform" name="myform" action="{:U('Wxsale/delete')}" method="post" >
+    <div class="table-list" style="margin-top:10px;">
+
+    <table width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th width="5%"><input type="checkbox" value="" id="check_box" onclick="selectall('id[]');"></th>
+              	<th width="50">线路ID</th>
+				<th align="left" width="200">线路名称</th>
+				<th width="30">价格</th>
+				<th width="30">名额</th>
+				<th width="120">开始时间</th>  				
+              	<th width="30">状态</th>
+                <th width="150">操作</th>
+            </tr>
+        </thead>
+    	<tbody>
+        <volist name="list" id='val'>
+		<tr id="{$val.id}" data-floor="{$val.floor}" class="sub_{$val.pid} level_{$val.floor}">
+            <td align="center"><input type="checkbox" value="{$val.id}" name="id[]"></td>
+			<td align="center">{$val.gid}</td>
+            <td align="left"><{$val.name}>{$val.subname}</td>
+			<td align="center">{$val.sale_price}</td>
+			<td align="center">{$val.sale_num}</td>
+			<td align="center">{$val.sale_start|date="Y-m-d",###}</td>
+            <td align="center" onclick="status({$val.id},'status')" id="status_{$val.id}"><img src="__PUBLIC__/statics/images/status_{$val.status}.gif" /></td>
+            <td align="center"><a class="blue" href="{:U('Wxsale/edit',array('id'=>$val['id']))}">编辑</a></td>
+        </tr>
+        </volist>
+    	</tbody>
+    </table>
+
+    <div class="btn">
+    <label for="check_box">全选/取消</label>
+	<input type="submit" class="button" name="add" onclick="document.myform.action='{:U('Wxsale/add')}'" value="新增" />
+    <input type="submit" class="button" name="submit" value="删除" onclick="return check();"/>
+    </div>
+
+    </div>
+    </form>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+	//修改
+	$('span[data-tdtype="edit"]').click(function(){
+		var s_val   =	$.trim($(this).text()),            
+			s_name  = 	$(this).attr('data-field'),
+			s_id    = 	$(this).attr('data-id'),                
+			width   = 	$(this).width(),
+			$this=$(this);
+			
+		$('<input type="text" class="lt_input_text" value="'+s_val+'" />').width(width).focusout(function(){
+			$(this).prev('span').show().text($(this).val());
+			if($(this).val() != s_val) {
+				$.ajax({
+					url: '__ROOT__/Admin/Wxmenu/ajaxEdit',
+					type: 'POST',
+					data:{id:s_id,field:s_name,val:$(this).val()},
+					dataType: 'json',
+					success: function(result){
+
+					}
+				});
+			}
+			$(this).remove();
+		}).insertAfter($(this)).focus().select();
+		$(this).hide();
+		return false;
+	});
+});
+</script>
+</body>
+</html>

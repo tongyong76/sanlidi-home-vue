@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>苏州到{$cateInfo.name}旅游-苏州团队旅游/公司旅游报价-三三旅游网</title>
+<meta name="keywords" content="">
+<meta name="description" content="三三旅游网：为您提供2015年苏州到{$cateInfo.name}最新团队旅游、公司旅游线路报价，是您组织公司员工到{$cateInfo.name}旅游的最佳之选。24小时旅游预订电话：66667777">
+<link type="text/css" rel="stylesheet" href="../Public/css/reset.css">
+<link type="text/css" rel="stylesheet" href="../Public/css/style.css">
+<script type="text/javascript" src="../Public/js/jquery-1.11.1.min.js"></script>
+<script>var ROOT_PATH = '__ROOT__';</script>
+<script type="text/javascript" src="../Public/js/common.js"></script>
+<script type="text/javascript" src="../Public/js/search_list.js"></script>
+<include file="Public:statistics"/>
+</head>
+<body>
+<include file="Public:header"/>
+<div class="wrap">
+	<div class="inside_wrap clearfix">
+    	<div class="search_nav">
+			<a href="__ROOT__">首页</a><b>></b>{$posi}
+		</div>
+        <div class="search_list fl">
+			<!--暂时不显示筛选条件
+        	<div class="filter_nav">
+				<input type="hidden" name="days" value="">
+				<input type="hidden" name="price" value="">
+				<input type="hidden" name="cid" value="{$cid}">
+				<if condition="$cateList">
+        		<dl>
+                	<dt>按目的地筛选<a <if condition="$allid eq $nid"> class="cur"</if> href="__ROOT__/{$allpinyin}-{$allid}.html">全部</a></dt>
+                    <dd>
+						<volist name="cateList" id="vo">
+						<a <if condition="$vo['id'] eq $cid"> class="cur"</if> href="__ROOT__/{$vo.pinyin}-{$vo.id}.html">{$vo.name}</a>
+						</volist>
+					</dd>
+                </dl>
+				</if>
+                <dl class="searchNav">
+                	<dt>按天数筛选<a <if condition="!$days"> class="cur"</if> href="javascript:;" data-field="days" data-value="">全部</a></dt>
+                    <dd>
+						<volist name="dayList" id="vo">
+						<a <if condition="$days eq $vo['days']"> class="cur"</if> href="javascript:;" data-field="days" data-value="{$vo.days}">{$vo.days}日游</a>
+						</volist>
+					</dd>
+                </dl>
+                <dl class="nobottom searchNav">
+                	<dt>按价格筛选<a <if condition="!$days"> class="cur"</if> href="javascript:;" data-field="price" data-value="">全部</a></dt>
+                    <dd>
+						<volist name="price" id="vo">
+						<a <if condition="$price eq $key"> class="cur"</if> href="javascript:;" data-field="price" data-value="{$key}">{$vo}</a>
+						</volist>
+					</dd>
+                </dl>
+        	</div>
+			-->
+            <div class="tuan_list" id="content">
+				<include file="ajaxlist" />
+            </div>
+            
+            
+        </div>
+        <include file="Public:shoplist"/>
+
+    </div>
+</div>
+<include file="Public:footer_notq"/>
+</body>
+<script type="text/javascript">
+//初始化归零
+$('input[name="days"]').val('');
+$('input[name="price"]').val('');
+
+$(document).ready(function(){
+	$('.searchNav a').click(function(){
+		var days = $('input[name="days"]').val();
+		var price = $('input[name="price"]').val();
+		var cid = $("input[name='cid']").val();
+		var field = $(this).attr('data-field');
+		var value = $(this).attr('data-value');
+		if(field == 'days'){
+			days = value;
+			$('input[name="days"]').val(days);
+		}
+		if(field == 'price'){
+			price = value;
+			$('input[name="price"]').val(price);
+		}
+		$(this).parent().parent().find('a').removeClass('cur');
+		$(this).addClass('cur');
+		$.ajax({
+			url: '__ROOT__/Ajax/tourIndex',
+			type: 'POST',
+			data:{days:days,price:price,cid:cid},
+			dataType: 'html',
+			success: function(result){
+				$('.search_route_list').children().remove();
+				$('.search_route_list').append(result);
+				if(result.status == 1){
+					
+					$('.s_r_list li').remove();
+					$('.pagination').remove();
+					$('.s_r_list').append(result.data);
+				}
+			}
+		});
+	});
+});
+</script>
+</html>

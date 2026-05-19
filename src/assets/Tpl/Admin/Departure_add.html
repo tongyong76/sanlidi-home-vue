@@ -1,0 +1,86 @@
+<include file="Public:header" />
+</head>
+<body>
+<form action="{:u('Departure/add')}" method="POST" name="myform" id="myform" enctype="multipart/form-data" style="margin-top:10px;">
+  <div class="pad-10">
+  <div class="col-tab">
+  <ul class="tabBut cu-li">
+    <li id="tab_setting_1" class="on" onclick="SwapTab('setting','on','',1,1);">基本信息</li>
+  </ul>
+  <div id="div_setting_1" class="contentList pad-10">
+    <table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+      <tr>
+        <th width="100"><if condition="$type eq 'muti'">时间段<else/>出发日期</if> :</th>
+        <td><input type="text" name="time_start" id="time_start" class="date" size="12" value="">
+			<script language="javascript" type="text/javascript">
+                Calendar.setup({
+                    inputField     :    "time_start",
+                    ifFormat       :    "%Y-%m-%d",
+                    showsTime      :    'true',
+                    timeFormat     :    "24"
+                });
+            </script>
+			<if condition="$type eq 'muti'">
+			-
+			<input type="text" name="time_end" id="time_end" class="date" size="12" value="">
+			<script language="javascript" type="text/javascript">
+                Calendar.setup({
+                    inputField     :    "time_end",
+                    ifFormat       :    "%Y-%m-%d",
+                    showsTime      :    'true',
+                    timeFormat     :    "24"
+                });
+            </script>
+			</if>
+		</td>
+      </tr>
+	  <if condition="$type eq 'muti'">
+	  <tr>
+        <th width="100">每周开班 :</th>
+        <td>
+			<input type="checkbox" value="1" name="days[]">&nbsp;周一
+			<input type="checkbox" value="2" name="days[]">&nbsp;周二
+			<input type="checkbox" value="3" name="days[]">&nbsp;周三
+			<input type="checkbox" value="4" name="days[]">&nbsp;周四
+			<input type="checkbox" value="5" name="days[]">&nbsp;周五
+			<input type="checkbox" value="6" name="days[]">&nbsp;周六
+			<input type="checkbox" value="0" name="days[]">&nbsp;周日
+		</td>
+      </tr>
+	  </if>
+	  <tr>
+        <th width="100">市场价格 :</th>
+        <td><input type="text" name="mprice" class="input-text" size="20" value="" ></td>
+      </tr>
+	  <tr>
+        <th width="100">成人价格 :</th>
+        <td><input type="text" name="price" class="input-text" size="20" value="" ></td>
+      </tr>
+	  <tr>
+        <th width="100">儿童价格 :</th>
+        <td><input type="text" name="child_price" class="input-text" size="20" value="" ></td>
+      </tr>
+	  <input type="hidden" name="pid" value="{$pid}" />
+	  <input type="hidden" name="type" value="{$type}" />
+	  <input type="hidden" name="jumpUrl" value="{$jumpUrl}" />
+    </table>
+  </div>
+  
+  <div class="bk15"></div>
+  <div class="btn">
+    <input type="submit" onclick="disable()" value="提交" name="submit" class="button" id="submit">
+  </div>
+
+</div>
+</div>
+</form>
+<script type="text/javascript">
+function disable(){
+	if($('input').attr("disabled")==true || $('input').attr("disabled")==true){
+		$('input').removeAttr('disabled');
+		$('select').removeAttr('disabled');
+	}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<include file="Public:header" />
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".preview").preview();
+	});
+	
+</script>
+
+</head>
+<body>
+<div class="pad-10" >
+	<div style="padding:5px 0;font-size:14px;color:#404040;font-weight:bold;">
+		{$pInfo.name}
+		<a style="font-size:12px;color:blue;font-weight:normal;margin-left:10px;" href="{:U('ShipDeparture/add',array('id'=>$pInfo['id'],'type'=>'single'))}">+添加出发日期</a>
+		<a style="font-size:12px;color:blue;font-weight:normal;margin-left:10px;" href="{:U('ShipDeparture/add',array('id'=>$pInfo['id'],'type'=>'muti'))}">+批量添加</a>
+	</div>
+    <form id="myform" name="myform" action="{:u('ShipDeparture/delete')}" method="post">
+    <div class="table-list">
+    <table width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th width="1%"><input type="checkbox" value="" id="check_box" onclick="selectall('id[]');"></th>
+				<th width=60>出发日期</th>
+                <th width=60>成人价格</th>
+				<th width=60>儿童价格</th>		        
+                <th width=120>操作</th>
+            </tr>
+        </thead>
+    	<tbody>
+        <volist name="list" id="val" >
+        <tr>
+            <td align="center"><input type="checkbox" value="{$val.id}" name="id[]"></td>          
+            <td align="center">{$val.departure_time|date="Y-m-d",###}</td>
+			<td align="center">{$val.price}</td>
+			<td align="center">{$val.child_price}</td>
+            <td align="center"><a class="blue" href="{:u('Departure/edit',array('id'=>$val['id']))}">编辑</a></td>
+        </tr>
+        </volist>
+    	</tbody>
+		<input type="hidden" name="type" value="{$type}"/>
+    </table>
+
+    <div class="btn">
+    	<label for="check_box" style="float:left;">全选/取消</label>
+    	<input type="submit" class="button" name="submit" value="删除" style="margin:0 10px 0 10px;" onclick="return check();"/>
+    	<input type="submit" class="button" name="order" onclick="document.myform.action='{:U('ShipDeparture/order')}'" value="排序" style="margin:0 10px 0 0px;"/>
+    	<div id="pages">{$page}</div>
+    </div>
+
+    </div>
+    </form>
+</div>
+</body>
+</html>

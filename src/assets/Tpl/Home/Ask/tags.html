@@ -1,0 +1,129 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>团队游列表页</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link type="text/css" rel="stylesheet" href="../Public/css/reset.css">
+<link type="text/css" rel="stylesheet" href="../Public/css/style.css">
+<script type="text/javascript" src="../Public/js/jquery-1.11.1.min.js"></script>
+<script>var ROOT_PATH = '__ROOT__';</script>
+<script type="text/javascript" src="../Public/js/common.js"></script>
+<include file="Public:statistics"/>
+</head>
+<body>
+<include file="Public:header"/>
+<div class="wrap ask_bg">
+	<div class="inside_wrap clearfix">
+    	<div class="search_nav">
+			<a href="../Tuan/__ROOT__">首页</a><b>></b>{$tagInfo.name}问答
+		</div>
+        <div class="search_list fl">
+          <div class="asksearch fl">
+            <input id="asktop_ssinput" class="askss_input" type="text" value="" placeholder="提问前不妨先搜索下，看看你的问题是否已经有人询问过" maxlength="50">
+            <input class="askss_button" type="button" value="搜索">
+          </div>
+          <a class="asktiwen" target="_blank" title="我要提问" href="#"><i class="icon_tiwen"></i>我要提问</a>
+        </div>
+        <div class="clearfix"></div>
+        <div class="search_list fl">
+          <div class="ask_line">
+            <h1 class="ask_head">{$tagInfo.name}问答</h1>
+            <div class="asklist">
+              <ul>
+				<volist name="tagList" id="vo">
+                <li>
+					<span class="answernum"><b>{$vo.count}</b>浏览</span>
+					<a href="__ROOT__/ask/question-{$vo.id}.html">{$vo.ask}</a>
+					{$vo.answer|strcut=###,"80"}
+					<span class="ask_time">{$vo.add_time|date="Y-m-d",###}</span>
+					<div class="asklist_tag">
+						<volist name="vo.son" id="voo">
+						<a href="__ROOT__/ask/tags-{$voo.tag_id}-1.html">{$voo.name}</a>
+						</volist>
+					</div>
+				</li>
+                </volist>
+              </ul>
+              <div class="clearfix"></div>
+            </div>
+			<div class="pagination">
+	          <div class="paging fr" id="page">{$page}</div>
+            </div>
+          </div>
+        </div>
+        <div class="ask_right fr">
+          <div class="ask_commontop"><b></b><span>已解决问题：<em>1025599</em></span><span><i>462585</i>人贡献宝贵经验</span></div>
+          <div class="ask_line">
+            <div class="ask_head">猜你喜欢</div>
+            <div class="ask_product">
+              <ul>
+                <li><span><a href="#"><img src="../Public/images/bj_01.jpg" width="100" height="64" align="absmiddle"></a></span><a href="#"><普吉畅享4晚6天>一天自由活动 全程五星</a><b>三三自组团，领队服务，优化接送★ 品质之</b><em>￥<i>4699</i>起</em></li>
+                <li><span><a href="#"><img src="../Public/images/bj_01.jpg" width="100" height="64" align="absmiddle"></a></span><a href="#"><普吉畅享4晚6天>一天自由活动 全程五星</a><b>三三自组团，领队服务，优化接送★ 品质之</b><em>￥<i>4699</i>起</em></li>
+              </ul>
+            </div>
+          </div>
+          <div class="ask_line mt">
+            <div class="hot_asktag">
+              <h4><i class="icon1"></i>热门目的地</h4>
+              <div class="ask_con clearfix">
+              <a href="#">北京</a>
+              <a href="#">厦门</a>
+              <a href="#">香港</a>
+              <a href="#">新加坡</a>
+              <a href="#">上海</a>
+              <a href="#">丽江</a>
+              <a href="#">厦门</a>
+              <a href="#">西安</a>
+              <a href="#">鼓浪屿</a>
+              <a href="#">杭州</a>
+              <a href="#">巴黎</a>
+              <a href="#">曼谷</a>
+              <a href="#">青海湖</a>
+              <a href="#">九寨沟</a>
+              <a href="#">吉隆坡</a>
+              <a href="#">吴哥窟</a>
+              <a href="#">澳门</a>
+              <a href="#">意大利</a>
+              <a href="#">香格里拉</a>
+              </div>
+              <h4><i class="icon2"></i>出游类型</h4>
+              <div class="ask_con clearfix">
+              <a href="#">购物</a>
+              <a href="#">孩子</a>
+              <a href="#">老人</a>
+              <a href="#">自由行</a>
+              <a href="#">团队游</a>
+              <a href="#">自驾</a>
+              <a href="#">蜜月</a>
+              <a href="#">摄影</a>
+              <a href="#">温泉</a>
+              </div>
+              <h4><i class="icon3"></i>指南信息</h4>
+              <div class="ask_con clearfix">
+              <a href="#">餐饮</a>
+              <a href="#">住宿</a>
+              <a href="#">线路</a>
+              <a href="#">签证</a>
+              <a href="#">交通</a>
+              </div>
+              <h4><i class="icon4"></i>出游时间</h4>
+              <div class="ask_con clearfix">
+              <a href="#">中秋</a>
+              <a href="#">国庆</a>
+              <a href="#">元旦</a>
+              <a href="#">春节</a>
+              <a href="#">五一</a>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+          </div>
+          <div class="ask_head">相关专题</div>
+          <div class="ask_board"><a href="#"><img src="../Public/images/jx_02.jpg" width="290" height="201" align="absmiddle"><span>玩转巴厘岛</span></a></div>
+        </div>
+    </div>
+</div>
+<include file="Public:footer_notq"/>
+</body>
+</html>

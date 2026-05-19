@@ -1,0 +1,160 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{$boatInfo.name}邮轮_{$boatInfo.name}全部航线_沪上邮轮_三三旅游网</title>
+<meta name="keywords" content="">
+<meta name="description" content="【三三旅游网】【沪上邮轮】旅游通0512-66667777。【沪上邮轮】为您提供{$boatInfo.name}邮轮航次，{$boatInfo.name}邮轮的邮轮介绍，以及{$boatInfo.name}邮轮的航线介绍。【三三旅游】【沪上邮轮】上海出港，房型线路大全。">
+<link type="text/css" rel="stylesheet" href="../Public/css/reset.css">
+<link type="text/css" rel="stylesheet" href="../Public/css/style.css">
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/bxslider/jquery.bxslider.css">
+<link type="text/css" rel="stylesheet" href="../Public/css/youlun.css">
+<script type="text/javascript" src="../Public/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/bxslider/jquery.bxslider.min.js"></script>
+<script>var ROOT_PATH = '__ROOT__';</script>
+<script type="text/javascript" src="../Public/js/common.js"></script>
+<script type="text/javascript" src="../Public/js/youlun_list.js"></script>
+<script type="text/javascript" src="../Public/js/around.js"></script>
+<include file="Public:statistics"/>
+</head>
+<body>
+<include file="Public:header"/>
+<!--头部结束-->
+<div class="wrap">
+	<div class="inside_wrap">
+    	<div class="search_nav">
+			<a href="/">首页</a><b>></b><a href="__ROOT__/youlun/">沪上邮轮</a><b>></b><span>{$boatInfo.name}</span>
+		</div>
+        <div class="cont clearfix">
+            <div class="cont_slider">
+				<ul class="zb_slider">
+					<li><img src="../Public/images/youlun/pic5.jpg"></li>
+					<li><img src="../Public/images/youlun/pic6.jpg"></li>
+					<li><img src="../Public/images/youlun/pic7.jpg"></li>
+				</ul>
+				<!--<a href="javascript:;" class="poi_banner_video"><i class="poi_ico_video"></i>查看视频</a>-->
+                <div class="poi_cruise">
+                    <div class="poi_cruise_logo"><a><img src="__ROOT__{$boatInfo.cimg}"></a></div>
+                    <a href="javascript:;" class="poi_cruise_togglebtn">详细介绍<span></span></a>
+                    <div class="poi_cruise_name">
+                        <h2 class="poi_cruise_name_en">{$boatInfo.cename}&nbsp;{$boatInfo.ename}</h2>
+                        <h2 class="poi_cruise_name_cn"><a style="margin-right:5px;">{$boatInfo.cname}邮轮</a>{$boatInfo.name}</h2>
+                    </div>
+                    <div class="poi_cruise_infos">
+                        <i class="icons_infos_tl"></i>
+                        <i class="icons_infos_tr"></i>
+                        <i class="icons_infos_bl"></i>
+                        <i class="icons_infos_br"></i>
+                        <div class="poi_cruise_infos_hd">
+                            <span class="poi_cruise_infos_item"><strong>{$boatInfo.zdw}吨</strong><br>总吨位</span>
+                            <span class="poi_cruise_infos_item_sep"></span>
+                            <span class="poi_cruise_infos_item"><strong>{$boatInfo.shrq}年</strong><br>首航日期</span>
+                            <span class="poi_cruise_infos_item_sep"></span>
+                            <span class="poi_cruise_infos_item"><strong>{$boatInfo.kd}米</strong><br>宽度</span>
+                            <span class="poi_cruise_infos_item_sep"></span>
+                            <span class="poi_cruise_infos_item"><strong>{$boatInfo.cs}节</strong><br>船速</span>
+                            <span class="poi_cruise_infos_item_sep"></span>
+                            <span class="poi_cruise_infos_item"><strong>{$boatInfo.zkl}人</strong><br>载客量</span>
+                            <span class="poi_cruise_infos_item_sep"></span>
+                            <span class="poi_cruise_infos_item"><strong>{$boatInfo.cd}米</strong><br>长度</span>
+                            <span class="poi_cruise_infos_item_sep"></span>
+                            <span class="poi_cruise_infos_item"><strong>{$boatInfo.jblc}层</strong><br>甲板楼层</span>
+                            <span class="poi_cruise_infos_item_sep"></span>
+                        </div>
+                        <div class="poi_cruise_infos_bd">
+                            {$boatInfo.info}
+                        </div>
+                    </div>
+                    <div class="poi_cruise_overviews"><span data-value="{$count_num}" class="ship_number">{$count_num}</span>条航线<span data-value="{$boatInfo.ct}" class="ship_number">{$boatInfo.ct}</span>间餐厅<span data-value="{$boatInfo['ylss']+$boatInfo['ydss']}" class="ship_number">{$boatInfo['ylss']+$boatInfo['ydss']}</span>个玩乐</div>
+				</div>
+                </div>
+                <div class="search_list fl">
+				  <div class="search_route_list" id="content" style="margin-top:0;">
+					<ul class="s_r_list">
+						<include file="ajaxlist" />
+					</ul>
+                  </div>
+                </div>
+			<div class="shop_list fr">
+				<div class="s_list_top list_mend">
+					<p class="shop_head"></p>
+					<p class="s_list_name">没有找到喜欢的线路？</p>
+					<div class="shop_search">
+						<!--<div class="shop_button clearfix"><span class="button_icon1"><i></i>深度苏州专线<b>{:C('hotLine')}</b></span><em>或</em><span class="button_icon2"><a href="http://chat32.live800.com/live800/chatClient/chatbox.jsp?companyID=468909&configID=59649&jid=4857736086"><i></i>在线咨询</a></span></div>-->
+						<div class="shop_button2">
+						  <dl>
+							<dt><i><img src="../Public/images/shop_button1.png"/></i><span><b>6795-2133</b>致电邮轮专家</span></dt>
+							<dd>或</dd>
+							<dt><a href="http://wpa.qq.com/msgrd?v=3&amp;uin=2355933321&amp;site=qq&amp;menu=yes" target="_blank"><i><img src="../Public/images/shop_button2.png"/></i><em>在线咨询</em></a></dt>
+						  </dl>
+						</div>
+					</div>
+					<div class="shop_bottom">
+					  <div class="ask_head">沪上游轮特价线路</div>
+					  <div class="smallAccordion">
+						<ul>
+							<volist name="salelist" id="vo">
+							<li <if condition="!$key"> class="current"</if>>
+								<a href="#" class="title <if condition="!$key">title_h</if>" target="_blank">{$vo.name}</a>
+								<a href="#" target="_blank"><img src="__ROOT__{$vo.bimg}" class="rnone" align="absmiddle"></a>
+								<p><span class="orange_f">¥</span><span class="orange_bold" style="padding:0 3px;">{$vo.minprice}</span>起<!--<span class="old_p">459</span><strong>已售<span class="orange">445</span></strong>--></p>
+								<div class="title_black_bg rnone" style="height: 28px;"></div>
+								<span class="tag rnone"><strong>{$key+1}</strong></span>
+							</li>
+							</volist>
+						    <!-- 测试数据
+						    <li class="current">
+								<a href="#" class="title title_h" target="_blank">无锡戏江南商务宾馆1晚+双早+自选鼋头渚/惠山古镇...</a>
+								<a href="#" target="_blank"><img src="../Public/images/youlun/pic1.jpg" class="rnone" align="absmiddle"></a>
+								<p><span class="orange_f">¥</span><span class="orange_bold">99</span>起/份<span class="old_p">459</span><strong>已售<span class="orange">445</span></strong></p>
+								<div class="title_black_bg rnone" style="height: 28px;"></div>
+								<span class="tag rnone"><strong>1</strong></span>
+						    </li>
+							-->
+						</ul>
+					  </div>
+					</div>
+				</div>
+			</div>
+        </div>
+        </div>      
+    </div>
+</div>
+<include file="Public:footer_notq"/>
+<!-- 邮轮视频
+  <div class="dialog_frame">
+    <a href="javascript:;" class="dialog_close">×</a>
+    <div class="dialog_video"></div>
+  </div>
+-->
+<script type="text/javascript">
+    $(function(){
+		$(window).resize(function(){
+			if($(".dialog_frame").is(":visible")){
+			   zhezhao();
+			}
+		})
+		$(".poi_banner_video").click(function(){
+			   zhezhao();
+		});
+	
+		$(".dialog_close").click(function(){
+			$(".dialog_frame").hide();
+			$(".dialog_bg").hide();
+		});
+	})
+	
+	function zhezhao(){
+		var w=$(window).width();
+		var h=$(window).height();
+		var xh=$(document).height(); 
+		var l=(w-706)/2;
+		var t=(h-426)/2
+		$(".dialog_frame").show();
+		$("body").append("<div class='dialog_bg'></div>");
+		$(".dialog_bg").css("height",xh+'px')
+		$(".dialog_frame").css("left",l+'px').css("top",t+'px');		
+	}
+</script>
+</body>
+</html>

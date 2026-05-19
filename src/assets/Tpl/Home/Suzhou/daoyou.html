@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>苏州找导游_苏州旅游深度苏州游_三三旅游33ly.com</title>
+<meta name="keywords" content="">
+<meta name="description" content="三三旅游网为您提供全陪导游，要旅游找三三，24小时旅游通66667777">
+<link type="text/css" rel="stylesheet" href="../Public/css/reset.css">
+<link type="text/css" rel="stylesheet" href="../Public/css/style.css">
+<script type="text/javascript" src="../Public/js/jquery-1.11.1.min.js"></script>
+<script>var ROOT_PATH = '__ROOT__';</script>
+<script type="text/javascript" src="../Public/js/common.js"></script>
+<script type="text/javascript" src="../Public/js/search_list.js"></script>
+<include file="Public:statistics"/>
+</head>
+<body>
+<include file="Public:header"/>
+<div class="wrap">
+	<div class="inside_wrap clearfix">
+    	<div class="search_nav">
+			<a href="/">首页</a><b>></b>{$posi}
+		</div>
+        <div class="search_list fl">
+			<div class="filter_nav"><dl class="last"><dd class="clearfix"><a title="苏州一日游旅游" href="__ROOT__/suzhou/yiriyou/">一日游</a><a title="苏州二日游旅游" href="__ROOT__/suzhou/erriyou/">二日游</a><a title="苏州三日游以上旅游" href="__ROOT__/suzhou/sanriyou/">三日游以上</a><a title="苏州导游服务" href="__ROOT__/suzhou/daoyou/" class="cur">导游</a><a title="苏州租车旅游" href="__ROOT__/suzhou/zuche/">租车</a></dd></dl></div>
+            <div class="search_route_list" id="content">
+				<ul class="s_r_list">
+					<volist name="list" id="vo">
+					<li>
+						<div class="routeinfo clearfix">
+							<div class="Limgbox fl">
+								<a href="__ROOT__/suzhou/xianlu-{$vo.id}.html"><img src="../Public/images/daoyou.jpg"></a>
+							</div>
+							<div class="Cinfo fl" style="width:515px;">
+								<div class="Cinfo_title"><a>{$vo.name}</a></div>
+								<div class="Cinfo_tag">
+									<!--<if condition="$vo['series_id']"><span class="series{$vo.series_id}">{:C('series.'.$vo['series_id'])}</span></if>-->
+									<if condition="$vo['brand_id']"><span class="brand{$vo.brand_id}">{:C('brand.'.$vo['brand_id'])}</span></if>
+									<volist name="vo.switch" id="voo">
+									<span class="switch{$voo}">{:C('switch.'.$voo)}</span>
+									</volist>
+								</div>
+								<div class="Cinfo_des" style="height:80px;">{$vo.info}</div>
+								<div class="Cinfo_price" style="margin-top:10px;color: #f60;font-weight: bold;">￥<span style="font-family: georgia;font-size: 25px;">{$vo.market_price}</span>元/天</div>
+							</div>
+						</div>
+					</li>
+					</volist>
+				</ul>
+            </div>
+            
+            
+        </div>
+		<include file="Public:shoplist2"/>
+        
+
+    </div>
+</div>
+<include file="Public:footer_notq"/>
+</body>
+</html>

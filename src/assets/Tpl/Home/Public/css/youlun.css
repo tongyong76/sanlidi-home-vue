@@ -1,0 +1,277 @@
+@charset "utf-8";
+/* CSS Document */
+.cont_slider{height:548px; position:relative;}
+.zb_slider{height:476px; overflow:hidden;}
+.cont_slider img{height:476px; width:1200px;}
+.bx-wrapper .bx-pager,
+.bx-wrapper .bx-controls-auto {
+	top:340px;
+	z-index:200;
+}
+.bx-wrapper .bx-pager {
+	padding-top: 0;
+}
+.bx-wrapper .bx-pager.bx-default-pager a {
+	background: #fff;
+	width: 12px;
+	height: 12px;
+	margin: 0 6px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
+}
+.bx-wrapper .bx-pager.bx-default-pager a:hover,
+.bx-wrapper .bx-pager.bx-default-pager a.active {
+	background: #e69c00;
+}
+.poi_banner_video {
+position: absolute;
+z-index:200;
+top: 280px;
+left: 50%;
+margin-left: -77px;
+width: 150px;
+height: 20px;
+border: 2px solid #fff;
+padding: 6px 0;
+color: #fff !important;
+background:rgba(0,0,0,0.6) none repeat scroll !important;
+_background:#000;
+_filter:Alpha(opacity=60);
+line-height: 20px;
+text-align: center;
+font-size: 18px;
+border-radius: 18px;
+}
+.poi_banner_video:hover{background:rgba(0,94,188,0.6) none repeat scroll !important; _background:#2a98da;}
+.poi_ico_video {
+display: inline-block;
+overflow: hidden;
+margin-right: 10px;
+width:13px; 
+height:16px;
+background:url(../images/youlun/un_poi.png) no-repeat -124px -18px;
+}
+.poi_cruise {
+position: absolute;
+z-index: 400;
+left: 75px;
+bottom: 0;
+width: 1020px;
+min-height: 130px;
+padding: 15px 15px 0;
+background: #fff;
+border-radius: 10px 10px 0 0;
+}
+.poi_cruise_logo {
+position: absolute;
+z-index: 300;
+left: 15px;
+top: 15px;
+width: 256px;
+height: 65px;
+overflow: hidden;
+}
+.poi_cruise_logo img {
+width: 100%;
+height: 100%;
+}
+.poi_cruise_togglebtn {
+position: absolute;
+z-index: 300;
+top: 18px;
+right: 15px;
+padding-left: 12px;
+padding-right: 38px;
+line-height: 35px;
+background: #f90;
+color: #fff !important;
+font-size: 16px;
+border-radius: 4px;
+box-shadow: 0 1px 0 #ddd;
+}
+.poi_cruise_togglebtn span {
+position: absolute;
+z-index: 300;
+top: 2px;
+right: 9px;
+width: 19px;
+height: 31px;
+background-position: 0 0;
+cursor: pointer;
+background:url(../images/youlun/un_poi.png) no-repeat;
+}
+.poi_cruise_name {
+padding-top: 8px;
+text-align: center;
+}
+.poi_cruise_name_en {
+text-transform: uppercase;
+font-size: 16px;
+color: #666;
+font-weight: normal;
+}
+.poi_cruise_name_cn {
+font-size: 24px;
+color: #001058;
+}
+.poi_cruise_name_cn a {
+color: #001058;
+}
+.poi_cruise_infos {
+display: none;
+position: relative;
+z-index: 1;
+padding: 40px 60px;
+margin-top: 20px;
+overflow: hidden;
+height: 123px;
+}
+.icons_infos_tl {
+left: 0;
+top: 0;
+background:url(../images/youlun/un_poi.png) no-repeat -42px 0;
+}
+.icons_infos_tr {
+right: 0;
+top: 0;
+background:url(../images/youlun/un_poi.png) no-repeat -60px 0;
+}
+.icons_infos_bl {
+left: 0;
+bottom: 0;
+background:url(../images/youlun/un_poi.png) no-repeat -42px -18px;
+}
+.icons_infos_br {
+right: 0;
+bottom: 0;
+background:url(../images/youlun/un_poi.png) no-repeat -60px -18px;
+}
+.icons_infos_tl, .icons_infos_tr, .icons_infos_bl, .icons_infos_br {
+position: absolute;
+z-index: 1;
+width: 60px;
+height: 60px;
+overflow: hidden;
+}
+.poi_cruise_infos_hd {
+margin-bottom: 20px;
+text-align: center;
+}
+.poi_cruise_infos_item {
+display: inline-block;
+line-height: 1.2;
+}
+.poi_cruise_infos_item_sep {
+display: inline-block;
+height: 32px;
+border-right: 1px solid #ccc;
+margin: 0 20px;
+vertical-align: top;
+}
+.poi_cruise_infos_bd {
+color: #a17a2a;
+overflow:hidden;
+max-height:150px;
+overflow:hidden;
+}
+.poi_cruise_overviews {
+line-height: 68px;
+text-align: center;
+color: #056fb1;
+}
+.poi_cruise_overviews span {
+font-size: 34px;
+padding-left: 40px;
+padding-right: 10px;
+vertical-align: -6px;
+}
+.smallAccordion{padding:20px;}
+.smallAccordion ul li {
+position: relative;
+zoom: 1;
+margin: 0 0 14px;
+border-bottom: 1px solid #ddd;
+}
+.smallAccordion ul li.current {
+padding-left: 0px;
+}
+.smallAccordion .title_h {
+z-index: 2;
+color: #fff;
+display: block;
+position: absolute;
+height:22px;line-height:22px;
+bottom: 39px;
+left: 0;
+padding: 3px;
+}
+.smallAccordion .current .rnone {
+display: block;
+}
+.smallAccordion .current img {
+display: block;
+width: 238px;
+height: 153px;
+}
+.smallAccordion .rnone {
+display: none;
+}
+.smallAccordion ul li p {
+padding-bottom: 10px;
+color:#f60;
+}
+.smallAccordion .orange_f {
+color: #f60;
+font-size: 14px;
+font-family:'microsoft yahei';
+font-weight:700;
+}
+.smallAccordion .orange_bold {
+font-family: georgia;
+color: #f60;
+font-size: 25px;
+font-weight: bold;
+}
+.smallAccordion ul li p .old_p {
+color: #999;
+text-decoration: line-through;
+padding-left: 7px;
+}
+.smallAccordion ul li p strong {
+float: right;
+clear: both;
+font-size: 12px;
+font-family: normal;
+color: #999;
+}
+.smallAccordion ul li p strong .orange {
+color: #f60;
+}
+.smallAccordion .title_black_bg {
+z-index: 1;
+width: 238px;
+position: absolute;
+bottom: 39px;
+left: 0;
+overflow: hidden;
+background: #333;
+opacity: 0.6;
+filter: Alpha(Opacity=60);
+}
+.smallAccordion .current .tag {
+width: 35px;
+height: 20px;
+position: absolute;
+top: 0px;
+left: 0px;
+background: #ffa63c;
+font-family: Arial;
+color: #fff;
+text-align: center;
+padding: 2px 0;
+}
+.dialog_bg{position: absolute; left: 0px; top: 0px; width:100%; height:100%; background:rgba(0,0,0,0.6) none repeat scroll !important; _background:#000; _filter:Alpha(opacity=60); z-index:9999;}
+.dialog_frame{position:absolute; z-index:10000; width: 640px; padding:25px; border: 8px solid #a1a1a1; background: #fff; display:none;}
+.dialog_close {position: absolute; right: 5px; top: 5px; width:20px; height:20px; overflow: hidden; font-size:20px;}
+.dialog_video {width: 100%; height: 360px; overflow: hidden;}

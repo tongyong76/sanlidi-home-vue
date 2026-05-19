@@ -1,0 +1,87 @@
+<include file="Public:header" />
+<script language="javascript">var webpath="__PUBLIC__";</script>
+<script type="text/javascript" src="__PUBLIC__/statics/js/common.js"></script>
+<script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.all.min.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/ueditor/themes/default/css/ueditor.css"/>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#submit").click(function(){
+			if($("#name").val()==0){
+			   alert('请填写资讯分类');
+			   return false;
+			}
+		});
+		//编辑器
+		var editor = new UE.ui.Editor({initialFrameHeight:300});
+		editor.render("text"); 
+	});
+</script>
+
+</head>
+<div class="pad_10">
+<form action="{:U('Scenic/edit')}" method="post" name="myform" id="myform" enctype="multipart/form-data" style="margin-top:10px;">
+  <div class="pad-10">
+  <div class="col-tab">
+  <ul class="tabBut cu-li">
+    <li id="tab_setting_1" class="on" onclick="SwapTab('setting','on','',1,1);">基本信息</li>
+  </ul>
+  <div id="div_setting_1" class="contentList pad-10">
+    <table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+    <tr>
+      <th width="100">出游类型 :</th>
+      <td>{:C("tuan_type.".$info['type'])}</td>
+    </tr>
+    <tr>
+      <th width="100">出游天数 :</th>
+      <td>{:C("tuan_days.".$info['days'])}</td>
+    </tr>
+	<tr>
+      <th width="100">目的地 :</th>
+      <td>{:C("dst_type.".$info['dst_type'])}<span style="margin-left:10px;">{$info.dst_name}</span></td>
+    </tr>
+	<tr>
+        <th width="100">出游日期 :</th>
+        <td>{$info.time|date="Y-m-d",###}</td>
+    </tr>
+    <tr>
+      <th width="100">出游人数 :</th>
+      <td>
+		{$info.num}
+		<if condition="$info['h_child']"><span style="margin-left:10px;color:red;font-size:12px;">有小孩</span></if>
+		<if condition="$info['h_old']"><span style="margin-left:10px;color:red;font-size:12px;">有老人</span></if>
+	  </td>
+    </tr>
+	<tr>
+      <th width="100">出游预算 :</th>
+      <td>{$info.price}</td>
+    </tr>
+    <tr>
+      <th width="100">其他需求 :</th>
+      <td>{$info.info}</td>
+    </tr> 
+	<tr>
+      <th width="100">联系人 :</th>
+      <td>{$info.contact}</td>
+    </tr>  
+	<tr>
+      <th width="100">手机号 :</th>
+      <td>{$info.phone}</td>
+    </tr>
+	<tr>
+      <th width="100">公司名称 :</th>
+      <td>{$info.company}</td>
+    </tr>
+</table>
+  </div>
+  <div class="bk15"></div>
+  <div class="btn">
+    <input type="button" value="关闭" name="submit" class="button" onclick="history.go(-1)">
+  </div>
+
+</div>
+</div>
+</form>
+</div>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>重置密码</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link type="text/css" rel="stylesheet" href="../Public/css/reset.css">
+<link type="text/css" rel="stylesheet" href="../Public/css/ral.css">
+<script type="text/javascript" src="../Public/js/jquery-1.11.1.min.js"></script>
+<include file="Public:statistics"/>
+</head>
+<body>
+<include file="Public:ralheader" />
+<div class="ral_box clearfix">
+	<div class="ral_findpwd">
+		<h2>找回密码</h2>
+		<div class="ral_findpwd_form">			
+			<form id="loginForm" method="post" action="" class="clearfix">
+				<div class="formLine clearfix">
+					<span class="formLabel w90">手机号码：</span>
+					<span style="font-size:16px;">{$phone}</span>
+					<span class="err_phone normal"></span>
+				</div>
+				<div class="formLine clearfix">
+					<span class="formLabel w90">验证码：</span>
+					<span>
+						<input type="text" class="short" value="" id="verify" name="verify"></input>
+						<input type="button" name="resetyzm" value="免费获取验证码">
+					</span>
+					<span class="err_check normal"></span>
+				</div>
+				<div class="formLine clearfix">
+					<span class="formLabel w110">重设密码：</span>
+					<span><input class="long" type="password" value="" id="password" name="password"></input></span>
+					<span class="err_password  normal"></span>
+				</div>
+				<div class="formLine clearfix">
+					<span class="formLabel w110">确认密码：</span>
+					<span><input class="long" type="password" value="" id="repassword" name="repassword"></input></span>
+					<span class="err_rstpassword normal"></span>
+				</div>
+				<div class="formLine clearfix">
+					<span class="formLabel"></span>
+					<span><input type="submit" name="cpBtn" id="fpBtn" value="提交" class="submit"/></span>
+				</div>
+			</form>
+		</div>
+	<div>
+</div>
+<include file="Public:ralfooter" />
+<script type="text/javascript">
+$(document).ready(function(){
+	//重新发送验证码
+	var btn = $('input[name="resetyzm"]');
+	var wait = 60;
+	function time(btn){
+		if(wait == 0){
+			$(btn).css("disabled",false);
+			$(btn).val("免费获取验证码");
+			wait = 60;
+		}else{
+			$(btn).css("disabled",true);
+			$(btn).val(wait + "秒后重新获取验证码");
+			wait--;
+			setTimeout(function(){
+				time(btn);
+			},1000)
+		}
+	}
+	
+	time(btn);
+	$(btn).click(function(){
+		var wait = 60;
+		time(btn);
+		$.post(
+			'index.php?m=User&a=sendCode'
+		);
+	});
+	
+	//$('#J_captcha_img').click(function(){
+    //    var timenow = new Date().getTime(),
+    //        url = $(this).attr('data-url').replace(/js_rand/g,timenow);				
+    //    $(this).attr("src", url);
+    //});
+	$('#J_captcha_change').click(function(){
+        //$('#J_captcha_img').trigger('click');
+		var time = new Date().getTime();
+		$('#J_captcha_img').attr('src','__ROOT__/User/verify/' + time);		
+    });
+	//验证手机
+	$("#phone").blur(function(){
+		var check_phone_exist=$("#check_phone_exist").val();
+		$(".err_phone").removeClass("nomal");
+		var phone=$.trim($("#phone").val());
+		if(phone==""){
+			$(".err_phone").addClass("error").removeClass("correct").html("请填写手机！");
+		}else{
+			var uanmebool=/^(13[0-9]|15[0|3|6|7|8|9]|18[8|9]|18[0-9]|147|17[6-8])\d{8}$/.test(phone);
+			if(!uanmebool){
+				$(".err_phone").addClass("error").removeClass("correct").html("请填写正确的手机号码！");
+			}else{
+				$.post(check_phone_exist,{phone:phone},function(data){
+					if(data=="phoneExist"){
+						$(".err_phone").addClass("error").removeClass("correct").html("该手机号码已存在！");
+					}else{
+						$(".err_phone").addClass("correct").removeClass("error").html("&nbsp;");
+					}
+				});
+			}
+		}
+	});
+	//验证验证码
+	$("#verification").blur(function(){
+		$(".err_check").removeClass("nomal");
+		var verify_post_action=$(this).attr("verify_post_action");
+		var verification=$.trim($(this).val());
+		if(verification==''){
+			$(".err_check").addClass("error").removeClass("correct").html("请输入验证码！");
+			return false;
+		}
+		$.post(verify_post_action,{verification:verification},function(data){
+			if(data=="true"){
+				$(".err_check").addClass("correct").removeClass("error").html("&nbsp;");
+			}else if(data=="false"){
+				$(".err_check").addClass("error").removeClass("correct").html("验证码输入不正确的！");
+			}
+		});
+	});
+	$("#cpBtn").click(function(){
+		if($(".err_password").html()=='&nbsp;' && $(".err_rstpassword").html()=='&nbsp;'){
+			return true;
+		}else{
+			return false;
+		}
+	});
+});
+</script>
+</body>
+</html>

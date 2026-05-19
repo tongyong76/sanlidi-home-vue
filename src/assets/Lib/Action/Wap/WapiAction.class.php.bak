@@ -1,0 +1,81 @@
+<?php
+//微信基础类  此类必定从微信浏览器打开
+class WapiAction extends BaseAction {
+    public $wx_appid = 'wx9f98139e202c7003';
+	public $wx_appsecret = 'fc569bb8896f29b5269fe49169d0c77a';
+	
+	
+	//简单验证
+	public function slogin(){
+		$code = $_REQUEST['code'];
+		$state = $_REQUEST['state']?$_REQUEST['state']:0;
+		$post_url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='.$this->wx_appid.'&secret='.$this->wx_appsecret.'&code='.$code.'&grant_type=authorization_code';
+		$json=json_decode(http_request($post_url));
+		
+		//是否第一次
+		$exist = M('wx_user')->where('wx_openid="'.$json->openid.'"')->find();
+		if($exist){
+			SESSION('wx_openid',$exist['wx_openid']);
+			//$jump_url = base64_decode($state);
+			if($state){
+				$jump_url = 'http://m.33ly.com/Game/help/gid/'.$state;
+			}else{
+				$jump_url = 'http://m.33ly.com/Game/index';
+			}
+			header("Location: $jump_url");
+		}else{
+			$redirect_uri = urlencode('http://m.33ly.com/Game/ulogin');
+			$url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=".$this->wx_appid."&redirect_uri=".$redirect_uri."&response_type=code&scope=snsapi_userinfo&state=".$state."#wechat_redirect";
+			header("Location: $url");
+		}
+	}
+	
+	//获取用户信息并绑定
+	public function ulogin(){
+		$code = $_REQUEST['code'];
+		$state = $_REQUEST['state']?$_REQUEST['state']:0;
+		$userInfo = $this->checkUser($code);
+		//存入数据库
+		$data['wx_openid'] = $userInfo->openid;
+		$data['wx_nickname'] = $userInfo->nickname;
+		$data['wx_sex'] = $userInfo->sex;
+		$data['wx_headimgurl'] = $userInfo->headimgurl;
+		M('wx_user')->add($data);
+		SESSION('wx_openid',$data['wx_openid']);
+		//$jump_url = base64_decode($state);
+		if($state){
+			$jump_url = 'http://m.33ly.com/Game/help/gid/'.$state;
+		}else{
+			$jump_url = 'http://m.33ly.com/Game/index';
+		}
+		header("Location: $jump_url");
+	}
+	
+	
+	//微信接口 获取用户信息
+	public function checkUser($code){
+		$post_url = 'https://api.weixin.qq.com/sns/oauth2/access_token?appid='.$this->wx_appid.'&secret='.$this->wx_appsecret.'&code='.$code.'&grant_type=authorization_code';
+		$json=json_decode(http_request($post_url));
+		
+		$post_url2 = 'https://api.weixin.qq.com/sns/userinfo?access_token='.$json->access_token.'&openid='.$json->openid.'&lang=zh_CN';
+		$json2 = json_decode(http_request($post_url2));
+		return $json2;
+	}
+	
+	
+	//判断是否微信浏览器
+	private function isWeixin(){
+		$user_agent = $_SERVER['HTTP_USER_AGENT'];
+		if (strpos($user_agent, 'MicroMessenger') === false) {
+			// 非微信浏览器禁止浏览
+			return 0;
+		} else {
+			// 微信浏览器，允许访问
+			// echo "MicroMessenger";
+			// 获取版本号
+			preg_match('/.*?(MicroMessenger\/([0-9.]+))\s*/', $user_agent, $matches);
+			return '<br>Version:'.$matches[2];
+			//return 1;
+		}		
+	}
+}

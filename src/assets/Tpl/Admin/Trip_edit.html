@@ -1,0 +1,127 @@
+<include file="Public:header" />
+<script language="javascript">var webpath="__PUBLIC__";</script>
+<script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.all.min.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/ueditor/themes/default/css/ueditor.css"/>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#submit").click(function(){		
+			if($("#name").val()==0){
+			   alert('请填写名称');
+			   return false;
+			}
+		});
+		//编辑器
+		
+		var totalDay = {$totalDay};
+		
+		for(i=0;i<totalDay;i++){
+			UE.getEditor('text'+(i+1), {
+				initialFrameHeight:150, //皮肤
+				toolbars:[['source','bold','italic','underline','insertorderedlist','insertunorderedlist','forecolor','backcolor','selectall','cleardoc','justifyleft','justifyright','justifycenter','justifyjustify','inserttable']],
+			});
+		}
+	});
+</script>
+</head>
+<body>
+<form action="{:u('Trip/edit')}" method="POST" name="myform" id="myform" enctype="multipart/form-data" style="margin-top:10px;">
+  <div class="pad-10">
+  <div style="padding:0 0 10px 14px;font-size:14px;color:#404040;font-weight:bold;">
+		<a style="color:#2A98DA;" href="http://www.33ly.com/group/xianlu-{$tripInfo.id}.html" target="_blank">{$tripInfo.name}{$tripInfo.subname}</a>
+  </div>
+  <div class="col-tab">
+  <ul class="tabBut cu-li">
+	<for start="0" end="$totalDay">
+		<li id="tab_setting_{$i+1}" <if condition="!$i">class="on"</if> onclick="SwapTab('setting','on','',{$totalDay},{$i+1});">第{$i+1}天</li>
+	</for>
+  </ul>
+  <for start="0" end="$totalDay">
+	  <div id="div_setting_{$i+1}" class="contentList pad-10 <if condition='$i'> hidden</if>">
+		<table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+		  <tr>
+			<th width="100"></th>
+			<td>第{$i+1}天行程</td>
+		  </tr>
+		  <tr>
+			<th width="100">名称 :</th>
+			<td><input type="text" name="name[{$i}]" class="input-text" size="60" value="{$tripList.$i.name}" ><b style="color:red;font-weight:bold;">填城市或国家，不是填写景点。航空公司代号尽量用中文描述</b></td>
+		  </tr>
+		  <tr>
+			<th width="100">含餐 :</th>
+			<td>
+				<input type="checkbox" value="1" name="dinner[{$i}][]" <if condition="in_array(1,$tripList[$i]['dinner'])"> checked="checked"</if>>&nbsp;早餐
+				<input type="checkbox" value="2" name="dinner[{$i}][]" <if condition="in_array(2,$tripList[$i]['dinner'])"> checked="checked"</if>>&nbsp;午餐
+				<input type="checkbox" value="3" name="dinner[{$i}][]" <if condition="in_array(3,$tripList[$i]['dinner'])"> checked="checked"</if>>&nbsp;晚餐
+				&nbsp;&nbsp;<b style="color:red;font-weight:bold;">(按实际勾选)</b>
+			</td>
+		  </tr>
+		  <tr>
+			<th width="100">住宿 :</th>
+			<td><input type="text" name="hotel[{$i}]" class="input-text" size="60" value="{$tripList.$i.hotel}" ><b style="color:red;font-weight:bold;">尽量具体，少用"或同级"</b></td>
+		  </tr>
+		  <tr>
+			<th width="100">景点 :</th>
+			<td>
+				<input type="text" name="scene[{$i}]" class="input-text" size="60" value="{$tripList.$i.scene}" >
+				<input type="button" name="getScene" value="获取相关景点" >
+			</td>
+		  </tr>
+		  <tr>
+			<th>行程详情 :</th>
+			<td>
+				<p style="color:red;font-weight:bold;">1. 描述不超过4行</p>
+				<p style="color:red;font-weight:bold;">2. 第1天开头：“苏州各县市集合，车赴XX机场，乘飞机前往XX”</p>
+				<p style="color:red;font-weight:bold;">3. 最后一天结尾：“飞回XX，专车送至指定点，结束愉快的行程，返回温馨的家”</p>
+				<textarea style="width:70%;" name="info[{$i}]" id="text{$i+1}">{$tripList.$i.info}</textarea>
+			</td>
+		  </tr> 
+		  <input type="hidden" name="pid" value="{$pid}">
+		</table>
+	  </div>
+  </for>
+  <input type="hidden" name="jumpUrl" value="{$jumpUrl}">
+  <div class="bk15"></div>
+  <div class="btn">
+    <input type="submit" onclick="disable()" value="保存" name="submit" class="button" style="vertical-align: top" id="submit">
+	<a class="b-button a-button" href="{:u('Line/index',array('id'=>$tripInfo['type_id']))}">返回</a>
+	<a class="b-button a-button" href="http://www.33ly.com/group/xianlu-{$tripInfo.id}.html" target="_blank">预览</a>
+  </div>
+
+</div>
+</div>
+</form>
+<script type="text/javascript">
+function delHtmlTag(str){
+	return str.replace(/<[^>]+>/g,"");//去掉所有的html标记
+}
+
+function disable(){
+	if($('input').attr("disabled")==true || $('input').attr("disabled")==true){
+		$('input').removeAttr('disabled');
+		$('select').removeAttr('disabled');
+	}
+}
+
+$('input[name="getScene"]').click(function(){
+	var obj = $(this).parent().find('.input-text');
+	var srcData = $(this).parent().parent().parent().find('textarea').val();
+	srcData = delHtmlTag(srcData);
+	$.ajax({
+		url: '__ROOT__/Ajax/getscene',
+		type: 'POST',
+		data:{srcData:srcData},
+		dataType: 'json',
+		success: function(result){
+			if(result.status == 1){
+				$(obj).val(result.data);
+			}else{
+				alert('失败');
+			}
+		}
+	});
+});
+
+</script>
+</body>
+</html>

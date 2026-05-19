@@ -1,0 +1,119 @@
+<include file="Public:header" />
+<script language="javascript">var webpath="__PUBLIC__";</script>
+<script type="text/javascript" src="__PUBLIC__/statics/js/common.js"></script>
+<script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.all.min.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/ueditor/themes/default/css/ueditor.css"/>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#submit").click(function(){
+			if($("#name").val()==0){
+			   alert('请填写资讯分类');
+			   return false;
+			}
+		});
+		$('#type').change(function(){
+			if($("#type").val()==1){
+				$('#hidme').attr('class','');
+			}else{
+				$('#hidme').attr('class','hidme');
+			}
+		});
+		//编辑器
+		var editor = UE.getEditor('text', {toolbars:[['source', 'undo', 'bold', 'italic','link', 'unlink', 'formatmatch', 'underline', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc','justifyleft', 'justifycenter', 'justifyright', 'justifyjustify','inserttable','insertimage']],initialFrameHeight:300,pasteplain:false});
+	});
+
+</script>
+
+</head>
+<body>
+<div class="pad_10">
+<form action="{:U('Shopview/add')}" method="post" name="myform" id="myform" enctype="multipart/form-data" style="margin-top:10px;">
+  <div class="pad-10">
+  <div class="col-tab">
+  <ul class="tabBut cu-li">
+    <li id="tab_setting_1" class="on" onClick="SwapTab('setting','on','',1,1);">基本信息</li>
+  </ul>
+  <div id="div_setting_1" class="contentList pad-10">
+    <table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+	<tr> 
+        <th width="100"></th>
+        <td>
+			<p>PAD项目内容按照顺序：1.目的地 2.行程特色 3.交通 4.住宿环境 5.用餐 6.注意事项（内容简洁）</p>
+			<p>每个项目内容需包含2-3张PPT</p>
+			<p>PPT图片要契合当前页面主题，不要拉伸变形，图片像素要清晰</p>
+			<p>PPT首页的封面字体为微软雅黑95号字体，标题文字不要超过8个字。单张PPT上的文字不得超过80个字</p>
+		</td>
+    </tr>
+    <tr> 
+        <th width="100">产品名称 :</th>
+        <td>
+			<input type="text" name="shopview_name" class="input-text">
+		</td>
+    </tr>
+	<tr> 
+        <th width="100">分类 :</th>
+        <td>
+			<select name="shopview_cate" id="shopview_cate" style="width:120px;" >
+			<option value="0">--请选择分类--</option>
+			<option value="周边游">周边游</option>
+			<option value="国内游">国内游</option>
+			<option value="出境游">出境游</option>
+			<option value="单项服务">单项服务</option>
+		</td>
+    </tr>
+	<tr>
+        <th width="100">失效日期 :</th>
+        <td><input type="text" name="exp_time" id="exp_time" class="date" size="12" value="">
+			<script language="javascript" type="text/javascript">
+                Calendar.setup({
+                    inputField     :    "exp_time",
+                    ifFormat       :    "%Y-%m-%d",
+                    showsTime      :    'true',
+                    timeFormat     :    "24"
+                });
+            </script>
+		</td>
+    </tr>
+	<!--
+	<tr>
+        <th width="100">产品简介 :</th>
+        <td><textarea name="shopview_desc" id="text" style="width:70%;" rows="40"></textarea></td>
+    </tr>
+	-->
+	<table width="100%" cellpadding="2" cellspacing="1" class="table_form" id="gallery_box">
+	  <tr>
+        <th width="100"><a href="javascript:;" onclick="addImg()">[+]</a>产品页 :</th>
+        <td>
+            <input type="file" name="shopview_imgurl[]" class="input-text" size=21 style="height:25px;"/>(第一页将做为封面)
+		</td>
+      </tr>
+	</table>
+	
+	</table>
+  </div>
+  <div class="bk15"></div>
+  <div class="btn">
+    <input type="submit" value="提交" name="submit" class="button" id="submit">
+  </div>
+
+</div>
+</div>
+</form>
+</div>
+<script type="text/javascript">
+function addImg()
+{
+	var newdiv = '<tr><th width="100"><a href="javascript:;" class="removeImg">[-]</a>产品页 :</th><td><input type="file" name="shopview_imgurl[]" class="input-text" size=21 style="height:25px;"/></td></tr>'; 
+	$('#gallery_box').append(newdiv);
+}
+
+
+$(function(){
+	$('.removeImg').live('click',function(){
+		$(this).parent().parent().remove();
+	})
+});
+</script>
+</body>
+</html>

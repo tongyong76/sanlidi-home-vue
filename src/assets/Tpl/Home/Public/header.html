@@ -1,0 +1,394 @@
+<div id="header">
+  <!--出发城市登陆注册开始-->
+  <div id="topBar">
+    <div class="inside_top">
+      <!--出发城市开始-->
+      <div id="starting" class="fl">
+        <span class="top_hello fl">苏州青旅三三旅游欢迎您！您可选择出发城市：</span>
+        <a class="s_city_name" href="http://www.33ly.com" title="苏州旅行社">苏州</a>
+        <a class="s_city_name" href="http://kunshan.33ly.com" title="昆山旅行社" target="_blank">昆山</a>
+        <a class="s_city_name" href="http://changshu.33ly.com" title="常熟旅行社" target="_blank">常熟</a>
+        <a class="s_city_name" href="http://zhangjiagang.33ly.com" title="张家港旅行社" target="_blank">张家港</a>
+        <a class="s_city_name" href="http://taicang.33ly.com" title="太仓旅行社" target="_blank">太仓</a>
+      </div>
+      <!--出发城市结束-->
+      <!--登陆注册开始-->
+      <div id="login" class="fr">
+        <if condition="!$uid">
+          <span class="shu_line">|</span><a class="my_ss" href="javascript:void(0)" onclick="headlogin();"
+            rel="nofollow">登录</a>
+          <span class="shu_line">|</span><a class="my_ss" href="{:C('site_domain')}/register.html" rel="nofollow">注册</a>
+          <else />
+          <span class="welcome">欢迎您，{$uname}</span>
+          <span class="shu_line">|</span><a class="my_ss" href="{:U('User/logout')}">注销</a>
+          <!--<span class="shu_line">|</span><a class="my_ss" href="javascript:void(0)" onclick="logout();">注销</a>-->
+          <span class="shu_line">|</span><a class="my_ss" href="{:C('site_domain')}/member/" target="_blank"
+            rel="nofollow">我的订单</a>
+        </if>
+        <span class="shu_line">|</span><a class="my_ss" href="http://www.33ly.com/aboutus/brief.html"
+          target="_blank">关于我们</a>
+        <div class="wx fl" id="wx">
+          <div class="w_text">
+            <span class="w_title fl">三三微信</span>
+            <span class="w_ico fr"></span>
+          </div>
+          <div class="w_scan">
+            <!--微信二维码-->
+            <img src="../Public/images/qrcode.jpg" alt="苏州青旅三三旅游微信公众号二维码" />
+          </div>
+        </div>
+      </div>
+      <!--登陆注册结束-->
+    </div>
+  </div>
+  <!--出发城市登陆注册结束-->
+  <if condition="$ad['sytb']">
+    <div class="bannerBar">
+      <div class="inside_banner">
+        <a href="{$ad.sytb.link}" target="_blank"><img src="{:C('site_domain')}{$ad.sytb.imgurl}"></a>
+      </div>
+    </div>
+  </if>
+  <!--搜索开始-->
+  <div id="searchBar">
+    <div class="inside_search">
+      <div class="logo fl" id="logo">
+        <dl class="d_logo">
+          <dt class="fl newlogo">
+            <h1><a href="__ROOT__/" target="_blank"><img src="../Public/images/logo.png"
+                  alt="苏州青旅三三旅游是苏州旅游直营连锁第一品牌，每年为超过10万名用户提供旅游预订服务，并致力于为大众带来及时、专业、全面、无忧的旅游服务。24小时咨询预订电话：66667777" /></a>
+            </h1>
+          </dt>
+        </dl>
+      </div>
+      <div class="search fl" id="search">
+        <form method="get" id="searchform" action="{:C('site_domain')}/search" class="s_search" target="_blank">
+
+          <div class="s_right fl">
+            <span class="glass fl"></span>
+            <input type="text" id="Searchkey" name="keyword" class="Searchkey fl hint" defaultValue="{$search.name}"
+              value="" maxlength="58">
+          </div>
+          <input class="search_btn fr" type="submit" value="搜索">
+        </form>
+
+      </div>
+      <div class="phone fr" id="phone">
+        <div class="phone_box">
+          <p class="p_tong"></p>
+          <p class="p_number"></p>
+          <img src="../Public/images/tel.png" alt="苏州青旅三三旅游24小时咨询预订电话：66667777" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--搜索结束-->
+  <!--导航开始-->
+  <div id="navBar">
+    <div class="inside_nav">
+      <div class="n_item fl" id="n_item">
+        <p class="n_item_title">
+          <a href="javascript:void(0)" id="all_p"><img src="../Public/images/all_product_2.png"
+              alt="苏州青旅三三旅游品牌和产品" /></a>
+        </p>
+        <if condition="$isIndex">
+          <ul class="n_item_list" id="n_item_list" style="display:block;">
+            <else />
+            <ul class="n_item_list2" id="n_item_list">
+        </if>
+        <li class="leftItem">
+          <div class="list_menu">
+            <dl class="l_m_name">
+              <dt>子品牌</dt>
+              <dd>
+                <a href="{:C('site_domain')}/pinpai/zizhutuan/" target="_blank"
+                  title="三三设计、三三收客、三三导游、三三接送、全程管控、一管到底">自组团</a>
+                <a href="{:C('site_domain')}/pinpai/zhuanxiang/" target="_blank" title="特价、适合大众的旅游产品">专享</a>
+                <a href="{:C('site_domain')}/pinpai/changxiang/" target="_blank" title="中档、性价比高的旅游产品">畅享</a>
+                <a href="{:C('site_domain')}/pinpai/zunxiang/" target="_blank" title="高标准的定制旅游产品">尊享</a>
+                <a href="{:C('site_domain')}/pinpai/shexiang/" target="_blank" title="最高标准定制的小包团">奢享</a>
+
+                <br>
+                <a href="{:C('site_domain')}/pinpai/shuaicang/" target="_blank" title="最全的上海出港邮轮产品">沪上邮轮</a>
+                <a href="{:C('site_domain')}/pinpai/tuanyou/" target="_blank" title="一天一百元的特价活动">团游</a>
+                <a href="{:C('site_domain')}/pinpai/zhoumoditu/" target="_blank" title="周末出发的周边游产品">周末地图</a>
+              </dd>
+            </dl>
+          </div>
+          <div class="list_submenu">
+            <div class="cruise_menu clearfix">
+              <div class="c_m_t">
+                <div class="c_tehui">
+                  <div class="ct_hui">
+                    <div class="ct_title"><strong>本月特惠：</strong>{$ad.byth3.title}</div>
+                    <div class="ct_des">{$ad.byth3.content}</div>
+                  </div>
+                  <a href="{$ad.byth3.link}" class="c_go" target="_blank"><img src="../Public/images/go.png"
+                      alt="苏州青旅三三旅游购买链接" /></a>
+                </div>
+              </div>
+              <div class="c_m_b clearfix">
+                <dl class="c_cha_rh">
+                  <dt><a href="{:C('site_domain')}/pinpai/tuanyou/" target="_blank">团游>></a></dt>
+                  <dd><a href="{:C('site_domain')}/pinpai/tuanyou/" target="_blank"><img
+                        src="../Public/images/c_ty_01.png" alt="苏州青旅三三旅游团队游"></a></dd>
+                </dl>
+                <dl class="c_cha_rh">
+                  <dt><a href="{:C('site_domain')}/pinpai/zhoumoditu/" target="_blank">周末地图>></a></dt>
+                  <dd><a href="{:C('site_domain')}/pinpai/zhoumoditu/" target="_blank"><img
+                        src="../Public/images/c_zmdt_01.png" alt="苏州青旅三三旅游周末游"></a></dd>
+                </dl>
+                <dl class="c_cha_rh c_cha_nomar">
+                  <dt><a href="{:C('site_domain')}/pinpai/shuaicang/" target="_blank">沪上游轮>></a></dt>
+                  <dd><a href="{:C('site_domain')}/pinpai/shuaicang/" target="_blank"><img
+                        src="../Public/images/c_qzy_01.png" alt="沪上游轮|上海出港游轮大全"></a></dd>
+                </dl>
+                <dl class="c_cha_rh">
+                  <dt><a href="{:C('site_domain')}/pinpai/zizhutuan/" target="_blank">自组团>></a></dt>
+                  <dd><a href="{:C('site_domain')}/pinpai/zizhutuan/" target="_blank"><img
+                        src="../Public/images/c_zzt_01.png" alt="自组团|苏州自组团|苏州旅游自组团"></a></dd>
+                </dl>
+                <dl class="c_cha_rh">
+                  <dt><a href="{:C('site_domain')}/pinpai/zunxiang/" target="_blank">尊享>></a></dt>
+                  <dd><a href="{:C('site_domain')}/pinpai/zunxiang/" target="_blank"><img
+                        src="../Public/images/c_zunx_01.png" alt="苏州青旅三三旅游尊享旅游"></a></dd>
+                </dl>
+                <dl class="c_cha_rh c_cha_nomar">
+                  <dt><a href="{:C('site_domain')}/pinpai/zhuanxiang/" target="_blank">专享>></a></dt>
+                  <dd><a href="{:C('site_domain')}/pinpai/zhuanxiang/" target="_blank"><img
+                        src="../Public/images/c_zhuanx_01.png" alt="苏州青旅三三旅游专享旅游"></a></dd>
+                </dl>
+
+              </div>
+            </div>
+
+          </div>
+        </li>
+        <li class="leftItem">
+          <volist name="lineCateList" id="vo" length="1" offset="2">
+            <div class="list_menu">
+              <dl class="l_m_name">
+                <dt>{$vo.name}</dt>
+                <dd>
+                  <volist name="vo.son" id="voo">
+                    <a href="{:C('site_domain')}/chujing/{$voo.pinyin}/" title="{$voo.name}旅游"
+                      target="_blank">{$voo.name}</a>
+                  </volist>
+                </dd>
+              </dl>
+            </div>
+          </volist>
+          <div class="list_submenu">
+            <div class="outbound_menu clearfix">
+              <ul class="out_menu_detail">
+                <li class="out_classify">
+                  <volist name="cjCateArr" id="vo" offset="0" length="2">
+                    <dl class="o_c_name">
+                      <dt><a href="{:C('site_domain')}/chujing/{$vo.pinyin}/" target="_blank">{$vo.name}</a></dt>
+                      <dd>
+                        <volist name="vo.son" id="voo" key="k">
+                          <if condition="$k neq 1"><span class="shu_line">|</span></if><a
+                            href="{:C('site_domain')}/chujing/{$voo.pinyin}/" target="_blank">{$voo.name}</a>
+                        </volist>
+                      </dd>
+                    </dl>
+                  </volist>
+                </li>
+                <li class="out_classify">
+                  <volist name="cjCateArr" id="vo" offset="2" length="2">
+                    <dl class="o_c_name">
+                      <dt><a href="{:C('site_domain')}/chujing/{$vo.pinyin}/" target="_blank">{$vo.name}</a></dt>
+                      <dd>
+                        <volist name="vo.son" id="voo" key="k">
+                          <if condition="$k neq 1"><span class="shu_line">|</span></if><a
+                            href="{:C('site_domain')}/chujing/{$voo.pinyin}/" target="_blank">{$voo.name}</a>
+                        </volist>
+                      </dd>
+                    </dl>
+                  </volist>
+                </li>
+                <li class="out_classify out_classify_nomar">
+                  <volist name="cjCateArr" id="vo" offset="4" length="2">
+                    <dl class="o_c_name">
+                      <dt><a href="{:C('site_domain')}/chujing/{$vo.pinyin}/" target="_blank">{$vo.name}</a></dt>
+                      <dd>
+                        <volist name="vo.son" id="voo" key="k">
+                          <if condition="$k neq 1"><span class="shu_line">|</span></if><a
+                            href="{:C('site_domain')}/chujing/{$voo.pinyin}/" target="_blank">{$voo.name}</a>
+                        </volist>
+                      </dd>
+                    </dl>
+                  </volist>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
+        <li class="leftItem">
+          <volist name="lineCateList" id="vo" length="1" offset="1">
+            <div class="list_menu">
+              <dl class="l_m_name">
+                <dt>{$vo.name}</dt>
+                <dd>
+                  <volist name="vo.son" id="voo">
+                    <a href="{:C('site_domain')}/guonei/{$voo.pinyin}/" title="{$voo.name}旅游"
+                      target="_blank">{$voo.name}</a>
+                  </volist>
+                </dd>
+              </dl>
+            </div>
+          </volist>
+          <div class="list_submenu">
+            <div class="domestic_menu clearfix">
+              <div class="d_m_t">
+                <div class="d_tehui">
+                  <div class="dt_hui">
+                    <div class="dt_title"><strong>本月特惠：</strong>{$ad.byth1.title}</div>
+                    <div class="dt_des">{$ad.byth1.content}</div>
+                  </div>
+                  <a href="{$ad.byth1.link}" class="d_go" target="_blank"><img src="../Public/images/go.png"
+                      alt="苏州旅游|苏州国内游" /></a>
+                </div>
+              </div>
+              <div class="d_m_b clearfix">
+                <div class="d_chaxun fl">
+                  <dl class="d_cha_des">
+                    <dt>热门目的地</dt>
+                    <dd>
+                      <volist name="gnCateArr" id="vo" key="k">
+                        <if condition="$k neq 1"><span class="shu_line">|</span></if></span><a
+                          href="{:C('site_domain')}/guonei/{$vo.pinyin}/" target="_blank">{$vo.name}</a>
+                      </volist>
+                    </dd>
+                  </dl>
+                  <dl class="d_cha_data">
+                    <dt>按天数</dt>
+                    <dd>
+                      <a href="{:C('site_domain')}/daylist/guonei-3/" target="_blank" rel="nofollow">3日游</a>
+                      <a href="{:C('site_domain')}/daylist/guonei-4/" target="_blank" rel="nofollow">4日游</a>
+                      <a href="{:C('site_domain')}/daylist/guonei-5/" target="_blank" rel="nofollow">5日游</a>
+                      <a href="{:C('site_domain')}/daylist/guonei-6/" target="_blank" rel="nofollow">6日游</a>
+                      <a href="{:C('site_domain')}/daylist/guonei-7/" target="_blank" rel="nofollow">7日游</a>
+                      <a href="{:C('site_domain')}/daylist/guonei-8/" target="_blank" rel="nofollow">8日游</a>
+                      <a href="{:C('site_domain')}/daylist/guonei-12/" target="_blank" rel="nofollow">12日游</a>
+                    </dd>
+                  </dl>
+                  <dl class="d_cha_price">
+                    <dt>按价格</dt>
+                    <dd>
+                      <a href="{:U('Tour/index',array('minprice'=>'1000','maxprice'=>'2000'))}" target="_blank"
+                        rel="nofollow">1000-2000元</a>
+                      <a href="{:U('Tour/index',array('minprice'=>'2000','maxprice'=>'5000'))}" target="_blank"
+                        rel="nofollow">2000-5000元</a>
+                      <a href="{:U('Tour/index',array('minprice'=>'5000','maxprice'=>'1000000'))}" target="_blank"
+                        rel="nofollow">5000元以上</a>
+                    </dd>
+                  </dl>
+                  <dl class="d_cha_ad">
+                    <dt>
+                      <a href="{$ad.xlgn1.link}" target="_blank"><img src="{:C('site_domain')}{$ad.xlgn1.imgurl}"
+                          alt="苏州旅游|苏州国内游"></a>
+                      <a href="{$ad.xlgn2.link}" target="_blank"><img src="{:C('site_domain')}{$ad.xlgn2.imgurl}"
+                          alt="苏州旅游|苏州国内游"></a>
+                    </dt>
+                  </dl>
+
+                </div>
+                <div class="d_ad fr">
+                  <a href="{$ad.xlgn3.link}" target="_blank"><img src="{:C('site_domain')}{$ad.xlgn3.imgurl}"></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+        <li class="leftItem leftItemLast">
+          <volist name="lineCateList" id="vo" length="1" offset="0">
+            <div class="list_menu list_last_menu">
+              <dl class="l_m_name">
+                <dt>周边游</dt>
+                <dd>
+                  <a href="{:C('site_domain')}/zhoubian/qingdao/" title="青岛旅游" target="_blank">青岛</a>
+                  <a href="{:C('site_domain')}/zhoubian/jiande/" title="建德旅游" target="_blank">建德</a>
+                  <a href="{:C('site_domain')}/zhoubian/ningbo/" title="宁波旅游" target="_blank">宁波</a>
+                  <a href="{:C('site_domain')}/zhoubian/xiangshan/" title="象山旅游" target="_blank">象山</a>
+                  <a href="{:C('site_domain')}/zhoubian/tonglu/" title="桐庐旅游" target="_blank">桐庐</a>
+                  <a href="{:C('site_domain')}/zhoubian/linan/" title="临安旅游" target="_blank">临安</a>
+                  <a href="{:C('site_domain')}/zhoubian/shanlingshuixiu/" title="山灵水秀" target="_blank">山灵水秀</a>
+                  <a href="{:C('site_domain')}/zhoubian/shuixiangguzhen/" title="水乡古镇" target="_blank">古镇</a>
+                  <a href="{:C('site_domain')}/zhoubian/dushimingcheng/" title="都市名城" target="_blank">名城</a>
+                </dd>
+              </dl>
+            </div>
+          </volist>
+          <div class="list_submenu">
+            <div class="around_menu clearfix">
+              <div class="a_m_t">
+                <div class="a_tehui">
+                  <div class="at_hui">
+                    <div class="at_title"><strong>本月特惠：</strong>{$ad.byth2.title}</div>
+                    <div class="at_des">{$ad.byth2.content}</div>
+                  </div>
+                  <a href="{$ad.byth2.link}" class="a_go" target="_blank"><img src="../Public/images/go.png"
+                      alt="苏州旅游|苏州周边游" /></a>
+                </div>
+              </div>
+              <if condition="$isIndex">
+                <div class="a_m_b clearfix" style="height:263px;overflow:hidden;">
+                  <else />
+                  <div class="a_m_b clearfix" style="height:273px;overflow:hidden;">
+              </if>
+              <div class="a_chaxun fl">
+                <p class="a_cha_item">热门目的地</p>
+                <volist name="zbCateArr" id="vo" offset="0" length="5">
+                  <dl class="a_cha_sh clearfix">
+                    <dt><a href="{:C('site_domain')}/zhoubian/{$vo.pinyin}/" target="_blank">{$vo.name}</a></dt>
+                    <dd>
+                      <volist name="vo.son" id="voo" key="k">
+                        <if condition="$k neq 1"><span class="shu_line">|</span></if><a
+                          href="{:C('site_domain')}/zhoubian/{$voo.pinyin}/" target="_blank">{$voo.name}</a>
+                      </volist>
+                    </dd>
+                  </dl>
+                </volist>
+                <if condition="$ad['xlzb1']">
+                  <dl class="a_cha_ad">
+                    <dt>
+                      <a href="{$ad.xlzb1.link}" target="_blank"><img src="{:C('site_domain')}{$ad.xlzb1.imgurl}"
+                          alt="苏州旅游|苏州周边游|苏州周边游线路"></a>
+                      <a href="{$ad.xlzb2.link}" target="_blank"><img src="{:C('site_domain')}{$ad.xlzb2.imgurl}"
+                          alt="苏州旅游|苏州周边游|苏州周边游线路"></a>
+                    </dt>
+                  </dl>
+                </if>
+              </div>
+              <div class="a_ad fr">
+                <a href="{$ad.xlzb3.link}" target="_blank"><img src="{:C('site_domain')}{$ad.xlzb3.imgurl}"
+                    alt="苏州旅游|苏州周边游|苏州周边游线路"></a>
+              </div>
+            </div>
+          </div>
+
+      </div>
+      </li>
+
+      </ul>
+    </div>
+    <div class="n_main fl" id="n_main">
+      <ul class="n_main_name clearfix">
+        <li><a href="/" <if condition="$isIndex eq 1">class="on"</if>>首页</a></li>
+        <li><a href="/">出境游</a></li>
+        <volist name="navList" id="vo">
+          <li><a target="_blank" href="{:C('site_domain')}{$vo.url}" <if condition="$nav eq $vo['name']">class="on"</if>
+              >{$vo.name}</a></li>
+        </volist>
+      </ul>
+    </div>
+    <div class="n_recommend fr" id="n_recommend">
+      <p class="team"><a href="{:C('site_domain')}/tuandui/" target="_blank" <if condition="$nav eq tdcy">class="on"
+          </if>>定制包团</a></p>
+      <span class="recommend_logo"></span>
+    </div>
+  </div>
+</div>
+<!--导航结束-->
+</div>

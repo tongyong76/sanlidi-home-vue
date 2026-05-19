@@ -1,0 +1,28 @@
+<include file="Public:header" />
+</head>
+<body>
+<div class="pad-10" >
+	<form action="{:U('ExcelHandle/add')}" method="post" enctype="multipart/form-data">
+	<table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+	  <tr>
+      	<th style="width:100px;">Excel文件 :</th>
+      	<td>		
+			<input type="file" name="import" class="input-text" size=21 style="height:25px;"/>
+			<input type="hidden" name="table" value="wx_win_name"/>
+			<input type="hidden" name="wid" value="{$wid}"/>
+			<input type="submit" value="导入" class="button"/>
+		</td>
+      </tr>
+	  <tr>
+      	<th></th>
+      	<td>		
+			<a style="color:red;" href="__ROOT__/demo.xls">Excel格式下载</a>
+		</td>
+      </tr>
+	</table>
+    </form>
+
+
+</div>
+</body>
+</html>

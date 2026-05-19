@@ -1,0 +1,169 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!--<if condition="$info['seo_title']">
+<title>{$info.seo_title}_三三旅游网</title>
+<else/>-->
+<title>企业团队{$info.name}游_苏州团队旅游/公司旅游报价_三三旅游网</title>
+<!--</if>-->
+<if condition="$info['seo_keys']">
+<meta name="keywords" content="{$info.seo_keys}">
+<else/>
+<meta name="keywords" content="">
+</if>
+<!--<if condition="$info['seo_desc']">
+<meta name="description" content="{$info.seo_desc}">
+<else/>-->
+<meta name="description" content="三三旅游网(33LY.COM){$info.name}游，2016年{$info.cateName}旅游景区团队旅游、公司旅游线路报价、推荐行程和门票价格。{$info.seo_desc_common}">
+<!--</if>-->
+
+
+<link type="text/css" rel="stylesheet" href="../Public/css/reset.css">
+<link type="text/css" rel="stylesheet" href="../Public/css/style.css">
+<script type="text/javascript" src="../Public/js/jquery-1.11.1.min.js"></script>
+<script>var ROOT_PATH = '__ROOT__';</script>
+<script type="text/javascript" src="../Public/js/jquery.scrollTo.min.js"></script>
+<script type="text/javascript" src="../Public/js/common.js"></script>
+<script type="text/javascript" src="../Public/js/t_route_detail.js?v=1.0"></script>
+<include file="Public:statistics"/>
+</head>
+<body>
+<include file="Public:header"/>
+<!--头部结束-->
+<div class="wrap">
+	<div class="inside_wrap clearfix">
+    	<div class="search_nav">
+			<a href="__ROOT__">首页</a><b>></b>{$posi}<span><{$info.name}>{$info.subname}</span>
+		</div>
+        <div class="Main">
+        	<div class="Mtop" id="tuan_Mtop">
+            	<div class="MT_left fl">
+                	<div class="tour_img"><img src="__ROOT__{$info.imgurl}"></div>
+                </div>
+                <div class="MT_right fr">
+                	<div class="tour_info">
+						<input type="hidden" name="tour_id" id="tour_id" value="{$info.id}">
+                    	<h1 class="to_title"><{$info.name}>{$info.subname}</h1>
+						<!--<if condition="$info['type_id'] eq 97">
+						<div class="to_market_price">45人成团价：<em>￥</em><span style="color: #F60;font-size: 25px;font-family: georgia;">{$info.market_price}</span><em>元/人</em></div>
+						<else/>
+                        <div class="to_market_price">参考价：<span>一团一议</span></div>
+						</if>-->           
+                        <if condition="$info['type_id'] eq 97">
+                        <div class="to_member_price clearfix">
+                        	<div class="t_m_price fl">45人成团价：<i>￥</i><span>{$info.market_price}</span><i>元/人</i></div>
+                            <div class="declare fl">
+                            	<span class="t_dec t_dec_blue">报价说明</span>
+                                <div>本报价以苏州市区出发45人计，包含门票、车辆、导游、住宿（一日游不含），不含用餐。郊县出发、人数不同价格略有变动。</div>
+                            </div>
+                        </div>
+                        <else/>
+                        <div class="to_market_price">参考价：<span>一团一议</span></div>
+                        </if>
+                        
+                        <div class="pre_ticket">提前报名：建议提前<span>{$info.sign_up|isNull=###}</span>天以上报名</div>
+                        <div class="ticket"><span><a href="__ROOT__/group/submit.html" onmousemove="this.className='ticket_move'" onMouseOut="className=''">填写需求</a></span>或拨打旅游通<strong>6666-7777</strong></div>
+                        <div class="to_scan">
+                        	<div class="ecode_img">
+                            	<div class="ewords">
+                                	<span class="e_ico"><img src="../Public/images/wx_share.png"></span>
+                                	<span class="e_prompt">微信扫一扫分享给小伙伴</span>
+                                </div>
+                                <div class="ecode">
+                            		<span><img src="__ROOT__/{$ewmurl}"></span>
+                            	</div>
+                            </div>
+                        </div>  
+                        <div class="tour_fea" style="padding:8px 10px;">
+                            <div class="fea_title">线路特色</div>
+                            <div class="fea_ts">{$info.info}</div>
+                        </div>                      
+                        
+                    </div>
+
+                </div>
+            </div>
+           
+            <div class="Mbottom">
+            	<div class="info_top" id="info_top">
+                	<div class="info_ttitle">
+                    	<ul class="info_tlist clearfix">
+                        	<li><a href="javascript:void(0)">行程介绍</a></li>
+                            <li><a href="javascript:void(0)">费用说明</a></li>
+                        </ul>
+                        
+                    </div>
+                </div>
+                <div class="info_wrap">
+                	
+                	<div class="r_introduce" id="r_introduce">
+						<volist name="trip" id="vo">
+                		<div class="r_intro clearfix">
+							<div class="serial fl"><span>第{++$key}天</span></div>
+							<div class="intro_area fr">
+								<div class="spline"></div>
+								<div class="day_title">{$vo.name}</div>
+								<div class="day_con">
+									<ul class="d_con">
+										<li class="con_eat">
+											含餐：
+											<if condition="$vo['dinner']">
+											<volist name="vo.dinner" id="voo">
+											<span><if condition="$voo eq 1">早餐</if><if condition="$voo eq 2">午餐</if><if condition="$voo eq 3">晚餐</if></span>
+											</volist>
+											<else/>
+											<span>不含</span>
+											</if>
+										</li>
+										<li class="con_hotel">住宿：<if condition="$vo['hotel']">{$vo.hotel}<else/>不含</if></li>
+										<if condition="$vo['scenic'][0]"><li class="con_scenic">景点：<volist name="vo.scenic" id="voo"><if condition="$key">、<a href="#">{$voo.name}</a><else/><a href="#">{$voo.name}</a></if></volist></li></if>
+									</ul>
+								</div>
+								<div class="day_detail" maxheight="">
+									{$vo.info}
+								</div>
+								<if condition="$vo['scenic'][0]">
+								<div class="day_img">
+									<ul class="d_imgbox">
+										<volist name="vo.scenic" id="voo">
+										<li <if condition="$key eq 2">class="nomar"</if>>
+											<a><img src="__ROOT__{$voo.imgurl}"></a>
+											<p><a>{$voo.name}</a></p>									
+										</li>
+										</volist>
+									</ul>
+								</div>
+								</if>
+							</div>
+						</div>
+						</volist>
+                    </div>                    
+                    <div class="r_cost" id="r_cost">
+                    	<div class="r_cost_title">费用说明</div>
+						<if condition="$info['fees_in']">
+                        <div class="r_cost_yes">
+                        	<div class="cost_title">费用包含</div>
+                            <div class="cost_con">{$info.fees_in}</div>
+                        </div>
+						</if>
+						<if condition="$info['fees_out']">
+                        <div class="r_cost_yes">
+                        	<div class="cost_title">费用不包含</div>
+                            <div class="cost_con">{$info.fees_out}</div>
+                        </div>
+						</if>
+                    </div>
+									                   
+                </div>               
+            </div>           
+        </div>
+    </div>
+</div>
+<div id="retop">
+        <a target="_blank" id="chatId" href="http://kefu.qycn.com/vclient/chat/?websiteid=113071" rel="nofollow" class="back_talk"><span></span></a>
+        <a class="back_top" href="javascript:void(0)"></a>
+    </div>
+<include file="Public:footer_notq"/>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<include file="Public:header" />
+
+</head>
+<div class="pad_10">
+    <form action="{:u('WxUser/edit')}" method="post" name="myform" id="myform" enctype="multipart/form-data" >
+        <input type="hidden" name="wx_id" value="{$info.wx_id}" />
+        <table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+            <tr>
+                <th width="60">昵称 :</th>
+                <td><input type="text" name="wx_nickname" id="wx_nickname" size="25" value="{$info.wx_nickname}" ></td>
+            </tr>
+			<tr>
+                <th width="60">性别 :</th>
+                <td><input type="radio" name="wx_sex" value="1" <if condition="$info.wx_sex eq '1'"> checked</if>>&nbsp;男&nbsp;&nbsp;&nbsp; 
+					<input type="radio" name="wx_sex" value="0" <if condition="$info.wx_sex eq '0'"> checked</if>>&nbsp;女&nbsp;&nbsp;&nbsp; 
+					<input type="radio" name="wx_sex" value="2" <if condition="$info.wx_sex eq '2'"> checked</if>>&nbsp;保密					
+				</td>
+            </tr>
+			<tr>
+                <th width="60">头像 :</th>
+                <td><img src="{$info.wx_headimgurl}" width="60px" height="60px" /><br>
+				<input type="text" name="wx_headimgurl" id="wx_headimgurl" size="50" value="{$info.wx_headimgurl}" >
+				</td>
+            </tr>
+            <tr>
+                <th width="60">业务员 :</th>
+                <td>
+	                <input type="radio" name="type_id" value="1" <if condition="$info.type_id eq 1"> checked</if>>&nbsp;是&nbsp;&nbsp;&nbsp; 
+	                <input type="radio" name="type_id" value="0" <if condition="$info.type_id eq 0"> checked</if>>&nbsp;否
+                </td>
+            </tr>
+			<tr>
+                <th width="60">真实姓名 :</th>
+                <td><input type="text" name="real_name" id="real_name" size="25" value="{$info.real_name}" ></td>
+            </tr>
+			<tr>
+                <th width="60">邮箱 :</th>
+                <td><input type="text" name="real_email" id="real_email" size="25" value="{$info.real_email}" ></td>
+            </tr>
+			<tr>
+                <th width="60">电话 :</th>
+                <td><input type="text" name="real_phone" id="real_phone" size="25" value="{$info.real_phone}" ></td>
+            </tr>
+        </table>
+        <input type="submit" name="submit" id="dosubmit" class="button" value="提交">
+    </form>
+   
+</div>
+</body></html>

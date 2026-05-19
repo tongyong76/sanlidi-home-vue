@@ -1,0 +1,411 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>邮轮旅游_邮轮线路_邮轮报价_苏州青旅33ly.com</title>
+<meta name="keywords" content="">
+<meta name="description" content="三三旅游邮轮频道：为您提供最新邮轮线路推荐，邮轮报价，精选优质邮轮线路，给您带来最佳的预订体验，是您预订邮轮线路的首选。24小时咨询预订电话：66667777">
+<link type="text/css" rel="stylesheet" href="../Public/css/reset.css">
+<link type="text/css" rel="stylesheet" href="../Public/css/style.css">
+<script type="text/javascript" src="../Public/js/jquery-1.11.1.min.js"></script>
+<script>var ROOT_PATH = '__ROOT__';</script>
+<script type="text/javascript" src="../Public/js/common.js"></script>
+<!--头部IE6背景处理-->
+<!--[if lte IE 6]>
+<script type="text/javascript" src="../Public/js/DD_belatedPNG.js"></script>
+<script type="text/javascript">
+    DD_belatedPNG.fix('*');
+</script>
+<![endif]-->
+<!--头部IE6背景处理-->
+</head>
+<body>
+<include file="Public:header"/>
+<!--头部结束-->
+<div class="wrap">
+	<div class="inside_wrap">
+    	<div class="search_nav">
+			<a href="/">首页</a><b>></b><span>邮轮</span>
+		</div>
+        <div class="cont clearfix">
+        	<div class="cont_left fl">
+            	<div class="header">邮轮简介</div>
+				<div class="cruise_brand_list">
+                	<ul class="clearfix">
+                    	<li><a href="javascript:void(0)"><img src="../Public/images/yl_logo01.jpg"></a></li>
+                        <li><a href="javascript:void(0)"><img src="../Public/images/yl_logo02.jpg"></a></li>
+                        <li><a href="javascript:void(0)"><img src="../Public/images/yl_logo03.jpg"></a></li>
+                        <li><a href="javascript:void(0)"><img src="../Public/images/yl_logo04.jpg"></a></li>
+                        <li><a href="javascript:void(0)"><img src="../Public/images/yl_logo05.jpg"></a></li>
+                        <li><a href="javascript:void(0)"><img src="../Public/images/yl_logo06.jpg"></a></li>
+                    </ul>
+                </div>
+                <div class="header">邮轮视频</div>
+                <div class="cruise_video">
+                	<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0" width="265" height="150">
+                <param name="movie" value="../Public/images/Flvplayer.swf" />
+                <param name="quality" value="high" />
+                <param name="allowFullScreen" value="true" />
+                <param name="FlashVars" value="vcastr_file=../Public/images/cruise_liangzi.mp4&LogoText=www.33ly.com&BufferTime=3" />
+                <embed src="../Public/images/Flvplayer.swf" allowfullscreen="true" flashvars="vcastr_file=../Public/images/cruise_liangzi.mp4&LogoText=www.33ly.com" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="265" height="150"></embed>
+                	</object>
+                </div>
+                <div class="header">相关注意事项</div>
+                <div class="cruise_notice">
+<!--				<volist name="notice" id="vo">
+                	<dl>
+                    	<dt><a href="{:U('Article/detail',array('id'=>$vo['id']))}"><span>●</span>{$vo.title}</a></dt>
+                        <dd>{$vo.info}</dd>
+                    </dl>
+					</volist>-->
+                    <dl>
+                    	<dt><a><span>●</span>证件及护照</a></dt>
+                        <dd>请于出发前备 妥有效护照（离行程结束日起六个月以上）、有效签证（如有需要请自行安排）及身份证正本。邮轮旅游签证在出发或选择线路前，一定要咨询旅行社。通常中国公 民护照需要每个目的地的签证，如果途经几个国家，便要到这些国家使馆进行签证（如果是欧洲申根签证国家，只签其一即可），这是一件费时间的事情。因此要根 据行程提早安排，以免因为签证耽误你的假期。</dd>
+                    </dl>
+                    <dl>
+                        <dt><a><span>●</span>健康要求</a></dt>
+                        <dd>任何乘客都有责任确保个人身体健康，适合参加旅行，如有可能会引起身体不适的情况，需要在预订时告知客服人员，并获得医生的准许和证明。怀孕期小于28周的孕妇（行程结束日前）需要在登船时出示医生证明，确保其适应船上活动。</dd>
+                    </dl>
+                    <dl>
+                        <dt><a><span>●</span>衣物穿着</a></dt>
+                        <dd>每位乘客登船可携带100公 斤的行李。根据航线和季节情况，您可带上所有喜欢的衣物。在夏季前往地中海，大衣就没有必要，但是一件轻薄的夹克能派上用场；前往北极的话就要带上羊毛衫 和手套；搭乘邮轮是最光鲜的旅游方式，因此带上华丽的礼服是必要的；在泳池边或健身馆内，泳衣、沙滩鞋、拖鞋都可以；在邮轮甲板上休闲时，帽子和太阳眼镜 会大有用处；在目的地旅游时，建议您换上舒适的鞋子;参观博物馆及其它文化场所时，建议不穿短裤， 并用披肩遮住双肩；夜间服饰的穿着，送至房间的每日邮轮活动预告中含着装建议，告知您该穿着正式的黑色礼服还是休闲服饰；室内活动着装，所有室内区域都装 有空调，当往来不同区域时，一条披巾或一件薄外套可预防由于温度骤变带来的身体不适。</dd>
+                    </dl>
+                    <dl>
+                        <dt><a><span>●</span>登船手续</a></dt>
+                        <dd>在航行之前大约三个小时可去办登船手续，check-in柜台会在船离去之前一个小时（有些邮轮是前两小时）关闭。若您无法及时登船的话，邮轮公司有权视您自动放弃本次航程，您的船位将予以取消，违约金为全额团费并无法给予任何退费。</dd>
+                    </dl> 
+                    <dl>   
+                        <dt><a><span>●</span>岸上观光</a></dt>
+                        <dd>所有岸上观光 团的详细行程资料、价目并连同报名表将会在登船期间一并派发；旅客只需选择合适行程并填上有关数据交回岸上观光查询柜台，而观光团票将会集中所有数据后派 发到房间；旅客可选择同时报名参加所有口岸的岸上观光团，或于每个口岸截止报名时间之前报名参加（截止时间请参考每日的节目表）。所有观光团在报名确认后 将不能退款，请旅客细心选择行程。邮轮在每个口岸均会按指定时间关闸时间准备启航（所有时间为当地时间），请各旅客留意每天节目表及于舷梯出口刊登的时 间。每位旅客必须携同其邮轮卡登岸。</dd>
+                    </dl>
+                    <!--<div class="c_n_more"><a href="{:U('Article/index',array('id'=>'6'))}">查看更多<<</a></div>-->
+                </div>
+                <div class="header">品质保证</div>
+                <div class="cruise_quality">
+                	<ul>
+                    	<li class="c_li1 clearfix">
+                        	<i></i>
+                        	<p>上门接送<br/>邮轮旅游从家门口开始</p>
+                        </li>
+                        <li class="c_li2 clearfix">
+                        	<i></i>
+                            <p>行业权威<br/>各大邮轮公司合作商</p>
+                        </li>
+                        <li class="c_li3 clearfix">
+                        	<i></i>
+                            <p>航线丰富<br/>覆盖全球邮轮航线</p>
+                        </li>
+                        <li class="c_li4 clearfix">
+                        	<i></i>
+                            <p>服务资质<br/>拥有专业的邮轮服务团队</p>
+                        </li>
+                    </ul>
+                </div>
+                
+            </div>
+            <div class="cont_right fr">
+            	<div class="header">精选热门航线</div>
+				<div class="cruise_wall clearfix">
+                	<div class="c_w_left fl">
+                    	<div class="cl_title">环游世界86天</div>
+                        <div class="cl_des">圆你一个环游世界的梦想</div>
+                        <dl class="cl_hot">
+                            <dt>其他热门航线</dt>
+                            <dd>
+                                <a href="http://www.33ly.com/youlun/rihan/" target="_blank">浪漫日韩<i></i></a>
+                            
+                                <a href="http://www.33ly.com/youlun/dizhonghai/">地中海<i></i></a>
+                            
+                                <a href="javascript:void(0)" >北欧<i></i></a>
+                            
+                                <a href="http://www.33ly.com/youlun/jialebi/" target="_blank">加勒比<i></i></a>
+                            </dd>
+                        </dl>
+                        <div class="cl_ship"><img src="../Public/images/ship.png"></div>
+                    </div>
+                    <div class="c_w_right fr">
+                    	<ul class="c_wall clearfix">
+							<volist name="slist" id="vo" offset="0" length="1">
+                            <li style="width:326px;">
+                                <a href="__ROOT__/youlun/xianlu-{$vo.id}.html" target="_blank">
+                                    <img width="326" height="209" src="__ROOT__{$vo.imgurl}">
+                                    <div class="text_box">
+                                        <span>￥<big>{$vo.minprice}</big><small>起</small></span>
+                                        <p class="w230"><{$vo.name}>{$vo.subname}</p>
+                                    </div>
+                                    <span class="lijian">{$vo.cate_id|getNameById=###,'ship_cate'}航线</span>
+                                </a>
+                            </li>
+							</volist>
+							<volist name="slist" id="vo" offset="1" length="1">
+                            <li class="fr">
+                                <a href="__ROOT__/youlun/xianlu-{$vo.id}.html" target="_blank">
+                                    <img width="326" height="209" src="__ROOT__{$vo.imgurl}">
+                                    <div class="text_box">
+                                        <span>￥<big>{$vo.minprice}</big><small>起</small></span>
+                                        <p class="w230"><{$vo.name}>{$vo.subname}</p>
+                                    </div>
+                                    <span class="lijian">{$vo.cate_id|getNameById=###,'ship_cate'}航线</span>
+                                </a>
+                            </li>
+							</volist>
+							<volist name="slist" id="vo" offset="2" length="1">
+                            <li class="fr">
+                                <a href="__ROOT__/youlun/xianlu-{$vo.id}.html" target="_blank">
+                                    <img width="217" height="142" src="__ROOT__{$vo.imgurl}">
+                                    <div class="text_box">
+                                        <span>￥<big>{$vo.minprice}</big><small>起</small></span>
+                                        <p><{$vo.name}>{$vo.subname}</p>
+                                    </div>
+                                    <span class="lijian">{$vo.cate_id|getNameById=###,'ship_cate'}航线</span>
+                                </a>
+                            </li>
+							</volist>
+							<volist name="slist" id="vo" offset="3" length="1">
+                            <li style="width:217px;">
+                                <a href="__ROOT__/youlun/xianlu-{$vo.id}.html" target="_blank">
+                                    <img width="217" height="142" src="__ROOT__{$vo.imgurl}">
+                                    <div class="text_box">
+                                        <span>￥<big>{$vo.minprice}</big><small>起</small></span>
+                                        <p><{$vo.name}>{$vo.subname}</p>
+                                    </div>
+                                    <span class="lijian">{$vo.cate_id|getNameById=###,'ship_cate'}航线</span>
+                                </a>
+                            </li>
+							</volist>
+							<volist name="slist" id="vo" offset="4" length="1">
+                            <li>
+                                <a href="__ROOT__/youlun/xianlu-{$vo.id}.html" target="_blank">
+                                    <img width="217" height="142" src="__ROOT__{$vo.imgurl}">
+                                    <div class="text_box">
+                                        <span>￥<big>{$vo.minprice}</big><small>起</small></span>
+                                        <p><{$vo.name}>{$vo.subname}</p>
+                                    </div>
+                                    <span class="lijian">{$vo.cate_id|getNameById=###,'ship_cate'}航线</span>
+                                </a>
+                            </li>
+							</volist>
+                        </ul>
+                    </div>
+                    
+                    
+                </div>
+                
+                <div class="header">更多航线推荐
+                	<div class="domore_list">
+						<volist name="shipList" id="vo">
+                    	<a <if condition="$key eq 0">class="do_active"</if> href="javascript:void(0)">{$vo.name}</a>
+						</volist>
+                    </div><!--<a class="domore fr" href="#">更多>></a>-->
+                </div>
+                <div class="strategy">
+					<volist name="shipList" id="vo">
+					<div class="stra_bj" <if condition="$key eq 0">style="display:block;"</if>>
+                    	<if condition="$key eq 0">
+                    	<dl class="clearfix">
+                        	<dt class="fl">
+                            	<div class="sbig_img fl"><a><img src="../Public/images/yl_stra/rh_01.jpg"></a></div>
+                                <div class="ssmall_img fr">
+                                	<ul>
+                                    	<li><a><img src="../Public/images/yl_stra/rh_02.jpg"></a></li>
+                                        <li><a><img src="../Public/images/yl_stra/rh_03.jpg"></a></li>
+                                        <li><a><img src="../Public/images/yl_stra/rh_04.jpg"></a></li>
+                                    </ul>
+                                </div>
+                            </dt>
+                            <dd class="fr">
+                            	<div class="stra_title">{$vo.name}航线资讯
+                                </div>
+                                <div class="stra_jj">简介</div>
+                                <div class="stra_des">从上海出发，畅游韩国济州岛，经过首尔、仁川随手带几个素烧人偶，来一杯八女抹茶；在风多、石头多、女人多济州岛品 尝独有的汉拿山烧酒，感受西归浦的泰迪博物馆的浪漫情调。畅游日本冲绳，经过福冈，鹿儿岛，品日本最烈的酒"泡盛"，赏日本最艳的樱花，寒绯樱。</div>
+								<div class="stra_jj">推荐邮轮</div>
+                                <div class="stra_scenic">海洋量子号 塞琳娜 蓝宝石公主 海娜...</div>
+                            </dd>
+                        </dl>
+                        </if>
+                        <if condition="$key eq 1">
+                    	<dl class="clearfix">
+                        	<dt class="fl">
+                            	<div class="sbig_img fl"><a><img src="../Public/images/yl_stra/dny_01.jpg"></a></div>
+                                <div class="ssmall_img fr">
+                                	<ul>
+                                    	<li><a><img src="../Public/images/yl_stra/dny_02.jpg"></a></li>
+                                        <li><a><img src="../Public/images/yl_stra/dny_03.jpg"></a></li>
+                                        <li><a><img src="../Public/images/yl_stra/dny_04.jpg"></a></li>
+                                    </ul>
+                                </div>
+                            </dt>
+                            <dd class="fr">
+                            	<div class="stra_title">{$vo.name}航线资讯
+                                </div>
+                                <div class="stra_jj">简介</div>
+                                <div class="stra_des">东南亚地区，气候以热带气候为主，全年高温多雨。东南亚各国经济发展差异较大，邮轮航次可以经过包括文莱、马来西亚、菲律宾、新加坡。新加坡是区域内最发达的国家。东南亚还是世界上外籍华人和华侨最集中的地区之一。</div>
+								<div class="stra_jj">推荐邮轮</div>
+                                <div class="stra_scenic">千禧号 水晶号...</div>
+                            </dd>
+                        </dl>
+                        </if>
+                        <if condition="$key eq 2">
+                    	<dl class="clearfix">
+                        	<dt class="fl">
+                            	<div class="sbig_img fl"><a><img src="../Public/images/yl_stra/dzh_01.jpg"></a></div>
+                                <div class="ssmall_img fr">
+                                	<ul>
+                                    	<li><a><img src="../Public/images/yl_stra/dzh_02.jpg"></a></li>
+                                        <li><a><img src="../Public/images/yl_stra/dzh_03.jpg"></a></li>
+                                        <li><a><img src="../Public/images/yl_stra/dzh_04.jpg"></a></li>
+                                    </ul>
+                                </div>
+                            </dt>
+                            <dd class="fr">
+                            	<div class="stra_title">{$vo.name}航线资讯
+                                </div>
+                                <div class="stra_jj">简介</div>
+                                <div class="stra_des">冬季特别航线，巡航意大利、希腊列岛、土耳其、马耳他，享爱琴海淳蓝美景！地中海、爱琴海全景，一次出行包揽欧洲文明！13.8万吨豪华邮轮幻想曲号，意式海上宫殿，体验纯正意大利风情杰作！</div>
+								<div class="stra_jj">推荐邮轮</div>
+                                <div class="stra_scenic">辉煌号 皇冠号...</div>
+                            </dd>
+                        </dl>
+                        </if>
+                        <if condition="$key eq 3">
+                    	<dl class="clearfix">
+                        	<dt class="fl">
+                            	<div class="sbig_img fl"><a><img src="../Public/images/yl_stra/ma_01.jpg"></a></div>
+                                <div class="ssmall_img fr">
+                                	<ul>
+                                    	<li><a><img src="../Public/images/yl_stra/ma_02.jpg"></a></li>
+                                        <li><a><img src="../Public/images/yl_stra/ma_03.jpg"></a></li>
+                                        <li><a><img src="../Public/images/yl_stra/ma_04.jpg"></a></li>
+                                    </ul>
+                                </div>
+                            </dt>
+                            <dd class="fr">
+                            	<div class="stra_title">{$vo.name}航线资讯
+                                </div>
+                                <div class="stra_jj">简介</div>
+                                <div class="stra_des">澳洲邮轮旅游，结合了都市风情，自然风情，原始部落等丰富多彩的观光内涵，同样也是普通旅游所无法到达的世外桃源。邮轮之旅从澳大利亚启航，进入浩瀚的南太平洋，巡防风景宜人的新西兰，就感觉空气中留着清新的气息，来到米尔福特峡湾等；</div>
+								<div class="stra_jj">推荐邮轮</div>
+                                <div class="stra_scenic">海洋迎风号 钻石公主号 极致号...</div>
+                            </dd>
+                        </dl>
+                        </if>
+                        <if condition="$key eq 4">
+                    	<dl class="clearfix">
+                        	<dt class="fl">
+                            	<div class="sbig_img fl"><a><img src="../Public/images/yl_stra/jlb_01.jpg"></a></div>
+                                <div class="ssmall_img fr">
+                                	<ul>
+                                    	<li><a><img src="../Public/images/yl_stra/jlb_02.jpg"></a></li>
+                                        <li><a><img src="../Public/images/yl_stra/jlb_03.jpg"></a></li>
+                                        <li><a><img src="../Public/images/yl_stra/jlb_04.jpg"></a></li>
+                                    </ul>
+                                </div>
+                            </dt>
+                            <dd class="fr">
+                            	<div class="stra_title">{$vo.name}航线资讯
+                                </div>
+                                <div class="stra_jj">简介</div>
+                                <div class="stra_des">雨林、火山、动物、瀑布以及白色沙滩都使得加勒比海地区成为了家庭旅行的最佳选择。一起看一看正在向你招手的加勒比海的岛屿吧!美丽的沙滩、时髦的帆船运动和各种水陆运动都能让人轻松愉快。海豚自由地在这里玩耍嬉戏，快带着孩子和海豚来一次亲密接触吧!</div>
+								<div class="stra_jj">推荐邮轮</div>
+                                <div class="stra_scenic">海洋绿洲号 海洋魅力号...</div>
+                            </dd>
+                        </dl>
+                        </if>
+                        <if condition="$key eq 5">
+                    	<dl class="clearfix">
+                        	<dt class="fl">
+                            	<div class="sbig_img fl"><a><img src="../Public/images/yl_stra/jd_01.jpg"></a></div>
+                                <div class="ssmall_img fr">
+                                	<ul>
+                                    	<li><a><img src="../Public/images/yl_stra/jd_02.jpg"></a></li>
+                                        <li><a><img src="../Public/images/yl_stra/jd_03.jpg"></a></li>
+                                        <li><a><img src="../Public/images/yl_stra/jd_04.jpg"></a></li>
+                                    </ul>
+                                </div>
+                            </dt>
+                            <dd class="fr">
+                            	<div class="stra_title">{$vo.name}航线资讯
+                                </div>
+                                <div class="stra_jj">简介</div>
+                                <div class="stra_des">极地是地球上最后一片净土。航线中有幸会有各种珍稀鸟类陪伴，以南极洲壮观的白色风光为背景，您将体验世界第七大洲梦幻般的夏季，发现富饶的野生动物资源，海豹，企鹅和鲸鱼。地球上的净土，摄影家的天堂，食材天然好饮好食，景色优美，是旅行者真正的的梦想境地。</div>
+								<div class="stra_jj">推荐邮轮</div>
+                                <div class="stra_scenic">精致“无极号” 海达路德前进号"...</div>
+                            </dd>
+                        </dl>
+                        </if>
+                        <if condition="$key eq 6">
+                    	<dl class="clearfix">
+                        	<dt class="fl">
+                            	<div class="sbig_img fl"><a><img src="../Public/images/yl_stra/hq_01.jpg"></a></div>
+                                <div class="ssmall_img fr">
+                                	<ul>
+                                    	<li><a><img src="../Public/images/yl_stra/hq_02.jpg"></a></li>
+                                        <li><a><img src="../Public/images/yl_stra/hq_03.jpg"></a></li>
+                                        <li><a><img src="../Public/images/yl_stra/hq_04.jpg"></a></li>
+                                    </ul>
+                                </div>
+                            </dt>
+                            <dd class="fr">
+                            	<div class="stra_title">{$vo.name}航线资讯
+                                </div>
+                                <div class="stra_jj">简介</div>
+                                <div class="stra_des">歌诗达邮轮上的娱乐设施和精心策划的娱乐活动绝对会让你感到意“邮”未尽。我们将会为您精心准备丰富的的中式菜单以满足您的胃和味蕾的思乡之情，同时又将有西式菜单让您的胃和味蕾来一场中西方文化的碰撞。每到一个目的地我们都将为您特别烹制当地特色的佳肴，带您遍尝全球美味。</div>
+								<div class="stra_jj">推荐邮轮</div>
+                                <div class="stra_scenic">歌诗达大西洋号 海洋量子号...</div>
+                            </dd>
+                        </dl>
+                        </if>
+                        <div class="zbh_list">
+                            <ul class="zbh_list_item">
+								<volist name="vo.son" id="voo">
+                                <li>                                   
+                                    <dl>
+                                    <a href="__ROOT__/youlun/xianlu-{$voo.id}.html">
+                                        <dt>
+                                            <p class="zbh_n_name"><span class="zbh_n_link"><{$voo.name}>{$voo.subname}</span></p>
+                                            <p class="zbh_n_description">{$voo.info}</p>
+                                        </dt>
+                                    </a>
+                                        <dd>
+                                            <p class="zbh_price">
+                                                <span class="zbprice">￥<i>{$voo.minprice}</i>起</span>
+                                            </p>
+                                        </dd>
+                                    </dl>                                     
+                                </li>
+								</volist>
+                            </ul>
+                        </div>
+                		<div class="domesmore"><a href="__ROOT__/youlun/{$vo.pinyin}/">更多线路>></a></div>        
+                    </div>
+					</volist>
+                </div>                
+            </div>
+        </div>       
+    </div>
+</div>
+<script type="text/javascript">
+$(function(){
+	var aDBtn=$('.domore_list').find('a');
+	var aCity=$('.stra_bj');
+	
+	$(aDBtn).click(function(){
+		var _index=$(this).index();
+		
+		$(aDBtn).removeClass();
+		$(this).addClass('do_active');
+		$(aCity).hide();
+		$(aCity).eq(_index).show();
+			
+	});
+	$('.cruise_notice dl dd').hover(function(){
+		$(this).css('height','auto');	
+	},function(){
+		$(this).css('height','45px');	
+	});
+	
+});
+</script>
+<include file="Public:footer"/>
+</body>
+</html>

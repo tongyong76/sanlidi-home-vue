@@ -1,0 +1,31 @@
+<include file="Public:top" />
+
+<link rel='stylesheet' type='text/css' href='__PUBLIC__/statics/css/admin_left.css'>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('li').click(function(){
+			$('li').find('a').removeClass('cur');
+			$(this).find('a').addClass('cur');
+		})
+	});
+</script>
+
+</head>
+<body>
+<div class="menu">
+	<volist name="menu_list" id="vo">
+	<dl>
+		<dt><a onClick="showHide('#{$vo.cname}');" href="#" target=_self>{$vo.name}</a></dt>
+		<dd>
+			<ul id="{$vo.cname}" class="none">
+				<volist name="vo.son" id="voo">
+				<li><a href="__GROUP__{$voo.url}" target="main">{$voo.name}</a></li>
+				</volist>
+			</ul>
+		</dd>
+	</dl>
+	</volist>
+</div>
+</body>
+</html>

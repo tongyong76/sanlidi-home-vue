@@ -1,0 +1,71 @@
+@font-face{
+font-family:Georgia;
+src: url(../font/Georgia.ttf);
+font-weight:bold;	
+}
+#header{width:1000px;margin:0 auto;margin-top:25px;}
+.ral_header_logo{float:left;}
+.ral_header_tel{float:right;margin-top:9px;}
+.ral_box{width:1000px;margin:0 auto;margin-top:15px;}
+.ral_box_header h1{float:left;font-size:30px;font-weight:normal;padding-left:40px;}
+.ral_box_header .weixin{height:20px;line-height:20px;padding:18px;margin-left:10px;float:left;}
+.ral_box_header .weixin b{font-weight:normal;color:#2a98da;}
+.ral_box_main{border:1px solid #ccc;padding:20px 20px 30px 20px;}
+.ral_box_main .step{background:URL('../images/step.png') no-repeat 0px 0px transparent;height:34px;}
+.ral_box_main .step1{background-position:0 0;}
+.ral_box_main .step2{background-position:0 -34px;}
+.ral_box_main .step3{background-position:0 -68px;}
+.ral_box_main .left{float:left;}
+.ral_box_main .left form{padding:0 10px;}
+.ral_box_main .right{width:250px;height:500px;float:right;margin-top:15px;}
+.ral_box_main .formLine{padding:0;position:relative;margin:25px 0;line-height:34px;height:34px;}
+.ral_box_main .formLine label.error{float:left;display:block; height:36px;line-height:36px; font-size:14px; color:#ff6a6a; background:url(../images/error.png) 0 10px no-repeat; padding-left:20px;margin-left:5px;}
+.ral_box_main .formLine .formLabel{height:34px;display:block;font-size:16px;color:#444;float:left;}
+.ral_box_main .formLine .w110{width:110px;}
+.ral_box_main .formLine .w90{width:90px;}
+.ral_box .formLine .normal{background:none;padding-left:5px}
+.ral_box .formLine .error{padding-left:25px;background:url(../images/error.png) no-repeat 5px 0px;color:#FF89A7!important}
+.ral_box .formLine .correct{padding-left:25px;background:url(../images/ok_icon.png) no-repeat 5px 0px}
+.ral_box_main .formLine input[type="text"],.ral_box_main .formLine input[type="password"]{color:#444;border:1px solid #999;height:20px;padding:7px;font-size:16px;float:left;}
+.ral_box_main .long{width:224px;}
+.ral_box_main .short{width:68px;}
+.ral_box_main .formLine input[type="submit"],.ral_box input[type="submit"]{width:240px;height:40px;font-size:18px;color:#fff;background:#2b98db;cursor:pointer;}
+.ral_box_main .protocol{width:580px;height:170px;border:1px solid #ccc;padding:10px;resize: none;overflow:auto;}
+.ral_box_main .protocol p{line-height:20px;}
+.ral_box_main .success{text-align:center;width:700px;margin-top:170px;}
+.ral_box_main .success p{color:#323232;font-size:14px;}
+.ral_box_main .success p.one{color:#0074c1;font-size:32px;margin:30px 0;}
+.ral_login{width:1000px;position:relative; _overflow:hidden;}
+.ral_login .ral_bgimg{position:relative;left:-100px;}
+.ral_login .ral_form{width:390px;height:330px;position:absolute;right:0;top:40px;}
+.ral_login .ral_form h2{background:#2b98db;height:38px;line-height:38px;font-size:18px;color:#fff;padding:0 20px;font-weight:normal;}
+.ral_login .ral_form form{border-bottom:1px solid #ddd;border-left:1px solid #ddd;border-right:1px solid #ddd;padding:20px 20px;}
+
+.ral_login .ral_form .login_box{position:relative;}
+.ral_login .ral_form .login_box .user_pass{position:absolute; top:26px; left:32px; color:#c8c8c8; cursor:text; font-size:16px; width:100%; height:100%; display:block;}
+
+.ral_login .ral_form form .text{width:308px;border:1px solid #ccc;height:20px;line-height:20px;padding:10px 10px 10px 30px;font-size:16px;margin-top:15px; color:#c8c8c8;}
+.ral_login .ral_form form .user_password:-moz-placeholder {color:#c8c8c8;}
+.ral_login .ral_form form .user_name{background:url(../images/login_user.jpg) no-repeat 5px center;}
+.ral_login .ral_form form .user_password{background:url(../images/login_password.jpg) no-repeat 5px center;}
+.ral_login .ral_form form .forget_password{height:40px; _position:relative;}
+.ral_login .ral_form form span{display:block;margin-top:18px;margin-left:5px;}
+.ral_login .ral_form form span .fp{margin-left:10px;}
+.ral_login .ral_form form .loginBtn{width:350px;margin-top:20px; background:#2a98da; _color:#fff;}
+.ral_login .ral_form form .active{width:350px;margin-top:20px; background:#40a1db; _color:#fff;}
+.ral_findpwd{width:1000px;margin:0 auto;}
+.ral_findpwd h2{height:33px;line-height:33px;background:#2B98DB;font-size:18px;color:#fff;padding:0 20px;font-weight:normal;}
+.ral_findpwd .ral_findpwd_form{border-bottom:1px solid #ddd;border-left:1px solid #ddd;border-right:1px solid #ddd;padding:20px 20px;}
+.ral_findpwd .formLine{padding:0;position:relative;margin:25px 0;line-height:34px;height:34px;}
+.ral_findpwd .formLine .formLabel{height:34px;width:110px;display:block;font-size:16px;color:#444;float:left;}
+.ral_findpwd .formLine input[type="text"],.ral_findpwd .formLine input[type="password"]{color:#444;border:1px solid #999;height:20px;padding:7px;font-size:16px;float:left;}
+.ral_findpwd .formLine .long{width:224px;}
+.ral_findpwd .formLine .short{width:68px;}
+#footer{width:1000px;margin:0 auto;border-top:2px solid #2B98DB;margin-top:30px;}
+#footer .p1,#footer .p2{line-height:25px;text-align:center;}
+#footer .p1{margin-top:8px;font-size:14px;}
+#footer .p1 a{margin: 0 10px;color:#424242;}
+#footer .p1 a:hover{color:#ff6600;}
+#footer .p2{color:#424242;font-size:13px;}
+#footer .p2 span{margin:0 20px;}
+#footer .p2 span a{margin-left:10px;text-decoration:underline;color:#424242;}

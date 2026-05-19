@@ -1,0 +1,143 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>出境游_出境游线路_出境游报价_三三旅游网</title>
+<meta name="keywords" content="">
+<meta name="description" content="三三旅游出境游频道：为您提供出境最新旅游线路推荐，出境游报价，精选优质出境线路，给您带来最佳的预订体验，是您预订出境线路的首选。24小时咨询预订电话：66667777">
+<link type="text/css" rel="stylesheet" href="../Public/css/reset.css">
+<link type="text/css" rel="stylesheet" href="../Public/css/style.css">
+<script type="text/javascript" src="../Public/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../Public/js/jquery.lazyload.min.js"></script>
+<script>var ROOT_PATH = '__ROOT__';</script>
+<script type="text/javascript" src="../Public/js/common.js"></script>
+<include file="Public:statistics"/>
+</head>
+<body>
+<include file="Public:header"/>
+<div class="wrap">
+	<div class="inside_wrap">
+    	<div class="search_nav">
+			<a href="/" target="_blank">首页</a><b>></b><span>出境游</span>
+		</div>
+        <div class="out_pic_wall">
+        	<a href="{$ad.cjpw1.link}" class="o_p01" target="_blank"><img src="__ROOT__{$ad.cjpw1.imgurl}" alt="苏州到{$vo.imgurl}旅游"><span>日本<i>Japan</i></span><div class=""></div></a>
+            <a href="{$ad.cjpw2.link}" class="o_p02" target="_blank"><img src="__ROOT__{$ad.cjpw2.imgurl}" alt="苏州到{$vo.imgurl}旅游"><span>泰国<i>Thailand</i></span><div class=""></div></a>
+            <a href="{$ad.cjpw3.link}" class="o_p03" target="_blank"><img src="__ROOT__{$ad.cjpw3.imgurl}" alt="苏州到{$vo.imgurl}旅游"><span>普吉<i>Phuket</i></span><div class=""></div></a>
+            <a href="{$ad.cjpw4.link}" class="o_p04" target="_blank"><img src="__ROOT__{$ad.cjpw4.imgurl}" alt="苏州到{$vo.imgurl}旅游"><span>欧洲<i>Europe</i></span><div class=""></div></a>
+            <a href="{$ad.cjpw5.link}" class="o_p05" target="_blank"><img src="__ROOT__{$ad.cjpw5.imgurl}" alt="苏州到{$vo.imgurl}旅游"><span>台湾<i>Taiwan</i></span><div class=""></div></a>
+            <a href="{$ad.cjpw6.link}" class="o_p06" target="_blank"><img src="__ROOT__{$ad.cjpw6.imgurl}" alt="苏州到{$vo.imgurl}旅游"><span>济州岛<i>Jeju Island</i></span><div class=""></div></a>
+            <a href="{$ad.cjpw7.link}" class="o_p07" target="_blank"><img src="__ROOT__{$ad.cjpw7.imgurl}" alt="苏州到{$vo.imgurl}旅游"><span>马尔代夫<i>Maldives</i></span><div class=""></div></a>
+        </div>
+        <div class="out_hot_route">
+        	<div class="o_h_title">
+                	<span>热销线路</span>当季热门出境线路推荐
+            </div>	
+            <div class="o_h_route">
+				<div class="o_list_top clearfix">
+					<volist name="hotList" id="vo" offset="0" length="1">
+                	<div class="o_lt_left fl">
+                    	<div class="o_lt_lpic">
+                        	<a href="__ROOT__/chujing/xianlu-{$vo.id}.html" title="{$vo.name}{$vo.subname}"  class="o_lt_bpic" target="_blank"><img class="lazy" data-original="__ROOT__{$vo.imgurl}" alt="{$vo.name}{$vo.subname}"></a>
+                        </div>
+                        <div class="o_lt_ltname">
+							<a href="__ROOT__/chujing/xianlu-{$vo.id}.html" title="{$vo.name}{$vo.subname}" target="_blank"><span><{$vo.name}></span><span>{$vo.subname}</span></a>
+						</div>
+						<div class="o_lt_ltdesc">{$vo.info}</div>
+						<div class="o_lt_ltprice"><i>￥</i><span class="o_lt_ltnum">{$vo.minprice|isNull=###}</span><i>起</i></div>
+                    </div>
+					</volist>
+                    <div class="o_lt_right fr">
+                    	<ul class="o_lt_rlist">
+							<volist name="hotList" id="vo" offset="1" length="6" mod="3">
+                        	<li <eq name="mod" value="2">class="nomar"</eq>>
+                            	<div class="o_lt_lpic">
+                                    <a href="__ROOT__/chujing/xianlu-{$vo.id}.html" title="{$vo.name}{$vo.subname}" class="o_lt_spic" target="_blank"><img class="lazy" data-original="__ROOT__{$vo.imgurl}" alt="{$vo.name}{$vo.subname}"></a>
+                                    <div class="o_add_shade">
+                                        <span class="o_bg_black"></span>
+                                        <div class="o_add_div">
+                                            <p class="o_add_price">￥<span class="o_add_num">{$vo.minprice|isNull=###}</span><i>起</i></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="o_lt_lname"><a href="__ROOT__/chujing/xianlu-{$vo.id}.html" title="{$vo.name}{$vo.subname}" target="_blank"><span class="o_lt_link"><{$vo.name}></span><span class="o_lt_link">{$vo.subname}</span></a></div>
+                            </li>
+							</volist>
+                        </ul>
+                    </div>
+                </div>
+                <div class="o_list_bottom">
+                	<ul class="o_lblist fl">
+						<volist name="hotList" id="vo" offset="7" length="3">
+                    	<li>
+                        	<span class="o_info"><a href="__ROOT__/chujing/xianlu-{$vo.id}.html" target="_blank"><{$vo.name}>{$vo.subname}</a></span>
+                            <span class="o_price"><strong><b>￥</b>{$vo.minprice|isNull=###}</strong>起</span>
+                        </li>
+						</volist>
+                    </ul>
+                    <ul class="o_lblist lblist2 fl">
+						<volist name="hotList" id="vo" offset="10" length="3">
+                    	<li>
+                        	<span class="o_info"><a href="__ROOT__/chujing/xianlu-{$vo.id}.html" target="_blank"><{$vo.name}>{$vo.subname}</a></span>
+                            <span class="o_price"><strong><b>￥</b>{$vo.minprice|isNull=###}</strong>起</span>
+                        </li>
+						</volist>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="out_nav_route">
+        	<div class="o_h_title">
+                	<span>出境线路导航</span>三三带您玩转全球
+            </div>	
+            <div class="o_nav clearfix">
+            	<div class="o_nav_left fl">
+                	<dl>
+						<volist name="cjCateArr" id="vo" offset="0" length="4">
+                    	<dd>
+                        	<span><a href="__ROOT__/chujing/{$vo.pinyin}/" title="苏州到{$vo.name}旅游" target="_blank">{$vo.name}</a></span>
+                            <div>
+								<volist name="vo.son" id="voo">
+								<a href="__ROOT__/chujing/{$voo.pinyin}/" title="苏州到{$vo.name}旅游" target="_blank">{$voo.name}</a>
+								</volist>
+							</div>
+                        </dd>
+						</volist>                     
+                    </dl>
+
+                </div>
+                <div class="o_nav_right fl">
+                	<dl>
+                    	<volist name="cjCateArr" id="vo" offset="4" length="4">
+                    	<dd>
+                        	<span><a href="__ROOT__/chujing/{$vo.pinyin}/" title="苏州到{$vo.name}旅游" target="_blank">{$vo.name}</a></span>
+                            <div>
+								<volist name="vo.son" id="voo">
+								<a href="__ROOT__/chujing/{$voo.pinyin}/" title="苏州到{$vo.name}旅游" target="_blank">{$voo.name}</a>
+								</volist>
+							</div>
+                        </dd>
+						</volist>                  
+                    </dl>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
+<script type="text/javascript">
+$(function(){
+	//图片墙
+	$('.out_pic_wall a').hover(function(){	
+		$(this).parent().find('div').addClass('o_mask');
+		$(this).find('div').removeClass();
+	},function(){
+		$('.out_pic_wall a div').removeClass();	
+	});
+	
+	$("img.lazy").lazyload({effect: "fadeIn",threshold : 200});
+});
+</script>
+<include file="Public:footer_notq"/>
+</body>
+</html>

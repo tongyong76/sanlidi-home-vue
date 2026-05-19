@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>等待确认页面</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link type="text/css" rel="stylesheet" href="../Public/css/reset.css">
+<link type="text/css" rel="stylesheet" href="../Public/css/style.css">
+<script>var ROOT_PATH = '__ROOT__';</script>
+<script type="text/javascript" src="../Public/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../Public/js/common.js"></script>
+<script type="text/javascript" src="../Public/js/pay.js"></script>
+<include file="Public:statistics"/>
+</head>
+<body>
+<include file="Public:header"/>
+<!--头部结束-->
+<div class="wrap">
+	<div class="inside_wrap">
+		<div class="order_flow order_flow_step3"></div>
+        <div class="cont clearfix">
+        	<div class="cont_left fr">                              
+                 <div class="visa_faq">
+                 	<div class="v_f_title">
+                    	<span>结算信息</span>
+                    </div>
+					<if condition="$account['type']">
+					<div class="acc_info">
+						<div class="acc_adult" style="font-weight:700;">航线：</div>
+						<div class="acc_adult" style="height:auto;"><span>{$account.ordname}</span></div>
+                        <div class="acc_total" style="font-weight:700;">总额：<span class="price">{$account.totel_price}</span>元</div>
+                    </div>
+					<else/>
+                    <div class="acc_info">
+						<div class="acc_adult">成人：<span class="price">{$account.adult_price}</span>元<i>x</i><span class="num">{$account.adult_num}</span>人</div>
+						<if condition="$account['child_price']">
+						<div class="acc_child">儿童：<span class="price">{$account.child_price}</span>元<i>x</i><span class="num">{$account.child_num}</span>人</div>
+						</if>
+						<div class="acc_safe">保险：<span class="price">{$account.safe}</span>元<i>x</i><span class="num">{$account['child_num'] + $account['adult_num']}</span>人</div>
+                        <div class="acc_total">总额：<span>{$account.totel_price}</span>元</div>
+                    </div>
+					</if>
+                 </div>
+                 <div class="tele_common_confirm">
+                	<div class="common_telephone clearfix"><span class="tt">旅游通</span><span class="pp">6666-7777</span></div>
+                 </div>
+                 
+                
+            </div>
+            <div class="cont_right fl">
+				<div class="pInfo">
+                	 <form action="#" method="post">
+                	<div class="pInfo_title">
+                    	<span>等待确认</span>
+                    </div>
+                    <div class="order_success">
+                    	<div class="o_suc">您的出游需求已受理</div>
+						<div class="o_suc">{$alertMsg}，请耐心等待！</div>
+						<div class="o_pro"><a class="combtn combtn_blue" href="__ROOT__/member/">查看订单状态</a><a class="combtn combtn_yellow" href="http://kefu.qycn.com/vclient/chat/?websiteid=113071">在线客服</a></div>
+                        <div class="o_ser"></div>
+						<div class="tips"></div>
+                    </div>
+                    
+                </div>
+                </form>
+                
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+<include file="Public:footer_notq"/>
+
+</body>
+</html>

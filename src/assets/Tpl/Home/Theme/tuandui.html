@@ -1,0 +1,274 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>团队游专题页面</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link type="text/css" rel="stylesheet" href="../Public/theme/common.css">
+<link type="text/css" href="../Public/theme/tuandui.css" rel="stylesheet" />
+<script type="text/javascript" src="../Public/js/jquery-1.11.1.min.js"></script>
+<include file="Public:statistics"/>
+</head>
+<body>
+<include file="Public:themeheader"/>
+<div class="tuanWrap">
+	<div class="banner"></div>
+    <div class="contain">
+        <div class="reason">
+            <div class="r_top"><img src="../Public/theme/tuandui/reason_top.png"></div>  
+            <div class="r_bottom">
+                <ul class="clearfix">
+                    <li>
+                        <div class="rb_img"><img src="../Public/theme/tuandui/reason_01.jpg"></div>
+                        <div class="rb_des">专职导游、车辆专员、餐房专员、产品经理，专为企业服务</div>
+                        <div class="rb_title">分工不能再细啦</div>
+                    </li>
+                    <li>
+                        <div class="rb_img"><img src="../Public/theme/tuandui/reason_02.jpg"></div>
+                        <div class="rb_des">每周推出一天百元的"团游"、两天三百的“周末地图”，定期推出“团队特惠月”</div>
+                        <div class="rb_title">优惠根本停不下来</div>
+                    </li>
+                    <li>
+                        <div class="rb_img"><img src="../Public/theme/tuandui/reason_03.jpg"></div>
+                        <div class="rb_des">独家代理王牌景区、买断景点、多家旅游局战略合作</div>
+                        <div class="rb_title">掌握资源才是硬道理</div>
+                    </li>
+                    <li class="nomar">
+                        <div class="rb_img"><img src="../Public/theme/tuandui/reason_04.jpg"></div>
+                        <div class="rb_des">14年3月16-18日16000人全民游欢乐谷;14年11-12月2000人全民游济州…</div>
+                        <div class="rb_title">好不好客户说了算</div>
+                    </li>
+                </ul>
+            </div>
+			<div class="r_btm"><img src="../Public/theme/tuandui/rs_bottom.png"></div>
+        </div>
+		<if condition="$slist">
+        <div class="huasuan">
+            <div class="h_top"><img src="../Public/theme/tuandui/hs_top.png"></div>
+            <div class="h_bottom">
+                <div class="hb_item">
+                    <div class="hb_title"></div>
+                    <table class="hb_list" cellpadding="5" cellspacing="0" border="0" width="100%">
+						
+                        <tr>
+                            <th width="20"></th>
+                            <th width="40">序号</th>
+                            <th width="120" style="padding-left:50px;">线路名</th>
+                            <th width="70">价格</th>
+							<th width="120">特别赠送</th>
+                            <th width="380" style="padding-left:50px;">行程景点</th>
+                            <th width="270">特价日期</th>
+                        </tr>						
+						<volist name="slist" id="vo">
+                        <tr>
+                            <td></td>
+                            <td>{++$key}</td>
+                            <td style="padding-right:20px;"><a href="__ROOT__/{$vo.pinyin}/xianlu-{$vo.id}.html" target="_blank">{$vo.name}</a></td>
+                            <td>{$vo.minprice|isNull=###}</td>
+							<td><if condition="$vo['gift']">{$vo.gift}<else/>-</if></td>
+                            <td style="padding-right:20px;overflow:hidden;">{$vo.scenicall}</td>
+                            <td>{$vo.dep}</td>
+                        </tr>
+						</volist>    
+                    </table>
+                    <div class="hb_notice">*以上线路为三三旅游近期推出的<span>限时特价</span>活动，绝对超值！</div>
+                </div>
+            </div>
+			<div class="r_btm"><img src="../Public/theme/tuandui/rs_bottom.png"></div>
+        </div>
+		</if>
+        <div class="quanmian">
+            <div class="q_top"><img src="../Public/theme/tuandui/qm_top.png"></div>
+            <div class="q_bottom">
+                <div class="qb_item">
+                    <ul class="qb_btn clearfix">
+                        <li><a href="javascript:void(0)" class="hover">1天汇总</a></li>
+                        <li><a href="javascript:void(0)">2天汇总</a></li>
+                        <li><a href="javascript:void(0)">3天汇总</a></li>
+						<li><a href="javascript:void(0)">高铁汇总</a></li>
+						<span>*计价标准：本列表报价以单车45人、苏州市区出发，周边县市价格请来电咨询</span>
+                    </ul>
+                    <div class="qb_set">
+                        <div class="qbs_list" style="display:block;">
+                            <table class="qb_list" cellpadding="5" cellspacing="0" border="0" width="100%">								
+                                <tr>
+                                    <th class="w20" width="20"></th>
+                                    <th width="60">序号</th>
+                                    <th width="150" style="padding-left:50px;">线路名</th>
+									<th width="190"></th>
+                                    <th width="200">价格</th>
+                                    <th class="w400" width="400" style="padding-left:50px;">行程景点</th>
+                                </tr>
+								<volist name="daylist1" id="vo">
+                                <tr>
+                                    <td class="w20"></td>
+                                    <td>{++$key}</td>
+                                    <td>
+										<div style="float:left;display:inline-block;padding:0 5px;"><a href="__ROOT__/group/xianlu-{$vo.id}.html" target="_blank">{$vo.name}</a></div>										
+									</td>
+									<td>
+										<div style="height:20px; padding:5px 0;margin-left:5px;">
+											<if condition="$vo['series_id']"><span class="series{$vo.series_id}">{:C('series.'.$vo['series_id'])}</span></if>
+											<if condition="$vo['brand_id']"><span class="brand{$vo.brand_id}">{:C('brand.'.$vo['brand_id'])}</span></if>
+											<volist name="vo.switch" id="voo">
+											<span class="switch{$voo}">{:C('switch.'.$voo)}</span>
+											</volist>
+										</div>
+									</td>
+                                    <td>{$vo.market_price|isNull=###}</td>
+                                    <td class="w450"><if condition="$vo['scenic']"><volist name="vo.scenic" id="voo"><if condition="$key eq 0">{$voo.scene}<else/><if condition="$voo['scene']">,{$voo.scene}<else/></if></if></volist><else/></if></td>
+                                </tr>
+								</volist>
+                            </table>
+                        </div>
+                        <div class="qbs_list">
+                            <table class="qb_list" cellpadding="5" cellspacing="0" border="0" width="100%">
+                                <tr>
+                                    <th class="w20" width="20"></th>
+                                    <th width="60">序号</th>
+                                    <th width="150" style="padding-left:50px;">线路名</th>
+									<th width="190"></th>
+                                    <th width="200">价格</th>
+                                    <th class="w400" width="400" style="padding-left:50px;">行程景点</th>
+                                </tr>
+								<volist name="daylist2" id="vo">
+                                <tr>
+                                    <td class="w20"></td>
+                                    <td>{++$key}</td>
+                                    <td>
+										<div style="float:left;display:inline-block;padding:0 5px;"><a href="__ROOT__/group/xianlu-{$vo.id}.html" target="_blank">{$vo.name}</a></div>										
+									</td>
+									<td>
+										<div style="height:20px; padding:5px 0;margin-left:5px;">
+											<if condition="$vo['series_id']"><span class="series{$vo.series_id}">{:C('series.'.$vo['series_id'])}</span></if>
+											<if condition="$vo['brand_id']"><span class="brand{$vo.brand_id}">{:C('brand.'.$vo['brand_id'])}</span></if>
+											<volist name="vo.switch" id="voo">
+											<span class="switch{$voo}">{:C('switch.'.$voo)}</span>
+											</volist>
+										</div>
+									</td>
+                                    <td>{$vo.market_price|isNull=###}</td>
+                                    <td class="w450"><if condition="$vo['scenic']"><volist name="vo.scenic" id="voo"><if condition="$key eq 0">{$voo.scene}<else/><if condition="$voo['scene']">,{$voo.scene}<else/></if></if></volist><else/></if></td>
+                                </tr>
+								</volist>
+                            </table>
+                        </div>
+                        <div class="qbs_list">
+                            <table class="qb_list" cellpadding="5" cellspacing="0" border="0" width="100%">
+                                <tr>
+                                    <th class="w20" width="20"></th>
+                                    <th width="60">序号</th>
+                                    <th width="150" style="padding-left:50px;">线路名</th>
+									<th width="190"></th>
+                                    <th width="200">价格</th>
+                                    <th class="w400" width="400" style="padding-left:50px;">行程景点</th>
+                                </tr>
+								<volist name="daylist3" id="vo">
+                                <tr>
+                                    <td class="w20"></td>
+                                    <td>{++$key}</td>
+                                    <td>
+										<div style="float:left;display:inline-block;padding:0 5px;"><a href="__ROOT__/group/xianlu-{$vo.id}.html" target="_blank">{$vo.name}</a></div>										
+									</td>
+									<td>
+										<div style="height:20px; padding:5px 0;margin-left:5px;">
+											<if condition="$vo['series_id']"><span class="series{$vo.series_id}">{:C('series.'.$vo['series_id'])}</span></if>
+											<if condition="$vo['brand_id']"><span class="brand{$vo.brand_id}">{:C('brand.'.$vo['brand_id'])}</span></if>
+											<volist name="vo.switch" id="voo">
+											<span class="switch{$voo}">{:C('switch.'.$voo)}</span>
+											</volist>
+										</div>
+									</td>
+                                    <td>{$vo.market_price|isNull=###}</td>
+                                    <td class="w450"><if condition="$vo['scenic']"><volist name="vo.scenic" id="voo"><if condition="$key eq 0">{$voo.scene}<else/><if condition="$voo['scene']">,{$voo.scene}<else/></if></if></volist><else/></if></td>
+                                </tr>
+								</volist>
+                            </table>
+                        </div>
+						<div class="qbs_list">
+                            <table class="qb_list" cellpadding="5" cellspacing="0" border="0" width="100%">
+                                <tr>
+                                    <th class="w20" width="20"></th>
+                                    <th width="60">序号</th>
+                                    <th width="150" style="padding-left:50px;">线路名</th>
+									<th class="w190" width="190"></th>
+                                    <th width="200">价格</th>
+                                    <th class="w400" width="400" style="padding-left:50px;">行程景点</th>
+                                </tr>
+								<volist name="daylist4" id="vo">
+                                <tr>
+                                    <td class="w20"></td>
+                                    <td>{++$key}</td>
+                                    <td>
+										<div style="float:left;display:inline-block;padding:0 5px;"><a href="__ROOT__/group/xianlu-{$vo.id}.html" target="_blank">{$vo.name}</a></div>										
+									</td>
+									<td>
+										<div style="height:20px; padding:5px 0;margin-left:5px;">
+											<if condition="$vo['series_id']"><span class="series{$vo.series_id}">{:C('series.'.$vo['series_id'])}</span></if>
+											<if condition="$vo['brand_id']"><span class="brand{$vo.brand_id}">{:C('brand.'.$vo['brand_id'])}</span></if>
+											<volist name="vo.switch" id="voo">
+											<span class="switch{$voo}">{:C('switch.'.$voo)}</span>
+											</volist>
+										</div>
+									</td>
+                                    <td>{$vo.market_price|isNull=###}</td>
+                                    <td class="w450"><if condition="$vo['scenic']"><volist name="vo.scenic" id="voo"><if condition="$key eq 0">{$voo.scene}<else/><if condition="$voo['scene']">,{$voo.scene}<else/></if></if></volist><else/></if></td>
+                                </tr>
+								</volist>
+                            </table>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="notice">*计价标准：本列表报价以单车45人、苏州市区出发，周边县市价格请来电咨询<span>6666-7777</span></div>
+    </div>
+</div>
+<div id="tBar">
+    <div class="inside_t">
+        <div class="in_t_l fl"></div>
+        <div class="in_t_r fr">
+            <ul>
+                <li>
+                    <p class="slo_img"><i class="slo_01"></i>自组团</p>
+                    <span class="slo_des"><i></i><span></span>三三设计、三三收客、三三导游<br/>三三接送、全程管控，一管到底</span>
+                </li>
+                <li><p class="slo_img"><i class="slo_02"></i>上门接送</p>
+                    <span class="slo_des"><i></i><span></span>往返机场上门接送<br/>体验真正无忧旅途</span></li>
+                <li><p class="slo_img"><i class="slo_03"></i>直营门店</p>
+                    <span class="slo_des"><i></i><span></span>直营门店值得信赖<br/>报名绝无后顾之忧</span></li>
+                <li><p class="slo_img"><i class="slo_04"></i>方便快捷</p>
+                    <span class="slo_des"><i></i><span></span>门店遍布苏州县市<br/>方便市民门店咨询</span></li>
+                <li><p class="slo_img"><i class="slo_05"></i>维护权益</p>
+                    <span class="slo_des"><i></i><span></span>关注客户心声<br/>热线：66667777</span></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<include file="Public:themefooter"/>
+</body>
+<script type="text/javascript">
+$(function(){
+	
+	$('.hb_list tr:even').css('background','#e7f1fb');
+	$('.qb_list').each(function(){
+		$(this).find('tr:even').css('background','#e7f1fb');	
+	});
+	
+	$('.qb_btn li a').each(function(){
+		$(this).click(function(){
+			var _index=$(this).parent().index();
+			$('.qb_btn li a').removeClass('hover');
+			$(this).addClass('hover');
+			
+			$('.qbs_list').hide();
+			$('.qbs_list').eq(_index).show();
+			
+		});
+	});	
+});
+</script>
+</html>

@@ -1,0 +1,193 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>WIFI租赁_苏州WIFI租赁_单项服务_三三旅游网</title>
+<meta name="keywords" content="">
+<meta name="description" content="三三旅游实现苏州首家WIFI租赁，门店取还，无需淘宝来回快递，无需机场匆忙取还。24小时咨询预订电话：66667777">
+<link type="text/css" rel="stylesheet" href="../Public/css/reset.css">
+<link type="text/css" rel="stylesheet" href="../Public/css/style.css">
+<link type="text/css" rel="stylesheet" href="__ROOT__/Public/statics/js/calendar/calendar-blue.css"/>
+<script>var ROOT_PATH = '__ROOT__';</script>
+<include file="Public:statistics"/>
+</head>
+<body>
+<include file="Public:header"/>
+<!--头部结束-->
+<div class="wrap">
+  <div class="wifi-banner"></div>
+  <div class="wifi-form clearfix">
+	<div class="left">
+		<img src="../Public/images/wifi/wifi-logo.jpg"/>
+	</div>
+	<div class="right">
+		<form id="wifiForm" name="wifiForm" onsubmit="return formCheck()">
+			<input type="hidden" name="post-url" value="">
+			<input type="hidden" name="time_now" value="2016-10-05">
+			<div class="formLine clearfix">
+				<div class="half">
+					<span class="formLabel"><i>*</i>目的地国家：</span>
+					<span>
+						<select name="country" class="w110">
+							<option value="日本">日本</option>
+							<option value="韩国">韩国</option>
+						</select>
+					</span>
+				</div>
+				<div class="half">
+					<span class="formLabel"><i>*</i>取货门店：</span>
+					<span>
+						<select name="shop" class="w110">
+							<volist name="shopList" id="vo">
+							<option value="{$vo.shop_id}">{$vo.shop_name}</option>
+							</volist>
+						</select>
+					</span>
+				</div>
+			</div>
+			<div class="formLine clearfix">
+				<div class="half">
+					<span class="formLabel"><i>*</i>行程开始日期：</span>
+					<span>
+						<input type="text" name="time_start" id="time_start" class="date" size="12" value="" readonly>
+					</span>
+				</div>
+				<div class="half">
+					<span class="formLabel"><i>*</i>行程结束日期：</span>
+					<span>
+						<input type="text" name="time_end" id="time_end" class="date" size="12" value="" readonly>
+					</span>
+				</div>
+			</div>
+			<div class="formLine clearfix">
+				<div class="half">
+					<span class="formLabel"><i>*</i>天数：</span>
+					<span>
+						<input type="text" name="days" value="" readonly>
+					</span>
+				</div>
+				<div class="half">
+					<span class="formLabel"><i>*</i>自取时间：</span>
+					<span>
+						<input type="text" name="time_pick" id="time_pick" class="date" size="12" value="" readonly>
+					</span>
+				</div>
+			</div>
+			<div class="formLine clearfix">
+				<span class="formLabel"><i></i>备注：</span>
+				<span>
+					<input style="width: 432px;" type="text" name="" value="">
+				</span>
+			</div>
+			<div class="formLine clearfix">
+				<input type="submit" class="button" name="submit" value="快速预定">
+			</div>
+		</form>
+	</div>
+  </div>
+  <div class="wp">
+	<div class="section" style="margin-top:100px;"><img src="../Public/images/wifi/wifi-section-2.jpg"/></div>
+	<div class="section" style="margin-top:150px;"><img src="../Public/images/wifi/wifi-section-3.jpg"/></div>
+	<div class="section" style="margin-top:100px;"><img src="../Public/images/wifi/wifi-section-4.jpg"/></div>
+	<div class="section" style="margin-top:130px;"><img src="../Public/images/wifi/wifi-section-5.jpg"/></div>
+	<div class="section" style="margin-top:100px;"><img src="../Public/images/wifi/wifi-section-6.jpg"/></div>
+	<div class="section" style="margin-top:100px;"><img src="../Public/images/wifi/wifi-section-7.jpg"/></div>
+	<div class="section" style="margin-top:100px;"><img src="../Public/images/wifi/wifi-section-8.jpg"/></div>
+  </div>
+</div>
+<div id="retop">
+    <a target="_blank" id="chatId" href="http://kefu.qycn.com/vclient/chat/?websiteid=113071" rel="nofollow" class="back_talk"><span></span></a>
+    <a class="back_key" target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=8bf4d119c01dd9d020e7209234d14f09ad8ad23a4727eefa45727681442afe12"></a>
+	<a class="back_top" href="javascript:void(0)"></a>
+</div>
+<include file="Public:footer_notq"/>
+</div>
+<script type="text/javascript" src="../Public/js/jquery-1.11.1.min.js"></script>
+<script>var ROOT_PATH = '__ROOT__';</script>
+<script type="text/javascript" src="../Public/js/jquery.scrollTo.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/statics/js/calendar/calendar.js"></script>
+<script type="text/javascript" src="../Public/js/common.js"></script>
+<script type="text/javascript" src="../Public/js/wifi.js"></script>
+<script type="text/javascript">
+function checkForm(){
+	var ntime = $('input[name="time_now"]').val();
+	var stime = $('input[name="time_start"]').val();
+	var etime = $('input[name="time_end"]').val();
+	var ptime = $('input[name="time_pick"]').val();
+
+	if(stime){
+		if(stime < ntime){
+			alert('请选择正确的出发日期！');
+			$('input[name="time_start"]').val("");
+		}
+	}
+	if(stime && etime){
+		if(etime < stime){
+			alert('请选择正确的结束日期！');
+			$('input[name="time_end"]').val("");
+			$('input[name="days"]').val("");
+		}else{
+			sday = new Date(stime);
+			eday = new Date(etime);
+			days = Math.floor((eday-sday)/(24*60*60*1000))
+			$('input[name="days"]').val(days + 1);
+		}
+	}
+	if(ptime){
+		if(ptime < ntime){
+			alert('请选择正确的自取日期！');
+			$('input[name="time_pick"]').val("");
+		}
+	}
+	if(ptime && stime){
+		if(stime < ptime + 2){
+			alert('自取时间需要至少提前1天！');
+			$('input[name="time_pick"]').val("");
+		}
+	}
+}
+Calendar.setup({
+	inputField     :    "time_pick",
+	ifFormat       :    "%Y-%m-%d",
+	timeFormat     :    "24",
+	onUpdate   :    function(){
+		checkForm();
+	}
+});
+Calendar.setup({
+	inputField     :    "time_start",
+	ifFormat       :    "%Y-%m-%d",
+	timeFormat     :    "24",
+	onUpdate   :    function(){
+		checkForm();
+	}
+});
+Calendar.setup({
+	inputField     :    "time_end",
+	ifFormat       :    "%Y-%m-%d",
+	timeFormat     :    "24",
+	onUpdate   :    function(){
+		checkForm();
+	}
+});
+function formCheck(){
+	var country = $('select[name="country"]').val();
+	var shop = $('select[name="shop"]').val();
+	var days = $('input[name="days"]').val();
+	var stime = $('input[name="time_start"]').val();
+	var etime = $('input[name="time_end"]').val();
+	var ptime = $('input[name="time_pick"]').val();
+	if(country && shop && days && stime && etime && ptime){
+		alert('true');
+		return true;
+	}else{
+		alert("带*号的项目必须填写！");
+		return false;
+	}
+}
+$(function(){
+
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<include file="Public:header" />
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".preview").preview();
+	});
+	
+	function status(id,type){
+		$.get("{:u('Ad/status')}", { id: id, type: type }, function(data){
+			$("#"+type+"_"+id+" img").attr('src','__PUBLIC__/statics/images/status_'+data+'.gif')
+		},"json"); 
+	}
+</script>
+
+</head>
+<body>
+<div class="pad-10" >
+    <form id="myform" name="myform" action="{:u('Ad/delete')}" method="post">
+    <div class="table-list">
+    <table width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th width="5%">序号</th>
+				<th width=150 align="left">名称</th>
+				<th width=60>别名</th>
+				<th width=80>图片</th>              
+                <th width=150 align="left">链接地址</th>
+				<th width=30>是否显示</th>
+                <th width=30>操作</th>
+				<th width=300></th>
+            </tr>
+        </thead>
+    	<tbody>
+        <volist name="list" id="val" >
+        <tr>
+        	<td align="center">{$key+1}</td>
+			<td align="left"><a href="{:u('Ad/edit', array('id'=>$val['id']))}">{$val.name}</a></td>
+			<td align="center">{$val.cname}</td>
+			<td align="center"><img src="<if condition="$val['imgurl']">__ROOT__{$val.imgurl}<else />__ROOT__/Uploads/noimg.jpg</if>" width="40px" height="30px" class="preview" bimg="__ROOT__{$val.imgurl}" title="<php>if(strpos($val['img'],'http') === false){echo '本地图片';}else{echo '远程图片';}</php>" /></td>            
+            <td align="left"><b>{$val.link}</b></td>
+            <td align="center" onclick="status({$val.id},'status')" id="status_{$val.id}"><img src="__PUBLIC__/statics/images/status_{$val.status}.gif" /></td>
+            <td align="center"><a class="blue" href="{:u('Ad/edit',array('id'=>$val['id']))}">修改</a></td>
+			<td align="center"></td>
+        </tr>
+        </volist>
+    	</tbody>
+    </table>
+
+    <div class="btn">
+    	<div id="pages"></div>
+    </div>
+
+    </div>
+    </form>
+</div>
+</body>
+</html>

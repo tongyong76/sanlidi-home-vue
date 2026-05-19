@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{$visaInfo.name}_代办{$visaInfo.name}_苏州青旅33ly.com</title>
+<meta name="keywords" content="">
+<meta name="description" content="三三旅游网为您提供{$visaInfo.name}代办服务，让您到{$cateInfo.name}出游更加轻松。24小时咨询预定电话：66667777">
+<link type="text/css" rel="stylesheet" href="../Public/css/reset.css">
+<link type="text/css" rel="stylesheet" href="../Public/css/style.css">
+<script type="text/javascript" src="../Public/js/jquery-1.11.1.min.js"></script>
+<script>var ROOT_PATH = '__ROOT__';</script>
+<script type="text/javascript" src="../Public/js/common.js"></script>
+<include file="Public:statistics"/>
+</head>
+<body>
+<include file="Public:header"/>
+<!--头部结束-->
+<div class="wrap">
+	<div class="inside_wrap">
+		<div class="search_nav">
+			<a href="__ROOT__">首页</a><b>></b><a href="__ROOT__/qianzheng/">签证</a><b>></b><a href="__ROOT__/qianzheng/{$cateInfo.pinyin}/">{$cateInfo.name}</a><b>></b><span>{$visaInfo.name}</span>
+		</div>
+        <div class="visa_option">
+        	<div class="v_o_country">
+            	<dl class="clearfix">
+                	<dt><img src="__ROOT__{$cateInfo.imgurl}"></dt>
+                    <dd>{$cateInfo.name}</dd>
+                </dl>
+            </div>
+        </div>
+        <div class="cont clearfix">
+        	<div class="cont_left fr">
+            	<div class="common_telephone clearfix">
+					<span class="tt">旅游通</span>
+					<span class="pp">6666-7777</span>
+				</div>                              
+                <div class="visa_faq">
+                 	<div class="v_f_title">
+                    	<span>常见问题</span>
+                    </div>
+                    <div class="v_f_list">
+                    	<ul>
+							<volist name="qList" id="vo">
+							<li><a href="{:U('Article/detail',array('id'=>$vo['id']))}">{$vo.title}</a></li>
+							</volist>
+                        </ul>
+                    </div>
+                </div>               
+            </div>
+            <div class="cont_right fl">
+                <div class="vDetail">
+                	<div class="v_d_title">
+                    	<span>旅游签证</span><a href="__ROOT__/qianzheng/{$cateInfo.pinyin}">返回{$cateInfo.name}签证首页>></a>
+                    </div>
+                    <div class="v_d_content">
+                    	<dl>
+                        	<dd>
+                        		<span>签证类型</span>
+                            	<div>{$visaInfo.name}</div>
+                        	</dd>
+                            <dd>
+                        		<span>服务费</span>
+                            	<div>{$visaInfo.price}</div>
+                        	</dd>
+                            <dd>
+                        		<span>有效期</span>
+                            	<div>{$visaInfo.expdate}</div>
+                        	</dd>
+                            <dd>
+                        		<span>最多停留</span>
+                            	<div>{$visaInfo.staytime}</div>
+                        	</dd>
+                            <dd>
+                        		<span>工作日</span>
+                            	<div>{$visaInfo.worktime}</div>
+                        	</dd>
+                            <!--<dd>
+                        		<span>收客范围</span>
+                            	<div>{$visaInfo.crowd}</div>
+                        	</dd>-->
+                            <dd>
+                        		<span>签证材料</span>
+								<div class="download">
+									<if condition="$visaInfo['file1']"><a href="__ROOT__{$visaInfo.file1}">签证申请<br>相关表格下载</a></if>
+									<if condition="$visaInfo['file2']"><a href="__ROOT__{$visaInfo.file2}">{$visaInfo.name}<br>所需材料</a></if>
+								<div>
+                            	<div>{$visaInfo.info}</div>
+                        	</dd>
+                            <dd class="lastdd">
+                        		<span>特别提示</span>
+                            	<div>{$visaInfo.notice}</div>
+                        	</dd>
+                        </dl>
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+<include file="Public:footer_notq"/>
+</body>
+</html>

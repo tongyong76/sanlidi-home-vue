@@ -1,0 +1,123 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>找回密码</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link type="text/css" rel="stylesheet" href="../Public/css/reset.css">
+<link type="text/css" rel="stylesheet" href="../Public/css/ral.css">
+<script type="text/javascript" src="../Public/js/jquery-1.11.1.min.js"></script>
+<include file="Public:statistics"/>
+</head>
+<body>
+<include file="Public:ralheader" />
+<div class="ral_box clearfix">
+	<div class="ral_findpwd">
+		<h2>找回密码</h2>
+		<div class="ral_findpwd_form">			
+			<form id="loginForm" method="post" action="" class="clearfix">
+				<div class="formLine clearfix">
+					<span class="formLabel w110">手机号码：</span>
+					<span><input class="long" type="text" value="" id="phone" name="phone"></input></span>
+					<span class="err_phone normal"></span>
+				</div>
+				<div class="formLine clearfix">
+					<span class="formLabel w110">验证码：</span>
+					<span>
+						<input class="short" type="text" value="" name="captcha" id="verification" value="" verify_post_action="{:U('User/verify_test')}"></input>
+						<img style="margin-left:5px;margin-top:4px;" height="30" src="{:U('Base/verify')}" id="J_captcha_img" class="captcha_img" alt="{$verify}" verify_post_action="{:U('User','verify_test')}"/>
+						<a href="javascript:void(0)" id="J_captcha_change">换一张</a>
+					</span>
+					<span class="err_check normal"></span>
+				</div>
+				<div class="formLine clearfix">
+					<span class="formLabel"></span>
+					<span><input type="submit" name="fpBtn" id="fpBtn" value="提交" class="submit"/></span>
+				</div>
+			</form>
+		</div>
+	<div>
+</div>
+<include file="Public:ralfooter" />
+<script type="text/javascript">
+$(document).ready(function(){
+	//$('#J_captcha_img').click(function(){
+    //    var timenow = new Date().getTime(),
+    //        url = $(this).attr('data-url').replace(/js_rand/g,timenow);				
+    //    $(this).attr("src", url);
+    //});
+	$('#J_captcha_change').click(function(){
+        //$('#J_captcha_img').trigger('click');
+		var time = new Date().getTime();
+		$('#J_captcha_img').attr('src','__ROOT__/User/verify/' + time);		
+    });
+	//验证手机
+	$("#phone").blur(function () {
+                return fnphone();
+            });
+	function fnphone() {
+		var isok = true;
+		var check_phone_exist=$("#check_phone_exist").val();
+		$(".err_phone").removeClass("nomal");
+		var phone=$.trim($("#phone").val());
+		if(phone==""){
+			isok = false;
+			$(".err_phone").addClass("error").removeClass("correct").html("请填写手机！");
+		}else{
+			var uanmebool=/^(13[0-9]|15[0-9]|18[0-9]|14[0-9]|17[0-9])\d{8}$/.test(phone);
+			if(!uanmebool){
+				isok = false;
+				$(".err_phone").addClass("error").removeClass("correct").html("请填写正确的手机号码！");
+			}else{
+				$.post(check_phone_exist,{phone:phone},function(data){
+					if(data=="phoneExist"){
+						isok = false;
+						$(".err_phone").addClass("error").removeClass("correct").html("该手机号码已存在！");
+					}else{
+						$(".err_phone").addClass("correct").removeClass("error").html("&nbsp;");
+					}
+				});
+			}
+		}
+		return isok;
+	}
+	//验证验证码
+	$("#verification").blur(function () {
+                fnverification();
+            });
+	function fnverification() {
+		var isok = true;
+		$(".err_check").removeClass("nomal");
+		//var verify_post_action=$(this).attr("verify_post_action");
+		//var verification=$.trim($(this).val());
+		var verify_post_action = $("#verification").attr("verify_post_action");
+        var verification = $.trim($("#verification").val());
+		if(verification==''){
+			$(".err_check").addClass("error").removeClass("correct").html("请输入验证码！");
+			isok = false;
+		}
+		 else {
+		$.post(verify_post_action,{verification:verification},function(data){
+			if(data=="true"){
+				$(".err_check").addClass("correct").removeClass("error").html("&nbsp;");
+			}else if(data=="false"){
+				$(".err_check").addClass("error").removeClass("correct").html("验证码输入不正确的！");
+			}
+		});
+		}
+		return isok;
+	}
+	function yanzheng() {
+                return fnphone() & fnverification();
+            }
+	$("#fpBtn").click(function(){
+		if (yanzheng()) {
+                    return true;
+                }
+                else { return false; }
+            });
+        });
+</script>
+</body>
+</html>

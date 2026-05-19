@@ -1,0 +1,179 @@
+<include file="Public:header" />
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".preview").preview();
+	});
+	
+	function status(id,type){
+		$.get("{:u('Share/status')}", { id: id, type: type }, function(data){
+			$("#"+type+"_"+id+" img").attr('src','__PUBLIC__/statics/images/status_'+data+'.gif');
+			if(data == 1){
+				$('#share_price_'+id).addClass('tdedit');
+				$('#share_price_'+id).attr('data-tdtype','edit');
+			}else{
+				$('#share_price_'+id).removeClass('tdedit');
+				$('#share_price_'+id).attr('data-tdtype','noedit');
+			}
+		},"json"); 
+	}
+</script>
+
+</head>
+<body>
+<div class="pad-10" >
+    <form name="searchform" action="{:U('Share/order')}" method="post" >
+    <input name="a" type="hidden" value="order">
+    <input name="m" type="hidden" value="Share">
+    <input name="g" type="hidden" value="Admin">
+    <table width="100%" cellspacing="0" class="search-form">
+        <tbody>
+            <tr>
+            <td>
+            <div class="explain-col">
+            	下单时间：
+            	<input type="text" name="time_start" id="time_start" class="date" size="12" value="{$time_start}">
+				<script language="javascript" type="text/javascript">
+                    Calendar.setup({
+                        inputField     :    "time_start",
+                        ifFormat       :    "%Y-%m-%d",
+                        showsTime      :    'true',
+                        timeFormat     :    "24"
+                    });
+                </script>
+                -
+                <input type="text" name="time_end" id="time_end" class="date" size="12" value="{$time_end}">
+				<script language="javascript" type="text/javascript">
+                    Calendar.setup({
+                        inputField     :    "time_end",
+                        ifFormat       :    "%Y-%m-%d",
+                        showsTime      :    'true',
+                        timeFormat     :    "24"
+                    });
+                </script>
+                &nbsp;分享人 :
+                <input name="sharename" type="text" class="input-text" size="15" value="{$sharename}" />
+                <input type="submit" name="search" class="button" value="搜索" />
+        	</div>
+            </td>
+            </tr>
+        </tbody>
+    </table>
+    </form>
+
+    <form id="myform" name="myform" action="{:u('Online/delete')}" method="post">
+    <div class="table-list">
+    <table width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th width="5%">序号</th>
+                <th width=60>下单时间</th>
+				<th width=60>分享人</th>
+                <th width=200 align="left">分享内容</th>
+                <th width=60>分享结果</th> 
+				<th width=60>佣金</th>
+                <th width=120>操作</th>
+            </tr>
+        </thead>
+    	<tbody>
+        <volist name="orderList" id="val" >
+        <tr>
+        	<td align="center">{$key+1}</td>
+            <td align="center">{$val.add_time|date="Y-m-d",###}</td>
+			<td align="center">{$val.wx_nickname}</td>
+            <td align="left">{$val.ordname}</td>
+            <td align="center">{$val.ordstatus|getNameById=###,'order_status'}</td>
+			<td align="center">
+				<if condition="$val['ordstatus'] eq 3">
+				+{$val['share_price'] * ($val['adult_num']+$val['child_num'])}
+				<else/>
+				+0
+				</if>
+			</td>
+			<td align="center">
+				<!--<if condition="$id eq 97"><a class="blue" href="http://www.33ly.com/group/xianlu-{$val.id}.html" target="_blank">查看{$val.is_share}</a><else/><a class="blue" href="http://www.33ly.com/tour/xianlu-{$val.id}.html" target="_blank">查看</a></if>-->
+			</td>
+        </tr>
+        </volist>
+    	</tbody>
+    </table>
+
+    <div class="btn">
+		<div id="pages">{$page}</div>
+    </div>
+
+    </div>
+    </form>
+</div>
+</body>
+<script type="text/javascript">
+$(function(){
+	//select框
+	$('select[name="f1"]').change(function(){
+		var CateId = $(this).children('option:selected').val(); 
+		$('input[name="f1"]').val(CateId);
+		$.ajax({
+			url: 'http://mm.33ly.com/Ajax/getCate',
+			type: 'POST',
+			data: {CateId:CateId},
+			dataType: 'json',
+			success: function(result){
+				if(result.status == 1){
+					$('select[name="f2"] .fs').remove();
+					$('select[name="f3"] .fs').remove();
+					$('select[name="f2"]').append(result.data);
+				}
+			}
+		});
+	});
+	$('select[name="f2"]').change(function(){
+		var CateId = $(this).children('option:selected').val(); 
+		$('input[name="f2"]').val(CateId);
+		$.ajax({
+			url: 'http://mm.33ly.com/Ajax/getCate',
+			type: 'POST',
+			data: {CateId:CateId},
+			dataType: 'json',
+			success: function(result){
+				if(result.status == 1){
+					$('select[name="f3"] .fs').remove();
+					$('select[name="f3"]').append(result.data);
+				}
+			}
+		});
+	});
+	$('select[name="f3"]').change(function(){
+		var CateId = $(this).children('option:selected').val(); 
+		$('input[name="f3"]').val(CateId);
+	});
+	
+	//修改
+	$('span[data-tdtype="edit"]').live('click',function(){
+		var s_val   =	$.trim($(this).text()),            
+			s_name  = 	$(this).attr('data-field'),
+			s_id    = 	$(this).attr('data-id'),              
+			width   = 	$(this).width(),
+			$this=$(this);
+			
+		$('<input type="text" class="lt_input_text" value="'+s_val+'" />').width(width).focusout(function(){
+			$(this).prev('span').show().text($(this).val());
+			if($(this).val() != s_val) {
+				$.ajax({
+					url: '__ROOT__/Share/editSharePrice',
+					type: 'POST',
+					data:{field:s_name,id:s_id,val:$(this).val()},
+					dataType: 'json',
+					success: function(result){
+
+					}
+				});
+			}
+			$(this).remove();
+		}).insertAfter($(this)).focus().select();
+		$(this).hide();
+		return false;
+	});
+	
+});
+</script>
+</html>

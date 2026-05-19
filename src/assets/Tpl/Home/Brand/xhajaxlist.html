@@ -1,0 +1,30 @@
+<ul class="s_r_list">
+	<volist name="list" id="vo">
+	<li>
+		<div class="routeinfo clearfix">
+			<div class="Limgbox fl">
+				<a href="__ROOT__/qinzi/xianlu-{$vo.id}.html"><img src="__ROOT__{$vo.img}"></a>
+			</div>
+			<div class="Cinfo fl">
+				<div class="Cinfo_title"><a href="__ROOT__/qinzi/xianlu-{$vo.id}.html">{$vo.title}</a></div>
+				<div class="Cinfo_tag">
+					<if condition="$vo['brand_id']"><span class="brand{$vo.brand_id}">{:C('brand.'.$vo['brand_id'])}</span></if>
+					<volist name="vo.switch" id="voo">
+					<span class="switch{$voo}">{:C('switch.'.$voo)}</span>
+					</volist>
+				</div>
+				<div class="Cinfo_des">{$vo.info}</div>
+				<div class="Cinfo_data mT20">行程天数：<span class="day_num"><if condition="$vo['days']">{$vo.days}<else/>1</if></span>天</div>
+				<div class="Cinfo_data">出发日期：<span class="data_time"><if condition="$vo['dep']">{$vo.dep}<else/>最近无行程</if></span></div>
+			</div>
+			<div class="Rprice fl">
+				<if condition="$vo['minprice']"><div class="now_price">￥<span>{$vo.minprice|isNull=###}</span>起</div></if>
+				<div class="ticket mT10"><a href="__ROOT__/qinzi/xianlu-{$vo.id}.html" onMouseOver="this.className='ticket_move'" onMouseOut="this.className=''">查看详情</a></div>
+			</div>
+		</div>
+	</li>
+	</volist>
+</ul>
+<div class="pagination">
+	<div class="paging fr" id="page">{$page}</div>
+</div>

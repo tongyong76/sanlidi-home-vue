@@ -1,0 +1,209 @@
+<include file="Public:header" />
+<script language="javascript">var webpath="__PUBLIC__";</script>
+<script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.all.min.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/ueditor/themes/default/css/ueditor.css"/>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#submit").click(function(){		
+			if($("#title").val()==0){
+			   alert('请填写资讯标题');
+			   return false;
+			}
+			if($("#cate_id").val()==0){
+			   alert('请选择资讯分类');
+			   return false;
+			}
+		});
+		//编辑器
+		var editor = UE.getEditor('text', {toolbars:[['source', 'undo', 'bold', 'italic','link', 'unlink', 'formatmatch', 'underline', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc','justifyleft', 'justifycenter', 'justifyright', 'justifyjustify','inserttable','insertimage','template']],initialFrameHeight:300,pasteplain:false});
+		var editor2 = UE.getEditor('fees_in', {initialFrameHeight:300});
+		var editor3 = UE.getEditor('fees_out', {initialFrameHeight:300});
+		var editor4 = UE.getEditor('notice', {initialFrameHeight:300});
+		var editor5 = UE.getEditor('visa', {initialFrameHeight:300});
+	});
+</script>
+</head>
+<body>
+<form action="{:u('Online/add')}" method="POST" name="myform" id="myform" enctype="multipart/form-data" style="margin-top:10px;">
+  <div class="pad-10">
+  <div class="col-tab">
+  <ul class="tabBut cu-li">
+    <li id="tab_setting_1" class="on" onClick="SwapTab('setting','on','',3,1);">基本信息</li>
+	<li id="tab_setting_2" onClick="SwapTab('setting','on','',3,2);">附加信息</li>
+    <li id="tab_setting_3" onClick="SwapTab('setting','on','',3,3);">SEO设置</li>
+  </ul>
+  <div id="div_setting_1" class="contentList pad-10">
+    <table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+	  <tr>
+        <th>线路类型 :</th>
+        <td>
+			<select style="width:120px;" name="type_id">
+        	<option value="0">--请选择分类--</option>
+			<option value="1">周边游</option>
+			<option value="2">国内游</option>
+			<option value="3">出境游</option>			
+            </select>
+		</td>
+      </tr>
+	  <tr>
+        <th>目的地 :</th>
+        <td>
+			<select name="cate_id" id="cate_id" style="width:120px;" >
+        	<option value="0">--请选择分类--</option>
+			<volist name="cate_list" id="val">
+			<option value="{$val.id}" <if condition="$cid eq $val['id']"> selected="selected" </if>>
+				<for start="1" end="$val['floor']">
+                &nbsp;&nbsp;
+                </for>
+                <if condition="$val['floor'] gt 1">
+                ├&nbsp;
+                </if>{$val.name}</option>
+			</volist>          
+            </select>
+		</td>
+      </tr>
+	  <tr>
+        <th width="100">系列 :</th>
+        <td>
+			<input type="radio" name="series_id" value="0" checked="checked" />&nbsp;无&nbsp;
+			<input type="radio" name="series_id" value="1" <if condition="$goodsInfo['series_id'] eq 1">checked="checked" </if> />&nbsp;专享&nbsp;
+			<input type="radio" name="series_id" value="2" <if condition="$goodsInfo['series_id'] eq 2">checked="checked" </if> />&nbsp;畅享&nbsp;
+			<input type="radio" name="series_id" value="3" <if condition="$goodsInfo['series_id'] eq 3">checked="checked" </if> />&nbsp;尊享&nbsp;
+			<input type="radio" name="series_id" value="4" <if condition="$goodsInfo['series_id'] eq 4">checked="checked" </if> />&nbsp;奢享&nbsp;
+		</td>
+      </tr>
+	  <tr>
+        <th>出发地 :</th>
+        <td>
+			<select name="port_id" id="port_id" style="width:120px;" >
+			<volist name=":C('port')" id="val">
+			<option value="{$key}">{$val}</option>
+			</volist>          
+            </select>
+		</td>
+      </tr>
+	  <tr>
+        <th width="100">付费服务 :</th>
+        <td>
+			<input name="Apple[]" type="checkbox" value="1" />&nbsp;上门接送
+		</td>
+      </tr>
+	  <tr>
+        <th width="100">其他 :</th>
+        <td>
+			<input name="is_ds" type="checkbox" value="1" />&nbsp;不参与首页排序&nbsp;&nbsp;&nbsp;
+		</td>
+      </tr>
+      <tr>
+        <th width="100">主标题 :</th>
+        <td><input type="text" name="name" class="input-text" size="60" value="{$goodsInfo.name}" ></td>
+      </tr>
+	  <tr>
+        <th width="100">副标题 :</th>
+        <td><input type="text" name="subname" class="input-text" size="60" value="{$goodsInfo.subname}" ></td>
+      </tr>
+	  <tr>
+        <th width="100">序列号 :</th>
+        <td><input type="text" name="sn" class="input-text" size="40" value="{$sn}" readonly></td>
+      </tr>
+	  <tr>
+        <th width="100">供应商 :</th>
+        <td><input type="text" name="tag" class="input-text" size="60" value="{$goodsInfo.tag}"></td>
+      </tr>
+	  <tr>
+        <th width="100">市场价 :</th>
+        <td><input type="text" name="market_price" class="input-text" size="60" value="{$market_price}"></td>
+      </tr>
+	  <tr>
+        <th width="100">游玩天数 :</th>
+        <td><input type="text" name="days" class="input-text" size="4" value="{$goodsInfo.days}">天</td>
+      </tr>
+	  <tr>
+        <th width="100">提前天数 :</th>
+        <td><input type="text" name="sign_up" class="input-text" size="4" value="{$goodsInfo.sign_up}" >天</td>
+      </tr>
+      <tr>
+      	<th>缩略图 :</th>
+      	<td>
+			<if condition="$goodsInfo['imgurl']"><img src="__ROOT__{$goodsInfo.imgurl}" />&nbsp;&nbsp;<br /><br /></if>
+			<input type="hidden" name="imgurl" value="{$goodsInfo.imgurl}"/>
+            <input type="file" name="upfile" class="input-text" size=21 style="height:25px;"/>
+        </td>
+      </tr>
+	  <tr>
+		<th>线路特色 :</th>
+		<td>
+			<textarea style="width:70%;" name="info" id="text">{$goodsInfo.info}</textarea>
+		</td>
+	  </tr> 
+    </table>
+  </div>
+
+	<div id="div_setting_2" class="contentList pad-10 hidden">
+		<table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+		  <tr>
+			<th width="100">费用包含 :</th>
+			<td>
+				<p style="color:red;font-weight:bold;">排序标准：1.交通&nbsp;2.住宿&nbsp;3.用餐&nbsp;4.景点&nbsp;5.导游&nbsp;6.保险&nbsp;7.其他&nbsp;&nbsp;&nbsp;&nbsp(住宿、用餐、景点能写清楚准确接待标准就写清楚！)</p>
+				<textarea style="width:70%;" id="fees_in" name="fees_in">{$goodsInfo.fees_in}</textarea>
+			</td>
+		  </tr>
+		  <tr>
+			<th>费用不含 :</th>
+			<td>
+				<textarea style="width:70%;" id="fees_out" name="fees_out">{$goodsInfo.fees_out}</textarea>
+			</td>
+		  </tr>
+		  <tr>
+			<th>预定须知 :</th>
+			<td>
+				<textarea style="width:70%;" id="notice" name="notice">{$goodsInfo.notice}</textarea>
+			</td>
+		  </tr>
+		  <tr>
+			<th>签证材料 :</th>
+			<td>
+				<textarea style="width:70%;" id="visa" name="visa">{$goodsInfo.visa}</textarea>
+			</td>
+		  </tr> 
+		</table>
+	</div>
+	<div id="div_setting_3" class="contentList pad-10 hidden">
+		<table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+			<tr>
+				<th width="100">Title :</th>
+				<td><input type="text" name="seo_title" id="seo_title" class="input-text" size="60" value=""></td>
+			</tr>
+			<tr>
+				<th>Keywords :</th>
+				<td><input type="text" name="seo_keys" id="seo_keys" class="input-text" size="60" value=""></td>
+			</tr>
+			<tr>
+				<th>Description :</th>
+				<td><textarea name="seo_desc" id="seo_desc" cols="80" rows="8"></textarea></td>
+			</tr>
+		</table>
+	</div>
+  
+  <div class="bk15"></div>
+  <div class="btn">
+    <input type="submit" onClick="disable()" value="提交" name="submit" class="button" id="submit">
+  </div>
+
+</div>
+</div>
+</form>
+<script type="text/javascript">
+function disable(){
+	if($('input').attr("disabled")==true || $('input').attr("disabled")==true){
+		$('input').removeAttr('disabled');
+		$('select').removeAttr('disabled');
+	}
+}
+$(function(){
+
+});
+</script>
+</body>
+</html>

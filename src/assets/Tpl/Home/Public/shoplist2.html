@@ -1,0 +1,30 @@
+<div class="shop_list fr">
+	<div class="s_list_top list_mend">
+		<p class="shop_head"></p>
+		<p class="s_list_name">没有找到喜欢的线路？</p>
+		<div class="shop_search">
+			<!--<div class="shop_button clearfix"><span class="button_icon1"><i></i>深度苏州专线<b>{:C('hotLine')}</b></span><em>或</em><span class="button_icon2"><a href="http://chat32.live800.com/live800/chatClient/chatbox.jsp?companyID=468909&configID=59649&jid=4857736086"><i></i>在线咨询</a></span></div>-->
+            <div class="shop_button2">
+              <dl>
+                <dt><i><img src="../Public/images/shop_button1.png"/></i><span><b>{:C('hotLine')}</b>深度苏州专线</span></dt>
+                <dd>或</dd>
+                <dt><a href="http://kefu.qycn.com/vclient/chat/?websiteid=113071"><i><img src="../Public/images/shop_button2.png"/></i><em>在线咨询</em></a></dt>
+              </dl>
+            </div>
+		</div>
+		<div class="shop_bottom">
+		  <div class="ask_head">近期热门线路</div>
+		  <div class="shop_product">
+			<ul>
+			  <volist name="tj" id="vo">
+			  <li>
+				<span><a href="{:C('site_domain')}/{$vo.pinyin}/xianlu-{$vo.id}.html"><img width="100" height="64" align="absmiddle" src="{:C('site_domain')}{$vo.imgurl}"></a></span>
+				<a href="{:C('site_domain')}/{$vo.pinyin}/xianlu-{$vo.id}.html">{$vo.name}</a><b>{$vo.subname}</b><em>￥<i>{$vo.minprice}</i>起</em>
+			  </li>
+			  </volist>
+			</ul>
+			<p><a href="__ROOT__/suzhou/">返回深度苏州首页>></a></p>
+		  </div>
+		</div>
+	</div>
+</div>

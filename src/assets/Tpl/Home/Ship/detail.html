@@ -1,0 +1,365 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>【沪上邮轮】{$info.name}游{$info.subname}_三三旅游网</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="【三三旅游网】【沪上邮轮】{$info.name}游{$info.subname}，{$info.seo_desc}">
+    <link type="text/css" rel="stylesheet" href="../Public/css/reset.css">
+    <link type="text/css" rel="stylesheet" href="../Public/css/style.css">
+    <link type="text/css" rel="stylesheet" href="../Public/css/button.css">
+    <script type="text/javascript" src="../Public/js/jquery-1.11.1.min.js"></script>
+    <script>var ROOT_PATH = '__ROOT__';</script>
+    <script>var APP_PATH = '../Public';</script>
+    <script type="text/javascript" src="../Public/js/jquery.scrollTo.min.js"></script>
+    <script type="text/javascript" src="../Public/js/common.js"></script>
+<!--[if IE 6]>
+<link rel="stylesheet" type="text/css" href="../Public/css/ie6.css">
+<![endif]-->
+<include file="Public:statistics"/>
+</head>
+<body>
+    <include file="Public:header" />
+    <!--头部结束-->
+    <div class="wrap">
+        <div class="inside_wrap clearfix">
+            <div class="search_nav">
+                <a href="/">首页</a><b>></b><a href="__ROOT__/youlun/">沪上邮轮</a><b>></b><a href="__ROOT__/youlun/stream-{$info.boat_id}.html">{$boatInfo.name}</a><b>></b><span><{$info.name}>{$info.subname}</span>
+            </div>
+            <div class="Main">
+                <div class="banner_wrap clearfix">
+                    <div class="banner_wrap_left fl">
+                        <div class="banner_pics">
+                            <img src="__ROOT__{$boatInfo.imgurl}">
+                            <!--<div class="line_overviews"><span>25</span>间餐厅<span>19</span>个娱乐设施<span>12</span>个运动设施</div>-->
+							<if condition="$info['is_owner']"><div class="zzt"><img width="127" height="127" src="../Public/images/dqc.png" /></div></if>
+                        </div>
+                        <div class="banner_route">
+                            <div class="banner_route_title">{$boatInfo.cname}邮轮 · <a href="#" target="_blank">{$boatInfo.name}</a><a href="__ROOT__/youlun/stream-{$boatInfo.id}.html" target="_blank" class="banner_intro_more">了解{$boatInfo.name}</a></div>
+                            <div class="banner_route_intro">{$boatInfo.info}</div>
+                        </div>
+                    </div>
+                    <div class="banner_wrap_right fl">
+                        <h1 class="to_title"><{$info.name}>{$info.subname}</h1>
+                        <div class="to_market_price">市场价：<i>￥</i>{$info['minprice']+1000}<if condition="$info['tag']"><div class="gys">编号：{$info.tag}</div></if></div>
+                        <div class="to_member_price clearfix">
+                            <div class="t_m_price fl">会员价：成人<i>￥</i><span>{$info.minprice}</span><i>起</i></div>
+                            <if condition="$info['service'][0]">
+                            <div class="declare fl">
+                            	<span class="t_dec">+240上门接送</span>
+                                <div>加240元/人，即可享受小车上门接送至上海国际邮轮码头，张家港实行定点接送<!--<a href="#">点击查看详情</a>--></div>
+                            </div>
+							</if>
+                            <div class="declare fl">
+                                <span class="t_dec t_dec_blue">起价说明</span>
+                                <div>本起价是可选出发日期中，按双人出行共住一间房核算的最低单人价格。产品价格会根据您所选择的出发日期、出行人数、入住酒店房型、航班或交通以及所选附加服务的不同而有所差别。</div>
+                            </div>
+                        </div>
+                        <div class="pre_ticket">提前报名：建议提前<span>{$info.sign_up|isNull=###}</span>天以上报名</div>
+                        <div class="start_date">出发日期：{$info.start_time|date="Y-m-d",###}</div>
+                        <div class="ticket">如有问题，请拨打旅游通<strong>6666-7777</strong></div>
+                        <div class="to_scan">
+                            <div class="ecode_img">
+                                <div class="ewords clearfix">
+                                    <span class="e_ico">
+                                        <img src="../Public/images/wx_share.png"></span>
+                                    <span class="e_prompt">微信扫一扫分享给小伙伴</span>
+                                </div>
+                                <div class="ecode">
+                                    <span>
+                                        <img src="__ROOT__/{$ewmurl}"></span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="yuding_box">
+                            <div class="yuding_top">
+                                <div class="yuding_top_r">总价：<span class="all_price"><dfn>¥</dfn>0</span><span class="btn cbtn-orange btn-big yuding-btn">开始预订</span></div>
+                                <div class="yixuan_all">
+                                    <div class="btn_yixuan">已选房型<i class="icon_arrow"></i></div>
+                                    <div class="yixuan_box">
+                                        <ul class="yixuan_list">
+                                            <!--自动生成 generateSelectedHouse() 已经选择的房型-->
+                                        </ul>
+                                    </div>
+                                </div>
+                                <dl class="yuding_top_list clearfix">
+                                    <dt>出发日期：</dt>
+                                    <dd>{$info.start_time|date="Y-m-d",###}</dd>
+                                    <input type="hidden" value="{$info.start_time|date='Y-m-d',###}" id="start_time" />
+                                    <!--出发日期的隐藏域-->
+                                    <dt>返程日期：</dt>
+                                    <dd>{$info.end_time|date="Y-m-d",###}</dd>
+                                </dl>
+                            </div>
+							<input type="hidden" name="gid" value="{$info.id}"/>
+                            <div class="yuding_detail">
+                                <volist name="roomList" id="vo">
+                                <div class="need-submit-data kefang-{$info.start_time|date='Y-m-d',###}-div
+                                         kefang-{$vo.id}-{$info.start_time|date='Y-m-d',###}"
+                                    data-visittime="{$info.start_time|date='Y-m-d',###}" 
+									data-personnumber="0" 
+									data-goodsid="{$vo.id}" 
+									data-name="{$vo.name}" 
+									data-adultnumber="0" 
+									data-childnumber="0" 
+									data-quantity="0" 
+									data-total="0" 
+									data-totalmoney="0" 
+									data-branchname="{$vo.name}" 
+									data-fstprice="{$vo.price1}" 
+									data-maxperson="{$vo.num}" 
+									data-secprice="{$vo.price2}" 
+									data-childprice="{$vo.price3}" 
+									data-bedprice="{$vo.price1}" 
+									data-useflag="N">
+                                </div>
+								</volist>
+                                <div class="room_all">
+                                    <table class="room_table">
+                                        <tbody>
+                                            <tr>
+                                                <th width="82">舱房类型</th>
+                                                <th width="76">第1.2人</th>
+                                                <th width="76">第3.4成人</th>
+                                                <th width="76">第3.4儿童</th>
+                                                <th width="66">成人人数</th>
+                                                <th width="66">儿童人数</th>
+                                                <th width="66">房间间数</th>
+                                                <th width="38">价钱</th>
+                                            </tr>
+											<volist name="roomList" id="vo">
+                                            <tr>
+                                                <td class="tl">{$vo.name}</td>
+                                                <td>
+                                                    <span class="c_f60">¥{$vo.price1}</span>
+                                                </td>
+
+                                                <td><if condition="$vo['price2']"><span class="c_f60">¥{$vo.price2}</span><else/>--</if></td>
+                                                <td><if condition="$vo['price3']"><span class="c_f60">¥{$vo.price3}</span><else/>--</if></td>
+                                                <td>
+                                                    <select class="cangfangadult cangfangAdult-{$vo.id}-{$info.start_time|date='Y-m-d',###}" data-goodsid="{$vo.id}" data-date="{$info.start_time|date='Y-m-d',###}" data-maxnum="{$vo.num}" data-minnum="1" data-maxquantity="11" data-minquantity="1">
+                                                    </select>人
+                                                </td>
+                                                <td>
+                                                    <select class="cangfangchild cangfangChild-{$vo.id}-{$info.start_time|date='Y-m-d',###}" data-goodsid="{$vo.id}" data-date="{$info.start_time|date='Y-m-d',###}" data-maxnum="{$vo.num}" data-minnum="1" data-maxquantity="11" data-minquantity="1">
+
+                                                        <option selected="selected" value="0">0</option>
+                                                    </select>人
+                                                </td>
+                                                <td>
+                                                    <select class="cangfanghouse cangfangHouse-{$vo.id}-{$info.start_time|date='Y-m-d',###}" data-goodsid="{$vo.id}" data-date="{$info.start_time|date='Y-m-d',###}" data-maxnum="2" data-minnum="1" data-maxquantity="11" data-minquantity="1">
+                                                      <option selected="selected" value="0">0</option>
+                                                    </select>间
+                                                </td>
+                                                <td>
+                                                    <span class="room_price"><dfn>¥</dfn>0</span>
+                                                    <span class="room_price_b"></span>
+                                                </td>
+                                            </tr>
+											</volist>
+									  <div class="close">收<br>起</div>
+									  <div class="open">展<br>开</div>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="Mbottom">
+                    <div class="info_top" id="info_top">
+                        <div class="info_ttitle">
+                            <ul class="info_tlist clearfix">
+                                <li><a href="javascript:void(0)" class="nhover">行程介绍</a></li>
+                                <li><a href="javascript:void(0)">费用说明</a></li>
+                                <if condition="$info['tips']">
+								<li><a href="javascript:void(0)">详细价格</a></li>
+								</if>                               
+                                <if condition="$info['visa']">
+								<li><a href="javascript:void(0)">签证材料</a></li>
+								</if>
+								<if condition="$info['notice']">
+								<li><a href="javascript:void(0)">预定须知</a></li>
+								</if>
+                                <if condition="$relative">
+								<li><a href="javascript:void(0)">相关线路</a></li>
+								</if>
+                            </ul>
+
+                        </div>
+                        <!-- <span class="phone_number">0512-6666-7777</span>-->
+                    </div>
+                    <div class="info_wrap">
+
+                        <div class="r_introduce" id="r_introduce">
+                            <div class="process_box clearfix">
+                                <div class="process_l fl">
+                                    <img src="__ROOT__{$info.imgurl}" width="576" height="324">
+                                </div>
+                                <div class="process_r fr">
+                                    <div class="process_title  clearfix">
+                                        <div class="w01">日期</div>
+                                        <div class="w02">国家/城市</div>
+                                        <div class="w03">抵达</div>
+                                        <div>启航</div>
+                                    </div>
+                                    <div class="process_list">
+										<volist name="trip" id="vo" mod="2">
+                                        <div class="process_item <eq name='mod' value='0'>process_item_even</eq> clearfix">
+                                            <div class="w01">第{++$key}天</div>
+                                            <div class="w02">{$vo.name}</div>
+                                            <div class="w03"><if condition="$vo['arrive']">{$vo.arrive}<else/>--</if></div>
+                                            <div><if condition="$vo['leave']">{$vo.leave}<else/>--</if></div>
+                                        </div>
+										</volist>
+                                    </div>
+                                </div>
+                            </div>
+                            <volist name="trip" id="vo">
+						<if condition="$vo['name']">
+                		<div class="r_intro clearfix">
+							<div class="serial fl"><span>第{++$key}天</span></div>
+							<div class="intro_area fr">
+								<div class="spline"></div>
+								<div class="day_title">{$vo.name}</div>
+								<div class="day_con">
+									<ul class="d_con">
+										<li class="con_eat">
+											餐饮：
+											<if condition="$vo['dinner']">
+											<volist name="vo.dinner" id="voo">
+											<span><if condition="$voo eq 1">早餐</if><if condition="$voo eq 2">午餐</if><if condition="$voo eq 3">晚餐</if></span>
+											</volist>
+											<else/>
+											<span>不含</span>
+											</if>
+										</li>
+										<li class="con_hotel">住宿：<if condition="in_array(4,$vo['dinner'])">船上<else/>不含</if></li>
+										<if condition="$vo['scenic'][0]"><li class="con_scenic">景点：<volist name="vo.scenic" id="voo"><if condition="$key">、<a>{$voo.name}</a><else/><a>{$voo.name}</a></if></volist></li></if>
+									</ul>
+								</div>
+								<div class="day_detail" maxheight="">
+									{$vo.info} 
+								</div>
+								<if condition="$vo['scenic'][0]">
+								<div class="day_img">
+									<ul class="d_imgbox">
+										<volist name="vo.scenic" id="voo">
+										<li <if condition="$key eq 2">class="nomar"</if>>
+											<a><img src="__ROOT__{$voo.imgurl}"></a>
+											<if condition="$voo['status']">
+											<p><a href="__ROOT__/scenic/jing-{$voo.id}.html">{$voo.name}</a></p>
+											<else/>
+											<p>{$voo.name}</p>	
+											</if>								
+										</li>
+										</volist>
+									</ul>
+								</div>
+								</if>								
+							</div>
+						</div>
+						</if>
+						</volist>
+                        </div>
+                        <div class="r_cost" id="r_cost">
+                            <div class="r_cost_title">费用说明</div>
+                            <if condition="$info['fees_in']">
+                        <div class="r_cost_yes">
+                        	<div class="cost_title">费用包含</div>
+                            <div class="cost_con">{$info.fees_in}</div>
+                        </div>
+						</if>
+                            <if condition="$info['fees_out']">
+                        <div class="r_cost_yes">
+                        	<div class="cost_title">费用不包含</div>
+                            <div class="cost_con">{$info.fees_out}</div>
+                        </div>
+						</if>
+                        </div>
+                        <if condition="$info['tips']">
+						<div class="r_cost" id="r_xxjg">
+							<div class="r_cost_title">详细价格</div>						
+							<div class="r_cost_yes">
+								<div class="">
+									<table>
+										<tbody>
+											<tr class="firstRow">
+												<td valign="middle" style="padding:0 10px;word-break: break-all;">舱房类型</td>
+												<td width="116" valign="middle" style="word-break: break-all;">第1.2人</td>
+												<td width="116" valign="middle" style="word-break: break-all;">第3.4成人</td>
+												<td width="116" valign="middle" style="word-break: break-all;">第3.4儿童</td>
+											</tr>
+											<volist name="roomList" id="vo">
+											<tr>
+												<td valign="middle" style="padding:0 10px;word-break: break-all;">{$vo.name}</td>
+												<td width="116" valign="middle" style="word-break: break-all;"><if condition="$vo['price1']">¥{$vo.price1}<else/>--</if></td>
+												<td width="116" valign="middle" style="word-break: break-all;"><if condition="$vo['price2']">¥{$vo.price2}<else/>--</if></td>
+												<td width="116" valign="middle" style="word-break: break-all;"><if condition="$vo['price3']">¥{$vo.price3}<else/>--</if></td>
+											</tr>
+											</volist>
+										</tbody>
+									</table>								
+								</div>
+							</div>
+							
+						</div>
+						</if>
+                        <if condition="$info['visa']">
+						<div class="r_cost" id="r_qzcl">
+							<div class="r_cost_title">签证材料</div>                   	
+							<div class="r_cost_yes">
+								<div class="sh_ydxz">{$info.visa}</div>
+							</div>
+						</div>	
+						</if>
+                        <if condition="$info['notice']">
+						<div class="r_cost" id="r_ydxz">
+							<div class="r_cost_title">预订须知</div>						
+							<div class="r_cost_yes">
+								<div class="sh_ydxz">{$info.notice}</div>
+							</div>
+							<div class="relief">以上行程、价格、余位仅供参考，具体信息以门店咨询为准！</div>
+						</div>
+						</if>
+                        <if condition="$relative">
+						<div class="r_cost" id="r_xgxl">
+							<div class="r_cost_title">相关线路</div>
+								<ul class="ri_route">
+									<volist name="relative" id="vo">
+									<li <if condition="$key eq 3"> class="nomar"</if>>
+										<div class="m_p_pic">
+											<a href="__ROOT__/youlun/xianlu-{$vo.id}.html"><img src="__ROOT__{$vo.imgurl}" /></a>
+										</div>
+										<div class="m_p_bg"></div>
+										<div class="m_p_des">
+											<div class="m_p_name">
+												<a href="__ROOT__/youlun/xianlu-{$vo.id}.html"><em><{$vo.name}></em>{$vo.subname}</a>
+											</div>
+											<div class="m_p_price">
+												￥<span>{$vo.minprice}</span>起
+											</div>
+										</div>
+									</li>
+									</volist>
+								</ul> 
+							</div>
+						</div>
+						</if>                  
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--预订使用的form-->
+		<form action="{}" id="saveOrder" method="POST">
+		</form>
+		<script type="text/javascript" src="../Public/js/youlun_detail.js"></script>
+    </div>
+    <div id="retop">
+        <a target="_blank" href="http://chat32.live800.com/live800/chatClient/chatbox.jsp?companyID=468909&configID=59649&jid=4857736086" rel="nofollow" class="back_talk"><span></span></a>
+        <a class="back_top" href="javascript:void(0)"></a>
+    </div>
+    <include file="Public:footer_notq" />
+</body>
+</html>

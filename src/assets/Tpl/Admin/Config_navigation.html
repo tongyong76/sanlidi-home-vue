@@ -1,0 +1,62 @@
+<include file="Public:header" />
+</head>
+<div class="pad-10" >
+    <form name="addform" action="{:U('Config/navigation',array('act'=>'add'))}" method="post">
+    <table width="100%" cellspacing="0" class="search-form">
+        <tbody>
+            <tr>
+            <td>
+            <div class="explain-col">
+                名称 :
+                <input name="name" type="text" class="input-text" size="25" value="" />
+                &nbsp;链接 :
+                <input name="url" type="text" class="input-text" size="55" value="" />
+                &nbsp;排序 :
+                <input name="ord" type="text" class="input-text" size="4" value="" />
+                <input type="submit" name="add" class="button" value="添加" />
+        	</div>
+            </td>
+            </tr>
+        </tbody>
+    </table>
+    </form>
+
+    <form id="myform" name="myform" action="{:U('Config/navigation',array('act'=>'del'))}" method="post">
+    <div class="table-list">
+    <table width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th width="5%">序号</th>
+                <th width="5%"><input type="checkbox" value="" id="check_box" onclick="selectall('id[]');"></th>
+                <th width="10%">名称</th>
+                <th width="10%">链接</th>
+                <th width="10%">排序</th>
+                <th width="10%">操作</th>
+            </tr>
+        </thead>
+    	<tbody>
+        <volist name="navigation" id="val" >
+        <tr>
+        	<td align="center">{++$key}</td>
+            <td align="center">
+            <input type="checkbox" value="{$val.id}" name="id[]"></td>
+            <td align="left"><input  type="text" class="input-text-c input-text" style="text-align:left" value="{$val.name}" size="55" name="name[{$val.id}]"></td>
+            <td align="left"><input  type="text" class="input-text-c input-text" style="text-align:left" value="{$val.url}" size="55" name="url[{$val.id}]"></td>
+            <td align="center"><input  type="text" class="input-text-c input-text" value="{$val.ordid}" size="4" name="orders[{$val.id}]"></td>
+            <td align="center"><input style="text-align:center" type="submit" class="button" onclick="document.myform.action='{:U('Config/navigation',array('act'=>'edit','id'=>$val['id']))}'" value="修改" style="float:left;"/></td>
+        </volist>
+    	</tbody>
+    </table>
+
+    <div class="btn">
+    	<label for="check_box" style="float:left;">全选/取消</label>
+    	<input type="submit" class="button" name="delete" value="删除" style="float:left;margin:0px 10px;"  onclick="return check();"/>
+    	<input type="submit" class="button" name="order" onclick="document.myform.action='{:U('Config/navigation',array('act'=>'ord'))}'" value="排序" style="float:left;"/>
+    	<div id="pages">{$page}</div>
+    </div>
+
+    </div>
+    </form>
+</div>
+</body>
+</html>

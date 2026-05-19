@@ -1,0 +1,60 @@
+<include file="Public:header" />
+</head>
+<body>
+<form action="{:u('Departure/edit')}" method="POST" name="myform" id="myform" enctype="multipart/form-data" style="margin-top:10px;">
+  <div class="pad-10">
+  <div class="col-tab">
+  <ul class="tabBut cu-li">
+    <li id="tab_setting_1" class="on" onclick="SwapTab('setting','on','',1,1);">基本信息</li>
+  </ul>
+  <div id="div_setting_1" class="contentList pad-10">
+    <table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+      <tr>
+        <th width="100">出发日期 :</th>
+        <td><input type="text" name="departure_time" id="departure_time" class="date" size="12" value="{$info.departure_time}">
+			<script language="javascript" type="text/javascript">
+                Calendar.setup({
+                    inputField     :    "departure_time",
+                    ifFormat       :    "%Y-%m-%d",
+                    showsTime      :    'true',
+                    timeFormat     :    "24"
+                });
+            </script>
+		</td>
+      </tr>
+	  <tr>
+        <th width="100">市场价格 :</th>
+        <td><input type="text" name="mprice" class="input-text" size="60" value="{$info.mprice}" ></td>
+      </tr>
+	  <tr>
+        <th width="100">成人价格 :</th>
+        <td><input type="text" name="price" class="input-text" size="60" value="{$info.price}" ></td>
+      </tr>
+	  <tr>
+        <th width="100">儿童价格 :</th>
+        <td><input type="text" name="child_price" class="input-text" size="60" value="{$info.child_price}" ></td>
+      </tr>
+	  <input type="hidden" name="pid" value="{$info.pid}">
+	  <input type="hidden" name="id" value="{$info.id}">
+	  <input type="hidden" name="jumpUrl" value="{$jumpUrl}" />
+    </table>
+  </div>
+  
+  <div class="bk15"></div>
+  <div class="btn">
+    <input type="submit" onclick="disable()" value="提交" name="submit" class="button" id="submit">
+  </div>
+
+</div>
+</div>
+</form>
+<script type="text/javascript">
+function disable(){
+	if($('input').attr("disabled")==true || $('input').attr("disabled")==true){
+		$('input').removeAttr('disabled');
+		$('select').removeAttr('disabled');
+	}
+}
+</script>
+</body>
+</html>

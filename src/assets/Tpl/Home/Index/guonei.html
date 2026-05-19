@@ -1,0 +1,238 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>国内游_国内游线路_国内游报价_三三旅游网</title>
+<meta name="keywords" content="">
+<meta name="description" content="三三旅游国内游频道：为您提供国内最新旅游线路推荐，国内游报价，精选优质国内游线路，给您带来最佳的预订体验，是您预订国内游线路的首选。24小时咨询预订电话：66667777">
+<link type="text/css" rel="stylesheet" href="../Public/css/reset.css">
+<link type="text/css" rel="stylesheet" href="../Public/css/style.css">
+<link type="text/css" rel="stylesheet" href="__PUBLIC__/bxslider/jquery.bxslider.css">
+<script type="text/javascript" src="../Public/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/bxslider/jquery.bxslider.min.js"></script>
+<script>var ROOT_PATH = '__ROOT__';</script>
+<script type="text/javascript" src="../Public/js/common.js"></script>
+<script type="text/javascript" src="../Public/js/domestic.js"></script>
+<!--[if IE 6]>
+<link rel="stylesheet" type="text/css" href="../Public/css/ie6.css">
+<![endif]-->
+<include file="Public:statistics"/>
+</head>
+<body>
+<include file="Public:header"/>
+<!--头部结束-->
+<div class="wrap">
+	<div class="inside_wrap">
+    	<div class="search_nav">
+			<a href="/">首页</a><b>></b><span>国内游</span>
+		</div>
+        <div class="cont clearfix">
+        	<div class="cont_left fl">
+            	<div class="header">国内游目的地</div>
+                <div class="cLeft_list">
+					<volist name="gnCateArr" id="vo">
+                	<dl>
+                    	<dt><a href="__ROOT__/guonei/{$vo.pinyin}/" title="苏州到{$vo.name}旅游">{$vo.name}</a></dt>
+                        <dd class="clearfix">
+							<volist name="vo.son" id="voo">
+							<a href="__ROOT__/guonei/{$voo.pinyin}/" title="苏州到{$vo.name}旅游">{$voo.name}</a>
+							</volist>
+						</dd>
+                    </dl>
+					</volist>
+                </div>
+                
+            </div>
+            <div class="cont_right fr">
+            	<div class="header">热门国内游</div>
+                <!--<div class="cont_slider">
+                	<ul class="gn_slider">
+                        <volist name="bannerList" id="vo">
+                    	<li><a href="{$vo.link}"><img src="__ROOT__{$vo.imgurl}"></a></li>
+						</volist>
+                    </ul>	
+                </div>-->
+                <div class="gn_piclist clearfix">
+                  <ul>
+                    <li><a href="http://www.33ly.com/guonei/xiamen/" class="mend"><img src="../Public/images/gn_stra/board1.jpg" alt="苏州到厦门旅游" width="343" height="175" align="absmiddle"><span>厦门<i>XiaMen</i></span></a></li>
+                    <li><a href="http://www.33ly.com/guonei/beijing/" class="mend"><img src="../Public/images/gn_stra/board-beijing.jpg" alt="苏州到北京旅游" width="165" height="175" align="absmiddle"><span>北京<i>BeiJing</i></span></a></li>
+                    <li><a href="http://www.33ly.com/guonei/guilin/"><img src="../Public/images/gn_stra/board3.jpg" alt="苏州到桂林旅游" width="343" height="175" align="absmiddle"><span>桂林<i>GuiLin</i></span></a></li>
+                    <li><a href="http://www.33ly.com/guonei/lijiang/"><img src="../Public/images/gn_stra/board4.jpg" alt="苏州到丽江旅游" width="165" height="175" align="absmiddle"><span>丽江<i>LiJiang</i></span></a></li>
+                    <li><a href="http://www.33ly.com/guonei/sanya/"><img src="../Public/images/gn_stra/board5.jpg" alt="苏州到三亚旅游" width="343" height="175" align="absmiddle"><span>三亚<i>SanYa</i></span></a></li>
+                    <li><a href="http://www.33ly.com/guonei/jiuzhaigou/"><img src="../Public/images/gn_stra/board6.jpg" alt="苏州到九寨沟旅游" width="165" height="175" align="absmiddle"><span>九寨沟<i>JiuZhaiGou</i></span></a></li>
+                    <li><a href="http://www.33ly.com/guonei/zhangjiajie/" class="mend"><img src="../Public/images/gn_stra/board7.jpg" alt="苏州到张家界旅游" width="163" height="175" align="absmiddle"><span>张家界<i>ZhangJiaJie</i></span></a></li>
+                  </ul>
+                </div>
+              <div class="header">更多国内游
+                	<div class="domore_list" style="right:80px;">
+						<volist name="hotCate" id="vo">
+                    	<a <if condition="$key eq 0">class="do_active"</if> href="javascript:void(0)">{$vo.name}</a>
+						</volist>
+                    </div><a class="domore fr" href="">更多>></a>
+                </div>
+                <div class="strategy">
+					<volist name="hotCate" id="vo">
+					<div class="stra_bj" <if condition="$key eq 0">style="display:block;"</if>>
+                    	<if condition="$key eq 0">
+                    	<dl class="clearfix">
+                        	<dt class="fl">
+                            	<div class="sbig_img fl"><a><img src="../Public/images/gn_stra/hn_01.jpg" alt="苏州到{$vo.name}旅游"></a></div>
+                                <div class="ssmall_img fr">
+                                	<ul>
+                                    	<li><a><img src="../Public/images/gn_stra/hn_02.jpg" alt="苏州到{$vo.name}旅游"></a></li>
+                                        <li><a><img src="../Public/images/gn_stra/hn_03.jpg" alt="苏州到{$vo.name}旅游"></a></li>
+                                        <li><a><img src="../Public/images/gn_stra/hn_04.jpg" alt="苏州到{$vo.name}旅游"></a></li>
+                                    </ul>
+                                </div>
+                            </dt>
+                            <dd class="fr">
+                            	<div class="stra_title">{$vo.name}旅游简介</div>
+                                <div class="stra_jj">简介</div>
+                                <div class="stra_des">海南省是中国国土面积（陆地面积加海洋面积）第一大省，海南经济特区是中国最大的省级经济特区和唯一的省级经济特区，海南岛是仅次于台湾岛的中国第二大岛。</div>
+								<div class="stra_jj">旅游景点</div>
+                                <div class="stra_scenic">日月湾、蜈支洲岛、南山文化旅游区</div>
+                            </dd>
+                        </dl>
+                        </if>
+                        <if condition="$key eq 1">
+                    	<dl class="clearfix">
+                        	<dt class="fl">
+                            	<div class="sbig_img fl"><a><img src="../Public/images/gn_stra/yn_01.jpg" alt="苏州到{$vo.name}旅游"></a></div>
+                                <div class="ssmall_img fr">
+                                	<ul>
+                                    	<li><a><img src="../Public/images/gn_stra/yn_02.jpg" alt="苏州到{$vo.name}旅游"></a></li>
+                                        <li><a><img src="../Public/images/gn_stra/yn_03.jpg" alt="苏州到{$vo.name}旅游"></a></li>
+                                        <li><a><img src="../Public/images/gn_stra/yn_04.jpg" alt="苏州到{$vo.name}旅游"></a></li>
+                                    </ul>
+                                </div>
+                            </dt>
+                            <dd class="fr">
+                            	<div class="stra_title">{$vo.name}旅游简介</div>
+                                <div class="stra_jj">简介</div>
+                                <div class="stra_des">云南省，中国省级行政单位，位于中国西南的边陲，省会昆明。云南的简称是“滇”或“云”，是人类文明重要发祥地之一。生活在距今170万年前的云南元谋人，是截至2013年为止发现的中国和亚洲最早人类。</div>
+								<div class="stra_jj">旅游景点</div>
+                                <div class="stra_scenic">丽江古城、束河古镇、泸沽湖、拉市海</div>
+                            </dd>
+                        </dl>
+                        </if>
+                        <if condition="$key eq 2">
+                    	<dl class="clearfix">
+                        	<dt class="fl">
+                            	<div class="sbig_img fl"><a><img src="../Public/images/gn_stra/gl_01.jpg" alt="苏州到{$vo.name}旅游"></a></div>
+                                <div class="ssmall_img fr">
+                                	<ul>
+                                    	<li><a><img src="../Public/images/gn_stra/gl_02.jpg" alt="苏州到{$vo.name}旅游"></a></li>
+                                        <li><a><img src="../Public/images/gn_stra/gl_03.jpg" alt="苏州到{$vo.name}旅游"></a></li>
+                                        <li><a><img src="../Public/images/gn_stra/gl_04.jpg" alt="苏州到{$vo.name}旅游"></a></li>
+                                    </ul>
+                                </div>
+                            </dt>
+                            <dd class="fr">
+                            	<div class="stra_title">{$vo.name}旅游简介</div>
+                                <div class="stra_jj">简介</div>
+                                <div class="stra_des">世界著名的风景游览城市和中国首批历史文化名城，享有“桂林山水甲天下”的美誉。联合国世界旅游组织/亚太旅游协会旅游趋势与展望国际论坛永久举办地。中国首个以城市为单位建设的国家旅游综合改革试验区。并于2012年桂林国际旅游胜地建设上升为国家战略。</div>
+								<div class="stra_jj">旅游景点</div>
+                                <div class="stra_scenic">桂林漓江、桂林独秀峰、桂林象鼻山</div>
+                            </dd>
+                        </dl>
+                        </if>
+                        <if condition="$key eq 3">
+                    	<dl class="clearfix">
+                        	<dt class="fl">
+                            	<div class="sbig_img fl"><a><img src="../Public/images/gn_stra/bj_01.jpg" alt="苏州到{$vo.name}旅游"></a></div>
+                                <div class="ssmall_img fr">
+                                	<ul>
+                                    	<li><a><img src="../Public/images/gn_stra/bj_02.jpg" alt="苏州到{$vo.name}旅游"></a></li>
+                                        <li><a><img src="../Public/images/gn_stra/bj_03.jpg" alt="苏州到{$vo.name}旅游"></a></li>
+                                        <li><a><img src="../Public/images/gn_stra/bj_04.jpg" alt="苏州到{$vo.name}旅游"></a></li>
+                                    </ul>
+                                </div>
+                            </dt>
+                            <dd class="fr">
+                            	<div class="stra_title">{$vo.name}旅游简介</div>
+                                <div class="stra_jj">简介</div>
+                                <div class="stra_des">表面上它是现代大都会，但内心却有抹不去的古朴和怀旧。闲庭信步在逐渐
+少去的胡同里，走进那热气腾腾的涮肉店，那才是真正的北京。在鸟巢看夜景；逛胡同，体验老北京；到三里屯，体验时尚北京；故宫探访古代帝王生活；在全聚德品尝北京必吃烤鸭；登长城；做好汉</div>
+								<div class="stra_jj">旅游景点</div>
+                                <div class="stra_scenic">故宫、颐和园、八达岭长城、天安门、后海、鸟巢</div>
+                            </dd>
+                        </dl>
+                        </if>
+                        <if condition="$key eq 4">
+                    	<dl class="clearfix">
+                        	<dt class="fl">
+                            	<div class="sbig_img fl"><a><img src="../Public/images/gn_stra/db_01.jpg" alt="苏州到{$vo.name}旅游"></a></div>
+                                <div class="ssmall_img fr">
+                                	<ul>
+                                    	<li><a><img src="../Public/images/gn_stra/db_02.jpg" alt="苏州到{$vo.name}旅游"></a></li>
+                                        <li><a><img src="../Public/images/gn_stra/db_03.jpg" alt="苏州到{$vo.name}旅游"></a></li>
+                                        <li><a><img src="../Public/images/gn_stra/db_04.jpg" alt="苏州到{$vo.name}旅游"></a></li>
+                                    </ul>
+                                </div>
+                            </dt>
+                            <dd class="fr">
+                            	<div class="stra_title">{$vo.name}旅游简介</div>
+                                <div class="stra_jj">简介</div>
+                                <div class="stra_des">中国东北地区，是中国的一个地理大区和经济大区。“东北”一词，起源较早，《周礼·职方氏》：“东北曰幽州，其镇山曰医巫闾”。东北与、关外、关东、满洲等名称具有前后相继的历史承接关系，但它们具体所代指的地域范围有一定差别。</div>
+								<div class="stra_jj">旅游景点</div>
+                                <div class="stra_scenic">沈阳故宫、哈尔滨中央大街 、冰雪大世界、长白山、</div>
+                            </dd>
+                        </dl>
+                        </if>
+                        <if condition="$key eq 5">
+                    	<dl class="clearfix">
+                        	<dt class="fl">
+                            	<div class="sbig_img fl"><a><img src="../Public/images/gn_stra/xm_01.jpg" alt="苏州到{$vo.name}旅游"></a></div>
+                                <div class="ssmall_img fr">
+                                	<ul>
+                                    	<li><a><img src="../Public/images/gn_stra/xm_02.jpg" alt="苏州到{$vo.name}旅游"></a></li>
+                                        <li><a><img src="../Public/images/gn_stra/xm_03.jpg" alt="苏州到{$vo.name}旅游"></a></li>
+                                        <li><a><img src="../Public/images/gn_stra/xm_04.jpg" alt="苏州到{$vo.name}旅游"></a></li>
+                                    </ul>
+                                </div>
+                            </dt>
+                            <dd class="fr">
+                            	<div class="stra_title">{$vo.name}旅游简介</div>
+                                <div class="stra_jj">简介</div>
+                                <div class="stra_des">原为岛屿城市，后来发展为海湾型城市，位于闽南金三角东南部，南接漳州，北邻泉州，东南与金门岛隔海对望，在两岸敌对期间曾经炮火连绵。公元282年置同安县，属晋安郡，1933年设市。</div>
+								<div class="stra_jj">旅游景点</div>
+                                <div class="stra_scenic">鼓浪屿、环岛路、万石植物园、胡里山炮台、南普陀寺、同安影视城</div>
+                            </dd>
+                        </dl>
+                        </if>
+						<div class="zbh_list">
+							<ul class="zbh_list_item">
+								<volist name="vo.son" id="voo">
+								<li>									
+									<dl>
+									<a href="__ROOT__/guonei/xianlu-{$voo.id}.html">
+										<dt>
+											<p class="zbh_n_name"><span class="zbh_n_link"><{$voo.name}>{$voo.subname}</span></p>
+											<p class="zbh_n_description">{$voo.info}</p>
+										</dt>
+									</a>
+										<dd>
+											<p class="zbh_price">
+												<span class="zbprice">￥<i>{$voo.minprice}</i>起</span>
+											</p>
+										</dd>
+									</dl>									  
+								</li>
+								</volist>
+							</ul>
+						</div>
+						<div class="domesmore"><a href="__ROOT__/guonei/{$vo.pinyin}/">更多线路>></a></div>
+                    </div>
+					</volist>
+                </div>               
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+<include file="Public:footer_notq"/>
+</body>
+</html>

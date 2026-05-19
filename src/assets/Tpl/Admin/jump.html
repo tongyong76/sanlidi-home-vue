@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>友情提示</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv='Refresh' content="{$waitSecond};URL={$jumpUrl}">
+<style type="text/css">
+.Wrap{max-width:350px; margin:100px auto; background:#ffffff; border-radius:3px; border:2px solid #2a98da;-moz-user-select:none; user-select: none; -khtml-user-select: none;}	
+.Wrap .title{text-align:center;height:30px; line-height:30px; font-size:24px; font-weight:bold; color:#fff; background:#2a98da; padding:5px 0px; position:relative;}
+.Wrap .jump{margin:35px 0px 30px;line-height:20px; font-size:14px; text-align:center;}
+#countDownSec{color:#2a98da;font-weight:bold}
+.Wrap .jump a{color:#2a98da; text-decoration:none;}
+.Wrap .jump a:hover{color:#ff6600;}
+</style>
+</head>
+<body>
+<div class="Wrap"  unselectable="on" onselectstart="return false;">
+	<div class="title">
+    	<if condition="$status eq 1">{$message}<else/>{$error}</if>
+    </div>
+    <div class="jump">系统将在&nbsp;<span id="countDownSec">{$waitSecond}</span>&nbsp;秒后自动跳转<br/>如果不想等待,直接 <a href="{$jumpUrl}">点击这里</a></div>
+</div>
+</body>
+</html>

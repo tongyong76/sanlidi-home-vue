@@ -1,0 +1,255 @@
+<include file="Public:header" />
+<script language="javascript">var webpath="__PUBLIC__";</script>
+<script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.all.min.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/ueditor/themes/default/css/ueditor.css"/>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#submit").click(function(){	
+			if($("#reason").val()==''){
+				alert('请填写操作原因');
+				return false;
+			}else if($('select[name="ordpay"]').val() == '911' && $('select[name="clsrz"]').val() == '0'){
+				alert('请选择不成交原因');
+				return false;
+			}
+		});
+	});
+</script>
+</head>
+<body>
+<form action="{:u('Order/edit')}" method="POST" name="myform" id="myform" enctype="multipart/form-data" style="margin-top:10px;">
+  <div class="pad-10">
+  <div class="col-tab">
+  <ul class="tabBut cu-li">
+    <li id="tab_setting_1" <if condition="!$type">class="on"</if> onClick="SwapTab('setting','on','',4,1);">基本信息</li>
+	<li id="tab_setting_2" onClick="SwapTab('setting','on','',4,2);">人员信息</li>
+	<li id="tab_setting_3" onClick="SwapTab('setting','on','',4,3);">操作记录</li>
+	<if condition="$info['ordstatus'] eq 3 or $info['ordstatus'] eq 2">
+	<li id="tab_setting_4" <if condition="$type">class="on"</if> onClick="SwapTab('setting','on','',4,4);">出团通知书</li>
+	</if>
+  </ul>
+  <div id="div_setting_1" class="contentList pad-10" <if condition='$type'>hidden</if>>
+    <table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+      <tr>
+        <th width="100">订单编号 :</th>
+        <td>{$info.ordsn}<if condition="$info['ordshare']"><b style="color:#ff6600">&nbsp;&nbsp;业务员 {$info['sales_name']} 订单</b></if></td>
+      </tr>
+	  <if condition="$info['g_type']">
+	  <tr>
+        <th width="100">订单内容 :</th>
+        <td><a style="text-decoration:none;color:#2a98da;" href="http://www.33ly.com/youlun/xianlu-{$info.gid}.html" target="_blank">{$info.ordname}</a></td>
+      </tr>
+	  <else/>
+      <tr>
+        <th width="100">订单内容 :</th>
+        <td><a style="text-decoration:none;color:#2a98da;" href="http://www.33ly.com/tour/xianlu-{$info.gid}.html" target="_blank">{$info.ordname}</a></td>
+      </tr>
+	  </if>
+	  <tr>
+        <th width="100">出发日期 :</th>
+        <td>{$info.ordstart|date="Y-m-d",###}</td>
+      </tr>
+	  <tr>
+        <th width="100">人数 :</th>
+        <td>{$info.adult_num}大人{$info.child_num}小孩</td>
+      </tr>
+	  <tr>
+        <th width="100">总金额 :</th>
+		<if condition="$info['is_edit']">
+		<td><span class="tdedit" data-id="{$info.id}" data-field="ordprice" data-tdtype="edit">{$info.ordprice}</span></td>
+		<else/>
+		<td>{$info.ordprice}</td>
+		</if>
+      </tr>
+	  <tr>
+		<th>联系人 :</th>
+		<td><if condition="$info['cname']">{$info.cname}<else/>{$info.realname}</if></td>
+	  </tr>
+	  <tr>
+		<th>联系人电话 :</th>
+		<td><if condition="$info['cphone']">{$info.cphone}<else/>{$info.phone}(注册人电话)</if></td>
+	  </tr>
+	  <tr>
+		<th>所在区域 :</th>
+		<td>{$info.ordplace}</td>
+	  </tr>
+	  <tr>
+		<th>邮箱 :</th>
+		<td>{$info.email}</td>
+	  </tr>
+	  <tr>
+		<th>其他需求 :</th>
+		<td>{$info.cinfo}</td>
+	  </tr>
+	  <tr>
+        <th>订单状态 :</th>
+        <td>{$info.ordstatus|getNameById=###,'order_status'}</td>
+      </tr>
+	  <if condition="in_array($info['ordstatus'],array(0,1,2,4,5))">
+	  <tr>
+        <th>支付方式 :</th>
+        <td>
+			<select name="ordpay" style="width:120px;">
+			<option value="5" <if condition="$info['ordstatus'] eq 5"> selected="selected" </if>>沟通跟进中</option>
+			<option value="1" <if condition="$info['ordpay'] eq 1"> selected="selected" </if>>支付宝</option>
+			<!--<option value="3" <if condition="$info['ordpay'] eq 3"> selected="selected" </if>>银行转账</option>-->
+			<option value="909" <if condition="$info['ordstatus'] eq 4"> selected="selected" </if>>转门店跟进</option>			
+			<option value="910">支付完成</option>
+			<option value="911">关闭订单</option>
+            </select>
+			<select name="clsrz" style="width:120px;display:none;" >
+			<option value="0">--请选择--</option>
+			<option value="1">人数不满，不成团</option>
+			<option value="2">产品未及时更新</option>
+			<option value="3">报满，无位置</option>
+			<option value="7">客人原因取消订单</option>
+			<option value="4">无效订单</option>
+			<option value="5">门店客户</option>
+			<option value="6">其他原因</option>
+            </select>
+		</td>
+      </tr>
+	  <tr>
+        <th>操作原因 :</th>
+        <td>
+			<textarea name="reason" id="reason" style="resize:none;width:400px;"></textarea>
+		</td>
+      </tr>
+	  </if>
+	  <if condition="$info['ordstatus'] eq 3">
+	  <input type="hidden" name="ordpay" value="912" />
+	  </if>
+	  
+	  <!--
+	  <tr>
+        <th>出团通知书 :</th>
+        <td><textarea style="width:70%;" name="notice" id="notice">{$info.notice}</textarea></td>
+      </tr>
+	  -->
+
+	  <input type="hidden" name="id" value="{$info.id}">
+    </table>
+	<div class="bk15"></div>
+	<div class="btn">
+	  <input type="submit" value="提交" name="submit" class="button" id="submit">
+	</div>
+  </div>
+  <div id="div_setting_2" class="contentList pad-10 hidden">
+    <table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+	  <volist name="cardList" id="vo">
+      <tr>
+        <th width="100"><span style="color:#fff;font-weight:bold;background:#2A98DA;width:55px;height:23px;display:block;text-align:center;line-height:23px;margin-left:35px;"><if condition="$vo['card_type'] eq 1">成人<else/>儿童</if></span></th>
+        <td>
+			<span style="width:60px;height:23px;line-height:23px;display:inline-block;"><if condition="$vo['card_name']">{$vo.card_name}<else/>-</if></span>
+			<span style="width:150px;height:23px;line-height:23px;display:inline-block;"><if condition="$vo['card_number']">{$vo.card_number}<else/>-</if></span>
+			<span style="width:80px;height:23px;line-height:23px;display:inline-block;"><if condition="$vo['card_phone']">{$vo.card_phone}<else/>-</if></span>
+		</td>
+      </tr>
+	  </volist>
+      </tr>
+    </table>
+  </div>
+  <div id="div_setting_3" class="contentList pad-10 hidden">
+	<div class="table-list">
+	<table width="100%" cellspacing="0">
+	  <thead>
+		<tr>
+			<th width=60>操作人员</th>
+			<th width=60>操作动作</th>
+			<th width=60>操作原因</th>
+			<th width=60>操作时间</th>
+		</tr>
+	  </thead>
+	  <tbody>
+		<volist name="modify_record" id="vo">
+		<tr>
+			<td align="center"><if condition="$vo['nickname']">{$vo.nickname}<else/>{$vo.username}</if></td>
+			<td align="center">{$vo.modify_type}</td>
+			<td align="center">{$vo.reason}<if condition="$vo['wx_openid']">{$vo.wx_openid}</if></td>
+			<td align="center">{$vo.modify_time|date="Y-m-d H:i:s",###}</td>
+		</tr>
+		</volist>
+	  </tbody>
+	</table>
+	</div>
+  </div>
+  <if condition="$info['ordstatus'] eq 3 or $info['ordstatus'] eq 2">
+  <div id="div_setting_4" class="contentList pad-10 <if condition='!$type'>hidden</if>">
+	<table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+      <tr>
+        <th width="100">出团单 :</th>
+        <td><input type="file" name="notice" class="input-text" size=21 style="height:25px;"/>&nbsp;&nbsp;<if condition="$noticeInfo['notice_url']"><span><a style="color:blue" href="__ROOT__{$noticeInfo['notice_url']}">{$noticeInfo['notice_name']}</a>&nbsp;&nbsp;<img class="doc_del" src="__ROOT__/Public/statics/images/status_0.gif"></span></if></td>
+      </tr>
+	  <input type="hidden" name="post_url" value="{:U('Order/ajaxDelDoc')}" />
+	</table>
+	<div class="bk15"></div>
+	<div class="btn">
+	  <input type="submit" value="提交" name="submit" class="button" id="submit">
+	</div>
+  </div>
+  </if>
+
+</div>
+</div>
+</form>
+
+</body>
+<script type="text/javascript">
+$(document).ready(function(){
+	//修改
+	$('span[data-tdtype="edit"]').click(function(){
+		var s_val   =	$.trim($(this).text()),            
+			s_name  = 	$(this).attr('data-field'),
+			s_id    = 	$(this).attr('data-id'),              
+			width   = 	$(this).width(),
+			$this=$(this);
+			
+		$('<input type="text" class="lt_input_text" value="'+s_val+'" />').width(width).focusout(function(){
+			$(this).prev('span').show().text($(this).val());
+			if($(this).val() != s_val) {
+				$.ajax({
+					url: '__ROOT__/Ajax/orderEdit',
+					type: 'POST',
+					data:{field:s_name,id:s_id,val:$(this).val()},
+					dataType: 'json',
+					success: function(result){
+						
+					}
+				});
+			}
+			$(this).remove();
+		}).insertAfter($(this)).focus().select();
+		$(this).hide();
+		return false;
+	});
+	
+	//关闭订单时
+	$('select[name="ordpay"]').change(function(){
+		if($(this).val()=='911'){
+			$('select[name="clsrz"]').css('display','');
+		}else{
+			$('select[name="clsrz"]').val('0');
+			$('select[name="clsrz"]').css('display','none');
+		}
+	});
+	
+	//删除出团单
+	$('.doc_del').click(function(){
+		var post_url = $('input[name="post_url"]').val();
+		var file_name = $(this).attr('data-filename');
+		var order_id = $('input[name="id"]').val();
+		$.ajax({
+			type : "POST",
+			url : post_url,
+			data : {order_id:order_id},
+			dataType: 'json',
+			success: function(res) {
+				alert('删除成功！');				
+			}
+		});
+		$(this).parent().remove();
+	});	
+});
+</script>
+</html>

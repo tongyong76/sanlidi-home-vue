@@ -1,0 +1,450 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>苏州到{$info.name}游_{$info.cateName}跟团游旅游线路报价_三三旅游网</title>
+<if condition="$info['seo_keys']">
+<meta name="keywords" content="{$info.seo_keys}">
+<else/>
+<meta name="keywords" content="">
+</if>
+<!--<if condition="$info['seo_desc']">
+<meta name="description" content="{$info.seo_desc}">
+<else/>-->
+<meta name="description" content="三三旅游网(33LY.COM){$info.name}游，2016年{$info.cateName}跟团游旅游线路报价、推荐行程和门票价格。{$info.seo_desc_common}">
+<!--</if>-->
+<link type="text/css" rel="stylesheet" href="../Public/css/reset.css">
+<link type="text/css" rel="stylesheet" href="../Public/css/style.css">
+<script type="text/javascript" src="../Public/js/jquery-1.11.1.min.js"></script>
+<script>var ROOT_PATH = '__ROOT__';</script>
+<script>var APP_PATH = '../Public';</script>
+<script type="text/javascript" src="../Public/js/jquery.scrollTo.min.js"></script>
+<script type="text/javascript" src="../Public/js/common.js"></script>
+<script type="text/javascript" src="../Public/js/route_detail.js?v=1.0"></script>
+<include file="Public:statistics"/>
+</head>
+<body>
+<include file="Public:header"/>
+<!--头部结束-->
+<div class="wrap">
+	<div class="inside_wrap clearfix">
+    	<div class="search_nav">
+			<a href="/">首页</a><b>></b>{$posi}<span>{$info.name}</span>
+		</div>
+        <div class="Main">
+        	<div class="Mtop clearfix" <if condition="!$info['is_show']">style="height:322px;"</if>>
+            	<div class="MT_left fl">
+                	<div class="tour_img"><if condition="$info['LocalImage']"><img src="__ROOT__{$info.imgurl}"><else/><img src="{$info.imgurl}"></if></div>
+					<if condition="$info['is_show']">
+                    <div class="tour_cal" id="tour_cal">
+                    	<div id="nowTime" class="nowTime"></div>
+						<div class="cover"><div class="cover_gif"></div></div>
+						<input type="hidden" name="tid" value="">
+						<input type="hidden" name="mod" value="departure_time">
+                    </div>
+					</if>
+					<if condition="$info['is_zzt']"><div class="zzt"><img width="127" height="127" src="../Public/images/zzt.png" /></div></if>
+                </div>
+                <div class="MT_right fr">
+                	<div class="tour_info">
+						<input type="hidden" name="tour_id" id="tour_id" value="{$info.id}">
+                    	<h1 class="to_title">{$info.name}</h1>
+                        <div class="to_market_price">线路编号：{$info.tag}</div>
+                        <div class="to_member_price clearfix">
+                        	<div class="t_m_price fl">三三旅游价：<i>￥</i><span>{$info.minprice}</span><i>起</i></div>
+							<if condition="$info['service'][0]">
+                            <div class="declare fl">
+                            	<span class="t_dec">+200上门接送</span>
+                                <div>加200元/人，即可享受小车上门接送至机场。常熟需加240元/人；太仓、张家港实行240元/人定点接送<!--<a href="#">点击查看详情</a>--></div>
+                            </div>
+							</if>
+                            <div class="declare fl">
+                            	<span class="t_dec t_dec_blue">起价说明</span>
+								<if condition="$info['days'] eq 1">
+								<div>本起价是可选出发日期中的最低单人价格。产品价格会根据您所选择的出发日期、出行人数、出发地点以及所选附加服务的不同而有所差别。</div>
+								<else/>
+                                <div>本起价是可选出发日期中，按双人出行共住一间房核算的最低单人价格。产品价格会根据您所选择的出发日期、出行人数、入住酒店房型、航班或交通以及所选附加服务的不同而有所差别。</div>
+								</if>
+							</div>
+                        </div>
+                        <div class="pre_ticket">提前报名：建议提前<span>{$info.sign_up|isNull=###}</span>天以上报名</div>
+                        <div class="start_date">出发日期：<if condition="$info['dep']">{$info.dep}<else/>暂无行程</if></div>
+						<input type="hidden" name="startYear" value="{$info.startYear}">
+						<input type="hidden" name="startMonth" value="{$info.startMonth}">
+						<if condition="$info['is_show']">
+						<div class="ticket"><span><a href="javascript:void(1);" onclick="orderThis();" onmousemove="this.className='ticket_move'" onMouseOut="className=''">立即预订</a></span>或拨打旅游通<strong>6666-7777</strong></div>
+						<else/>
+						<div class="ticket"><span><a href="javascript:void(1);" onclick="orderThis();" onmousemove="this.className='ticket_move'" onMouseOut="className=''" style="background:#aaa;">商品已过期</a></span></div>
+						</if>                      
+                        <div class="to_scan">
+                        	<div class="ecode_img">
+                            	<div class="ewords clearfix">
+                                	<span class="e_ico"><img src="../Public/images/wx_share.png"></span>
+                                	<span class="e_prompt">微信扫一扫分享给小伙伴</span>
+                                </div>
+                                <div class="ecode">
+                            		<span><img src="__ROOT__/{$ewmurl}"></span>
+                            	</div>
+                            </div>
+                            
+                        </div>
+                    </div>
+					<if condition="$info['is_show']">
+                    <div class="tour_fea">
+                    	<div class="fea_title">产品特色</div>
+                        <div class="fea_ts">{$info.info}</div>
+                    </div>
+					</if>
+                </div> 
+            </div>
+			<if condition="!$info['is_show']">
+			<div class="Mmiddle">
+				<div class="r_cost" id="r_xgxl">
+					<div class="r_cost_title">猜你喜欢</div>
+					<ul class="ri_route">
+						<volist name="relative" id="vo">
+						<li <if condition="$key eq 3"> class="nomar"</if>>
+							<div class="m_p_pic">
+								<a href="__ROOT__/{$vo.catepinyin}/xianlu-{$vo.id}.html"><img src="__ROOT__{$vo.imgurl}" /></a>
+							</div>
+							<div class="m_p_bg"></div>
+							<div class="m_p_des">
+								<div class="m_p_name">
+									<a href="__ROOT__/{$vo.catepinyin}/xianlu-{$vo.id}.html"><em><{$vo.name}></em>{$vo.subname}</a>
+								</div>
+								<div class="m_p_price">
+									￥<span>{$vo.minprice}</span>起
+								</div>
+							</div>
+						</li>
+						</volist>
+					</ul> 
+				</div> 			
+			</div>
+			</if>
+           
+            <div class="Mbottom">
+            	<div class="info_top" id="info_top">
+                	<div class="info_ttitle">
+                    	<ul class="info_tlist clearfix">
+                        	<li><a href="javascript:void(0)" class="nhover">行程介绍</a></li>
+                            <li><a href="javascript:void(0)">费用说明</a></li>
+                            <li><a href="javascript:void(0)">预定须知</a></li>
+							<if condition="$info['visa']">
+                            <li><a href="javascript:void(0)">签证材料</a></li>
+							</if>
+							<if condition="$relative && $info['is_show']">
+                            <li><a href="javascript:void(0)">相关产品</a></li>
+							</if>
+                        </ul>
+                        
+                    </div>
+                </div>
+                <div class="info_wrap">
+                	
+                	<div class="r_introduce" id="r_introduce">
+						<volist name="trip" id="vo">
+						<if condition="$vo['name']">
+                		<div class="r_intro clearfix">
+							<div class="serial fl"><span>第{++$key}天</span></div>
+							<div class="intro_area fr">
+								<div class="spline"></div>
+								<div class="day_title">{$vo.name}</div>
+								<div class="day_con">
+									<ul class="d_con">
+										<li class="con_eat">
+											餐饮：
+											<if condition="$vo['dinner']">
+											<volist name="vo.dinner" id="voo">
+											<span><if condition="$voo eq 1">早餐</if><if condition="$voo eq 2">午餐</if><if condition="$voo eq 3">晚餐</if></span>
+											</volist>
+											<else/>
+											<span>不含</span>
+											</if>
+										</li>
+										<li class="con_hotel">住宿：<if condition="$vo['hotel']">{$vo.hotel}<else/>不含</if></li>
+										<if condition="$vo['scenic'][0]"><li class="con_scenic">主要景点：<volist name="vo.scenic" id="voo"><if condition="$key">、<a>{$voo.name}</a><else/><a>{$voo.name}</a></if></volist></li></if>
+									</ul>
+								</div>
+								<div class="day_detail" maxheight="">
+									{$vo.info}
+								</div>
+								<if condition="$vo['scenic'][0]">
+								<div class="day_img">
+									<ul class="d_imgbox clearfix">
+										<volist name="vo.scenic" id="voo">
+										<li <if condition="$key eq 2">class="nomar"</if>>
+											<a><img src="__ROOT__{$voo.imgurl}"></a>
+											<if condition="$voo['status']">
+											<p><a target="_blank" href="__ROOT__/scenic/jing-{$voo.id}.html">{$voo.name}</a></p>
+											<else/>
+											<p>{$voo.name}</p>	
+											</if>						
+										</li>
+										</volist>
+									</ul>
+								</div>
+								</if>
+							</div>
+						</div>
+						</if>
+						</volist>
+                    </div>                    
+                    <div class="r_cost" id="r_cost">
+                    	<div class="r_cost_title">费用说明</div>
+						<if condition="$info['fees_in']">
+                        <div class="r_cost_yes">
+                        	<div class="cost_title">费用包含</div>
+                            <div class="cost_con">{$info.fees_in}</div>
+                        </div>
+						</if>
+						<if condition="$info['fees_out']">
+                        <div class="r_cost_yes">
+                        	<div class="cost_title">费用不包含</div>
+                            <div class="cost_con">{$info.fees_out}</div>
+                        </div>
+						</if>
+                    </div>
+					<if condition="$info['notice']">
+                    <div class="r_cost" id="r_ydxz">
+                    	<div class="r_cost_title">预订须知</div>
+                        <div class="r_cost_yes">
+							<div class="sh_ydxz">{$info.notice}</div>
+                        </div>
+                        <div class="relief">以上行程、价格、余位仅供参考，具体信息以门店咨询为准！</div>
+						
+                    </div>
+					</if>
+					<if condition="$info['visa']">
+                    <div class="r_cost" id="r_qzcl">
+                    	<div class="r_cost_title">签证材料</div>                   	
+                        <div class="r_cost_yes">
+                            <div class="sh_ydxz">{$info.visa}</div>
+                        </div>
+						
+                    </div>	
+					</if>
+					<if condition="$relative && $info['is_show']">
+                    <div class="r_cost" id="r_xgxl">
+                    	<div class="r_cost_title">相关产品</div>
+						<ul class="ri_route">
+							<volist name="relative" id="vo">
+							<li <if condition="$key eq 3"> class="nomar"</if>>
+								<div class="m_p_pic">
+									<a href="__ROOT__/{$vo.catepinyin}/xianlu-{$vo.id}.html"><img src="__ROOT__{$vo.imgurl}" /></a>
+								</div>
+								<div class="m_p_bg"></div>
+								<div class="m_p_des">
+									<div class="m_p_name">
+										<a href="__ROOT__/{$vo.catepinyin}/xianlu-{$vo.id}.html"><em><{$vo.name}></em>{$vo.subname}</a>
+									</div>
+									<div class="m_p_price">
+										￥<span>{$vo.minprice}</span>起
+									</div>
+								</div>
+							</li>
+							</volist>
+						</ul>
+                    </div>
+					</if>
+                </div>               
+            </div>           
+        </div>
+    </div>
+</div>
+<div class="fancybox2">
+    <div class="fTitle2">请先选择出行日期<span class="fClose2">×</span></div>
+    <div class="fcon">                          
+        <dl class="clearfix">
+            <dt>出游日期：</dt>
+            <dd>
+                <div class="select_box">
+                    <div class="select_con">
+                        <p class="grey select_result" id="select_riqi">请选择出发日期</p>
+                    </div>
+                    <ul id="select_rlist" class="select_list">
+						<volist name="depList" id="vo">
+						<if condition="$vo['child_price']">
+						<li s-data="{$vo.id}">{$vo.departure_time|date="Y-m-d",###}（星期{$week[date('w',$vo['departure_time'])]}） {$vo.price}元/成人  {$vo.child_price}/儿童</li>
+						<else/>
+						<li s-data="{$vo.id}">{$vo.departure_time|date="Y-m-d",###}（星期{$week[date('w',$vo['departure_time'])]}） {$vo.price}元/人</li>
+						</if>                       
+						</volist>
+                    </ul>
+                </div>
+            </dd>
+        </dl>
+        <dl class="clearfix">
+            <dt>出发城市：</dt>
+            <dd>
+                <div class="select_box select_city">
+                    <div class="select_con">
+                        <p class="select_result">苏州</p>
+                    </div>
+                </div>
+            </dd>
+        </dl>
+        <dl class="clearfix">
+            <dt>出游人数：</dt>
+            <dd>
+                <div class="acquiesce fl">
+                    <div class="num-lib num-left" id="adA-le">
+                        <span class="acquisitive" id="Aacquit">-</span>
+                    </div>
+                    <input class="acute" id="adultN" value="1">
+                    <div class="num-lib num-right" id="adA-ri">
+                        <span class="addiction">+</span>
+                    </div>
+                </div>
+                <span class="fl acqu_name">成人</span>
+				<if condition="$depList[0]['child_price']">
+                <div class="acquiesce fl">
+                    <div class="num-lib num-left" id="adC-le">
+                        <span class="acquisitive" id="Cacquit">-</span>
+                    </div>
+                    <input id="childN" class="acute" value="0">
+                    <div class="num-lib num-right" id="adC-ri">
+                        <span class="addiction">+</span>
+                    </div>
+                </div>
+                <span class="fl acqu_name">儿童</span>
+				</if>
+            </dd>
+        </dl>
+    </div>
+	<div class="fBtn2" onclick="orderThis();">确定</div>
+</div>
+
+<div id="retop">
+	<!--
+    <div class="back_answer">
+      <span class="back_form">
+        <div class="back_title">热门问题<i></i></div>
+        <div class="back_list">
+          <ul>
+            <li><a href="#">去巴厘岛，用什么货币兑换划算？</a></li>
+            <li><a href="#">去巴厘岛，用什么货币兑换划算？</a></li>
+            <li><a href="#">去巴厘岛，用什么货币兑换划算？</a></li>
+            <li><a href="#">去巴厘岛，用什么货币兑换划算？</a></li>
+          </ul>
+          <b><a href="#">点击查看更多</a></b>
+        </div>
+      </span>
+      <em></em>
+      <a href="#" class="back_issue"></a>
+    </div>
+	-->
+    <a target="_blank" id="chatId" href="http://kefu.qycn.com/vclient/chat/?websiteid=113071" rel="nofollow" class="back_talk"><span></span></a>
+    <a class="back_key" target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=8bf4d119c01dd9d020e7209234d14f09ad8ad23a4727eefa45727681442afe12"></a>
+	<a class="back_top" href="javascript:void(0)"></a>
+</div>
+<include file="Public:footer_notq"/>
+<script type="text/javascript">
+$(function(){
+	$('.back_answer').hover(function(){
+		$(this).parents().find("span.back_form").show(200);
+		$(this).parents().find("em").show(200);
+		$(this).parents().find("a.back_issue").addClass("back_mend");
+		},function(){
+		$(this).parents().find("span.back_form").hide(200);
+		$(this).parents().find("em").hide();
+		$(this).parents().find("a.back_issue").removeClass("back_mend");	
+	});
+	$('.back_title i').click(function(){
+		$(this).parents().find("span.back_form").hide(200);
+		$(this).parents().find("em").hide();
+		$(this).parents().find("a.back_issue").removeClass("back_mend");
+		})
+	$('.select_box').hover(function(){
+		$(this).children('.select_list').show();	
+	},function(){
+		$(this).children('.select_list').hide();	
+	});	
+	
+	$('#select_rlist li').click(function(){
+		$('#select_riqi').html($(this).html());
+		$('#select_riqi').css('color','#333');
+		var tidData = $(this).attr('s-data');
+		$('input[name="tid"]').val(tidData);
+		$(this).parent().hide();	
+	});
+	$('#adA-le').click(function(){
+		if($('#adultN').val()>1){
+			$('#adultN').val(parseInt($('#adultN').val())-1);		
+		}else{
+			$('#adultN').val(1);	
+		}
+		
+	});
+	
+	$('#adA-ri').click(function(){
+		$('#adultN').val(parseInt($('#adultN').val())+1);	
+	});
+	$('#adC-le').click(function(){
+		if($('#childN').val()>0){
+			$('#childN').val(parseInt($('#childN').val())-1);		
+		}else{
+			$('#childN').val(0);	
+		}	
+	});
+	$('#adC-ri').click(function(){
+		$('#childN').val(parseInt($('#childN').val())+1);	
+	});
+	
+});
+function orderThis(){
+	var data = $('input[name="tid"]').val();
+	var adultNum = $('#adultN').val();
+	var childNum = $('#childN').val()?$('#childN').val():0;
+	if(adultNum){
+		jumpUrl = '__ROOT__/Order/confirm/tid/' +data+'/an/' +adultNum+'/cn/' +childNum;
+	}else{
+		jumpUrl = '__ROOT__/Order/confirm/tid/' +data;
+	}
+	//if({$uid}){
+	//if(1)
+		if($('input[name="tid"]').val()){
+			window.location.href = jumpUrl;
+		}else{
+			$('#adultN').val(1)
+			$('#childN').val(0)
+			fancybox2('请选择行程');
+			return false;
+		}
+	//}else{
+	//	var requesturl = encodeURIComponent(window.location.href);
+	//	window.location.href = "__ROOT__/login.html?requesturl="+requesturl;
+	//}
+};
+
+function fancybox2(message,url){
+	fancy();
+	var fancybox2=$(".fancybox2"),fTitle2=$(".fTitle2"),fClose2=$(".fClose2"),fBtn2=$(".fBtn2");
+	$(".fancybox2").show();
+	
+
+	//$(fTitle2).html(message+"<span class='fClose2'>×</span>");
+	
+	var fLeft2=($(window).width()-$(fancybox2).width())/2;
+	var fTop2=($(window).height()-$(fancybox2).height())/2-100;
+	$(fancybox2).css({top:fTop2,left:fLeft2});
+	
+	$(fBtn2).hover(function(){
+		$(this).css('background','#40a1db');	
+	},function(){
+		$(this).css('background','#2a98da');	
+	});
+	$(fBtn2).click(function(){
+		//$(this).parent().hide();	
+		//$('.fMask').remove();
+		//if(url) window.location.href = ROOT_PATH;
+	});
+	$(fClose2).click(function(){
+		$('input[name="tid"]').val('');
+		$(this).parent().parent().hide();
+		$('.fMask').remove();	
+	});
+};
+</script>
+</body>
+</html>

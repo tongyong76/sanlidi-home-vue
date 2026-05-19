@@ -1,0 +1,486 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>订单确认页面</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link type="text/css" rel="stylesheet" href="../Public/css/reset.css">
+<link type="text/css" rel="stylesheet" href="../Public/css/style.css">
+<script type="text/javascript" src="../Public/js/jquery-1.11.1.min.js"></script>
+<script>var ROOT_PATH = '__ROOT__';</script>
+<script type="text/javascript" src="../Public/js/common.js"></script>
+<script type="text/javascript" src="../Public/js/pay.js"></script>
+<include file="Public:statistics"/>
+</head>
+<body>
+<include file="Public:header"/>
+<!--头部结束-->
+<div class="wrap">
+	<div class="inside_wrap">
+		<div class="order_flow order_flow_step2">
+        	
+        </div>
+        <div class="cont clearfix">
+        	<div class="cont_left fr">                              
+                 <div class="visa_faq">
+                 	<div class="v_f_title">
+                    	<span>结算信息</span>
+                    </div>
+                    <div class="acc_info">
+						<if condition="$type eq 1">
+							<div class="ship_adult">房型：<span class="price">{$tourInfo.subname}</div>
+							<div class="ship_child">价格：<span class="price">{$tourInfo.totalMoneyAll}</span>元</div>	
+							<div class="ship_safe">保险：<span class="price">{$tourInfo['ywx']+40}</span>元<i>x</i><span class="num">{$tourInfo['an']+$tourInfo['cn']}</span>人</div>
+							<div class="ship_total">总额：<span class="price">{$tourInfo['totalMoneyAll']+($tourInfo['ywx']+40)*($tourInfo['an']+$tourInfo['cn'])}</span>元</div>
+						<else/>
+							<div class="acc_adult">成人：<span class="price">0</span>元<i>x</i><span class="num">0</span>人</div>
+							<if condition="$tourInfo['child_price']">
+							<div class="acc_child">儿童：<span class="price">0</span>元<i>x</i><span class="num">0</span>人</div>	
+							</if>
+							<div class="acc_safe">保险：<span class="price">0</span>元<i>x</i><span class="num">0</span>人</div>
+							<div class="acc_total">总额：<span>0</span>元</div>
+						</if>
+                    </div>   
+                 </div>
+				 <div class="tele_common_confirm">
+                	<div class="common_telephone clearfix"><span class="tt">旅游通</span><span class="pp">6666-7777</span></div>
+                 </div>                
+            </div>
+            <div class="cont_right fl">
+				<div class="pInfo">
+                	<form id="orderForm" action="{:U('Order/confirmAct')}" method="post">
+                	<div class="pInfo_title">
+                    	<span>出游信息</span>
+                    </div>
+                    <div class="tour_info">
+						<div class="formLine clearfix">
+							<if condition="$type eq 1">
+							<span class="formLabel w90">航线名称：</span>
+							<span class="formName"><a href="__ROOT__/youlun/xianlu-{$tourInfo['gid']}.html"><{$tourInfo.name}>{$tourInfo.subname}</a></span>
+							<else/>
+							<span class="formLabel w90">线路名称：</span>
+							<span class="formName"><a href="{:U('Tour/detail',array('id'=>$tourInfo['id']))}"><{$tourInfo.name}>{$tourInfo.subname}</a></span>
+							</if>
+							<input type="hidden" name="ordname" value="<{$tourInfo.name}>{$tourInfo.subname}">
+						</div>	
+						<if condition="$type eq 1">
+						<else/>
+						<div class="formLine clearfix">
+							<span class="formLabel w90">出发城市：</span>
+							<span class="formName">苏州</span>
+							<input type="hidden" name="ordsrc" value="苏州">
+						</div>	
+						</if>
+						<div class="formLine clearfix">
+							<span class="formLabel w90">出发日期：</span>
+							<span class="formName">{$tourInfo.departure_time|date='Y-m-d',###}</span>
+							<input type="hidden" name="ordstart" value="{$tourInfo.departure_time}">
+						</div>
+						<div class="formLine noHeight clearfix">
+							<span class="formLabel w90">游玩人数：</span>
+							<if condition="$type eq 1">
+							<span class="formName clearfix">
+								<div class="price adult_price">
+									<div class="label"><em>{$tourInfo.an}</em>成人</div>
+									<input type="hidden" name="adult_num" value="{$tourInfo.an}">
+								</div>								
+								<if condition="$tourInfo['cn']">
+								<div class="price">
+									<div class="label"><em>{$tourInfo.cn}</em>儿童</div>
+									<input type="hidden" name="child_num" value="{$tourInfo.cn}">
+								</div>
+								</if>
+							</span>
+							<else/>
+							<span class="formName clearfix">
+								<div class="price adult_price">
+									<span class="numBtn less" onclick="addNum('adult',-1);">-</span>
+									<input type="text" class="numInput" name="adult_num" value="{$tourInfo.an}" maxlength="2" readonly>
+									<span class="numBtn more" onclick="addNum('adult',1);">+</span>
+									<div class="label"><i>x</i><em>{$tourInfo.price}</em>元/人</div>
+									<input type="hidden" name="adult_price" value="{$tourInfo.price}">
+								</div>
+								<if condition="$tourInfo['child_price']">
+								<div class="price">
+									<span class="numBtn" onclick="addNum('child',-1);">-</span>
+									<input type="text" class="numInput" name="child_num" value="{$tourInfo.cn}" maxlength="2" readonly>
+									<span class="numBtn" onclick="addNum('child',1);">+</span>
+									<div class="label"><i>x</i><em>{$tourInfo.child_price}</em>元/儿童</div>
+									<input type="hidden" name="child_price" value="{$tourInfo.child_price}">
+								</div>
+								</if>
+							</span>
+							</if>
+						</div>
+						<if condition="$type eq 1">
+						<div class="formLine noHeight clearfix">
+							<span class="formLabel w90">购买保险：</span>
+							<span class="formName clearfix">
+								<div class="safe">
+									旅游人生意外险<span>5</span>元/人/天&nbsp;&nbsp;x&nbsp;&nbsp;{$tourInfo.days}天
+									<input type="hidden" value="{$tourInfo.ywx}" name="ywx">
+								</div>
+								<div class="safe">
+									邮轮险<span>40</span>元/人
+								</div>
+								<input type="hidden" name="safe" value="">
+							</span>
+						</div>
+						<input type="hidden" name="ordprice" value="">
+						<input type="hidden" name="gid" value="{$tourInfo.gid}">
+						<else/>
+						<div class="formLine noHeight clearfix">
+							<span class="formLabel w90">购买保险：</span>
+							<span class="formName clearfix">
+								<div class="safe">
+									<input style="vertical-align: middle;" type="checkbox" name="ywxBtn" checked="1">
+									旅游人生意外险<span>5</span>元/人/天&nbsp;&nbsp;x&nbsp;&nbsp;{$tourInfo.days}天
+									<input type="hidden" value="{$tourInfo.ywx}" name="ywx">
+								</div>
+								<div class="safe">
+									<input style="vertical-align: middle;" type="checkbox" name="hkxBtn" value="1" maxlength="2" <if condition="in_array($tourInfo['type_id'],array(2,3))">checked="1"</if>>
+									航空险<span>40</span>元/人
+								</div>
+								<input type="hidden" name="safe" value="">
+							</span>
+						</div>
+						<input type="hidden" name="ordprice" value="">
+						<input type="hidden" name="gid" value="{$tourInfo.gid}">
+						</if>
+                    </div>
+                    <div class="pInfo_title">
+                    	<span>联系人信息</span>
+						<input type="hidden" name="g_type" value="{$type}"/>
+                    </div>
+                    <div class="tour_info">
+						<input type="hidden" id="check_phone_exist" value="{:U('User/check_phone_exist')}">
+						<if condition="$uid">
+						<div class="formLine clearfix" style="height:20px;margin:0;line-height:20px;">
+							<span class="formLabel w90" style="height:20px;line-height:20px;"></span>
+							<label><input type="radio" name="who" value="1" checked="checked">&nbsp;本人</label>&nbsp;&nbsp;
+							<label><input type="radio" name="who" value="2">&nbsp;其他联系人</label>
+						</div>
+						</if>
+						<if condition="$uid">
+						<div class="formLine clearfix">
+							<span class="formLabel w90">*手机号码：</span>
+							<span class="formName"><input class="long" type="text" value="{$nav_user_info.phone}" id="cphone" name="cphone"></input></span>
+							<span class="err_cphone normal"></span>
+						</div>
+						<div class="formLine clearfix">
+							<span class="formLabel w90">*联系人：</span>
+							<span class="formName"><input class="long" type="text" value="{$nav_user_info.realname}" id="cname" name="cname"></input></span>
+							<span class="err_cname normal"></span>
+						</div>	
+						<div class="formLine clearfix">
+							<span class="formLabel w90">邮箱：</span>
+							<span class="formName"><input class="long" type="text" value="{$nav_user_info.email}" id="cmail" name="cmail"></input></span>
+							<span class="tips normal">用来接收出团通知书</span>
+						</div>	
+						
+						<input type="hidden" name="pname" value="{$nav_user_info.realname}" />
+						<input type="hidden" name="pphone" value="{$nav_user_info.phone}" />
+						<input type="hidden" name="pmail" value="{$nav_user_info.cmail}" />
+						<else/>
+						<div class="formLine clearfix">
+							<span class="formLabel w90">*联系人：</span>
+							<span class="formName"><input class="long hint" type="text" value="" id="cname" name="cname"></input></span>
+							<span class="err_cname normal">请输入您本次订单的联系人姓名</span>
+						</div>	
+						<div class="formLine clearfix">
+							<span class="formLabel w90">*手机号码：</span>
+							<span class="formName"><input class="long" type="text" value="" id="cphone" name="cphone"></input></span>
+							<span class="err_cphone normal">请输入联系人手机号码</span>							
+						</div>
+						<div class="tips new clearfix" style="display:none;">
+							提交订单系统会自动为您注册，请注意查收短信
+						</div>
+						<div class="tips login clearfix" style="display:none;margin:0px 0px 0px 0px;">
+							该号码已经是我们的会员了，您可以<a href="javascript:void(0)" onclick="headlogin();">马上登录</a>或<a href="#">找回密码</a>
+						</div>
+						<div class="formLine clearfix">
+							<span class="formLabel w90">邮箱：</span>
+							<span class="formName"><input class="long" type="text" value="{$nav_user_info.email}" id="cmail" name="cmail"></input></span>
+							<span class="tips normal">用来接收出团通知书</span>
+						</div>
+						</if>
+						<div class="formLine noHeight clearfix">
+							<span class="formLabel w90">其他需求：</span>
+							<span class="formName">
+								<textarea name="cinfo" placeholder="如：住宿，人数，是否有老人小孩等"></textarea>
+							</span>
+						</div>	
+                    </div>
+                    <div class="order_submit">
+						<div class="formLine clearfix">
+							<span class="formLabel"></span>
+							<span><input type="submit" name="submit" <if condition="!$uid"> id="ordBtn"<else/> id="ordBtnLogin"</if> value="提交订单" class="submit"/></span>
+						</div>
+                    </div>             
+                </form>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+<include file="Public:footer_notq"/>
+<script type="text/javascript">
+function addNum(op,num){
+	var old = $('input[name="'+ op +'_num"]').val();
+	if(op == 'adult' && old == 1 && num == -1){
+		return false;
+	}
+	if(op == 'child' && old == 0 && num == -1){
+		return false;
+	}
+	if(old == 99 && num == 1){
+		return false;
+	}
+	var cur = Number(old)+Number(num);
+	$('input[name="'+ op +'_num"]').val(cur);
+	
+	var an = $('input[name="adult_num"]').val()?$('input[name="adult_num"]').val():0;
+	var ap = $('input[name="adult_price"]').val()?$('input[name="adult_price"]').val():0;
+	var cn = $('input[name="child_num"]').val()?$('input[name="child_num"]').val():0;
+	var cp = $('input[name="child_price"]').val()?$('input[name="child_price"]').val():0;
+	var bn = Number(an)+Number(cn);
+	$('.acc_safe .num').html(bn);
+	var bp = $('.acc_safe .price').html();
+	$('.acc_adult .price').html(ap);
+	$('.acc_adult .num').html(an);
+	$('.acc_child .price').html(cp);
+	$('.acc_child .num').html(cn);
+	$('.acc_info .acc_total span').html(ap * an + cp * cn + bp * bn);
+	$('input[name="adult_price"]').val(ap);
+	$('input[name="child_price"]').val(cp);
+	$('input[name="ordprice"]').val(ap * an + cp * cn + bp * bn);
+}
+
+function checkCname(){
+	$(".err_cname").removeClass("normal");
+	var cname=$.trim($("#cname").val());
+	if(cname==""){
+		$(".err_cname").addClass("error").removeClass("correct").html("请填写联系人！");
+	}else{
+		$(".err_cname").addClass("correct").removeClass("error").html("&nbsp;");
+	}	
+}
+
+function checkCphone(){
+	var check_phone_exist=$("#check_phone_exist").val();
+	$(".err_cphone").removeClass("normal");
+	var cphone=$.trim($("#cphone").val());
+	if(cphone==""){
+		$(".err_cphone").addClass("error").removeClass("correct").html("请填写手机！");
+	}else{
+		var uanmebool=/^(13[0-9]|15[0-9]|18[0-9]|147|17[6-8])\d{8}$/.test(cphone);
+		if(!uanmebool){
+			$(".err_cphone").addClass("error").removeClass("correct").html("请填写正确的手机号码！");
+		}else{
+			//验证手机是否存在
+			$.post(check_phone_exist,{phone:cphone},function(data){
+				if(data=="phoneExist"){
+					//$(".err_cphone").addClass("error").removeClass("correct").html("该手机号码已存在！");
+					$(".err_cphone").removeClass("correct").html("");;
+					$('.tips.login').css('display','');
+					$('.tips.new').css('display','none');
+				}else{
+					$(".err_cphone").addClass("correct").removeClass("error").html("&nbsp;");
+					$('.tips.new').css('display','');
+					$('.tips.login').css('display','none');
+				}
+			});
+		}
+	}	
+}
+
+function checkCphoneLogin(){
+	$(".err_cphone").removeClass("normal");
+	var cphone=$.trim($("#cphone").val());
+	if(cphone==""){
+		$(".err_cphone").addClass("error").removeClass("correct").html("请填写手机！");
+	}else{
+		var uanmebool=/^(13[0-9]|15[0-9]|18[0-9]|147|17[6-8])\d{8}$/.test(cphone);
+		if(!uanmebool){
+			$(".err_cphone").addClass("error").removeClass("correct").html("请填写正确的手机号码！");
+		}else{
+			$(".err_cphone").addClass("correct").removeClass("error").html("&nbsp;");
+		}
+	}	
+}
+
+$(document).ready(function(){
+	var flag = true;
+	
+	//判断类型
+	var aaa = {$type}?1:0;
+
+	//加载清空
+	var bxDefaultValue = {$tourInfo.ywx};    //计算后的意外险费用/人
+	var bxTotalValue = $('.acc_safe .price').html();     //累计的保险费用
+	var bxNowValue = 0;
+	var adultNum = {$tourInfo.an}?{$tourInfo.an}:1;
+	var childNum = {$tourInfo.cn}?{$tourInfo.cn}:0;
+	$('input[name="adult_num"]').val(adultNum);
+	$('input[name="child_num"]').val(childNum);
+	
+	$('.acc_adult .price').html({$tourInfo.price});
+	$('.acc_adult .num').html(adultNum);
+	$('.acc_child .price').html({$tourInfo.child_price});
+	$('.acc_child .num').html(childNum);
+	$('.acc_safe .num').html(Number(adultNum)+Number(childNum));
+	//$('input[type="checkbox"]').attr('checked','true');
+	if($('input[name="ywxBtn"]').is(':checked')){
+		var bxNowValue = Number(bxTotalValue) + Number(bxDefaultValue);
+		$('.acc_safe .price').html(bxNowValue);
+	}
+	if($('input[name="hkxBtn"]').is(':checked')){
+		var bxNowValue = Number(40) + bxNowValue;
+		$('.acc_safe .price').html(bxNowValue);
+	}
+	$('input[name="safe"]').val(bxNowValue);
+	$('.acc_info .acc_total span').html({$tourInfo.price}*adultNum+{$tourInfo.child_price}*childNum+bxNowValue*(adultNum+childNum));
+	$('input[name="ordprice"]').val($('.acc_info .acc_total span').html());
+	
+	if(aaa){
+		$('input[name="ordprice"]').val($('.acc_info .ship_total span').html());
+	}
+
+	
+	var isLogin = {$uid}?1:0;
+	
+	$("#cname").blur(function(){
+		checkCname();		
+	});
+	$("#cphone").blur(function(){
+		if(!isLogin){
+			checkCphone();
+		}else{
+			checkCphoneLogin();
+		}
+	});
+	$('input[name="ywxBtn"]').click(function(){
+		var value = $(this).parent().find('input[name="ywx"]').val();
+		if($(this).is(':checked')){
+			//加
+			var srcSafeValue = $('.acc_safe .price').html();
+			var srcSafeNum = $('.acc_safe .num').html();
+			var srcTotalValue = $('.acc_info .acc_total span').html();
+			$('.acc_safe .price').html(Number(srcSafeValue) + Number(bxDefaultValue));
+			$('input[name="safe"]').val(Number(srcSafeValue) + Number(bxDefaultValue));
+			$('.acc_info .acc_total span').html(Number(srcTotalValue) + bxDefaultValue * srcSafeNum);
+		}else{
+			//减
+			var srcSafeValue = $('.acc_safe .price').html();
+			var srcSafeNum = $('.acc_safe .num').html();
+			var srcTotalValue = $('.acc_info .acc_total span').html();
+			$('.acc_safe .price').html(Number(srcSafeValue) - Number(bxDefaultValue));
+			$('input[name="safe"]').val(Number(srcSafeValue) - Number(bxDefaultValue));
+			$('.acc_info .acc_total span').html(Number(srcTotalValue) - bxDefaultValue * srcSafeNum);
+		}
+	});
+	$('input[name="hkxBtn"]').click(function(){
+		var value = $(this).parent().find('span').html();
+		if($(this).is(':checked')){
+			//加
+			var srcSafeValue = $('.acc_safe .price').html();
+			var srcSafeNum = $('.acc_safe .num').html();
+			var srcTotalValue = $('.acc_info .acc_total span').html();
+			$('.acc_safe .price').html(Number(srcSafeValue) + Number(40));
+			$('input[name="safe"]').val(Number(srcSafeValue) + Number(40));
+			$('.acc_info .acc_total span').html(Number(srcTotalValue) + 40 * srcSafeNum);
+		}else{
+			//减
+			var srcSafeValue = $('.acc_safe .price').html();
+			var srcSafeNum = $('.acc_safe .num').html();
+			var srcTotalValue = $('.acc_info .acc_total span').html();
+			$('.acc_safe .price').html(Number(srcSafeValue) - Number(40));
+			$('input[name="safe"]').val(Number(srcSafeValue) - Number(40));
+			$('.acc_info .acc_total span').html(Number(srcTotalValue) - 40 * srcSafeNum);
+		}
+	});
+	$("#ordBtn").click(function(){
+		//防止反复提交
+		if(flag == false){return false};		
+		$("input[name='submit']").val('提交中...');
+	    flag = false;
+		
+		checkCname();	
+		if($(".err_cname").html()=='&nbsp;'){
+			if($('.tips.new').attr('style') == ''|| typeof($('.tips.new').attr('style')) == 'undefined'){
+				return true;
+			}else{
+				var check_phone_exist=$("#check_phone_exist").val();
+				$(".err_cphone").removeClass("normal");
+				var cphone=$.trim($("#cphone").val());
+				if(cphone==""){
+					$(".err_cphone").addClass("error").removeClass("correct").html("请填写手机！");
+					return false;
+				}else{
+					var uanmebool=/^(13[0-9]|15[0-9]|18[0-9]|147|17[6-8])\d{8}$/.test(cphone);
+					if(!uanmebool){
+						$(".err_cphone").addClass("error").removeClass("correct").html("请填写正确的手机号码！");
+						return false;
+					}else{
+						//验证手机是否存在
+						$.post(check_phone_exist,{phone:cphone},function(data){
+							if(data=="phoneExist"){
+								//$(".err_cphone").addClass("error").removeClass("correct").html("该手机号码已存在！");
+								$(".err_cphone").addClass("error").removeClass("correct").html("");
+								$('.tips.login').css('display','');
+								$('.tips.new').css('display','none');
+							}else{
+								$(".err_cphone").addClass("correct").removeClass("error").html("&nbsp;");
+								$('.tips.new').css('display','');
+								$('.tips.login').css('display','none');
+								$("#orderForm").submit();
+							}							
+						});
+						return false;
+					}
+				}				
+			}			
+		}else{
+			return false;
+		}
+	});
+	
+	$("#ordBtnLogin").click(function(){
+		//防止反复提交
+		if(flag == false){return false};		
+		$("input[name='submit']").val('提交中...');
+	    flag = false;	
+	
+		checkCname();	
+		checkCphoneLogin()		
+		if($(".err_cname").html()=='&nbsp;' && $(".err_cphone").html()=='&nbsp;'){
+			return true;		
+		}else{
+			return false;
+		}
+	});
+	
+	//本人和其他联系人切换
+	$('input[type="radio"]').click(function(){
+		var flag = $(this).val();
+		if(flag == 2){
+			$('input[name="cname"]').val('');
+			$('input[name="cphone"]').val('');
+			$(".err_cphone").addClass("normal").removeClass("correct").removeClass("error").html("");
+			$(".err_cname").addClass("normal").removeClass("correct").removeClass("error").html("");
+		}else{
+			$('input[name="cname"]').val($('input[name="pname"]').val());
+			$('input[name="cphone"]').val($('input[name="pphone"]').val());
+			$(".err_cphone").addClass("normal").removeClass("correct").removeClass("error").html("");
+			$(".err_cname").addClass("normal").removeClass("correct").removeClass("error").html("");
+		}
+	});
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,select,p,blockquote,th,td{
+margin:0;padding:0;font-size:14px;font-family:'微软雅黑';}
+table,form,fieldset,input,textarea,select,button,img{border:0px;display:block;}
+table{cellpadding:0;cellspacing:0;}
+ol,ul{list-style:none}
+i,em,b{font-style:normal;}
+a:link,a:visited{color:#333; text-decoration:none;}
+a:hover{color:#f60; text-decoration:none;}
+input:focus { outline: none; }
+
+.clearfix:after {visibility:hidden;display:block;font-size:0;content:" ";clear:both;height:0;}
+.clearfix{*zoom:1;}
+.none{display:none;}
+.fl{float:left;}
+.fr{float:right;}
+.mT20{margin-top:20px;}
+
+.tuanWrap{background:url(yiyuanqianzheng/bg.gif) repeat; color:#000;}
+.tuanWrap .banner{width:100%; background:url(yiyuanqianzheng/banner_bg.gif) repeat;}
+.tuanWrap .banner .banner_1{background:url(yiyuanqianzheng/banner1.jpg) no-repeat center top; height:272px; width:100%;}
+.tuanWrap .banner .banner_2{background:url(yiyuanqianzheng/banner2.jpg) no-repeat center top; height:216px; width:100%;}
+
+.tuanWrap .wp{width:1000px; margin:0 auto;}
+.tuanWrap .wp .rules{border-left:9px solid #008ccf; border-bottom:9px solid #008ccf; border-right:9px solid #008ccf; border-top-left-radius:15px; border-top-right-radius:15px;  border-bottom-left-radius:5px; border-bottom-right-radius:5px; color:#fff; background:#65aadd url(yiyuanqianzheng/gift.gif) no-repeat 674px 240px; margin-top:26px;}
+.tuanWrap .wp .rules .rules_title{height:42px; background:#008ccf; padding-left:18px;}
+.tuanWrap .wp .rules .rules_word{padding:0 24px 24px; line-height:30px;}
+.tuanWrap .wp .rules .rules_word p{font-size:18px;}
+.tuanWrap .wp .rules .rules_word p.rules_head{color:#f7f01c; font-size:24px; padding-top:24px;}
+.tuanWrap .wp .copy{text-align:center; font-size:22px; color:#fff; height:70px; line-height:70px;}
+
+.tuanWrap .wp .rules_list{margin-top:14px;}
+.tuanWrap .wp .rules_list ul{width:1012px; overflow:hidden;}
+.tuanWrap .wp .rules_list ul li{width:241px; height:411px; margin-right:12px; color:#fff; border-radius:10px; float:left;}
+.tuanWrap .wp .rules_list ul li.first{background:#f888b0 url(yiyuanqianzheng/rules_list.png) no-repeat; background-position:0 0;}
+.tuanWrap .wp .rules_list ul li.second{background:#f19349 url(yiyuanqianzheng/rules_list.png) no-repeat; background-position:-241px 0;}
+.tuanWrap .wp .rules_list ul li.third{background:#7dc057 url(yiyuanqianzheng/rules_list.png) no-repeat; background-position:-482px 0;}
+.tuanWrap .wp .rules_list ul li.forth{background:#209ef5 url(yiyuanqianzheng/rules_list.png) no-repeat; background-position:-723px 0;}

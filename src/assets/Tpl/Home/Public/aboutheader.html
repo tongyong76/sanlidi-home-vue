@@ -1,0 +1,49 @@
+<!--头部开始-->
+<div id="header">
+  <!--登陆注册开始-->
+  <div id="topBar">
+    <div class="wp">
+      <div class="inside_top clearfix">
+        <div class="top_hello fl">您好，欢迎访问三三旅游网 <a href="http://www.33ly.com/" target="_blank">33LY.com</a> ！</div>
+        <div class="top_login fr"> <span class="login_line">|</span><a class="my_ss" href="javascript:void(0)" onclick="headlogin();" rel="nofollow">登录</a> <span class="login_line">|</span><a class="my_ss" href="{:C('site_domain')}/register.html" rel="nofollow">注册</a> 
+          <!--<span class="welcome">欢迎您，{$uname}</span>
+		    <span class="login_line">|</span><a class="my_ss" href="{:U('User/logout')}">注销</a>
+            <span class="login_line">|</span><a class="my_ss" href="{:C('site_domain')}/member/" target="_blank" rel="nofollow">我的订单</a>--> 
+          <span class="login_line">|</span><a class="my_ss" href="http://www.33ly.com/">回到首页</a>
+          <div class="wx fl" id="wx">
+            <div class="w_text clearfix"> <span class="w_title fl">三三微信</span> <span class="w_ico fr"></span> </div>
+            <div class="w_scan"><img src="../Public/images/aboutus//qrcode.jpg" alt="苏州青旅三三旅游微信公众号二维码"/></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--登陆注册结束-->
+  <!--logo开始-->
+  <div id="searchBar">
+    <div class="wp">
+      <div class="inside_search clearfix">
+        <div class="logo fl"><a href="__ROOT__/" target="_blank"><img src="../Public/images/logo.png" alt="苏州青旅三三旅游是苏州旅游直营连锁第一品牌，每年为超过10万名用户提供旅游预订服务，并致力于为大众带来及时、专业、全面、无忧的旅游服务。24小时咨询预订电话：66667777" /></a></div>
+        <div class="phone fr"><img src="../Public/images/aboutus/board.gif" /></div>
+      </div>
+    </div>
+  </div>
+  <!--logo结束-->
+  <!--导航开始-->
+    <div id="navBar">
+      <div class="wp">
+        <div class="inside_nav clearfix">
+          <ul>
+            <li><a href="__ROOT__/aboutus/brief.html" <if condition="$headnav eq 'gywm'">class="current"</if>>关于我们</a></li>
+            <li><a href="__ROOT__/aboutus/culture.html" <if condition="$headnav eq 'qywh'">class="current"</if>>企业文化</a></li>
+            <li><a href="__ROOT__/aboutus/mendian01.html" <if condition="$headnav eq 'zymd'">class="current"</if>>直营门店</a></li>
+            <li><a href="__ROOT__/aboutus/application.html" <if condition="$headnav eq 'rczp'">class="current"</if>>人才招聘</a></li>
+            <li><a href="__ROOT__/aboutus/contact.html" <if condition="$headnav eq 'lxwm'">class="current"</if>>联系我们</a></li>
+            <!--<li><a href="javascript:;" <if condition="$headnav eq 'bzzx'">class="current"</if>>帮助中心</a></li>-->
+          </ul>
+        </div>
+      </div>
+    </div>
+  <!--导航结束-->
+</div>
+<!--头部结束-->

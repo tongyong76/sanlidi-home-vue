@@ -1,0 +1,286 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>出行人信息填写</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link type="text/css" rel="stylesheet" href="../Public/css/reset.css">
+<link type="text/css" rel="stylesheet" href="../Public/css/style.css">
+<script type="text/javascript" src="../Public/js/jquery-1.11.1.min.js"></script>
+<script>var ROOT_PATH = '__ROOT__';</script>
+<script type="text/javascript" src="../Public/js/common.js"></script>
+<include file="Public:statistics"/>
+</head>
+<body>
+    <include file="Public:header" />
+    <!--头部结束-->
+    <div class="wrap">
+        <div class="inside_wrap">
+            <div class="order_flow order_flow_step2">
+            </div>
+            <div class="cont clearfix">
+                <div class="cont_left fr">
+                    <div class="visa_faq">
+                        <div class="v_f_title">
+                            <span>结算信息</span>
+                        </div>
+                        <if condition="$account['type']">
+						<div class="acc_info">
+							<div class="acc_adult" style="font-weight:700;">航线：</div>
+							<div class="acc_adult" style="height:auto;"><span>{$account.ordname}</span></div>
+							<div class="acc_total" style="font-weight:700;">总额：<span class="price">{$account.totel_price}</span>元</div>
+						</div>
+						<else/>
+						<div class="acc_info">
+							<div class="acc_adult">成人：<span class="price">{$account.adult_price}</span>元<i>x</i><span class="num">{$account.adult_num}</span>人</div>
+							<if condition="$account['child_price']">
+							<div class="acc_child">儿童：<span class="price">{$account.child_price}</span>元<i>x</i><span class="num">{$account.child_num}</span>人</div>
+							</if>
+							<div class="acc_safe">保险：<span class="price">{$account.safe}</span>元<i>x</i><span class="num">{$account['child_num'] + $account['adult_num']}</span>人</div>
+							<div class="acc_total">总额：<span>{$account.totel_price}</span>元</div>
+						</div>
+						</if>
+                    </div>
+                    <div class="tele_common_confirm">
+                        <div class="common_telephone clearfix"><span class="tt">旅游通</span><span class="pp">6666-7777</span></div>
+                    </div>
+
+                </div>
+                <div class="cont_right fl">
+                    <div class="pInfo">
+                        <form id="orderForm" action="{:U('Order/cardAct')}" method="post">
+                            <div class="pInfo_title">
+                                <span>出行人信息</span>
+                            </div>
+							<div class="tips-2">
+								<p>●您的订单已经提交成功，请继续完成以下信息</p>
+								<p>●姓名和和身份证，必填。旅行社购买保险需要核对此信息</p>
+								<p>●手机号码，选填。作为备用联系方式，增加出行安全，建议填写</p>
+							</div>
+                            <input value="{$userInfo['adult_num']}" id="adult_num" type="hidden" />
+                            <input value="{$userInfo['child_num']}" id="child_num" type="hidden" />
+                            <php>for($i=0;$i<$userInfo['adult_num'];$i++){</php>
+                            <div class="tour_info tour_info_first" style="padding: 10px 0 10px 200px;">
+                                <div class="formLine clearfix">
+                                    <div class="children">成人</div>
+                                    <input name="card_type[]" type="hidden" value="1" />
+                                    <span class="formLabel w90">*游客姓名：</span>
+                                    <if condition="$i==0">
+									<span class="formName"><input class="long card_name" onblur="fnName(this)" type="text" value="{$infoList1[$i]['card_name']}" name="card_name[]"></input></span>
+									&nbsp;&nbsp;<input type="checkbox" id="thisUser" name="thisuser"/>&nbsp;复制联系人信息
+									<else/>
+									<span class="formName"><input class="long" type="text" value="{$infoList1[$i]['card_name']}" onblur="fnName(this)"  name="card_name[]"></input></span>
+									</if>
+                                    <span class="err_cphone normal"></span>
+                                </div>
+                                <div class="formLine clearfix">
+                                    <span class="formLabel w90">*身份证：</span>
+                                    <if condition="$i==0">
+									<span class="formName"><input class="long card_number" type="text" onblur="fnIdCard(this)" value="{$infoList1[$i]['card_number']}" name="card_number[]"></input></span>
+									<else/>
+									<span class="formName"><input class="long" type="text" value="{$infoList1[$i]['card_number']}" onblur="fnIdCard(this)" name="card_number[]"></input></span>
+									</if>
+                                    <span class="err_cname normal"></span>
+                                </div>
+                                <div class="formLine clearfix">
+                                    <span class="formLabel w90">手机号码：</span>
+                                    <if condition="$i==0">
+									<span class="formName"><input class="long card_phone" type="text" value="{$infoList1[$i]['card_phone']}" name="card_phone[]"></input></span>
+									<else/>
+									<span class="formName"><input class="long" type="text" value="{$infoList1[$i]['card_phone']}" name="card_phone[]"></input></span>
+									</if>
+                                    <span class="tips normal"></span>
+                                </div>
+                                <input type="hidden" name="card_ordid[]" value="{$i}" />
+                            </div>
+                            <php>}</php>
+                            <php>for($i=0;$i<$userInfo['child_num'];$i++){</php>
+                            <div class="tour_info" style="padding: 10px 0 10px 200px;">
+                                <div class="formLine clearfix">
+                                    <div class="children">儿童</div>
+                                    <input name="card_type[]" type="hidden" value="2" />
+                                    <span class="formLabel w90">*游客姓名：</span>
+                                    <span class="formName">
+                                        <input class="long" type="text" value="{$infoList2[$i]['card_name']}" onblur="fnName(this)" name="card_name[]"></input></span>
+                                    <span class="err_cphone normal"></span>
+                                </div>
+                                <div class="formLine clearfix" style="display: none">
+                                    <span class="formLabel w90">身份证：</span>
+                                    <span class="formName">
+                                        <input class="long" type="text" value="{$infoList2[$i]['card_number']}" onblur="fnIdCard(this)" name="card_number[]" value=""></input></span>
+                                    <span class="err_cname normal"></span>
+                                </div>
+                                <div class="formLine clearfix" style="display: none">
+                                    <span class="formLabel w90">手机号码：</span>
+                                    <span class="formName">
+                                        <input class="long" type="text" value="{$infoList2[$i]['card_phone']}" name="card_phone[]" value=""></input></span>
+                                    <span class="tips normal"></span>
+                                </div>
+                                <input type="hidden" name="card_ordid[]" value="{$i}" />
+                            </div>
+                            <php>}</php>
+                            <input type="hidden" name="oid" value="{$oid}" />
+                            <input type="hidden" name="oname" value="{$userInfo.cname}" />
+                            <input type="hidden" name="ophone" value="{$userInfo.cphone}" />
+                            <input type="hidden" name="onumber" value="{$userInfo.cnumber}" />
+                            <!--<div style="padding: 0px 290px;font-size: 16px;color: #2A98DA;cursor: pointer;">新增联系人</div>-->
+							<div class="tips-2">
+								<p>★三三旅游不会向任何其他人出售或出租您的个人信息</p>
+							</div>
+                            <div class="order_submit">
+                                <div class="formLine clearfix">
+                                    <span class="formLabel"></span>
+                                    <span><input type="submit" name="submit" style="width:150px;margin:0 20px;" onclick="return fnSubmit();" value="提交信息" /></span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <include file="Public:footer_notq" />
+
+
+    <script type="text/javascript">
+        //常用函数类库
+        var com = {
+            phone: function (a) {
+                var b = /^(13|14|15|17|18)[0-9]{9}$/;
+                return b.test($.trim(a))
+            }, idCard18: function (a) {
+                var isIDCard2 = /^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X)$/;
+                return isIDCard2.test($.trim(a));
+            }, name: function (a) {
+                var b = /^[\u4e00-\u9fa5]{2,4}$|^[\A-Za-z]{4,14}$/;
+                return b.test($.trim(a));
+            }, idCard16: function (a) {
+                var isIDCard1 = /^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$/; 
+                return isIDCard1.test($.trim(a));
+            }
+        }
+
+
+        $(document).ready(function () {
+            //复制联系人信息信息
+            $('#thisUser').click(function () {
+                if ($(this).is(':checked')) {
+                    $('.tour_info_first').find('.formLine .formName .card_name').val($('input[name="oname"]').val());
+                    $('.tour_info_first').find('.formLine .formName .card_phone').val($('input[name="ophone"]').val());
+                    $('.tour_info_first').find('.formLine .formName .card_number').val($('input[name="onumber"]').val());
+                } else {
+                    $('.tour_info_first').find('.formLine .formName .card_name').val('');
+                    $('.tour_info_first').find('.formLine .formName .card_phone').val('');
+                    $('.tour_info_first').find('.formLine .formName .card_number').val('');
+                }
+            });
+
+            //提交的时候需要去遍历
+
+
+
+        });
+
+          function fnSubmit() {
+            var cnum = parseInt($("#child_num").val());
+			var anum = parseInt($("#adult_num").val());
+            var i = 0;
+            $("input[name*='card_name']").each(function () {
+                if ($.trim($(this).val()) != "" && fnName(this))
+                    i++;
+                else
+                    fnName(this);
+            })
+//            $("input[name*='card_phone']").each(function () {
+//                if ($.trim($(this).val()) != "" && fnPhone(this))
+//                    i++;
+//                else
+//                    fnPhone(this)
+//            })
+            $("input[name*='card_number']").each(function () {
+                if ($.trim($(this).val()) != "" && fnIdCard(this))
+                    i++;
+                else
+                    fnIdCard(this)
+            })
+            if ((anum * 2 + cnum * 1) != i) {
+                //alert("信息填写不完整");
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+
+        //验证用户名称 是否为空 且 格式是否正确
+        //function fnPhone(t) {
+        //    var isok = true;
+        //   obj = $(t);
+        //    if (obj.val().length == 0) {
+         //       obj.parent().parent().find("span.normal").html("请输入手机号码").addClass("error");
+         //       isok = false;
+         //   }
+         //   else if (!com.phone(obj.val())) {
+         //       obj.parent().parent().find("span.normal").html("手机号码格式有误").addClass("error");
+         //       isok = false;
+         //   }
+         //   else {
+         //       obj.parent().parent().find("span.normal").html("&nbsp;").addClass("correct");
+         //       isok = true;
+         //   }
+         //   return isok;
+        //}
+        //姓名
+        function fnName(t) {
+            var isok = true;
+            obj = $(t);
+            if (obj.val().length == 0) {
+                obj.parent().parent().find("span.normal").html("请输入姓名").removeClass('correct').addClass("error");
+                isok = false;
+            } else if (!com.name(obj.val())) { 
+                obj.parent().parent().find("span.normal").html("姓名格式有误").removeClass('correct').addClass("error");
+                isok = false;
+            }
+            else {
+                obj.parent().parent().find("span.normal").html("&nbsp;").addClass("correct");
+                isok = true;
+            }
+            return isok;
+        }
+        //身份证
+        function fnIdCard(t) {
+            var isok = true;
+
+            obj = $(t);
+            if (obj.val().length < 16 || obj.val().length > 18) {
+                obj.parent().parent().find("span.normal").html("请输入正确身份证号").removeClass('correct').addClass("error");
+                isok = false;
+            }
+            else if (obj.val().length == 18) {
+                if (!com.idCard18(obj.val())) {
+                    obj.parent().parent().find("span.normal").html("身份证号格式有误").removeClass('correct').addClass("error");
+                    isok = false;
+                }
+                else {
+                    obj.parent().parent().find("span.normal").html("&nbsp;").addClass("correct");
+                    isok = true;
+                }
+            }
+            else if (obj.val().length == 16) { 
+                if (!com.idCard16(obj.val())) {
+                    obj.parent().parent().find("span.normal").html("身份证号格式有误").removeClass('correct').addClass("error");
+                    isok = false;
+                }
+                else {
+                    obj.parent().parent().find("span.normal").html("&nbsp;").addClass("correct");
+                    isok = true;
+                }
+            }
+            return isok;
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,88 @@
+<include file="Public:header" />
+
+<script type="text/javascript">
+	function status(id,type,value){
+	    $.get("{:U('Sldwxmenu/status')}", { id: id, type: type }, function(data){
+			$("#"+type+"_"+id+" img").attr('src', '__PUBLIC__/statics/images/status_'+data.data+'.gif')
+		},"json"); 
+	}
+</script>
+
+</head>
+<div class="pad-lr-10" >
+    <form id="myform" name="myform" action="{:U('Sldwxmenu/delete')}" method="post" >
+    <div class="table-list" style="margin-top:10px;">
+
+    <table width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th width="5%"><input type="checkbox" value="" id="check_box" onclick="selectall('id[]');"></th>
+              	<th width="100">排序值</th>
+				<th align="left">分类名称</th>            
+              	<th width="30">显示</th>
+                <th width="150">操作</th>
+            </tr>
+        </thead>
+    	<tbody>
+        <volist name="menu_list" id='val'>
+		<tr id="{$val.id}" data-floor="{$val.floor}" class="sub_{$val.pid} level_{$val.floor}">
+            <td align="center"><input type="checkbox" value="{$val.id}" name="id[]"></td>
+			<td align="center"><input type="text" class="input-text-c input-text" value="{$val.ordid}" size="4" name="orders[{$val.id}]"></td>
+            <td align="left">
+                    <for start="1" end="$val['floor']">
+                    &nbsp;&nbsp;&nbsp;&nbsp;|--
+                    </for>
+                    <span class="tdedit" data-id="{$val.id}" data-field="name" data-tdtype="edit">{$val.name}</span>       
+			</td>
+            <td align="center" onclick="status({$val.id},'status')" id="status_{$val.id}"><img src="__PUBLIC__/statics/images/status_{$val.status}.gif" /></td>
+            <td align="center">
+				<if condition="$val['type'] eq 'click' or $val['type'] eq 'view' ">
+ 				<a class="blue" href="{:U('Sldwxmenu/edit',array('id'=>$val['id']))}">编辑</a>
+				</if>
+			</td>
+        </tr>
+        </volist>
+    	</tbody>
+    </table>
+
+    <div class="btn">
+    <label for="check_box">全选/取消</label>
+    <input type="submit" class="button" name="order" onclick="document.myform.action='{:U('Sldwxmenu/order')}'" value="排序" />
+	<input type="submit" class="button" name="creatMenu" onclick="document.myform.action='http://m.33ly.com/Sanlidi/createMenu'" value="重新生成菜单" />
+    </div>
+
+    </div>
+    </form>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+	//修改
+	$('span[data-tdtype="edit"]').click(function(){
+		var s_val   =	$.trim($(this).text()),            
+			s_name  = 	$(this).attr('data-field'),
+			s_id    = 	$(this).attr('data-id'),                
+			width   = 	$(this).width(),
+			$this=$(this);
+			
+		$('<input type="text" class="lt_input_text" value="'+s_val+'" />').width(width).focusout(function(){
+			$(this).prev('span').show().text($(this).val());
+			if($(this).val() != s_val) {
+				$.ajax({
+					url: 'http://mm.33ly.com/Sldwxmenu/ajaxEdit',
+					type: 'POST',
+					data:{id:s_id,field:s_name,val:$(this).val()},
+					dataType: 'json',
+					success: function(result){
+
+					}
+				});
+			}
+			$(this).remove();
+		}).insertAfter($(this)).focus().select();
+		$(this).hide();
+		return false;
+	});
+});
+</script>
+</body>
+</html>

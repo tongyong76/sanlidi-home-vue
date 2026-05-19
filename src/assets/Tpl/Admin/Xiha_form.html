@@ -1,0 +1,48 @@
+<include file="Public:header" />
+</head>
+<body>
+<div class="pad-10" >
+    <form id="myform" name="myform" action="{:u('Line/delete')}" method="post">
+    <div class="table-list">
+    <table width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th width=20>联系人</th>
+				<th width=30>联系方式</th>
+                <th width=30>报名人数</th>
+				<th width=100>报名产品</th>
+				<th width=80>备注</th>
+                <th width=90>提交时间</th>              	
+            </tr>
+        </thead>
+    	<tbody>
+        <volist name="list" id="val" >
+        <tr>
+            <td align="center">{$val.cname}</td>
+            <td align="center">{$val.cphone}</td>
+			<td align="center">{$val.adultN}大{$val.childN}小</td>
+			<td align="center"><if condition="$val['title']">{$val.pinfo}</a></td>
+			<td align="center">{$val.cinfo}</td>
+            <td align="center">{$val.add_time|date="Y-m-d H:i:s",###}</td>     		
+        </tr>
+        </volist>
+    	</tbody>
+    </table>
+
+    <div class="btn">
+    	<label for="check_box" style="float:left;">全选/取消</label>
+		<input type="submit" class="button" name="add" onclick="document.myform.action='{:U('Line/add',array('id'=>$id))}'" value="新增" style="margin:0 0px 0 10px;"/>
+    	<input type="submit" class="button" name="submit" value="删除" style="margin:0 10px 0 10px;" onclick="return check();"/>
+    	<input type="submit" class="button" name="order" onclick="document.myform.action='{:U('Line/order')}'" value="排序" style="margin:0 10px 0 0px;"/>
+    	<div id="pages">{$page}</div>
+    </div>
+
+    </div>
+    </form>
+</div>
+</body>
+<script type="text/javascript">
+$(function(){
+});
+</script>
+</html>

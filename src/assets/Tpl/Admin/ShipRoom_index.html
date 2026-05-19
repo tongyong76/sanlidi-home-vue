@@ -1,0 +1,59 @@
+<include file="Public:header" />
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".preview").preview();
+	});
+	function status(id,type){
+		$.get("{:u('ShipRoom/status')}", { id: id, type: type }, function(data){
+			$("#"+type+"_"+id+" img").attr('src','__PUBLIC__/statics/images/status_'+data+'.gif')
+		},"json"); 
+	}	
+</script>
+
+</head>
+<body>
+<div class="pad-10" >
+    <form id="myform" name="myform" action="{:u('ShipRoom/delete')}" method="post">
+    <div class="table-list">
+    <table width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th width="1%"><input type="checkbox" value="" id="check_box" onclick="selectall('id[]');"></th>
+				<th width=60>排序值</th>
+				<th width=60>舱房类型</th>
+                <th width=60>第1，2人价格</th>
+				<th width=60>第3，4成人价格</th>		        
+                <th width=60>第3，4儿童价格</th>
+				<th width=60>在售</th>
+            </tr>
+        </thead>
+    	<tbody>
+        <volist name="list" id="val" >
+        <tr>
+            <td align="center"><input type="checkbox" value="{$val.id}" name="id[]"></td>
+			<td align="center"><input type="text" class="input-text-c input-text" value="{$val.ordid}" size="4" name="orders[{$val.id}]" /></td>
+            <td align="center">{$val.name}</td>
+			<td align="center">{$val.price1}</td>
+			<td align="center">{$val.price2}</td>
+			<td align="center">{$val.price3}</td>
+			<td align="center" onclick="status({$val.id},'status')" id="status_{$val.id}"><img src="__PUBLIC__/statics/images/status_{$val.status}.gif" /></td>
+        </tr>
+        </volist>
+    	</tbody>
+		<input type="hidden" name="type" value="{$type}"/>
+    </table>
+
+    <div class="btn">
+    	<label for="check_box" style="float:left;">全选/取消</label>
+		<input type="submit" class="button" name="add" onclick="document.myform.action='{:U('ShipRoom/add',array('id'=>$pInfo['id']))}'" value="编辑" style="margin:0 0px 0 10px;"/>
+    	<input type="submit" class="button" name="submit" value="删除" style="margin:0 10px 0 10px;" onclick="return check();"/>
+    	<input type="submit" class="button" name="order" onclick="document.myform.action='{:U('ShipRoom/order')}'" value="排序" style="margin:0 10px 0 0px;"/>
+    	<div id="pages">{$page}</div>
+    </div>
+
+    </div>
+    </form>
+</div>
+</body>
+</html>

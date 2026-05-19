@@ -1,0 +1,137 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>【{$cateInfo.name}旅游】2016最新{$cateInfo.name}旅游报价_苏州到{$cateInfo.name}旅游线路_三三旅游网</title>
+<meta name="keywords" content="">
+<meta name="description" content="【三三旅游网】为您提供2016年苏州到{$cateInfo.name}旅游线路最新报价，及时、专业、全面、无忧的{$cateInfo.name}旅游行程服务，让您体验全新的{$cateInfo.name}之旅。旅游预订电话：0512-66667777">
+<link type="text/css" rel="stylesheet" href="../Public/css/reset.css">
+<link type="text/css" rel="stylesheet" href="../Public/css/style.css">
+<script type="text/javascript" src="../Public/js/jquery-1.11.1.min.js"></script>
+<script>var ROOT_PATH = '__ROOT__';</script>
+<script type="text/javascript" src="../Public/js/common.js"></script>
+<script type="text/javascript" src="../Public/js/search_list.js"></script>
+<include file="Public:statistics"/>
+</head>
+<body>
+<include file="Public:header"/>
+<div class="wrap">
+	<div class="inside_wrap clearfix">
+    	<div class="search_nav">
+			<a href="/">首页</a><b>></b>自由行
+		</div>
+        <div class="search_list fl">
+        	<div class="filter_nav">
+				<input type="hidden" name="days" value="">
+				<input type="hidden" name="cate" value="">
+				<input type="hidden" name="starttime" value="">
+				<dl class="searchNav">
+                	<dt>目的地<a <if condition="$tid eq 'all'"> class="cur"</if> href="javascript:;" data-field="cate" data-value="">全部</a></dt>
+                    <dd class="clearfix">
+						<volist name="condition.cate2" id="vo">
+						<a <if condition="$vo['cate'] eq $tid">class="cur"</if> href="javascript:;" data-field="cate" data-value="{$vo.cate}">{$vo.name}({$vo.num})</a>
+						</volist>
+						<volist name="condition.cate1" id="vo">
+						<a <if condition="$vo['cate'] eq $tid">class="cur"</if> href="javascript:;" data-field="cate" data-value="{$vo.cate}">{$vo.name}({$vo.num})</a>
+						</volist>
+					</dd>
+                </dl>
+                <dl class="searchNav nobottom">
+                	<dt>行程天数<a <if condition="!$days"> class="cur"</if> href="javascript:;" data-field="days" data-value="">全部</a></dt>
+                    <dd class="clearfix">
+						<volist name="condition.days" id="vo">
+						<a <if condition="$days eq $vo['days']"> class="cur"</if> href="javascript:;" data-field="days" data-value="{$vo.days}">{$vo.days}日游</a>
+						</volist>
+					</dd>
+                </dl>
+				<!--
+				<dl class="searchNav nobottom ">
+                	<dt>出发时间<a <if condition="!$days"> class="cur"</if> href="javascript:;" data-field="starttime" data-value="">全部</a></dt>
+                    <dd class="clearfix">
+						<volist name="condition.starttime" id="vo">
+						<a <if condition="$starttime eq $vo['starttime']"> class="cur"</if> href="javascript:;" data-field="starttime" data-value="{$vo.starttime}">{$vo.starttime|date="m",###}月</a>
+						</volist>
+					</dd>
+                </dl>
+				
+				<dl class="nobottom searchNav">
+                	<dt>价格范围<a <if condition="!$days"> class="cur"</if> href="javascript:;" data-field="price" data-value="">全部</a></dt>
+                    <dd class="clearfix">
+						<volist name="price" id="vo">
+						<a <if condition="$price eq $key"> class="cur"</if> href="javascript:;" data-field="price" data-value="{$key}">{$vo}</a>
+						</volist>
+					</dd>
+                </dl>
+				-->
+        	</div>
+			<if condition="$count_num">
+			<!--<div class="total_count" style="padding:0 20px;"><b>{$cateName}</b>【&nbsp;共<b class="red">{$count_num}</b>条，其中<b class="red">{$zzt_num}</b>条<a title="三三设计、三三收客、三三导游、三三接送、全程管控，一管到底">自组团</a>，<b class="red">{$count_num - $zzt_num}</b>条<a title="产品经理选择的优质产品">精选</a>&nbsp;】</div>
+			-->
+			<else/>
+			<div class="nothing"><img style="position: absolute;left: 300px;" src="../Public/images/breakheart.gif"/>啊哦~暂时未找到“<b>{$cateName}</b>”的相关线路</div>
+			</if>
+            <div class="search_route_list" id="content">
+				<include file="ajaxfreelist" />
+            </div>
+            
+            
+        </div>
+		<include file="Public:shoplist"/>
+        
+
+    </div>
+</div>
+<include file="Public:footer_notq"/>
+</body>
+<script type="text/javascript">
+//初始化归零
+$('input[name="days"]').val('');
+$('input[name="cate"]').val('');
+
+$(document).ready(function(){
+	$('.searchNav a').click(function(){
+		var days = $('input[name="days"]').val();
+		var cate = $('input[name="cate"]').val();
+		var starttime = $('input[name="starttime"]').val();
+		var field = $(this).attr('data-field');
+		var value = $(this).attr('data-value');
+		if(field == 'days'){
+			days = value;
+			$('input[name="days"]').val(days);
+		}
+		if(field == 'cate'){
+			cate = value;
+			$('input[name="cate"]').val(cate);
+		}
+		if(field == 'starttime'){
+			starttime = value;
+			$('input[name="starttime"]').val(starttime);
+		}
+		$(this).parent().parent().find('a').removeClass('cur');
+		$(this).addClass('cur');
+		$.ajax({
+			url: '__ROOT__/Ajax/free',
+			type: 'POST',
+			data:{days:days,cate:cate,starttime:starttime},
+			dataType: 'html',
+			success: function(result){
+				$('.search_route_list').children().remove();
+				$('.search_route_list').append(result);
+				$('.s_r_list li').removeClass('lihover');
+				$('.s_r_list li').hover(function(){
+					$(this).addClass('lihover');
+				},function(){
+					$('.s_r_list li').removeClass('lihover');	
+				});
+				if(result.status == 1){
+					$('.s_r_list li').remove();
+					$('.pagination').remove();
+					$('.s_r_list').append(result.data);
+				}
+			}
+		});
+			
+	});
+});
+</script>
+</html>

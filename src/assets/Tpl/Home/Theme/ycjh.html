@@ -1,0 +1,161 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>羊春聚惠专题页面</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link type="text/css" rel="stylesheet" href="../Public/theme/common.css">
+<link type="text/css" href="../Public/theme/ycjh.css" rel="stylesheet" />
+<script type="text/javascript" src="../Public/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../Public/js/jquery.scrollTo.min.js"></script>
+<include file="Public:statistics"/>
+</head>
+<body>
+<include file="Public:themeheader"/>
+<div class="banner"></div>
+<div class="wrap">
+	<div class="zb">
+    	<div class="z_top"></div>
+        <div class="z_tj clearfix">
+        	<div class="zt_left fl"><img src="../Public/theme/ycjh/tj_01.jpg"></div>
+            <div class="zt_right fr">
+            	<div class="zr_name"><a href="__ROOT__/zhoubian/xianlu-587.html" target="_blank"><全民游建德专享2天>新叶古村+大慈岩+七里扬帆+农夫山泉</a></div>
+                <div class="zr_jl clearfix">
+                	<div class="jl_img fl"><img src="../Public/theme/ycjh/zmh.jpg"></div>
+                    <div class="jl_words fl">产品经理朱美华：本线路非常划算，景点都非常的棒，是我们的”全民游“系列活动主打产品，性价比和游玩质量也是周边游中最高的！</div>
+                </div>
+                <div class="zr_des">★跟着爸爸去哪儿的脚步游江南农耕主题的特色古村落—新叶古村<br/>
+★游大慈岩看江南悬空寺，七里扬帆船游富春江，峰峦叠翠，松石挺秀<br/>
+★参观农夫山泉生产基地，赠农夫打奶茶一瓶及建德土特产一份<br/>
+★本线路刷光大信用卡再减50~100，详情<a href="__ROOT__/zhoubian/xianlu-587.html" target="_blank">点这里</a></div>
+                <div class="zr_price clearfix"><span class="price_ori">原价￥ <i>598</i></span> <span class="price_now">活动价￥<i>279</i></span><span class="price_s fr">省319</span></div>
+                <div class="zr_buy"><a href="__ROOT__/zhoubian/xianlu-587.html" target="_blank">点我抢购</a></div>
+            </div>
+        </div>
+        <div class="z_item">
+        	<ul>
+				<volist name="zbList" id="vo">
+            	<li>
+                	<div class="routeinfo clearfix">
+                        <div class="Limgbox fl"><a href="__ROOT__/zhoubian/xianlu-{$vo.id}.html" target="_blank"><img src="__ROOT__{$vo.imgurl}"></a></div>
+                        <div class="Cinfo fl">
+                            <div class="Cinfo_title"><a href="__ROOT__/zhoubian/xianlu-{$vo.id}.html" target="_blank">&lt;{$vo.name}&gt;{$vo.subname}</a></div>
+                            <div class="Cinfo_tag">
+								<!--<if condition="$vo['series_id']"><span class="series{$vo.series_id}">{:C('series.'.$vo['series_id'])}</span></if>-->
+								<if condition="$vo['brand_id']"><span class="brand{$vo.brand_id}">{:C('brand.'.$vo['brand_id'])}</span></if>
+								<volist name="vo.switch" id="voo">
+								<span class="switch{$voo}">{:C('switch.'.$voo)}</span>
+								</volist>
+							</div>
+                            <div class="Cinfo_des">{$vo.info}</div>
+                            <div class="Cinfo_data mT20">行程天数：<span class="day_num">{$vo.days}</span>天</div>
+                            <div class="Cinfo_data">出发日期：<span class="data_time">{$vo.dep}</span></div>
+                        </div>
+                        <div class="Rprice fl">
+                            <div class="now_price">￥<span>{$vo.minprice}</span>起</div>
+                            <div class="ticket"><a href="__ROOT__/zhoubian/xianlu-{$vo.id}.html" target="_blank">查看详情</a></div>
+                        </div>
+                    </div>
+                </li>
+				</volist>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="zb gn">
+    	<div class="z_top"></div>
+        <div class="z_item">
+        	<ul>
+				<volist name="gnList" id="vo">
+            	<li>
+                	<div class="routeinfo clearfix">
+                        <div class="Limgbox fl"><a href="__ROOT__/guonei/xianlu-{$vo.id}.html" target="_blank"><img src="__ROOT__{$vo.imgurl}"></a></div>
+                        <div class="Cinfo fl">
+                            <div class="Cinfo_title"><a href="__ROOT__/guonei/xianlu-{$vo.id}.html" target="_blank">&lt;{$vo.name}&gt;{$vo.subname}</a></div>
+                            <div class="Cinfo_tag">
+								<if condition="$vo['series_id']"><span class="series{$vo.series_id}">{:C('series.'.$vo['series_id'])}</span></if>
+								<if condition="$vo['brand_id']"><span class="brand{$vo.brand_id}">{:C('brand.'.$vo['brand_id'])}</span></if>
+								<volist name="vo.switch" id="voo">
+								<span class="switch{$voo}">{:C('switch.'.$voo)}</span>
+								</volist>
+							</div>
+                            <div class="Cinfo_des">{$vo.info}</div>
+                            <div class="Cinfo_data mT20">行程天数：<span class="day_num">{$vo.days}</span>天</div>
+                            <div class="Cinfo_data">出发日期：<span class="data_time">{$vo.dep}</span></div>
+                        </div>
+                        <div class="Rprice fl">
+                            <div class="now_price">￥<span>{$vo.minprice}</span>起</div>
+                            <div class="ticket"><a href="__ROOT__/guonei/xianlu-{$vo.id}.html" target="_blank">查看详情</a></div>
+                        </div>
+                    </div>
+                </li>
+				</volist>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="zb cj">
+    	<div class="z_top"></div>
+        <div class="z_item">
+        	<ul>
+				<volist name="cjList" id="vo">
+            	<li>
+                	<div class="routeinfo clearfix">
+                        <div class="Limgbox fl"><a href="__ROOT__/chujing/xianlu-{$vo.id}.html" target="_blank"><img src="__ROOT__{$vo.imgurl}"></a></div>
+                        <div class="Cinfo fl">
+                            <div class="Cinfo_title"><a href="__ROOT__/chujing/xianlu-{$vo.id}.html" target="_blank">&lt;{$vo.name}&gt;{$vo.subname}</a></div>
+                            <div class="Cinfo_tag">
+								<if condition="$vo['series_id']"><span class="series{$vo.series_id}">{:C('series.'.$vo['series_id'])}</span></if>
+								<if condition="$vo['brand_id']"><span class="brand{$vo.brand_id}">{:C('brand.'.$vo['brand_id'])}</span></if>
+								<volist name="vo.switch" id="voo">
+								<span class="switch{$voo}">{:C('switch.'.$voo)}</span>
+								</volist>
+							</div>
+                            <div class="Cinfo_des">{$vo.info}</div>
+                            <div class="Cinfo_data mT20">行程天数：<span class="day_num">{$vo.days}</span>天</div>
+                            <div class="Cinfo_data">出发日期：<span class="data_time">{$vo.dep}</span></div>
+                        </div>
+                        <div class="Rprice fl">
+                            <div class="now_price">￥<span>{$vo.minprice}</span>起</div>
+                            <div class="ticket"><a href="__ROOT__/chujing/xianlu-{$vo.id}.html" target="_blank">查看详情</a></div>
+                        </div>
+                    </div>
+                </li>
+				</volist>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="xuanfu">
+	<div class="xf_top"><img src="../Public/theme/ycjh/ycjh_logo.png"></div>
+    <ul class="xf_item">
+    	<li><a href="javascript:void(0);"><img src="../Public/theme/ycjh/xf_zb.jpg"></a></li>
+        <li><a href="javascript:void(0);"><img src="../Public/theme/ycjh/xf_gn.jpg"></a></li>
+        <li><a href="javascript:void(0);"><img src="../Public/theme/ycjh/xf_cj.jpg"></a></li>
+    </ul>
+    <div class="xf_qcode">
+    	<div class="qcode"><img src="../Public/theme/ycjh/qcode.jpg"></div>
+        <div class="q_words">扫描微信赢取免费游</div>
+    </div>
+    <div class="xf_back"><a href="javascript:void(0);"><img src="../Public/theme/ycjh/xf_fh.png"></a></div>
+</div>
+<include file="Public:themefooter"/>
+</body>
+<script type="text/javascript">
+$(function(){
+	$('.xf_item li a').eq(0).click(function(){
+		$.scrollTo($('.zb').offset().top,500);		
+	});
+	$('.xf_item li a').eq(1).click(function(){
+		$.scrollTo($('.gn').offset().top,500);		
+	});
+	$('.xf_item li a').eq(2).click(function(){
+		$.scrollTo($('.cj').offset().top,500);		
+	});
+	$('.xf_back').click(function(){
+		$.scrollTo(0,500);	
+	});	
+});
+</script>
+</html>

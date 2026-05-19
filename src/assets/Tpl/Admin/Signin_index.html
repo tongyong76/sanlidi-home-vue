@@ -1,0 +1,52 @@
+<include file="Public:top" />
+
+<link rel='stylesheet' type='text/css' href='__PUBLIC__/statics/css/admin_login.css'>
+
+</head>
+<body>
+<!--<div class="main">
+  <div class="title">&nbsp;</div>
+  <div class="login">
+    <form action="{:U('Signin/index')}" method="post" name="cms" >
+      <div class="inputbox">
+        <dl>
+          <dd>用户名：</dd>
+          <dd>
+            <input type="text" name="user_name" value="" id="login_name" size="25" onFocus="this.style.borderColor='#fc9938'" onBlur="this.style.borderColor='#dcdcdc'" />
+          </dd>
+          <dd>密码：</dd>
+          <dd>
+            <input type="password" name="password" value="" id="login_pwd" size="25" onFocus="this.style.borderColor='#fc9938'" onBlur="this.style.borderColor='#dcdcdc'" />
+          </dd>
+          <dd>
+            <input type="submit"  name="login" value=" " class="input" />
+          </dd>
+        </dl>
+      </div>
+      <div style="clear:both"></div>
+    </form>
+  </div>
+</div>
+<div class="copyright"> 
+	Powered by <a href="{:C('site_domain')}" target="_blank">{:C('site_name')}</a> Copyright &copy;2012 
+</div>-->
+<div class="login_main">
+  <div class="login_admin">
+    <div class="login_head"><img src="__PUBLIC__/statics/images/admin/login_logo.png"></div>
+    <form action="{:U('Signin/index')}" method="post" name="cms" >
+    <div class="login_form">
+      <ul>
+        <li><span>用户名</span><input type="text" name="user_name" id="login_name" size="25" class="login_text"/></li>
+        <li><span>密　码</span><input type="password" name="password" id="login_pwd" size="25" class="login_text"/></li>
+        <li><span></span><input type="submit"  name="login" class="login_input" value="登录"/></li>
+      </ul>
+    </div>
+    </form>
+  </div>
+  <div class="login_monkey"><a href="#"><img src="__PUBLIC__/statics/images/admin/login_monkey.png"></a></div>
+</div>
+<div class="login_footer">
+  <div class="login_copy">Powered by 三三旅游网站后台 Copyright ©2012-2015</div>
+</div>
+</body>
+</html>

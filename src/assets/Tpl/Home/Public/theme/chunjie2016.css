@@ -1,0 +1,61 @@
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,select,p,blockquote,th,td{
+margin:0;padding:0;font-size:14px;font-family:'微软雅黑';}
+table,form,fieldset,input,textarea,select,button,img{border:0px;display:block;}
+table{cellpadding:0;cellspacing:0;}
+ol,ul{list-style:none}
+i,em,b{font-style:normal;}
+a:link,a:visited{color:#333; text-decoration:none;}
+a:hover{color:#f60; text-decoration:none;}
+input:focus { outline: none; }
+
+.clearfix:after {visibility:hidden;display:block;font-size:0;content:" ";clear:both;height:0;}
+.clearfix{*zoom:1;}
+.none{display:none;}
+.fl{float:left;}
+.fr{float:right;}
+
+.tuanWrap{background:#c9314b; color:#666;}
+.tuanWrap .banner{width:100%; background:#c9314b;}
+.tuanWrap .banner .banner_1{background:url(chunjie2016/banner1.jpg) no-repeat center top; height:528px; width:100%;}
+.tuanWrap .banner .banner_2{background:url(chunjie2016/banner2.jpg) no-repeat center top; height:152px; width:100%;}
+
+.tuanWrap .module{width:100%; padding-bottom:40px;}
+
+.tuanWrap .module_nav{width:100%; background:#760093;}
+.tuanWrap .module_nav ul{width:1000px; overflow:hidden; height:91px; margin:0 auto; background:#fff200; border-radius:10px;}
+.tuanWrap .module_nav ul li{float:left; border-right:3px solid #760092; width:247px; height:91px;}
+.tuanWrap .module_nav ul li a{position:relative;}
+.tuanWrap .module_nav ul li a span{font-size:18px; font-weight:bold; position:relative; left:10px; top:16px; display:inline-block;}
+.tuanWrap .module_nav ul li a span strong{font-size:24px; padding-left:4px;}
+.tuanWrap .module_nav ul li a em{display:inline-block; position:relative; top:16px; left:10px; font-size:12px;}
+.tuanWrap .module_nav ul li a i{opacity:1; display:inline-block; position:absolute; top:14px; left:186px; width:60px; height:60px;}
+.tuanWrap .module_nav ul li.nav1 a{color:#400674;}
+.tuanWrap .module_nav ul li.nav1 a i{background:url(lvyoujie/coin1.gif) no-repeat;}
+.tuanWrap .module_nav ul li.nav2 a{color:#ff6600;}
+.tuanWrap .module_nav ul li.nav2 a i{background:url(lvyoujie/coin2.gif) no-repeat;}
+.tuanWrap .module_nav ul li.nav3 a{color:#673319;}
+.tuanWrap .module_nav ul li.nav3 a i{background:url(lvyoujie/coin3.gif) no-repeat;}
+.tuanWrap .module_nav ul li.nav4{border:none;}
+.tuanWrap .module_nav ul li.nav4 a{color:#ff428e;}
+.tuanWrap .module_nav ul li.nav4 a i{background:url(lvyoujie/coin4.gif) no-repeat;}
+
+.tuanWrap .wp{width:1000px; margin:0 auto;}
+.tuanWrap .wp .module_title{height:186px; position:relative; text-align:center; background:url(chunjie2016/snow.png) no-repeat 123px center;}
+.tuanWrap .wp .module_title a{position:absolute; bottom:0; right:0; width:126px; color:#fff; font-style:italic; height:32px; line-height:32px; background:#f85b75; border-radius:20px; font-size:18px; font-family:"方正准圆简体";}
+.tuanWrap .wp .ub{display:-webkit-box !important; display:box!important;}
+.tuanWrap .wp .ub-pc{-webkit-box-pack:center; box-pack:center;}
+
+.tuanWrap .wp .module_product ul{width:1011px; overflow:hidden; margin-left:-10px;}
+.tuanWrap .wp .module_product ul li{float:left; padding-top:26px; padding-left:10px; width:327px; height:330px;}
+.tuanWrap .wp .module_product ul li .module_first{margin-left:-45px; position:absolute;}
+.tuanWrap .wp .module_product ul li .module_product_pic{height:216px; position:relative;}
+.tuanWrap .wp .module_product ul li .module_product_pic a span{position:absolute; bottom:0; left:0; width:327px; height:36px; line-height:36px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; display:block; background:rgba(0,0,0,0.5) none repeat scroll !important; _background:#000; _filter:Alpha(opacity=50); font-size:20px; color:#fff;}
+.tuanWrap .wp .module_product ul li .module_product_pic a i{position:absolute; top:-5px; right:10px; width:65px; height:66px; color:#fff; text-align:center; padding-top:5px; background:url(chunjie2016/coin.png) no-repeat;}
+.tuanWrap .wp .module_product ul li .module_product_pic a strong{display:block; font-weight:100;}
+.tuanWrap .wp .module_product ul li .module_product_word{background:#fff; height:97px; padding:8px; position:relative;}
+.tuanWrap .wp .module_product ul li .module_product_word span{display:block;}
+.tuanWrap .wp .module_product ul li .module_product_word span i{padding-right:6px; color:#fd4444;}
+.tuanWrap .wp .module_product ul li .module_product_word span i strong{font-size:22px;}
+.tuanWrap .wp .module_product ul li .module_product_word span del{padding-left:10px;}
+.tuanWrap .wp .module_product ul li .module_product_word a{position:absolute; left:8px; bottom:8px; display:block; width:311px; background:#f85b75; height:39px; line-height:39px; color:#fff; text-align:center; font-size:22px; transition: bottom 0.2s linear 0s;}
+.tuanWrap .wp .module_product ul li .module_product_word a.icon{bottom:12px; box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);}

@@ -1,0 +1,96 @@
+/*样式重置*/
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,select,p,blockquote,th,td{
+	margin:0;
+	padding:0;
+	font-size:12px;
+	font-family:'微软雅黑';
+}
+table,form,fieldset,input,textarea,select,button,img{border:0;}
+ol,ul{list-style:none}
+a:link,a:visited{color:#000; text-decoration:none;}
+a:hover{color:#f60;text-decoration:none;}
+
+.clearfix:after {visibility: hidden;display: block;font-size: 0;content: " ";clear: both;height: 0;}
+.clearfix{*zoom:1;}
+.fl{float:left;}
+.fr{float:right;}
+
+#indexTop{width:100%; background:url(korea/top_bg.jpg) center center no-repeat; cursor:pointer;}
+#indexTop .top{width:1000px; height:431px; margin:0 auto; position:relative;}
+#indexTop .top .slider{width:622px; height:361px; position:absolute; left:82px; top:53px; overflow:hidden;}
+#indexTop .top .slider .bx-wrapper .bx-viewport{background:none;}
+#indexTop .top .slider ul{}
+#indexTop .top .slider ul li{float:left;}
+#indexTop .top .slider ul li a{}
+#indexTop .top .slider .l_arrow{position:absolute; top:167px; left:0px;}
+#indexTop .top .slider .r_arrow{position:absolute; top:167px; right:0px;}
+
+#indexCon{width:100%; background:url(korea/con_bg.jpg) center center;}
+.content{width:1000px; margin:0 auto; position:relative;}
+.content .reason{margin-bottom:37px; background:#fbfbfb; padding:15px 50px; box-shadow:0px 10px 20px #888888;}
+.content .reason .title{margin-bottom:5px;}
+.content .reason .con{padding:15px 0px;}
+.content .reason .con ul.re1{}
+.content .reason .con ul.re1 li{float:left; width:272px; margin-right:35px; margin-bottom:20px; cursor:pointer;}
+.content .reason .con ul.re1 li.hover{ box-shadow:0px 0px 8px #888888;}
+.content .reason .con ul.re1 li.nomar{margin-right:0px;}
+.content .reason .con ul.re1 li .pic{}
+.content .reason .con ul.re1 li .des{line-height:20px; font-size:14px; color:#707070; padding:5px;}
+.content .reason .con ul.re1 li .des a{color:#d02578; margin-left:5px;}
+
+.content .reason .intro{height:58px; line-height:58px; padding:0px 10px; border:1px solid #cccccc; font-size:14px; color:#707070; margin-bottom:20px;}
+.content .reason .con ul.re2{}
+.content .reason .con ul.re2 li{border:1px solid #cccccc;background:#FAFAFA; padding:8px 13px; margin-bottom:20px;}
+.content .reason .con ul.re2 li.hover{box-shadow:0px 5px 12px #555555;}
+.content .reason .con ul.re2 li .routeinfo{}
+.content .reason .con ul.re2 li .routeinfo .Limgbox{margin-right:20px; overflow:hidden;}
+.content .reason .con ul.re2 li .routeinfo .Limgbox img{width:350px; height:200px;}
+.content .reason .con ul.re2 li .routeinfo .Cinfo{width:490px; padding-top:10px;}
+.content .reason .con ul.re2 li .routeinfo .Cinfo .Cinfo_title{text-align:center; height:40px; line-height:40px; font-size:20px; font-weight:bold;overflow:hidden;}
+.content .reason .con ul.re2 li .routeinfo .Cinfo .Cinfo_title a{color:#006699;}
+.content .reason .con ul.re2 li .routeinfo .Cinfo .Cinfo_des{font-size:14px; height:60px; line-height:20px; overflow:hidden;}
+.content .reason .con ul.re2 li .routeinfo .Cinfo .now_price{text-align:center; color:#ff6600; font-weight:bold; margin:10px auto;}
+.content .reason .con ul.re2 li .routeinfo .Cinfo .now_price span{font-family:georgia; font-size:25px;}
+.content .reason .con ul.re2 li .routeinfo .Cinfo .ticket a{width:100px; height:30px; line-height:30px; background:#2a98da; font-size:16px; font-weight:bold; color:#ffffff;cursor:pointer; border-radius:3px; text-align:center; display:block; margin:0 auto;}
+.content .reason .con ul.re2 li .routeinfo .Cinfo .ticket .ticket_move{background:#40a1db;}
+
+.content .reason .con ul.re3{}
+.content .reason .con ul.re3 li{background:#ffffff;float: left;height: 316px;margin-bottom: 20px;margin-right: 15px;padding:14px 0px;width: 212px; cursor:pointer;}
+.content .reason .con ul.re3 li.hover{box-shadow:0px 5px 12px #888888;}
+.content .reason .con ul.re3 li.nomar{margin-right:0px;}
+.content .reason .con ul.re3 li .r-img a{display:block; width:212px; height:139px;}
+.content .reason .con ul.re3 li .r-img img {height: 139px;width: 212px;}
+.content .reason .con ul.re3 li .r-title {font-size: 17px;font-weight: bold;height: 35px;line-height: 35px;overflow: hidden;text-align: center;}
+.content .reason .con ul.re3 li .r-title a {color: #1264ba;}
+.content .reason .con ul.re3 li .r-feature {color: #1264ba;font-weight: bold;line-height: 20px; height:80px; overflow:hidden; padding:0px 5px;}
+.content .reason .con ul.re3 li .r-feature span{color: #727171;font-weight: normal;}
+.content .reason .con ul.re3 li .r-price {color: #1264ba; padding-left:5px;}
+.content .reason .con ul.re3 li .r-price .s-price {color: #ff0000;height: 30px;line-height: 30px;}
+.content .reason .con ul.re3 li .r-price .s-price .s-tprice {font-size: 16px;font-weight: bold;}
+.content .reason .con ul.re3 li .r-ticket{width:100%; background:#2a98da;height: 30px; line-height:30px; text-align: center;}
+.content .reason .con ul.re3 li .r-ticket a{display:block; color:#ffffff; font-size:14px;}
+.content .reason .con ul.re3 li .r-ticket a.active{background:#40a1db;}
+.content .reason .con .m_route{height:20px; line-height:20px; text-align:right;}
+
+
+/*返回顶部*/
+#xuanfu{position:fixed; width:145px; height:260px; top:50px; right:20px; z-index:10; background:url(korea/xuanfu_bg.png) center center no-repeat; display:none;}
+#xuanfu ul.re4{position:absolute; bottom:29px; left:17px;}
+#xuanfu ul.re4 li{width:115px; height:25px; line-height:25px; font-size:13px; text-align:center; border-bottom:1px solid #D9B6CA; overflow:hidden;}
+#xuanfu ul.re4 li a{}
+#xuanfu span{position:absolute; bottom:10px; left:37px; }
+#xuanfu span a{color:#E50984; font-size:13px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

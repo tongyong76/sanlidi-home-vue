@@ -1,0 +1,763 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>沪上邮轮_邮轮旅游线路_邮轮旅游价格_邮轮旅游预订_三三旅游</title>
+<meta name="keywords" content="沪上邮轮,邮轮旅游,游轮旅游,邮轮线路,邮轮价格,邮轮预订">
+<meta name="description" content="三三旅游 旅游通0512-66667777。【沪上邮轮】为您提供最新邮轮旅游价格信息，精选优质邮轮线路，给您带来最佳的邮轮预订体验，【沪上邮轮】上海出港，房型线路大全。">
+<link type="text/css" rel="stylesheet" href="../Public/css/reset.css">
+<link type="text/css" rel="stylesheet" href="../Public/css/style.css">
+<script type="text/javascript" src="../Public/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../Public/js/jquery.lazyload.min.js"></script>
+<script>var ROOT_PATH = '__ROOT__';</script>
+<script type="text/javascript" src="../Public/js/common.js"></script>
+<script type="text/javascript" src="../Public/js/youlun.js"></script>
+<!--[if IE 6]>
+<link rel="stylesheet" type="text/css" href="../Public/css/ie6.css">
+<![endif]-->
+<include file="Public:statistics"/>
+</head>
+<body>
+    <include file="Public:header" />
+    <!--头部结束-->
+    <div id="sliderMain">
+        <!--幻灯开始-->
+        <div class="sliderDiv" id="sliderDiv">
+            <ul class="sliderCon" id="sliderCon">
+				<volist name="bannerList" id="vo">
+                <li <if condition="$key eq 0"><else/>class="none"</if>>
+					<if condition="$vo['link']">
+					<a class="linka" href="{$vo.link}" target="_blank">
+					<else/>
+					<a class="linka" href="javascript:;">
+					</if>			
+                    <img src="__ROOT__{$vo.imgurl}"></a>
+				</li>
+				</volist>
+            </ul>
+            <div class="sliderLeftDiv">
+                <strong>沪上邮轮三大承诺：</strong>
+				<p>上海出港房型线路大全</p>
+                <p>一年内价格准确且低价</p>
+                <p>多次上船经验专家服务</p>
+            </div>
+            <ul class="mSlider_nav_orange mSlider_nav">
+				<volist name="bannerList" id="vo">
+                <li <if condition="$key eq 0">class="current"</if>><a href="javascript:void(0)">{$key+1}</a></li>
+				</volist>
+            </ul>
+        </div>
+        <!--幻灯结束-->
+    </div>
+    <div class="wrap">
+        <div class="inside_wrap">
+            <div class="quickSelect clearfix">
+                <div class="quickSelect_logo">
+                    <img src="../Public/images/youlun/logo.png">
+                </div>
+                <dl>
+                    <dt><i></i>沪上出发</dt>
+                    <dd>
+                        <div class="date">
+							<a href="javascript:;"><span>15年</span></a>
+							<volist name="dateList" id="vo">
+							<if condition="date('m',$key) eq '01'"><a><span>{$key|date="y",###}年</span></a></if>
+							<a href="__ROOT__/youlun/s{$key}">{$key|date="m",###}月</a>	
+							</volist>
+						</div>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt><i></i>沪上邮轮</dt>
+                    <dd>
+                        <div class="name">
+							<volist name="boatList" id="vo">
+							<a href="__ROOT__/youlun/stream-{$vo.id}.html" target="_blank">{$vo.name}</a>
+							</volist>
+						</div>
+                    </dd>
+                </dl>
+            </div>
+            <div class="shipTitle"><span></span>沪上特价</div>
+            <div class="ylrecommend">
+                <div class="re_pic">
+                    <ul class="recom_pic clearfix">
+                        <volist name="salelist" id="vo">
+                        <li>
+							<a href="__ROOT__/youlun/xianlu-{$vo.id}.html">
+								<img width="279" height="195" src="__ROOT__{$vo.bimg}" align="absmiddle">
+								<span>
+								<p class="word"><{$vo.name}><i>{$vo.start_time|date="Y-m-d",###}</i></p>
+								<p><em>￥<b>{$vo.minprice}</b>起</em></p>
+                                </span>
+							</a>
+						</li>
+						</volist>
+						<!--
+                        <li>
+							<a href="#">
+								<img width="279" height="195" src="../Public/images/youlun/pic1.jpg" align="absmiddle">
+                                <span>
+								<p class="word"><海洋量子7月21日><i>2015-07-20</i></p>
+								<p><em>￥<b>1699</b>起</em></p>
+                                </span>
+							</a>
+						</li>
+						-->
+                    </ul>
+                </div>
+                <a class="left_arrow" href="javascript:void(0)">
+                    <img src="../Public/images/youlun/l_arrow.png"></a>
+                <a class="right_arrow" href="javascript:void(0)">
+                    <img src="../Public/images/youlun/r_arrow.png"></a>
+            </div>
+            <div class="shipTitle"><span></span>沪上热门</div>
+            <div class="hotSchedule">
+                <div class="month">
+                    <ul>
+						<volist name="dateList" id="vo">
+						<li <if condition="$nowTime eq $key">class="active"</if> data-date="{$key}"><span class="number">{$key|date="m",###}</span><span class="font">月</span><span class="en">{$key|date="M",###}</span><label class="year">{$key|date="Y",###}年</label></li>
+						</volist>
+                    </ul>
+                </div>
+                <div class="main">
+                    <dl>
+						<volist name="dateList" id="vo" offset="0" length="6">
+                        <dt data-date="{$key}" class="active"><span class="number">{$key|date="m",###}</span>月</dt>
+                        <a href="__ROOT__/youlun/s{$key}" class="more">{$key|date="n",###}月全部航次</a>
+						<volist name="vo.son" id="voo">
+                        <dd>
+							<if condition="$key % 2">
+                            <div class="schedule right">
+							<else/>
+							<div class="schedule left">
+							</if>
+                                <div class="dateside">
+                                    <p class="date">{$voo.start_time|date="n/j",###}</p>
+                                    <p>{$voo.start_time|datezhou=###}</p>
+                                </div>
+                                <div class="nameside">
+                                    <p><span class="priceBox"><dfn class="price">¥{$voo.minprice}</dfn>起</span><a hidefocus="false" class="lineName" href="__ROOT__/youlun/xianlu-{$voo.id}.html" title="" target="_blank">{$voo.name}{$voo.subname}</a></p>
+                                    <p><span class="way" title="">{$voo.info|strcut=###,30}</span></p>
+                                </div>
+                                <div class="tip-arrow"><em>◆</em><i>◆</i></div>
+                            </div>
+                        </dd>
+						</volist>
+						</volist>
+                    </dl>
+                    <div class="move moveUp" style="display: none"></div>
+                    <div class="move moveDown" style="display: none"></div>
+                </div>
+            </div>
+            <div id="Company">
+                <div class="shipTitle"><span></span>沪上邮轮</div>
+                <div class="cru_tabs04">
+					<volist name="boatList" id="vo">
+                    <a href="javascript:;" <if condition="!$key">class="current"</if>>{$vo.name}</a>
+					</volist>
+                </div>
+                <div class="ani_wrap">
+                    <div class="ani_wrap_in">
+						<volist name="boatList" id="vo">
+                        <div class="ani_item" <if condition="$key">style="display:none;"</if>>
+                            <div class="cruise_comp">
+                                <ul class="cruise_comp_list">
+                                    <li class="list_main">
+                                        <a href="__ROOT__/youlun/stream-{$vo.id}.html">
+                                            <img width="608" height="402" src="__ROOT__{$vo.imgurl}" class="list_main_img" align="absmiddle">
+											<div class="cruise_comp_box">
+                                                <div class="cruise_comp_logo">
+                                                    <img src="__ROOT__{$vo.cimg}" width="178" height="44">
+                                                </div>
+                                                <p class="cruise_comp_tit">旗下邮轮</p>
+                                                <p class="cruise_comp_boat">{$vo.name}</p>
+                                                <p class="cruise_comp_en">{$vo.ename}</p>
+                                            </div>
+                                            <div class="cruise_comp_table">
+                                                <table>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <div class="num">{$vo.zdw}吨</div>
+                                                                总吨位</td>
+                                                            <td width="1">
+                                                                <div class="line"></div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="num">{$vo.zkl}人</div>
+                                                                载客量</td>
+                                                            <td width="1">
+                                                                <div class="line"></div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="num">{$vo.cd}米</div>
+                                                                长度</td>
+                                                            <td width="1">
+                                                                <div class="line"></div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="num">{$vo.jblc}层</div>
+                                                                甲板楼层</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </a>
+                                    </li>
+									<for start="1" end="7">
+                                    <li>
+                                        <a href="javascript:;" target="_blank">
+                                            <img src="__ROOT__/Uploads/boat/{$vo.id}{$i}.jpg" align="absmiddle">
+											<span style="display: none;">{:C("boat.".$vo['id'].$i)}</span>
+										</a>
+                                    </li>
+									</for>
+                                </ul>
+                            </div>
+                        </div>
+						</volist>
+                    </div>
+                </div>
+            </div>
+            <div id="QuestionV2">
+                <div class="shipTitle"><span></span>沪上讲堂</div>
+                <div class="cru_class_box">
+                    <div class="cru_class_side">
+                        <div class="cru_class_tab">
+                            <a href="javascript:;" data-index="0" class="current">邮轮相关<i></i></a>
+                            <a href="javascript:;" data-index="1">订前必读<i></i></a>
+                            <a href="javascript:;" data-index="2">订后须知<i></i></a>
+                            <a href="#" target="_blank">更多解答<i></i></a>
+                        </div>
+                        <div class="other_qa">
+                            <i></i>
+                            <p>还有其他问题？</p>
+                            <a href="#">联系邮轮专家</a>
+                        </div>
+                    </div>
+                    <div class="cru_class_main">
+                        <div class="cru_class">
+                            <div class="cru_qa_list">
+                                <div class="cru_qa">
+                                    <dl>
+                                        <dt><span class="qa_lab">Q:</span>什么是邮轮旅游？</dt>
+                                        <dd>
+                                            <span class="qa_lab">A:</span>
+                                            <span data-type="label">邮轮旅行是一种轻松、休闲的旅游度假方式。
+
+邮轮旅行以“邮轮就是目的地”为核心理念，在邮轮上能尽享船上设施和服务、尽情休憩和娱乐。您可以暂别日常工作的纷扰，全身心投入到专属的...
+                                            </span>
+                                            <span data-type="content" style="display: none;">邮
+轮旅行是一种轻松、休闲的旅游度假方式。
+
+邮轮旅行以“邮轮就是目的地”为核心理念，在邮轮上能尽享船上设施和服务、尽情休憩和娱乐。您可以暂别日常工作的纷扰，全身心投入到专属的海上假期——领
+略大自然的风光，尽情享受Spa、免税购物、缤纷娱乐、甲板电影以及环球美食；同时，您还有机会结识好友、缔结合作、甚至邂逅浪漫。
+
+在每一站目的地靠岸后，您可以轻装下船饱览异域风光，无需担心行李整理和打包携带等繁琐问题。
+
+邮轮旅行不仅是海上的航行，更是一段难得的体验，相信您一定会有所收获。</span>
+                                            <a href="javascript:;" class="expand_all">展开全部</a>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <div class="cru_qa">
+                                    <dl>
+                                        <dt><span class="qa_lab">Q:</span>邮轮旅游会不会很无聊？</dt>
+                                        <dd>
+                                            <span class="qa_lab">A:</span>
+                                            <span data-type="label">绝对不会，船上全天都有吃不完的各地美食；看不尽的演出、最潮的娱乐和运动设施、讲座和活动足以排满你的日程，根本停不下来。
+                                            </span>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <div class="cru_qa">
+                                    <dl>
+                                        <dt><span class="qa_lab">Q:</span>邮轮旅游很贵吗？</dt>
+                                        <dd>
+                                            <span class="qa_lab">A:</span>
+                                            <span data-type="label">邮轮旅行的人均费用因航线、天数、舱房、岸上游等各项差异，从几千元到数十万元不等。
+
+邮轮旅行产品一价包括了住宿、餐饮、娱乐、岸上游观光（大部分日韩航次）等费用，且具有极高的性...
+                                            </span>
+                                            <span data-type="content" style="display: none;">邮轮旅行的人均费用因航线、天数、舱房、岸上游等各项差异，从几千元到数十万元不等。
+
+邮轮旅行产品一价包括了住宿、餐饮、娱乐、岸上游观光（大部分日韩航次）等费用，且具有极高的性价比，整体花费与传统出境游相比也很实惠。</span>
+                                            <a href="javascript:;" class="expand_all">展开全部</a>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <div class="cru_qa">
+                                    <dl>
+                                        <dt><span class="qa_lab">Q:</span>多大的儿童可以乘坐邮轮旅游？怎样收费？</dt>
+                                        <dd>
+                                            <span class="qa_lab">A:</span>
+                                            <span data-type="label">根据邮轮公司的规定，6个月以上的儿童都可以乘坐邮轮旅游。
+
+若孩子较小，可携带手推婴儿车等设备登船，若需借用船上婴儿床、携带奶粉等婴儿食物，请提前告知旅行社，由旅行社向邮轮公...
+                                            </span>
+                                            <span data-type="content" style="display: none;">根据邮轮公司的规定，6个月以上的儿童都可以乘坐邮轮旅游。
+
+若孩子较小，可携带手推婴儿车等设备登船，若需借用船上婴儿床、携带奶粉等婴儿食物，请提前告知旅行社，由旅行社向邮轮公司申请报备。
+
+邮轮上一般均提供专业、有趣的儿童托管服务、以及多种多样的儿童娱乐设施和活动。
+
+邮轮旅行一般儿童与成人价格一致，部分邮轮公司对于儿童需支付的小费有优惠政策。建议可考虑三三旅游的儿童优惠产品，优惠幅度很大，对于携带小朋友出行的家庭来说还是相当划算的，欢迎拨打6666-7777咨询。</span>
+                                            <a href="javascript:;" class="expand_all">展开全部</a>
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </div>
+                            <div class="cru_qa_list" style="display: none;">
+                                <div class="cru_qa">
+                                    <dl>
+                                        <dt><span class="qa_lab">Q:</span>孕妇可以乘坐邮轮旅游吗？</dt>
+                                        <dd>
+                                            <span class="qa_lab">A:</span>
+                                            <span data-type="label">由于邮轮上的医院不具备帮助孕妇分娩的医疗设施，故一般不接受在预订航次结束之日已怀孕24或25周客人的预订申请（各邮轮公司的标准会存在些许差异，请
+以产品的相关具体说明为准）。
+                                            </span>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <div class="cru_qa">
+                                    <dl>
+                                        <dt><span class="qa_lab">Q:</span>老人可以乘坐邮轮旅游吗？</dt>
+                                        <dd>
+                                            <span class="qa_lab">A:</span>
+                                            <span data-type="label">邮轮旅行比较轻松自在，是老年人出行最佳选择。
+
+邮轮旅行对出行人的年龄没有上限设定。一般而言，70岁以上老人需要填写一份健康证明提交给邮轮公司备案，没有问题的话即可出行。有些...
+                                            </span>
+                                            <span data-type="content" style="display: none;">邮轮旅行比较轻松自在，是老年人出行最佳选择。
+
+邮轮旅行对出行人的年龄没有上限设定。一般而言，70岁以上老人需要填写一份健康证明提交给邮轮公司备案，没有问题的话即可出行。有些邮轮公司会要求出具医院认定的健康证明，只需按要求提供即可。
+
+此外，多数出行人都会选择购买一份邮轮保险，为出行保驾护航。</span>
+                                            <a href="javascript:;" class="expand_all">展开全部</a>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <div class="cru_qa">
+                                    <dl>
+                                        <dt><span class="qa_lab">Q:</span>乘坐邮轮会晕船吗？</dt>
+                                        <dd>
+                                            <span class="qa_lab">A:</span>
+                                            <span data-type="label">邮轮是目前最为平稳的海上交通工具。
+
+邮轮的吨位很大，船底都配有机翼式的平衡翼，能有效帮助邮轮对抗风浪的影响，保持船体稳定，正常天气下，在邮轮上如履平地。
+
+从航行海域来看，...
+                                            </span>
+                                            <span data-type="content" style="display: none;">邮轮是目前最为平稳的海上交通工具。
+
+邮轮的吨位很大，船底都配有机翼式的平衡翼，能有效帮助邮轮对抗风浪的影响，保持船体稳定，正常天气下，在邮轮上如履平地。
+
+从航行海域来看，邮轮航线设计最重要的一点就是考虑航行区域的海况，优先选择海况最为平稳的区域，因此大部分时间邮轮是相当平稳的，甚至感觉不到它的移动。
+
+然而，晕船与否与个人体质不无关系，若平时晕车情况比较严重的话，不排除有晕船的可能。在恶劣天气等特殊情况下，部分乘客可能会有不适。考虑到这一点，邮轮上一般都配备晕船药，可免费领取，服用后能够缓解晕船症状。</span>
+                                            <a href="javascript:;" class="expand_all">展开全部</a>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <div class="cru_qa">
+                                    <dl>
+                                        <dt><span class="qa_lab">Q:</span>3人出行，能选择什么样的房间？</dt>
+                                        <dd>
+                                            <span class="qa_lab">A:</span>
+                                            <span data-type="label" title="3人出行的情况，可选择房型名称内有“家庭房”字样或者最多可住人数大于等于3的房间，一般每条船的内舱，海景，阳台以及套房均会有一定数量这样的房间。">3人出行的情况，可选择房型名称内有“家庭房”字样或者最多可住人数大于等于3的房间，一般每条船的内舱，海景，阳台以及套房均会有一定数量这样的房间。
+                                            </span>
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </div>
+                            <div class="cru_qa_list" style="display: none;">
+                                <div class="cru_qa">
+                                    <dl>
+                                        <dt><span class="qa_lab">Q:</span>邮轮上的各种舱房有什么区别？</dt>
+                                        <dd>
+                                            <span class="qa_lab">A:</span>
+                                            <span data-type="label">邮轮上的舱房主要分为：内舱房、海景房、阳台房、套房等四类。不同舱房会根据最多可入住人数命名，如内舱双人房，海景三人房等等。简单介绍下各种舱房的基
+本特点。
+
+内舱房：无窗，一般...
+                                            </span>
+                                            <span data-type="content" style="display: none;">邮轮上的舱房主要分为：内舱房、海景房、阳台房、套房等四类。不同舱房会根据最多可入住人数命名，如内舱双人房，海景三人房等等。简单介绍下各种舱房的基本特点。
+
+内舱房：无窗，一般面积较小，是邮轮上性价比最高的房型；
+海景房：有窗但无法打开，可以观赏海景，除此之外与内舱房差异不大；
+阳台房：有步入式阳台，可在阳台上观赏海景，呼吸海上新鲜的空气；
+套房：一般均有步入式阳台，面积较大，房间配套设施更完备。套房客人可享受部分附加服务，如24小时管家服务、享用免费新鲜水果等（参考信息，不同邮轮可能略有差异，请以实际情况为准）。</span>
+                                            <a href="javascript:;" class="expand_all">展开全部</a>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <div class="cru_qa">
+                                    <dl>
+                                        <dt><span class="qa_lab">Q:</span>房间内有什么设施？</dt>
+                                        <dd>
+                                            <span class="qa_lab">A:</span>
+                                            <span data-type="label">一般舱房内都配备：两张单人床（可合并成大床），沙发，独立卫浴，梳妆台，吹风机，液晶电视，电话，保险柜，冰箱，热水壶，衣柜。具体舱房设施情况会因不
+同邮轮及所选舱房而有所区别，请...
+                                            </span>
+                                            <span data-type="content" style="display: none;">一般舱房内都配备：两张单人床（可合并成大床），沙发，独立卫浴，梳妆台，吹风机，液晶电视，电话，保险柜，冰箱，热水壶，衣柜。具体舱房设施情况会因不同邮轮及所选舱房而有所区别，请以实际情况为准。</span>
+                                            <a href="javascript:;" class="expand_all">展开全部</a>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <div class="cru_qa">
+                                    <dl>
+                                        <dt><span class="qa_lab">Q:</span>邮轮上有哪些娱乐设施？</dt>
+                                        <dd>
+                                            <span class="qa_lab">A:</span>
+                                            <span data-type="label">邮轮上拥有非常丰富的娱乐设施。一般包括电影院，剧院，赌场，免税店，棋牌室，舞厅，图书馆，网吧，青少年活动中心，健身房、游泳池，SPA中心等等。
+
+每艘邮轮的娱乐设施都有一些独...
+                                            </span>
+                                            <span data-type="content" style="display: none;">邮轮上拥有非常丰富的娱乐设施。一般包括电影院，剧院，赌场，免税店，棋牌室，舞厅，图书馆，网吧，青少年活动中心，健身房、游泳池，SPA中心等等。
+
+每艘邮轮的娱乐设施都有一些独特之处，有些还配有滑冰场，艺术画廊，旋转木马，攀岩墙，瑜伽中心，篮球场，迷你高尔夫球场等等，只有亲自体验，才能知晓其中乐趣。</span>
+                                            <a href="javascript:;" class="expand_all">展开全部</a>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <div class="cru_qa">
+                                    <dl>
+                                        <dt><span class="qa_lab">Q:</span>邮轮上有Wifi吗？</dt>
+                                        <dd>
+                                            <span class="qa_lab">A:</span>
+                                            <span data-type="label">一般来说，邮轮上都提供24小时付费上网服务。您可以在自己的舱房或者一些公共区域连接到无线网络。
+
+皇家加勒比国际游轮，Wifi资费为0.65美元/分钟，另有优惠套餐：35美元...
+                                            </span>
+                                            <span data-type="content" style="display: none;">一般来说，邮轮上都提供24小时付费上网服务。您可以在自己的舱房或者一些公共区域连接到无线网络。
+
+皇家加勒比国际游轮，Wifi资费为0.65美元/分钟，另有优惠套餐：35美元/60分钟；55美元/100分钟；75美元/150分钟；100美元/250分钟；150美元/500分钟。
+目前海洋水手号已全船覆盖wifi信号，海洋航行者号的音符酒廊、日光浴场、皇家大道咖啡馆、小猪与口哨酒吧、思古诺酒吧、图书馆和网吧等区域已覆盖Wifi信号。
+
+歌诗达邮轮，Wifi资费0.5美元/分钟，另有优惠套餐：10美元/1小时；24美元/3小时。
+
+天海邮轮，wifi资费为0.75美元/分钟，暂无优惠套餐，全船覆盖Wifi信号。
+
+邮轮上网费用较高，不同邮轮公司会有相应的资费标准，以上信息供参考，请以船上收费为准。</span>
+                                            <a href="javascript:;" class="expand_all">展开全部</a>
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </div>
+                            <div class="cru_qa_num">
+                                <a href="javascript:;" class="current">1</a>
+                                <a href="javascript:;" class="">2</a>
+                                <a href="javascript:;" class="">3</a>
+                            </div>
+                        </div>
+                        <div class="cru_class" style="display: none;">
+                            <div class="cru_qa_list">
+                                <div class="cru_qa">
+                                    <dl>
+                                        <dt><span class="qa_lab">Q:</span>乘坐邮轮出国旅游一般需要什么材料？</dt>
+                                        <dd>
+                                            <span class="qa_lab">A:</span>
+                                            <span data-type="label">与一般境外游相同，邮轮出行人均需持有护照，且护照有效期距返程入境日期需6个月以上。
+
+签证对于邮轮出境游来说非常重要，若签证有问题，轻则有些港口无法下船活动，重则将可能无法登...
+                                            </span>
+                                            <span data-type="content" style="display: none;">与一般境外游相同，邮轮出行人均需持有护照，且护照有效期距返程入境日期需6个月以上。
+
+签证对于邮轮出境游来说非常重要，若签证有问题，轻则有些港口无法下船活动，重则将可能无法登船。
+
+邮轮跟团游产品一般可由旅行社负责代办团签，申请签证所需材料因目的地、以及出行人情况差异会有所区别，具体材料请参照产品中签证签注栏的说明。
+
+若非跟团游产品，或是计划在邮轮靠港后上岸自由活动，则需办理个人旅游签证，所需材料以各国领馆要求为准。</span>
+                                            <a href="javascript:;" class="expand_all">展开全部</a>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <div class="cru_qa">
+                                    <dl>
+                                        <dt><span class="qa_lab">Q:</span>坐邮轮去日韩都免签了吗？</dt>
+                                        <dd>
+                                            <span class="qa_lab">A:</span>
+                                            <span data-type="label">坐邮轮前往韩国是免签的。前往济州岛一地只需持有有效期为行程结束6个月以上的护照即可，无需办理其它证件；如行程中含韩国境内其他目的地，则需办理韩国
+免签登陆许可证（邮轮专用）。
+...
+                                            </span>
+                                            <span data-type="content" style="display: none;">坐邮轮前往韩国是免签的。前往济州岛一地只需持有有效期为行程结束6个月以上的护照即可，无需办理其它证件；如行程中含韩国境内其他目的地，则需办理韩国免签登陆许可证（邮轮专用）。
+坐邮轮前往日本需办理日本免签船舶观光上陆许可证，除个别邮轮尚未获得免签资格外，均无需办理日本旅游签证。所需材料比办理签证简单不少，请参考具体产品的签证说明信息。</span>
+                                            <a href="javascript:;" class="expand_all">展开全部</a>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <div class="cru_qa">
+                                    <dl>
+                                        <dt><span class="qa_lab">Q:</span>婴儿/儿童需要办理护照和签证吗？</dt>
+                                        <dd>
+                                            <span class="qa_lab">A:</span>
+                                            <span data-type="label">婴儿/儿童境外旅游所须证件与成人一样，均须办理护照。
+除部分免签国家与地区外，一般都需要提前办理岸上行程所至国家和地区的旅游签证。
+                                            </span>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <div class="cru_qa">
+                                    <dl>
+                                        <dt><span class="qa_lab">Q:</span>护照还没有办理好可以先预订吗？</dt>
+                                        <dd>
+                                            <span class="qa_lab">A:</span>
+                                            <span data-type="label">可以，通过电话预订的话，可将具体情况告知电话专员，电话专员将协助操作。
+
+电脑或手机预订时，在证件信息一栏选择稍后提供即可，但请务必在所预订产品的截止收材料时间之前办理好护照...
+                                            </span>
+                                            <span data-type="content" style="display: none;">可以，通过电话预订的话，可将具体情况告知邮轮专家，邮轮专家将协助操作。
+
+电脑或手机预订时，在证件信息一栏选择稍后提供即可，但请务必在所预订产品的截止收材料时间之前办理好护照，并将护照信息提供至我处。
+                                            </span>
+                                            <a href="javascript:;" class="expand_all">展开全部</a>
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </div>
+                            <div class="cru_qa_list" style="display: none;">
+                                <div class="cru_qa">
+                                    <dl>
+                                        <dt><span class="qa_lab">Q:</span>团队签证会被拒签么？</dt>
+                                        <dd>
+                                            <span class="qa_lab">A:</span>
+                                            <span data-type="label">邮轮跟团游产品主要由旅行社代办签证，出签率很高。
+只需出行人按要求提供真实、有效的签证材料，避免...
+                                            </span>
+                                            <span data-type="content" style="display: none;">邮轮跟团游产品主要由旅行社代办签证，出签率很高。
+只需出行人按要求提供真实、有效的签证材料，避免因行程取消或变更造成的损失。</span>
+                                            <a href="javascript:;" class="expand_all">展开全部</a>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <div class="cru_qa">
+                                    <dl>
+                                        <dt><span class="qa_lab">Q:</span>如果拒签怎么办？</dt>
+                                        <dd>
+                                            <span class="qa_lab">A:</span>
+                                            <span data-type="label">如果提供的完整真实的签证资料仍被拒签，三三旅游针对此类客户提供旅游保障，尽力保护您的利益。
+                                            </span>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <div class="cru_qa">
+                                    <dl>
+                                        <dt><span class="qa_lab">Q:</span>住内舱房会不会很闷？</dt>
+                                        <dd>
+                                            <span class="qa_lab">A:</span>
+                                            <span data-type="label">不会，邮轮上的每间舱房都有24小时空调系统，空气流通十分顺畅。
+                                            </span>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <div class="cru_qa">
+                                    <dl>
+                                        <dt><span class="qa_lab">Q:</span>什么是同舱第三、四人？</dt>
+                                        <dd>
+                                            <span class="qa_lab">A:</span>
+                                            <span data-type="label">如果一间舱房规定的最多可入住人数大于２人，那么入住该舱房的第三、四位入住人即被称为同舱第三、四人。
+
+一般可住第三、四人的舱房，会有沙发床或下拉床或少数上下铺。
+                                            </span>
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </div>
+                            <div class="cru_qa_list" style="display: none;">
+                                <div class="cru_qa">
+                                    <dl>
+                                        <dt><span class="qa_lab">Q:</span>岸上观光有导游吗？</dt>
+                                        <dd>
+                                            <span class="qa_lab">A:</span>
+                                            <span data-type="label">邮轮跟团游行程中的岸上观光一般都有中文导游为您提供专业服务。
+                                            </span>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <div class="cru_qa">
+                                    <dl>
+                                        <dt><span class="qa_lab">Q:</span>岸上观光可以自由行吗？</dt>
+                                        <dd>
+                                            <span class="qa_lab">A:</span>
+                                            <span data-type="label">如您办理的是团队旅游签证，则需要跟随团队参与岸上观光。如果您需要自由行，需要在出行前提前办理岸上观光所在地的个人旅游签证。
+                                            </span>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <div class="cru_qa">
+                                    <dl>
+                                        <dt><span class="qa_lab">Q:</span>怎样能买到免税商品？</dt>
+                                        <dd>
+                                            <span class="qa_lab">A:</span>
+                                            <span data-type="label">在邮轮上一般都有丰富的免税商品，商品涉及珠宝首饰、皮具箱包、手表、化妆品等。许多国际知名品牌均在邮轮上的免税店设有专柜或专卖店，可随意挑选中意的
+免税商品。
+
+此外，邮轮团队游...
+                                            </span>
+                                            <span data-type="content" style="display: none;">在邮轮上一般都有丰富的免税商品，商品涉及珠宝首饰、皮具箱包、手表、化妆品等。许多国际知名品牌均在邮轮上的免税店设有专柜或专卖店，可随意挑选中意的免税商品。
+
+此外，邮轮团队游的岸上观光行程一般会安排当地大型、知名的免税店，以满足乘客购买当地免税商品的需求，购物时，只需出示护照复印件，即可购买免税商品。</span>
+                                            <a href="javascript:;" class="expand_all">展开全部</a>
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </div>
+                            <div class="cru_qa_num">
+                                <a href="javascript:;" class="current">1</a>
+                                <a href="javascript:;" class="">2</a>
+                                <a href="javascript:;" class="">3</a>
+                            </div>
+                        </div>
+                        <div class="cru_class" style="display: none;">
+                            <div class="cru_qa_list">
+                                <div class="cru_qa">
+                                    <dl>
+                                        <dt><span class="qa_lab">Q:</span>我可以使用什么方式付款？</dt>
+                                        <dd>
+                                            <span class="qa_lab">A:</span>
+                                            <span data-type="label">三三旅游邮轮产品一般可以使用信用卡、第三方支付、公司转账支票、汇款支付。上海和北京客人可选择线下支付（现金或POS机刷卡），我们会安排专人上门操作，
+费用是每笔订单15元。部分产品...
+                                            </span>
+                                            <span data-type="content" style="display: none;">三三旅游邮轮产品一般可以使用信用卡、第三方支付、公司转账支票、汇款支付。上海和北京客人可选择线下支付（现金或POS机刷卡），我们会安排专人上门操作，费用是每笔订单15元。部分产品也可以使用优惠券或礼品卡进行支付。</span>
+                                            <a href="javascript:;" class="expand_all">展开全部</a>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <div class="cru_qa">
+                                    <dl>
+                                        <dt><span class="qa_lab">Q:</span>需要转换插头么？</dt>
+                                        <dd>
+                                            <span class="qa_lab">A:</span>
+                                            <span data-type="label">邮轮舱房一般配置欧标或美标插座，一般有1-2个两眼插座，若您的个人电脑或照相机等的充电装置是国内三眼插头的话，建议您携带转换插头。
+                                            </span>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <div class="cru_qa">
+                                    <dl>
+                                        <dt><span class="qa_lab">Q:</span>我可以带吹风机上船吗？</dt>
+                                        <dd>
+                                            <span class="qa_lab">A:</span>
+                                            <span data-type="label">一般邮轮上的每个房间内都配有吹风机供您使用，无需携带上船。
+                                            </span>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <div class="cru_qa">
+                                    <dl>
+                                        <dt><span class="qa_lab">Q:</span>上邮轮旅游行李限重么？</dt>
+                                        <dd>
+                                            <span class="qa_lab">A:</span>
+                                            <span data-type="label">一般邮轮旅客每位行李限额为90kg，因为行李额度非常高所以可以理解为不限重，不过建议您贵重易碎物品还是要随身携带。
+                                            </span>
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </div>
+                            <div class="cru_qa_list" style="display: none;">
+                                <div class="cru_qa">
+                                    <dl>
+                                        <dt><span class="qa_lab">Q:</span>登船后邮轮要收掉护照么？护照收掉怎么退税？</dt>
+                                        <dd>
+                                            <span class="qa_lab">A:</span>
+                                            <span data-type="label">是的，登船时船方工作人员会收取您的护照予以登船。船上免税店购物已直接免税，在岸上免税店购物时，只需出示您的护照复印件即可享受免税价格，岸上除免税
+店外的其他消费，若符合相应的退...
+                                            </span>
+                                            <span data-type="content" style="display: none;">是的，登船时船方工作人员会收取您的护照予以登船。船上免税店购物已直接免税，在岸上免税店购物时，只需出示您的护照复印件即可享受免税价格，岸上除免税店外的其他消费，若符合相应的退税条件，出示护照复印件及船卡亦可办理退税。</span>
+                                            <a href="javascript:;" class="expand_all">展开全部</a>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <div class="cru_qa">
+                                    <dl>
+                                        <dt><span class="qa_lab">Q:</span>上海吴淞口码头在哪？有停车场吗？</dt>
+                                        <dd>
+                                            <span class="qa_lab">A:</span>
+                                            <span data-type="label">上海吴淞口国际邮轮港：宝杨路1号。码头有付费停车场，参考收费为20元/天，具体请以当天确认为准。
+                                            </span>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <div class="cru_qa">
+                                    <dl>
+                                        <dt><span class="qa_lab">Q:</span>从浦东机场到吴淞口国际邮轮码头怎么走？</dt>
+                                        <dd>
+                                            <span class="qa_lab">A:</span>
+                                            <span data-type="label" title="乘坐机场四线至鲁迅公园下车，步行至虹口足球场站乘坐地铁3号线（江杨北路方向）在宝杨路站下车，乘坐出租车（费用约13元）至码头。全程打车约178元，路线费用仅供参考。">乘坐机场四线至鲁迅公园下车，步行至虹口足球场站乘坐地铁3号线（江杨北路方向）在宝杨路站下车，乘坐出租车（费用约13元）至码头。全程打车约178
+元，路线费用仅供参考。
+                                            </span>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <div class="cru_qa">
+                                    <dl>
+                                        <dt><span class="qa_lab">Q:</span>需要提前多久去码头办理手续？</dt>
+                                        <dd>
+                                            <span class="qa_lab">A:</span>
+                                            <span data-type="label" title="一般建议在起航前3小时左右抵达码头。因每个航程都有数千名客人登船，为避免人流集中，我们会安排分批办理登船手续，具体集合时间与地点会在出行前2-3日在《出行通知书》中告知，届时请注意查收订单联系人邮箱，领队也会通过电话与您确认。">一般建议在起航前3小时左右抵达码头。因每个航程都有数千名客人登船，为避免人流集中，我们会安排分批办理登船手续，具体集合时间与地点会在出行前2-3
+日在《出行通知书》中告知，届时...
+                                            </span>
+                                            <span data-type="content" style="display: none;">一般建议在起航前3小时左右抵达码头。因每个航程都有数千名客人登船，为避免人流集中，我们会安排分批办理登船手续，具体集合时间与地点会在出行前2-3日在《出行通知书》中告知，届时请注意查收订单联系人邮箱，领队也会通过电话与您确认。</span>
+                                            <a href="javascript:;" class="expand_all">展开全部</a>
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </div>
+                            <div class="cru_qa_list" style="display: none;">
+                                <div class="cru_qa">
+                                    <dl>
+                                        <dt><span class="qa_lab">Q:</span>邮轮提供免费儿童托管服务么？</dt>
+                                        <dd>
+                                            <span class="qa_lab">A:</span>
+                                            <span data-type="label">邮轮上一般都会提供多个年龄段的托儿服务，除部分时段（如夜间）和一些特殊需求会收取额外费用外，基本都是免费的。
+                                            </span>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <div class="cru_qa">
+                                    <dl>
+                                        <dt><span class="qa_lab">Q:</span>邮轮上有中文服务吗？</dt>
+                                        <dd>
+                                            <span class="qa_lab">A:</span>
+                                            <span data-type="label">从中国母港出发邮轮都会有一定比例的中国籍服务人员，无需担心语言问题。
+                                            </span>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <div class="cru_qa">
+                                    <dl>
+                                        <dt><span class="qa_lab">Q:</span>点评产品有什么用？</dt>
+                                        <dd>
+                                            <span class="qa_lab">A:</span>
+                                            <span data-type="label">点评产品有助于三三旅游改进产品，可以与更多人分享旅行体验，撰写点评的用户也能够获得一定的三三旅游积分。
+                                            </span>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <div class="cru_qa">
+                                    <dl>
+                                        <dt><span class="qa_lab">Q:</span>跟团岸上观光都包含什么？</dt>
+                                        <dd>
+                                            <span class="qa_lab">A:</span>
+                                            <span data-type="label">跟团岸上观光主要包含了全程中文导游服务，全程大巴接送服务，指定景点游览、免税店购物等。
+                                            </span>
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </div>
+                            <div class="cru_qa_num">
+                                <a href="javascript:;" class="current">1</a>
+                                <a href="javascript:;" class="">2</a>
+                                <a href="javascript:;" class="">3</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <include file="Public:footer_notq" />
+</body>
+</html>

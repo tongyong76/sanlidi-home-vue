@@ -1,0 +1,145 @@
+<include file="Public:header" />
+<script language="javascript">var webpath="__PUBLIC__";</script>
+<script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="__PUBLIC__/ueditor/ueditor.all.min.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/ueditor/themes/default/css/ueditor.css"/>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#submit").click(function(){		
+			if($("#title").val()==0){
+			   alert('请填写资讯标题');
+			   return false;
+			}
+			if($("#cate_id").val()==0){
+			   alert('请选择资讯分类');
+			   return false;
+			}
+		});
+		//编辑器
+		var editor = UE.getEditor('text', {initialFrameHeight:300});
+		var editor2 = UE.getEditor('notice', {initialFrameHeight:300});
+
+	});
+</script>
+</head>
+<body>
+<form action="{:u('Visa/edit')}" method="POST" name="myform" id="myform" enctype="multipart/form-data" style="margin-top:10px;">
+  <div class="pad-10">
+  <div class="col-tab">
+  <ul class="tabBut cu-li">
+    <li id="tab_setting_1" class="on" onClick="SwapTab('setting','on','',1,1);">基本信息</li>
+  </ul>
+  <div id="div_setting_1" class="contentList pad-10">
+    <table width="100%" cellpadding="2" cellspacing="1" class="table_form">
+      <tr>
+        <th>分类 :</th>
+        <td>
+			<select name="cate_id" id="cate_id" style="width:200px;" >
+        	<option value="0">--请选择分类--</option>
+			<volist name="cate_list" id="val">
+			<option value="{$val.id}" <if condition="$visaInfo['cate_id'] eq $val['id']"> selected="selected" </if>>
+				<for start="1" end="$val['floor']">
+                &nbsp;&nbsp;
+                </for>
+                <if condition="$val['floor'] gt 1">
+                ├&nbsp;
+                </if>{$val.name}</option>
+			</volist>          
+            </select>
+		</td>
+      </tr>
+      <tr>
+        <th width="100">名称 :</th>
+        <td><input type="text" name="name" class="input-text" size="60" value="{$visaInfo.name}" ></td>
+      </tr>
+	  <tr>
+        <th width="100">服务费 :</th>
+        <td><input type="text" name="price" class="input-text" size="60" value="{$visaInfo.price}" ></td>
+      </tr>
+	  <tr>
+        <th width="100">结算价 :</th>
+        <td><input type="text" name="price_final" class="input-text" size="60" value="{$visaInfo.price_final}" ></td>
+      </tr>
+	  <tr>
+        <th width="100">供应商 :</th>
+        <td><input type="text" name="supplier" class="input-text" size="60" value="{$visaInfo.supplier}" ></td>
+      </tr>
+	  <tr>
+        <th width="100">联系人 :</th>
+        <td><input type="text" name="supplier_c" class="input-text" size="60" value="{$visaInfo.supplier_c}" ></td>
+      </tr>
+	  <tr>
+        <th width="100">联系方式 :</th>
+        <td><input type="text" name="supplier_p" class="input-text" size="60" value="{$visaInfo.supplier_p}" ></td>
+      </tr>
+	  <tr>
+        <th width="100">有效期 :</th>
+        <td><input type="text" name="expdate" class="input-text" size="60" value="{$visaInfo.expdate}" ></td>
+      </tr>
+	  <tr>
+        <th width="100">最多停留 :</th>
+        <td><input type="text" name="staytime" class="input-text" size="60" value="{$visaInfo.staytime}" ></td>
+      </tr>
+	  <tr>
+        <th width="100">工作日 :</th>
+        <td><input type="text" name="worktime" class="input-text" size="60" value="{$visaInfo.worktime}" ></td>
+      </tr>
+	  <tr>
+        <th width="100">收客范围 :</th>
+        <td><input type="text" name="crowd" class="input-text" size="60" value="{$visaInfo.crowd}" ></td>
+      </tr>
+	  <tr>
+        <th width="100">表格 :</th>
+        <td><input type="file" name="file1" class="input-text" size=21 style="height:25px;"/>&nbsp;&nbsp;<if condition="$visaInfo['file1']"><span><a style="color:blue" href="__ROOT__{$visaInfo['file1']}">{$visaInfo['file1_name']}</a>&nbsp;&nbsp;<img data-filename="file1" class="doc_del" src="__ROOT__/Public/statics/images/status_0.gif"></span></if></td>
+      </tr>
+	  <tr>
+        <th width="100">材料 :</th>
+        <td><input type="file" name="file2" class="input-text" size=21 style="height:25px;"/>&nbsp;&nbsp;<if condition="$visaInfo['file2']"><span><a style="color:blue" href="__ROOT__{$visaInfo['file2']}">{$visaInfo['file2_name']}</a>&nbsp;&nbsp;<img data-filename="file2" class="doc_del" src="__ROOT__/Public/statics/images/status_0.gif"></span></if></td>
+      </tr>
+	  <tr>
+		<th>签证材料 :</th>
+		<td>
+			<textarea style="width:70%;" name="info" id="text">{$visaInfo.info}</textarea>
+		</td>
+	  </tr> 
+	  <tr>
+		<th>特别提示 :</th>
+		<td>
+			<textarea style="width:70%;" name="notice" id="notice">{$visaInfo.notice}</textarea>
+		</td>
+	  </tr> 
+	  <input type="hidden" name="post_url" value="{:U('Visa/ajaxDelDoc')}" />
+      <input type="hidden" name="id" value="{$visaInfo.id}" id="items_id"/>
+    </table>
+  </div>
+  
+  <div class="bk15"></div>
+  <div class="btn">
+    <input type="submit" value="提交" name="submit" class="button" id="submit">
+  </div>
+
+</div>
+</div>
+</form>
+
+</body>
+<script type="text/javascript">
+$(function(){
+	$('.doc_del').click(function(){
+		var post_url = $('input[name="post_url"]').val();
+		var file_name = $(this).attr('data-filename');
+		var id = $('input[name="id"]').val();
+		$.ajax({
+			type : "POST",
+			url : post_url,
+			data : {file_name:file_name,id:id},
+			dataType: 'json',
+			success: function(res) {
+				alert('删除成功！');				
+			}
+		});
+		$(this).parent().remove();
+	});
+});
+</script>
+</html>

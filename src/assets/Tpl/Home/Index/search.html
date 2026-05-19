@@ -1,0 +1,181 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>"{$keyword}"的搜索结果_三三旅游网</title>
+<meta name="keywords" content="">
+<meta name="description" content="三三旅游网：为您提供出境游、国内游、周边游、团队旅游等线路搜索。24小时咨询预订电话：66667777">
+<link type="text/css" rel="stylesheet" href="../Public/css/reset.css">
+<link type="text/css" rel="stylesheet" href="../Public/css/style.css">
+<script type="text/javascript" src="../Public/js/jquery-1.11.1.min.js"></script>
+<script>var ROOT_PATH = '__ROOT__';</script>
+<script type="text/javascript" src="../Public/js/common.js"></script>
+<script type="text/javascript" src="../Public/js/search_list.js"></script>
+<include file="Public:statistics"/>
+</head>
+<body>
+<include file="Public:header"/>
+<div class="wrap">
+	<div class="inside_wrap clearfix">
+    	<div class="search_nav">
+			<a href="/">首页</a><b>></b><span>搜索"{$keyword}"旅游线路</span>
+		</div>
+        <div class="search_list fl">
+        	<div id="searchNav" class="filter_nav">
+				<!--
+        		<dl>
+                	<dt>按目的地筛选<a href="#"><img src="../Public/images/search_list_all_ico.png"></a></dt>
+                    <dd><a href="#">海南</a><a href="#">云南</a><a href="#">桂林</a><a href="#">北京</a><a href="#">张家界</a><a href="#">厦门</a><a href="#">重庆三峡</a><a href="#">四川</a><a href="#">西安</a><a href="#">东北</a><a href="#">夕阳红</a><a href="#">其他</a></dd>
+                </dl>
+				-->
+				<input type="hidden" name="days" value="">
+				<input type="hidden" name="price" value="">
+				<input type="hidden" name="kdata" value="{$keyword}">
+				<dl>
+                	<dt>按天数筛选<a <if condition="!$days"> class="cur"</if> href="javascript:;" data-field="days" data-value="">全部</a></dt>
+                    <dd class="clearfix">
+						<volist name="dayList" id="vo">
+						<a <if condition="$days eq $vo['days']"> class="cur"</if> href="javascript:;" data-field="days" data-value="{$vo.days}">{$vo.days}日游</a>
+						</volist>
+					</dd>
+                </dl>
+                <dl class="nobottom">
+                	<dt>按价格筛选<a <if condition="!$days"> class="cur"</if> href="javascript:;" data-field="price" data-value="">全部</a></dt>
+                    <dd class="clearfix">
+						<volist name="price" id="vo">
+						<a <if condition="$price eq $key"> class="cur"</if> href="javascript:;" data-field="price" data-value="{$key}">{$vo}</a>
+						</volist>
+					</dd>
+                </dl>
+        	</div>
+			<if condition="$count_num">
+			<div class="total_count" style="padding:0 20px;"><b>搜索“{$keyword}”相关线路</b>【&nbsp;共<b class="red">{$count_num}</b>条，其中<b class="red">{$zzt_num}</b>条<a title="三三设计、三三收客、三三导游、三三接送、全程管控，一管到底">自组团</a>，<b class="red">{$count_num - $zzt_num}</b>条<a title="产品经理选择的优质产品">精选</a>&nbsp;】</div>
+			<else/>
+			<div class="nothing"><img style="position: absolute;left: 300px;" src="../Public/images/breakheart.gif"/>啊哦~暂时未找到“<b>{$link.name}</b>”的相关线路</div>
+			</if>
+            <div class="search_route_list" id="content">
+            	<include file="ajaxlist" />
+            </div>
+        </div>
+        <div class="shop_list fr">
+        	<div class="s_list_top">
+            	<p class="s_list_name">没有找到喜欢的线路？</p>
+                <div class="tele_common_search">
+                	<div class="common_telephone clearfix"><span class="tt">旅游通</span><span class="pp">6666-7777</span></div>
+                </div>
+            </div>
+            <div class="s_list_bottom">
+            	<dl>
+                	<dt>市区形象店：65163333</dt>
+                    <dd>苏州市东大街488号(与书院巷交界处)</dd>
+                </dl>
+                <dl>
+                	<dt>园区台湾馆：69155333</dt>
+                    <dd>苏州园区旺敦路圆融购物中心四楼4070号</dd>
+                </dl>
+                <!--<dl>
+                	<dt>园区星海店：62961333</dt>
+                    <dd>苏州工业园区星海街168号白领公寓裙楼一楼</dd>
+                </dl>-->
+                <dl>
+                	<dt>新区泉屋店：68666633</dt>
+                    <dd>苏州高新区长江路211号泉屋百货4L-01</dd>
+                </dl> 
+                <dl>
+                	<dt>相城韩国馆：65232333</dt>
+                    <dd>相城区人民路4555号繁花商业中心3楼3006</dd>
+                </dl>  
+                <dl>
+                	<dt>吴中丽丰店：65165533</dt>
+                    <dd>吴中区宝带东路399号丽丰购物中心5楼508</dd>
+                </dl>                <dl>
+                	<dt>吴中海岛馆：65199333</dt>
+                    <dd>吴中区苏震桃路188号永旺梦乐城2层265号</dd>
+                </dl>
+                <dl>
+                	<dt>吴江正翔广场店：63431333</dt>
+                    <dd>吴江松陵镇江兴西路469号正翔商业广场2楼</dd>
+                </dl>                
+                <dl>
+                	<dt>昆山形象店：55151333</dt>
+                    <dd>昆山市中茵世贸广场百盛外围1楼</dd>
+                </dl>
+                <dl>
+                	<dt>昆山现代店：55115533</dt>
+                    <dd>昆山中华园路现代广场大厦A座1907室</dd>
+                </dl>
+                <dl>
+                	<dt>常熟印象城店：52225533</dt>
+                    <dd>常熟海虞南路88号印象城三楼(超市入口处)</dd>
+                </dl>
+                <dl>
+                	<dt>常熟欧尚店：52935333</dt>
+                    <dd>常熟市黄河路255号欧尚一楼超市入口处</dd>
+                </dl>
+                <dl>
+                	<dt>太仓华旭广场店：53535333</dt>
+                    <dd>太仓市人民南路95号华旭广场A218 </dd>
+                </dl>
+                <dl class="lastdl">
+                	<dt>张家港购物公园店：55395533</dt>
+                    <dd>张家港市购物公园恒光国际二楼</dd>
+                </dl>
+            </div>
+        </div>
+        
+
+    </div>
+</div>
+<include file="Public:contact"/>
+<include file="Public:footer_notq"/>
+</body>
+<script type="text/javascript">
+//初始化归零
+$('input[name="days"]').val('');
+$('input[name="price"]').val('');
+
+$(document).ready(function(){
+	$('#searchNav a').click(function(){
+		var days = $('input[name="days"]').val();
+		var price = $('input[name="price"]').val();
+		var keyword = $("input[name='kdata']").val();
+		var field = $(this).attr('data-field');
+		var value = $(this).attr('data-value');
+		if(field == 'days'){
+			days = value;
+			$('input[name="days"]').val(days);
+		}
+		if(field == 'price'){
+			price = value;
+			$('input[name="price"]').val(price);
+		}
+		$(this).parent().parent().find('a').removeClass('cur');
+		$(this).addClass('cur');
+		$.ajax({
+			url: '__ROOT__/Ajax/searchNav',
+			type: 'POST',
+			data:{days:days,price:price,keyword:keyword},
+			dataType: 'html',
+			success: function(result){
+				$('.search_route_list').children().remove();
+				$('.search_route_list').append(result);
+				$('.s_r_list li').removeClass('lihover');
+				$('.s_r_list li').hover(function(){
+					$(this).addClass('lihover');	
+				},function(){
+					$('.s_r_list li').removeClass('lihover');	
+				});	
+				if(result.status == 1){
+					$('.s_r_list li').remove();
+					$('.pagination').remove();
+					$('.s_r_list').append(result.data);
+				}
+			}
+		});
+		
+		
+	});
+	
+});
+</script>
+</html>

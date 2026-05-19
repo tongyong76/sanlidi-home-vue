@@ -1,0 +1,81 @@
+<include file="Public:header" />
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".preview").preview();
+	});
+	
+	function status(id,type){
+		$.get("{:u('Line/status')}", { id: id, type: type }, function(data){
+			$("#"+type+"_"+id+" img").attr('src','__PUBLIC__/statics/images/status_'+data+'.gif')
+		},"json"); 
+	}
+</script>
+
+</head>
+<body>
+<div class="pad-10" >
+	<div style="padding:5px 0;font-size:14px;color:#404040;font-weight:bold;">
+		{$pInfo.name}
+		<a style="font-size:12px;color:blue;font-weight:normal;margin-left:10px;" href="{:U('Departure/add',array('id'=>$pInfo['id'],'type'=>'single','jumpUrl'=>$jumpUrl))}">+添加出发日期</a>
+		<a style="font-size:12px;color:blue;font-weight:normal;margin-left:10px;" href="{:U('Departure/add',array('id'=>$pInfo['id'],'type'=>'muti','jumpUrl'=>$jumpUrl))}">+批量添加</a>
+		<a id="getMinprice" data-id="{$pid}" style="font-size:12px;color:red;font-weight:700;margin-left:10px;cursor:pointer;text-decoration:none;">[变动价格后一定要点我更新最低价格！]</a>
+	</div>
+    <form id="myform" name="myform" action="{:u('Departure/delete',array('pid'=>$pid,'jumpUrl'=>$jumpUrl))}" method="post">
+    <div class="table-list">
+    <table width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th width="1%"><input type="checkbox" value="" id="check_box" onclick="selectall('id[]');"></th>
+				<th width=60>出发日期</th>
+				<th width=60>市场价格</th>
+                <th width=60>成人价格</th>
+				<th width=60>儿童价格</th>		        
+                <th width=120>操作</th>
+            </tr>
+        </thead>
+    	<tbody>
+        <volist name="list" id="val" >
+        <tr>
+            <td align="center"><input type="checkbox" value="{$val.id}" name="id[]"></td>          
+            <td align="center">{$val.departure_time|date="Y-m-d",###}</td>
+			<td align="center">{$val.mprice}</td>
+			<td align="center">{$val.price}</td>
+			<td align="center">{$val.child_price}</td>
+            <td align="center"><a class="blue" href="{:u('Departure/edit',array('id'=>$val['id'],'jumpUrl'=>$jumpUrl))}">编辑</a></td>
+        </tr>
+        </volist>
+    	</tbody>
+		<input type="hidden" name="type" value="{$type}"/>
+    </table>
+
+    <div class="btn">
+    	<label for="check_box" style="float:left;">全选/取消</label>
+    	<input type="submit" class="button" name="submit" value="删除" style="margin:0 10px 0 10px;" onclick="return check();"/>
+		<!--<a href="{$jumpUrl2}"><input type="button" class="button" name="order" value="返回列表" style="margin:0 10px 0 0px;"/></a>-->
+    	<div id="pages">{$page}</div>
+    </div>
+
+    </div>
+    </form>
+</div>
+</body>
+<script type="text/javascript"> 
+$(function(){
+	$('#getMinprice').click(function(){
+		var goods_id = $(this).attr('data-id');
+		$.ajax({
+			url: 'index.php?m=Departure&a=getMinprice',
+			type: 'POST',
+			data:{goods_id:goods_id},
+			dataType: 'json',
+			success: function(result){
+				if(result.status == 1){
+					$('#getMinprice').html("[已更新]");
+				}
+			}
+		});
+	});
+});
+</script>
+</html>

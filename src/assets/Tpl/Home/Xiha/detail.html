@@ -1,0 +1,219 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{$info.title}_嘻哈亲子游_三三旅游33ly.com</title>
+<meta name="keywords" content="">
+<meta name="description" content="{$info.title}">
+<link type="text/css" rel="stylesheet" href="../Public/css/reset.css">
+<link type="text/css" rel="stylesheet" href="../Public/css/style.css">
+<script type="text/javascript" src="../Public/js/jquery-1.11.1.min.js"></script>
+<script>var ROOT_PATH = '__ROOT__';</script>
+<script>var APP_PATH = '../Public';</script>
+<script type="text/javascript" src="../Public/js/jquery.scrollTo.min.js"></script>
+<script type="text/javascript" src="../Public/js/common.js"></script>
+<script type="text/javascript" src="../Public/js/xiha_detail.js?v=1.0"></script>
+<include file="Public:statistics"/>
+</head>
+<body>
+<include file="Public:header"/>
+<!--头部结束-->
+<div class="wrap">
+  <div class="inside_wrap clearfix">
+    <div class="search_nav">
+      <a href="/">首页</a><b>></b><a href="__ROOT__/pinpai/xihaqinzi/">嘻哈亲子</a><b>></b><span>{$info.title}</span>
+    </div>
+    <div class="Main">
+      <div class="mainLeft fl">
+		<h1>{$info.title}</h1>
+		<div class="contain mT20">{$info.info}</div>
+	  </div>
+      <div class="mainRight fr">
+        <div class="mainBlog">
+          <div class="blog"><img src="../Public/images/blog.jpg" width="100" height="100"><span>关注嘻哈亲子
+微信了解更多</span></div>
+          <div class="blog_mend">
+          <div class="blogWord"><img src="../Public/images/word.png"></div>
+          <div class="ticket"><a href="javascript:void(1);" onclick="orderThis();" onmousemove="this.className='ticket_move'" onMouseOut="className=''">立即预定</a><a href="http://wpa.qq.com/msgrd?v=3&amp;uin=2355677418&amp;site=qq&amp;menu=yes" target="_blank" onmousemove="this.className='ticket_move'" onMouseOut="className=''">在线咨询</a></div>
+          <div class="blogTel">18020260133<span>欢迎随时详询</span></div>
+          </div>
+        </div>
+        <div class="mainList">
+          <p class="mainHead"></p>
+          <span>精彩回顾</span>
+          <ul class="list">
+            <li><a href="#"><嘻哈亲子崇明2天>亲近自然之旅</a></li>
+            <li><a href="#"><嘻哈亲子崇明2天>亲近自然之旅</a></li>
+            <li><a href="#"><嘻哈亲子崇明2天>亲近自然之旅</a></li>
+            <li><a href="#"><嘻哈亲子崇明2天>亲近自然之旅</a></li>
+            <li><a href="#"><嘻哈亲子崇明2天>亲近自然之旅</a></li>
+            <li><a href="#"><嘻哈亲子崇明2天>亲近自然之旅</a></li>
+            <i><a href="#"><img src="../Public/images/more.gif"></a></i>
+          </ul>
+          <p class="mainBottom"></p>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="fancybox2">
+    <div class="fTitle2 fTitle2_mend"><i>嘻哈亲子游行程意向单</i><span class="fClose2">×</span></div>
+    <div class="notice">请您正确填写以下意向信息，我们每天会定时更新<br>
+收到意向书单后会及时与您取得联系，谢谢！</div>
+    <div class="fcon xiha">
+        <dl class="clearfix">
+          <dt>真实姓名：</dt>
+          <dd>
+            <div class="select_box">
+                    <div class="select_con select_con_xiha">
+                        <input class="long" type="text" value="{$nav_user_info.realname}" id="cname" name="cname"></input>
+                    </div>
+                </div>
+          </dd>
+        </dl>
+        <dl class="clearfix">
+          <dt>手机号码：</dt>
+          <dd>
+            <div class="select_box">
+                    <div class="select_con select_con_xiha">
+                        <input class="long" type="text" value="{$nav_user_info.phone}" id="cphone" name="cphone"></input>
+                    </div>
+                </div>
+          </dd>
+        </dl>                        
+        <dl class="clearfix">
+            <dt>出游日期：</dt>
+            <dd>
+                <div class="select_box">
+                    <div class="select_con select_con_xiha">
+                        <p class="grey select_result" id="select_riqi">请选择出发日期</p>
+                    </div>
+                    <ul id="select_rlist" class="select_list select_list_xiha">
+						<volist name="depList" id="vo">
+						<li s-data="{$vo.id}">{$vo.departure_time|date="Y-m-d",###}（星期{$week[date('w',$vo['departure_time'])]}） <!--1大1小{$vo.price}元，第3人{$vo.child_price}--></li>                     
+						</volist>
+                    </ul>
+                </div>
+            </dd>
+        </dl>
+        <dl class="clearfix">
+            <dt>出发城市：</dt>
+            <dd>
+                <div class="select_box select_city">
+                    <div class="select_con select_con_xiha">
+                        <p class="select_result">苏州</p>
+                    </div>
+                </div>
+            </dd>
+        </dl>
+        <dl class="clearfix">
+            <dt>出游人数：</dt>
+            <dd>
+                <div class="acquiesce fl">
+                    <div class="num-lib num-left" id="adA-le">
+                        <span class="acquisitive" id="Aacquit">-</span>
+                    </div>
+                    <input class="acute" id="adultN" name="adultN" value="1">
+                    <div class="num-lib num-right" id="adA-ri">
+                        <span class="addiction">+</span>
+                    </div>
+                </div>
+                <span class="fl acqu_name">成人</span>
+                <div class="acquiesce fl">
+                    <div class="num-lib num-left" id="adC-le">
+                        <span class="acquisitive" id="Cacquit">-</span>
+                    </div>
+                    <input id="childN" class="acute" name="childN" value="1">
+                    <div class="num-lib num-right" id="adC-ri">
+                        <span class="addiction">+</span>
+                    </div>
+                </div>
+                <span class="fl acqu_name">儿童</span>
+            </dd>
+        </dl>
+        <dl class="clearfix">
+          <dt>备注：</dt>
+          <dd>
+            <div class="select_box">
+                    <div class="select_con select_con_xiha">
+						<input class="" type="text" placeholder="如：住宿，人数等" value="" name="cinfo"></input>
+                    </div>
+                </div>
+          </dd>
+        </dl>
+		<input type="hidden" name="tid" value="">
+    </div>
+	<div class="fBtn2" onclick="submitOrder();">确定</div>
+</div>
+<div id="retop">
+	<!--
+    <a target="_blank" href="http://chat32.live800.com/live800/chatClient/chatbox.jsp?companyID=468909&configID=59649&jid=4857736086" rel="nofollow" class="back_talk"></a>
+	<a class="back_top" href="javascript:void(0)"></a>
+	-->
+</div>
+<include file="Public:footer2"/>
+<script type="text/javascript">
+$(function(){
+	$('#select_rlist li').click(function(){
+		$('#select_riqi').html($(this).html());
+		$('#select_riqi').css('color','#333');
+		var tidData = $(this).attr('s-data');
+		$('input[name="tid"]').val(tidData);
+		$(this).parent().hide();
+	});
+});
+function orderThis(){
+	var data = $('input[name="tid"]').val();
+	var adultNum = $('#adultN').val();
+	var childNum = $('#childN').val();
+
+	$('#adultN').val(1)
+	$('#childN').val(1)
+	fancybox2('请选择行程');
+	return false;
+};
+function submitOrder(){
+	var cname = $('input[name="cname"]').val();
+	var cphone = $('input[name="cphone"]').val();
+	var tid = $('input[name="tid"]').val();
+	var adultN = $('input[name="adultN"]').val();
+	var childN = $('input[name="childN"]').val();
+	var cinfo = $('input[name="cinfo"]').val();
+	if(!cname){
+		alert("姓名必须填写");
+		return false;
+	}
+	if(!cphone){
+		alert("手机号必须填写");
+		return false;
+	}
+	$.ajax({
+		url: '__ROOT__/Xiha/form',
+		type: 'POST',
+		data:{cname:cname,cphone:cphone,tid:tid,adultN:adultN,childN:childN,cinfo:cinfo},
+		dataType: 'json',
+		success: function(result){
+			$('input[name="tid"]').val('');
+			$('input[name="cinfo"]').val('');
+			if(result.status==2){
+				fancybox('亲，您的需求我们已经收到了，请不要重复提交哦！')				
+				$('.fancybox2').hide();
+			}
+			if(result.status==1){
+				fancybox('您的需求已经提交成功了哦~！')				
+				$('.fancybox2').hide();
+			}
+			if(result.status==0){
+				$('.fancybox2').hide();
+				$('.fMask').remove();	
+			}
+			
+			//$('.fMask').remove();	
+		}
+	});
+}
+</script>
+</body>
+</html>

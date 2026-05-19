@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>苏州周边{$posi3}_苏州{$posi3}路线_苏州周边{$posi3}价格_三三旅游网</title>
+<meta name="keywords" content="">
+<meta name="description" content="苏州三三旅游网：为您提供2015年苏州周边{$posi3}最新线路报价，致力于为您带来及时、专业、全面、无忧的旅游服务，是您到苏州周边{$posi3}的明智之选。24小时旅游预订电话：66667777">
+<link type="text/css" rel="stylesheet" href="../Public/css/reset.css">
+<link type="text/css" rel="stylesheet" href="../Public/css/style.css">
+<script type="text/javascript" src="../Public/js/jquery-1.11.1.min.js"></script>
+<script>var ROOT_PATH = '__ROOT__';</script>
+<script type="text/javascript" src="../Public/js/common.js"></script>
+<script type="text/javascript" src="../Public/js/search_list.js"></script>
+<include file="Public:statistics"/>
+</head>
+<body>
+<include file="Public:header"/>
+<div class="wrap">
+	<div class="inside_wrap clearfix">
+    	<div class="search_nav">
+			<a href="/">首页</a><b>></b>{$posi1}<b>></b><span>{$posi2}</span>
+		</div>
+        <div class="search_list fl">
+            <div class="search_route_list" id="content" style="margin-top:0;">
+				<include file="ajaxlist" />
+            </div>
+        </div>
+		<include file="Public:shoplist"/>
+        
+
+    </div>
+</div>
+<include file="Public:footer"/>
+</body>
+<script type="text/javascript">
+//初始化归零
+$('input[name="days"]').val('');
+$('input[name="price"]').val('');
+
+$(document).ready(function(){
+	$('.searchNav a').click(function(){
+		var days = $('input[name="days"]').val();
+		var price = $('input[name="price"]').val();
+		var pinyin = $("input[name='pinyin']").val();
+		var field = $(this).attr('data-field');
+		var value = $(this).attr('data-value');
+		if(field == 'days'){
+			days = value;
+			$('input[name="days"]').val(days);
+		}
+		if(field == 'price'){
+			price = value;
+			$('input[name="price"]').val(price);
+		}
+		$(this).parent().parent().find('a').removeClass('cur');
+		$(this).addClass('cur');
+		$.ajax({
+			url: '__ROOT__/Ajax/tourIndex',
+			type: 'POST',
+			data:{days:days,price:price,pinyin:pinyin},
+			dataType: 'html',
+			success: function(result){
+				$('.search_route_list').children().remove();
+				$('.search_route_list').append(result);
+				$('.s_r_list li').removeClass('lihover');
+				$('.s_r_list li').hover(function(){
+					$(this).addClass('lihover');	
+				},function(){
+					$('.s_r_list li').removeClass('lihover');	
+				});	
+				if(result.status == 1){
+					$('.s_r_list li').remove();
+					$('.pagination').remove();
+					$('.s_r_list').append(result.data);
+				}
+			}
+		});
+			
+	});
+});
+</script>
+</html>

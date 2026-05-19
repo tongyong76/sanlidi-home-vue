@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>支付成功</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link type="text/css" rel="stylesheet" href="../Public/css/reset.css">
+<link type="text/css" rel="stylesheet" href="../Public/css/style.css">
+<script>var ROOT_PATH = '__ROOT__';</script>
+<script type="text/javascript" src="../Public/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../Public/js/common.js"></script>
+<script type="text/javascript" src="../Public/js/pay.js"></script>
+<include file="Public:statistics"/>
+</head>
+<body>
+<include file="Public:header"/>
+<!--头部结束-->
+<div class="wrap">
+	<div class="inside_wrap">
+		<div class="order_flow order_flow_step5"></div>
+        <div class="cont clearfix">
+            <div class="cont_right fl">
+				<div class="pInfo">
+                	 <form action="#" method="post">
+                	<div class="pInfo_title">
+                    	<span>支付成功</span>
+                    </div>
+                    <div class="order_success half">
+                    	<div class="o_normal"><b><if condition="$orderInfo['realname']">{$orderInfo.realname}<else/>{$orderInfo.cname}</if></b>先生/女士，</div>
+						<div class="o_normal">您的<b>出团通知书</b>将在<b>{$orderInfo.exptime|date="Y-m-d",###}</b>之前发送到您的</div>
+                        <div class="o_normal">注册邮箱（<if condition="$orderInfo['email']">{$orderInfo.email}<a href="__ROOT__/member/info" style="font-size:16px;margin-left:5px;">修改</a><else/><a href="__ROOT__/member/info" style="font-size:16px;">完善邮箱</a></if>）,请注意查收并仔细阅读。</div>
+						<div class="o_normal"><a href="__ROOT__/member/">查看我的订单>></a></div><br>
+						<div class="o_normal">如有疑问请联系<i>{:C('hotLine')}</i>&nbsp;或&nbsp;<a class="combtn combtn_yellow" href="http://chat32.live800.com/live800/chatClient/chatbox.jsp?companyID=468909&configID=59649&jid=4857736086">联系在线客服</a></div>
+                    </div>
+                </div>
+                </form>
+                
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+<include file="Public:footer_notq"/>
+
+</body>
+</html>

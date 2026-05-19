@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>个人中心_浏览记录_33ly.com</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link type="text/css" rel="stylesheet" href="../Public/css/reset.css">
+<link type="text/css" rel="stylesheet" href="../Public/css/style.css">
+<script>var ROOT_PATH = '__ROOT__';</script>
+<script type="text/javascript" src="../Public/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../Public/js/common.js"></script>
+<script type="text/javascript" src="../Public/js/user.js"></script>
+<include file="Public:statistics"/>
+</head>
+<body>
+<include file="Public:header"/>
+<!--头部结束-->
+<div class="wrap">
+	<div class="inside_wrap">
+    	<div class="search_nav"><a href="index.html">首页</a>>><span>会员中心</span></div>
+        <div class="mysan">我的</div>
+        <div class="cont clearfix">
+        	<div class="cont_left fl">
+                <div class="uCenter">
+                    <include file="Public:ucleft"/>
+                </div>
+            </div>
+            <div class="cont_right fr">
+ 				<div class="order_unclosed">
+                	<div class="o_u_title">浏览记录</div>
+                    <div class="o_u_content">
+                    	<table class="tab_order">
+                            <thead>
+                                <tr>
+                                    <th style="width:150px;">产品编号</th>
+                                    <th>缩略图</th>
+                                    <th>产品名称</th>
+                                    <th>最近出发日期</th>
+                                    <th style="width:70px;">售价</th>
+
+                                </tr>
+                            </thead>
+                            <tbody id="unCloseOrder">
+								<volist name="recordList" id="vo">
+                                <tr <if condition="$key eq 0">class="nobar"</if>>
+                                    <td>{$vo.sn}</td>
+                                    <td><img width="40" height="40" src="__ROOT__{$vo.imgurl}" /></td>
+                                    <td style="padding:0 10px;">{$vo.name}<br>{$vo.subname}</td>
+                                    <td>{$vo.dep}</td>
+                                    <td>￥{$vo.minprice}起</td>
+                                </tr>
+								</volist>
+                            </tbody>
+                        </table>
+                    </div>
+					
+                </div>
+                <include file="Public:uclike"/>
+                
+            </div>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+<include file="Public:footer_notq"/>
+<div class='messageBox'>
+	
+	<form id="cancelForm" method="post" action="">
+		<input type="hidden" name="order_id" value="">
+		<div class="tt">取消原因</div>
+		<textarea name="reason"></textarea>
+		<div class="tt mT20">您确定要取消订单吗？</div>
+		<div class="button">
+			<input type="button" class="button" name="cSubmit" value="是"/>
+			<input type="button" class="button" onclick="cancelco();" value="否">
+		</div>
+		
+		
+	</form>
+</div>
+
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

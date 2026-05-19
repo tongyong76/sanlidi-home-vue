@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{$link.name}_{$link.name}价格_{$link.name}线路_三三旅游网</title>
+<meta name="keywords" content="">
+<meta name="description" content="苏州青旅三三旅游网：为您提供2016年苏州三三旅游{$link.name}最新线路报价，是您参加{$link.name}旅游的明智之选。24小时旅游预订电话：66667777">
+<link type="text/css" rel="stylesheet" href="../Public/css/reset.css">
+<link type="text/css" rel="stylesheet" href="../Public/css/style.css">
+<script type="text/javascript" src="../Public/js/jquery-1.11.1.min.js"></script>
+<script>var ROOT_PATH = '__ROOT__';</script>
+<script type="text/javascript" src="../Public/js/common.js"></script>
+<script type="text/javascript" src="../Public/js/search_list.js"></script>
+<include file="Public:statistics"/>
+</head>
+<body>
+<include file="Public:header"/>
+<div class="wrap">
+	<div class="inside_wrap clearfix">
+    	<div class="search_nav">
+			<a href="/">首页</a><b>></b>{$link.name}
+		</div>
+        <div class="search_list fl">
+			<if condition="$count_num">
+			<div class="total_count top" style="padding:0 20px;"><b>{$link.name}</b>【&nbsp;共<b class="red">{$count_num}</b>条，其中<b class="red">{$zzt_num}</b>条<a title="三三设计、三三收客、三三导游、三三接送、全程管控，一管到底">自组团</a>，<b class="red">{$count_num - $zzt_num}</b>条<a title="产品经理选择的优质产品">精选</a>&nbsp;】</div>
+			<else/>
+			<div class="nothing top"><img style="position: absolute;left: 300px;" src="../Public/images/breakheart.gif"/>啊哦~暂时未找到“<b>{$link.name}</b>”的相关线路</div>
+			</if>
+            <div class="search_route_list" id="content">
+				<include file="ajaxlist" />
+            </div>           
+        </div>
+		<include file="Public:shoplist"/>
+    </div>
+</div>
+<include file="Public:footer_notq"/>
+</body>
+<script type="text/javascript">
+//初始化归零
+$('input[name="days"]').val('');
+$('input[name="price"]').val('');
+
+$(document).ready(function(){
+	$('.searchNav a').click(function(){
+		var days = $('input[name="days"]').val();
+		var price = $('input[name="price"]').val();
+		var pinyin = $("input[name='pinyin']").val();
+		var field = $(this).attr('data-field');
+		var value = $(this).attr('data-value');
+		if(field == 'days'){
+			days = value;
+			$('input[name="days"]').val(days);
+		}
+		if(field == 'price'){
+			price = value;
+			$('input[name="price"]').val(price);
+		}
+		$(this).parent().parent().find('a').removeClass('cur');
+		$(this).addClass('cur');
+		$.ajax({
+			url: '__ROOT__/Ajax/tourIndex',
+			type: 'POST',
+			data:{days:days,price:price,pinyin:pinyin},
+			dataType: 'html',
+			success: function(result){
+				$('.search_route_list').children().remove();
+				$('.search_route_list').append(result);
+				$('.s_r_list li').removeClass('lihover');
+				$('.s_r_list li').hover(function(){
+					$(this).addClass('lihover');	
+				},function(){
+					$('.s_r_list li').removeClass('lihover');	
+				});	
+				if(result.status == 1){
+					$('.s_r_list li').remove();
+					$('.pagination').remove();
+					$('.s_r_list').append(result.data);
+				}
+			}
+		});
+			
+	});
+});
+</script>
+</html>
