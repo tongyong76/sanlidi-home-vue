@@ -1,4 +1,4 @@
-@use './mixins.scss';
+@charset "UTF-8";
 
 #app {
     height: 100%;
@@ -13,7 +13,7 @@
     background-color: #1890ff;
 }
 
-// 通用式样
+// 通用式样layout
 * {
     box-sizing: border-box;
 }

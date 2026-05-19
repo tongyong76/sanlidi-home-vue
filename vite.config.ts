@@ -11,7 +11,6 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url)),
       '@views': resolvePath('src/views'),
       '@images': resolvePath('src/assets/images'),
-      '@icons': resolvePath('src/assets/icons'),
       '@utils': resolvePath('src/utils'),
       '@stores': resolvePath('src/store'),
       '@plugins': resolvePath('src/plugins'),

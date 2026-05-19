@@ -1,6 +1,6 @@
 import axios, { Method } from 'axios';
 import { router } from '@/router';
-import { useAppStore } from '@/store/main';
+import { useAppStore } from '@/store/modules/main';
 import { setting } from '@/config';
 
 export const baseURL = setting.apiRoot + '/a';

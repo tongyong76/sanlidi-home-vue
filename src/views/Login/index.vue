@@ -73,7 +73,7 @@
   import { ElForm, ElFormItem, type FormInstance, type FormRules } from 'element-plus';
   import Message from '@/utils/message';
   import { loginByPhone } from '@/api/login';
-  import { useAppStore } from '@/store/main';
+  import { useAppStore } from '@/store/modules/main';
   import md5 from 'md5';
 
   const router = useRouter();

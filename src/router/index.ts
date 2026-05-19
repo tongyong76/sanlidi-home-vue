@@ -3,25 +3,30 @@ import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
 import { setupBeforeEachGuard } from './guards/beforeEach';
 import { setupAfterEachGuard } from './guards/afterEach';
 
-const Login = () => import('@/views/login/index.vue');
+const Layout = () => import('@/views/Layout/index.vue');
 const Index = () => import('@/views/Index/index.vue');
+const Line = () => import('@/views/Line/index.vue');
 const Error500 = () => import('@/views/Exception/500/index.vue');
 const Error404 = () => import('@/views/Exception/404/index.vue');
 
 const routes: RouteRecordRaw[] = [
   {
     path: '/',
-    redirect: { name: 'Index' }
-  },
-  {
-    path: '/index',
-    name: 'Index',
-    component: Index
-  },
-  {
-    path: '/login',
-    name: 'Login',
-    component: Login
+    name: 'Layout',
+    component: Layout,
+    redirect: { name: 'Index' },
+    children: [
+      {
+        path: 'index',
+        name: 'Index',
+        component: Index
+      },
+      {
+        path: 'line',
+        name: 'Line',
+        component: Line
+      }
+    ]
   },
   {
     path: '/500',
@@ -41,7 +46,7 @@ export const router = createRouter({
 });
 
 export function initRouter(app: App<Element>): void {
-  setupBeforeEachGuard(router); // 路由前置守卫
-  setupAfterEachGuard(router); // 路由后置守卫
+  //setupBeforeEachGuard(router); // 路由前置守卫
+  //setupAfterEachGuard(router); // 路由后置守卫
   app.use(router);
 }
