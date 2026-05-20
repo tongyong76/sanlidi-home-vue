@@ -1,5 +1,5 @@
 <template>
-  <div>Index33</div>
+  <div style="height: 600px; background-color: brown">Index33</div>
   <button @click="goLine">go line</button>
 </template>
 
