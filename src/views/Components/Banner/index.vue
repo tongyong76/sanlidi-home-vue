@@ -12,14 +12,14 @@
           class="banner-link"
         >
           <img
-            :src="currentItem.imageUrl"
+            :src="IMAGE_URL + currentItem.imgurl"
             :alt="currentItem.alt || 'banner image'"
             class="banner-img"
           />
         </a>
         <img
           v-else
-          :src="currentItem.imageUrl"
+          :src="currentItem.imgurl"
           :alt="currentItem.alt || 'banner image'"
           class="banner-img"
         />
@@ -51,17 +51,21 @@
 
 <script setup lang="ts">
   import { ref, computed, watch, onMounted, onUnmounted } from 'vue';
+  import { IMAGE_URL } from '@/config';
 
   /**
    * Banner 项数据类型
    */
-  interface BannerItem {
+  interface IBannerItem {
     /** 图片地址（必填） */
-    imageUrl: string;
+    imgurl: string;
     /** 点击跳转链接（可选） */
     link?: string;
     /** 图片 alt 描述（可选） */
+    name?: string;
+    title?: string;
     alt?: string;
+    children?: IBannerItem[];
   }
 
   /**
@@ -70,7 +74,7 @@
   const props = withDefaults(
     defineProps<{
       /** 轮播图数据列表 */
-      items: BannerItem[];
+      items: IBannerItem[];
       /** 是否自动轮播 */
       autoplay?: boolean;
       /** 自动轮播间隔时间（毫秒） */
