@@ -313,108 +313,6 @@
               </div>
               <div class="backend"></div>
             </li>
-            <li class="menu-item">
-              <div class="front">
-                <dt>子品牌</dt>
-                <dd>
-                  <a
-                    href="{:C('site_domain')}/pinpai/zizhutuan/"
-                    target="_blank"
-                    title="三三设计、三三收客、三三导游、三三接送、全程管控、一管到底"
-                    >自组团</a
-                  >
-                  <a
-                    href="{:C('site_domain')}/pinpai/zhuanxiang/"
-                    target="_blank"
-                    title="特价、适合大众的旅游产品"
-                    >专享</a
-                  >
-                  <a
-                    href="{:C('site_domain')}/pinpai/changxiang/"
-                    target="_blank"
-                    title="中档、性价比高的旅游产品"
-                    >畅享</a
-                  >
-                  <a
-                    href="{:C('site_domain')}/pinpai/zunxiang/"
-                    target="_blank"
-                    title="高标准的定制旅游产品"
-                    >尊享</a
-                  >
-                  <a
-                    href="{:C('site_domain')}/pinpai/shexiang/"
-                    target="_blank"
-                    title="最高标准定制的小包团"
-                    >奢享</a
-                  >
-
-                  <br />
-                  <a
-                    href="{:C('site_domain')}/pinpai/shuaicang/"
-                    target="_blank"
-                    title="最全的上海出港邮轮产品"
-                    >沪上邮轮</a
-                  >
-                  <a
-                    href="{:C('site_domain')}/pinpai/tuanyou/"
-                    target="_blank"
-                    title="一天一百元的特价活动"
-                    >团游</a
-                  >
-                  <a
-                    href="{:C('site_domain')}/pinpai/zhoumoditu/"
-                    target="_blank"
-                    title="周末出发的周边游产品"
-                    >周末地图</a
-                  >
-                </dd>
-              </div>
-              <div class="backend"></div>
-            </li>
-            <li class="menu-item">
-              <div class="front">
-                <dt>周边游</dt>
-                <dd>
-                  <a href="{:C('site_domain')}/zhoubian/qingdao/" title="青岛旅游" target="_blank"
-                    >青岛</a
-                  >
-                  <a href="{:C('site_domain')}/zhoubian/jiande/" title="建德旅游" target="_blank"
-                    >建德</a
-                  >
-                  <a href="{:C('site_domain')}/zhoubian/ningbo/" title="宁波旅游" target="_blank"
-                    >宁波</a
-                  >
-                  <a href="{:C('site_domain')}/zhoubian/xiangshan/" title="象山旅游" target="_blank"
-                    >象山</a
-                  >
-                  <a href="{:C('site_domain')}/zhoubian/tonglu/" title="桐庐旅游" target="_blank"
-                    >桐庐</a
-                  >
-                  <a href="{:C('site_domain')}/zhoubian/linan/" title="临安旅游" target="_blank"
-                    >临安</a
-                  >
-                  <a
-                    href="{:C('site_domain')}/zhoubian/shanlingshuixiu/"
-                    title="山灵水秀"
-                    target="_blank"
-                    >山灵水秀</a
-                  >
-                  <a
-                    href="{:C('site_domain')}/zhoubian/shuixiangguzhen/"
-                    title="水乡古镇"
-                    target="_blank"
-                    >古镇</a
-                  >
-                  <a
-                    href="{:C('site_domain')}/zhoubian/dushimingcheng/"
-                    title="都市名城"
-                    target="_blank"
-                    >名城</a
-                  >
-                </dd>
-              </div>
-              <div class="backend"></div>
-            </li>
           </ul>
         </div>
         <div class="r_navs">
@@ -589,23 +487,27 @@
       position: relative;
       width: 300px;
       .top_btn {
-        position: relative;
-        top: -1px;
+        position: absolute;
+        top: -28px;
+        width: 300px;
+        height: 49px;
       }
       .menus {
         position: absolute;
-        top: 47px;
+        top: 18px;
+        height: 350px;
+        display: flex;
+        flex-direction: column;
         .menu-item {
+          flex: 1;
           width: 300px;
-          height: 87px;
           border-bottom: 1px solid #fff;
           &:last-child {
             border-bottom: none;
           }
           .front {
-            width: 290px;
-            height: 87px;
-            padding-left: 10px;
+            width: 300px;
+            padding: 10px;
             background: #fff;
             filter: alpha(opacity=80);
             opacity: 0.8;
@@ -614,7 +516,7 @@
               color: #2a98da;
             }
             dd {
-              height: 44px;
+              height: 42px;
               width: 221px;
               line-height: 1.5em;
               font-size: 14px;

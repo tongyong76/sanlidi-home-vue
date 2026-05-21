@@ -208,6 +208,9 @@
 </script>
 
 <style lang="scss" scoped>
+  .footer-page {
+    margin-top: 20px;
+  }
   .w1200 {
     width: 1200px;
     margin: 0 auto;
