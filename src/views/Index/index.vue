@@ -72,9 +72,9 @@
                       <p class="h_n_name"
                         ><span class="h_n_link"> <{{ item.name }}> </span
                         ><span class="h_n_shortdes">{{ item.subname }}</span>
-                        <if condition="in_array(6,$vo['switch'])"
+                        <!-- <if condition="in_array(6,$vo['switch'])"
                           ><span class="mark">{:C('switch.6')}</span></if
-                        >
+                        > -->
                       </p>
                       <p class="h_n_description">{{ item.info }}</p>
                     </dt>
@@ -390,7 +390,6 @@
     news.value = await getIndexNews();
     ads.value = await getAd();
     floor.value = await getIndexFloor();
-    console.log(floor.value);
   });
 </script>
 
@@ -736,13 +735,16 @@
             }
             .sel_route {
               background: #ff7c80;
+              border-bottom: 2px solid #ff7c80;
               padding: 5px 10px;
               color: #fff;
               font-size: 14px;
               &.s2 {
+                background: #ba92dd;
                 border-bottom: 2px solid #ba92dd;
               }
               &.s3 {
+                background: #9bc626;
                 border-bottom: 2px solid #9bc626;
               }
             }

@@ -66,13 +66,13 @@
         <!--登陆注册结束-->
       </div>
     </div>
-    <div class="bannerBar">
+    <!-- <div class="bannerBar">
       <div class="inside_banner">
         <a href="#" target="_blank">
           <img src="@images/visa-cate-1.png" />
         </a>
       </div>
-    </div>
+    </div> -->
     <!--搜索开始-->
     <div class="searchBar">
       <div class="w1200">
