@@ -1,5 +1,6 @@
 <template>
-  <div class="index-page">
+  <div class="loading" v-if="loading">loading</div>
+  <div class="index-page" v-else>
     <!--banner-->
     <div class="index-banner">
       <Banner :items="banners"></Banner>
@@ -65,16 +66,16 @@
               </p>
             </div>
             <ul class="h_list">
-              <li class="h_list_item" v-for="item in hot" :key="item.id">
+              <li class="h_list_item" v-for="item in hotLine" :key="item.id">
                 <a href="{:C('site_domain')}/{$vo.pinyin}/xianlu-{$vo.id}.html" target="_blank">
                   <dl class="clearfix">
                     <dt>
                       <p class="h_n_name"
                         ><span class="h_n_link"> <{{ item.name }}> </span
                         ><span class="h_n_shortdes">{{ item.subname }}</span>
-                        <if condition="in_array(6,$vo['switch'])"
+                        <!-- <if condition="in_array(6,$vo['switch'])"
                           ><span class="mark">{:C('switch.6')}</span></if
-                        >
+                        > -->
                       </p>
                       <p class="h_n_description">{{ item.info }}</p>
                     </dt>
@@ -114,10 +115,15 @@
         <div class="title-box">
           <ul class="sel_name" id="out_sel_name">
             <li><a href="javascript:void(0)" class="sel_route">精选</a></li>
-            <li><a target="_blank" href="#">分类</a></li>
-            <li><a target="_blank" href="#">分类</a></li>
-            <li><a target="_blank" href="#">分类</a></li>
-            <li><a target="_blank" href="#" class="noborder">分类</a></li>
+            <template v-if="hotCate[0]">
+              <li
+                v-for="(item, index) in hotCate[0].children?.slice(0, 5)"
+                :key="item.id"
+                :class="index == 4 ? 'noborder' : ''"
+              >
+                <a target="_blank" href="#">{{ item.name }}</a>
+              </li>
+            </template>
           </ul>
           <label class="outboundBg"></label>
           <a href="#" class="more_route" target="_blank">更多线路>></a>
@@ -143,7 +149,7 @@
                   <div class="m_p_name">
                     <a :href="`/chujing/xianlu-${item.id}.html`" target="_blank">
                       <em> <{{ item.name }}> </em>
-                      {{ item.subname }}{{ index }}
+                      {{ item.subname }}
                     </a>
                   </div>
                   <div class="m_p_price">
@@ -204,10 +210,15 @@
         <div class="title-box s2">
           <ul class="sel_name" id="out_sel_name">
             <li><a href="javascript:void(0)" class="sel_route s2">精选</a></li>
-            <li><a target="_blank" href="#">分类</a></li>
-            <li><a target="_blank" href="#">分类</a></li>
-            <li><a target="_blank" href="#">分类</a></li>
-            <li><a target="_blank" href="#" class="noborder">分类</a></li>
+            <template v-if="hotCate[1]">
+              <li
+                v-for="(item, index) in hotCate[1].children?.slice(0, 5)"
+                :key="item.id"
+                :class="index == 4 ? 'noborder' : ''"
+              >
+                <a target="_blank" href="#">{{ item.name }}</a>
+              </li>
+            </template>
           </ul>
           <label class="outboundBg s2"></label>
           <a href="#" class="more_route" target="_blank">更多线路>></a>
@@ -233,7 +244,7 @@
                   <div class="m_p_name">
                     <a :href="`/guonei/xianlu-${item.id}.html`" target="_blank">
                       <em> <{{ item.name }}> </em>
-                      {{ item.subname }}{{ index }}
+                      {{ item.subname }}
                     </a>
                   </div>
                   <div class="m_p_price">
@@ -294,10 +305,15 @@
         <div class="title-box s3">
           <ul class="sel_name" id="out_sel_name">
             <li><a href="javascript:void(0)" class="sel_route s3">精选</a></li>
-            <li><a target="_blank" href="#">分类</a></li>
-            <li><a target="_blank" href="#">分类</a></li>
-            <li><a target="_blank" href="#">分类</a></li>
-            <li><a target="_blank" href="#" class="noborder">分类</a></li>
+            <template v-if="hotCate[2]">
+              <li
+                v-for="(item, index) in hotCate[2].children?.slice(0, 5)"
+                :key="item.id"
+                :class="index == 4 ? 'noborder' : ''"
+              >
+                <a target="_blank" href="#">{{ item.name }}</a>
+              </li>
+            </template>
           </ul>
           <label class="outboundBg s3"></label>
           <a href="#" class="more_route" target="_blank">更多线路>></a>
@@ -323,7 +339,7 @@
                   <div class="m_p_name">
                     <a :href="`/zhoubian/xianlu-${item.id}.html`" target="_blank">
                       <em> <{{ item.name }}> </em>
-                      {{ item.subname }}{{ index }}
+                      {{ item.subname }}
                     </a>
                   </div>
                   <div class="m_p_price">
@@ -337,8 +353,8 @@
             <div class="main_part_line clearfix">
               <ul class="m_line_left">
                 <li v-for="item in floor?.chujing.slice(3, 7)" :key="item.id">
-                  <a class="line_des" :href="`/zhoubian/xianlu-${item.id}.html`" target="_blank">
-                    <{{ item.name }}>{{ item.subname }}
+                  <a class="line_des" target="_blank" @click="goDetail(item.id)">
+                    111<{{ item.name }}>{{ item.subname }}
                   </a>
                   <span class="line_price"
                     >￥<span class="l_p">{{ item.minprice }}</span
@@ -348,7 +364,12 @@
               </ul>
               <ul class="m_line_left noborright">
                 <li v-for="item in floor?.chujing.slice(7, 11)" :key="item.id">
-                  <a class="line_des" :href="`/zhoubian/xianlu-${item.id}.html`" target="_blank">
+                  <a
+                    class="line_des"
+                    :href="`/zhoubian/xianlu-${item.id}.html`"
+                    @click="goDetail"
+                    target="_blank"
+                  >
                     <{{ item.name }}>{{ item.subname }}
                   </a>
                   <span class="line_price"
@@ -366,31 +387,21 @@
 </template>
 
 <script setup lang="ts">
-  import { ref, onMounted } from 'vue';
+  import { onMounted } from 'vue';
   import { router } from '@/router';
   import Banner from '@/views/Components/Banner/index.vue';
-  import { getIndexBanner } from '@/api/banner';
-  import { getIndexTj, getIndexHot, getIndexFloor } from '@/api/goods';
-  import { getIndexNews } from '@/api/article';
-  import { getAd } from '@/api/ad';
-  import { IBannerItem } from '@/types/banner';
+  import { useHome } from '@/hooks/useHome';
+
   import { IMAGE_URL } from '@/config';
 
-  const banners = ref<IBannerItem[]>([]);
-  const tj = ref<any[]>([]);
-  const hot = ref<any[]>([]);
-  const news = ref<any[]>([]);
-  const ads = ref<any>({});
-  const floor = ref<{ chujing: any[]; guonei: any[]; zhoubian: any[] }>();
+  const { banners, tj, hotLine, news, ads, floor, hotCate, loading, loadData } = useHome();
+
+  const goDetail = (id: number) => {
+    router.push(`/line/${id}`);
+  };
 
   onMounted(async () => {
-    banners.value = await getIndexBanner();
-    tj.value = await getIndexTj();
-    hot.value = await getIndexHot();
-    news.value = await getIndexNews();
-    ads.value = await getAd();
-    floor.value = await getIndexFloor();
-    console.log(floor.value);
+    loadData();
   });
 </script>
 
@@ -736,13 +747,16 @@
             }
             .sel_route {
               background: #ff7c80;
+              border-bottom: 2px solid #ff7c80;
               padding: 5px 10px;
               color: #fff;
               font-size: 14px;
               &.s2 {
+                background: #ba92dd;
                 border-bottom: 2px solid #ba92dd;
               }
               &.s3 {
+                background: #9bc626;
                 border-bottom: 2px solid #9bc626;
               }
             }
