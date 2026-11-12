@@ -163,9 +163,9 @@
             <div class="main_part_line clearfix">
               <ul class="m_line_left">
                 <li v-for="item in floor?.chujing.slice(3, 7)" :key="item.id">
-                  <a class="line_des" :href="IMAGE_URL + item.imgurl" target="_blank">
+                  <div class="line_des" @click="goDetail(item.id)">
                     <{{ item.name }}>{{ item.subname }}
-                  </a>
+                  </div>
                   <span class="line_price"
                     >￥<span class="l_p">{{ item.minprice }}</span
                     ><i>起</i></span
@@ -174,9 +174,9 @@
               </ul>
               <ul class="m_line_left noborright">
                 <li v-for="item in floor?.chujing.slice(7, 11)" :key="item.id">
-                  <a class="line_des" :href="IMAGE_URL + item.imgurl" target="_blank">
+                  <div class="line_des" @click="goDetail(item.id)">
                     <{{ item.name }}>{{ item.subname }}
-                  </a>
+                  </div>
                   <span class="line_price"
                     >￥<span class="l_p">{{ item.minprice }}</span
                     ><i>起</i></span
@@ -258,9 +258,9 @@
             <div class="main_part_line clearfix">
               <ul class="m_line_left">
                 <li v-for="item in floor?.guonei.slice(3, 7)" :key="item.id">
-                  <a class="line_des" :href="`/guonei/xianlu-${item.id}.html`" target="_blank">
+                  <div class="line_des" @click="goDetail(item.id)">
                     <{{ item.name }}>{{ item.subname }}
-                  </a>
+                  </div>
                   <span class="line_price"
                     >￥<span class="l_p">{{ item.minprice }}</span
                     ><i>起</i></span
@@ -269,9 +269,9 @@
               </ul>
               <ul class="m_line_left noborright">
                 <li v-for="item in floor?.guonei.slice(7, 11)" :key="item.id">
-                  <a class="line_des" :href="`/guonei/xianlu-${item.id}.html`" target="_blank">
+                  <div class="line_des" @click="goDetail(item.id)">
                     <{{ item.name }}>{{ item.subname }}
-                  </a>
+                  </div>
                   <span class="line_price"
                     >￥<span class="l_p">{{ item.minprice }}</span
                     ><i>起</i></span
@@ -353,9 +353,9 @@
             <div class="main_part_line clearfix">
               <ul class="m_line_left">
                 <li v-for="item in floor?.chujing.slice(3, 7)" :key="item.id">
-                  <a class="line_des" target="_blank" @click="goDetail(item.id)">
-                    111<{{ item.name }}>{{ item.subname }}
-                  </a>
+                  <div class="line_des" @click="goDetail(item.id)">
+                    <{{ item.name }}>{{ item.subname }}
+                  </div>
                   <span class="line_price"
                     >￥<span class="l_p">{{ item.minprice }}</span
                     ><i>起</i></span
@@ -364,14 +364,9 @@
               </ul>
               <ul class="m_line_left noborright">
                 <li v-for="item in floor?.chujing.slice(7, 11)" :key="item.id">
-                  <a
-                    class="line_des"
-                    :href="`/zhoubian/xianlu-${item.id}.html`"
-                    @click="goDetail"
-                    target="_blank"
-                  >
+                  <div class="line_des" @click="goDetail(item.id)">
                     <{{ item.name }}>{{ item.subname }}
-                  </a>
+                  </div>
                   <span class="line_price"
                     >￥<span class="l_p">{{ item.minprice }}</span
                     ><i>起</i></span
@@ -879,6 +874,10 @@
               width: 300px;
               float: left;
               overflow: hidden;
+              cursor: pointer;
+              &:hover {
+                color: #f60;
+              }
             }
             .line_price {
               height: 30px;
